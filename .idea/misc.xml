@@ -16,11 +16,12 @@
         <entry key="app/src/main/res/drawable/custom_profile.xml" value="0.1785" />
         <entry key="app/src/main/res/drawable/editable_profile.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/input_background.xml" value="0.1705" />
+        <entry key="app/src/main/res/drawable/password.xml" value="0.1705" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.11666666666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18070652173913043" />
         <entry key="app/src/main/res/layout/activity_notification.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.4122619628906251" />
-        <entry key="app/src/main/res/layout/layout_notification.xml" value="0.35287780761718746" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.30448760986328127" />
+        <entry key="app/src/main/res/layout/layout_notification.xml" value="0.32526881720430106" />
       </map>
     </option>
   </component>

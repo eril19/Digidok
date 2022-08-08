@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
 
         login.setOnClickListener {
 //            startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
-            startActivity(Intent(this@LoginActivity, NotificationActivity::class.java))
+            startActivity(Intent(this@LoginActivity, ProfileActivity::class.java))
         }
     }
 }
