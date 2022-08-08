@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import java.text.DateFormat
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +37,18 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false)
+
+        val v:View = inflater.inflate(R.layout.fragment_dashboard, container, false)
+
+        val calendar:Calendar = Calendar.getInstance()
+
+        val currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
+
+        val dateText = v.findViewById<TextView>(R.id.dateText)
+
+        dateText.setText(currentDate)
+
+        return v
     }
 
     companion object {
