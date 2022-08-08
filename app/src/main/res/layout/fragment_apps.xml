@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AppsFragment">
+
+    <ImageButton
+        android:id="@+id/mitraBtn"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        style="@style/imageButton"
+
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="kerjasama"
+        android:src="@drawable/ic_baseline_supervised_user_circle_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.272"
+        tools:ignore="SpeakableTextPresentCheck"
+        />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="90dp"
+        style="@style/imageButton"
+        android:layout_height="90dp"
+        android:layout_marginEnd="40dp"
+        android:src="@drawable/ic_baseline_library_books_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.844"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.272"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/pengajuanBtn"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="78dp"
+        android:src="@drawable/ic_baseline_file_copy_50"
+        app:layout_constraintEnd_toEndOf="@+id/mitraBtn"
+        app:layout_constraintStart_toStartOf="@+id/mitraBtn"
+        app:layout_constraintTop_toBottomOf="@+id/mitraBtn"
+        tools:ignore="SpeakableTextPresentCheck"
+        style="@style/imageButton"
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/averia_gruesa_libre"
+        android:text="Lainnya"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.924" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+
+        android:fontFamily="@font/averia_gruesa_libre"
+        android:text="Daftar Mitra"
+        app:layout_constraintEnd_toEndOf="@+id/mitraBtn"
+        app:layout_constraintStart_toStartOf="@+id/mitraBtn"
+        app:layout_constraintTop_toBottomOf="@+id/mitraBtn" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+
+        android:fontFamily="@font/averia_gruesa_libre"
+        android:text="Daftar KJPP"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="@+id/imageButton2"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/averia_gruesa_libre"
+        android:text="Daftar Pengajuan Kerjasama"
+
+        app:layout_constraintEnd_toEndOf="@+id/pengajuanBtn"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="@+id/pengajuanBtn"
+        app:layout_constraintTop_toBottomOf="@+id/pengajuanBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
