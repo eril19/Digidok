@@ -2,26 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/nav_pelaporan"
-        android:icon="@drawable/ic_report"
-        android:title="Pelaporan"
-        app:cnb_iconColor = "#2196F3"
-        ></item>
+<!--    <item-->
+<!--        android:id="@+id/nav_pelaporan"-->
+<!--        android:icon="@drawable/ic_report"-->
+<!--        android:title="Pelaporan"-->
+<!--        app:cnb_iconColor = "#2196F3"-->
+<!--        ></item>-->
 
-    <item
-        android:id="@+id/nav_dashboard"
-        android:icon="@drawable/ic_dashboard"
-        android:title="Dashboard"
-        app:cnb_iconColor = "#2196F3"
-        ></item>
+<!--    <item-->
+<!--        android:id="@+id/nav_dashboard"-->
+<!--        android:icon="@drawable/ic_dashboard"-->
+<!--        android:title="Dashboard"-->
+<!--        app:cnb_iconColor = "#2196F3"-->
+<!--        ></item>-->
 
-    <item
-        android:id="@+id/nav_apps"
-        android:icon="@drawable/ic_apps"
-        android:title="Lainnya"
-        app:cnb_iconColor = "#2196F3"
-        ></item>
+<!--    <item-->
+<!--        android:id="@+id/nav_apps"-->
+<!--        android:icon="@drawable/ic_apps"-->
+<!--        android:title="Lainnya"-->
+<!--        app:cnb_iconColor = "#2196F3"-->
+<!--        ></item>-->
 
 
 </menu>

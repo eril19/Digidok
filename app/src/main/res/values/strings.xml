@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Digidok</string>
     <string name="login_btn">LOGIN</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="daftar_pengajuan_kerjasama">Daftar Pengajuan Kerjasama</string>
+    <string name="daftar_kjpp">Daftar KJPP</string>
+    <string name="daftar_mitra">Daftar Mitra</string>
+    <string name="laporan_aset_dikerjasamakan">Laporan Aset Dikerjasamakan</string>
+    <string name="laporan_pengajuan_kerjasama">Laporan Pengajuan Kerjasama</string>
+    <string name="repositori_dokumen">Repositori Dokumen</string>
+    <string name="todo">TODO</string>
+    <string name="kerjasama">kerjasama</string>
 </resources>
