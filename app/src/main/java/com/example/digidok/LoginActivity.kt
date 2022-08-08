@@ -12,16 +12,11 @@ class LoginActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        val login = findViewById<Button>(R.id.loginBtn)
 
-        val loginbtn = findViewById<Button>(R.id.loginBtn)
-
-        loginbtn.setOnClickListener {
-//            val i = Intent(this@LoginActivity, MenuActivity::class.java)
-            startActivity(Intent(this@LoginActivity, MenuActivity::class.java))
+        login.setOnClickListener {
+//            startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+            startActivity(Intent(this@LoginActivity, ProfileActivity::class.java))
         }
     }
-
-
-
-
 }
