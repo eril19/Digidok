@@ -3,7 +3,7 @@ package com.example.digidok
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler as Handler1
+import android.os.Handler
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        Handler1().postDelayed({
+        Handler().postDelayed({
             val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
         }, 2000)
