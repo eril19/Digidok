@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,6 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
                     android:layout_marginTop="10dp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -332,7 +337,57 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#F4F4F4">
+
+                <TextView
+                    android:id="@+id/title_old_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:textColor="#D16400"
+                    android:textSize="14dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/old_password"
+                    android:layout_width="310dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/editable_profile"
+                    android:paddingStart="10dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Masukkan password lama Anda.."
+                    android:textColor="#7C7C7C"
+                    android:textSize="13dp" />
+
+                <Button
+                    android:id="@+id/simpanBtn"
+                    android:layout_width="150dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/btn_background"
+                    android:text="SIMPAN" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp" />
+            </LinearLayout>
+
         </LinearLayout>
+
+    </ScrollView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

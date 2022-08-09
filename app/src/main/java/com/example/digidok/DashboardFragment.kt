@@ -1,10 +1,12 @@
 package com.example.digidok
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import java.text.DateFormat
 import java.util.*
@@ -43,7 +45,14 @@ class DashboardFragment : Fragment() {
 
         val dateText = v.findViewById<TextView>(R.id.dateText)
 
+        val dropdown_profile: ImageView = v.findViewById(R.id.profileBtn)
+
         dateText.setText(currentDate)
+
+        //       dropdown_profile.setOnClickListener {
+//            val i = Intent(this@LoginActivity, MenuActivity::class.java)
+ //           startActivity(Intent(this@ProfileOptionActivity, ProfileActivity::class.java))
+ //       }
 
         return v
     }
