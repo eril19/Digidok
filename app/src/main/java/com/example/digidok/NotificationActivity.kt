@@ -15,13 +15,13 @@ class NotificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
 
-        val recycler = findViewById<RecyclerView>(R.id.recycler_view_notification) 
+     //   val recycler = findViewById<RecyclerView>(R.id.recycler_view_notification)
 
-        layoutManager = LinearLayoutManager(this)
-        recycler.layoutManager = layoutManager
+      //  layoutManager = LinearLayoutManager(this)
+      //  recycler.layoutManager = layoutManager
 
-        adapter = RecyclerAdapter()
-        recycler.adapter = adapter
+     //   adapter = RecyclerAdapter()
+     //   recycler.adapter = adapter
 
     }
 }
