@@ -20,6 +20,8 @@ class MenuActivity : AppCompatActivity() {
 ////            replace(R.id.)
 //        }
 
+
+
         supportActionBar?.hide()
         addFragment(DashboardFragment.newInstance())
         val bottomNavigation = findViewById<MeowBottomNavigation>(R.id.bottomNavigation)
