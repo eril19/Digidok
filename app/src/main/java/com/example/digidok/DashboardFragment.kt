@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.digidok.databinding.FragmentDashboardBinding
 import java.text.DateFormat
 import java.util.*
 
@@ -44,6 +45,15 @@ class DashboardFragment : Fragment() {
         val currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
 
         val dateText = v.findViewById<TextView>(R.id.dateText)
+
+        val bind = FragmentDashboardBinding.inflate(layoutInflater)
+        bind.profileBtn.setOnClickListener {
+
+            val i = Intent(this@DashboardFragment.requireContext(), ProfileOptionActivity::class.java)
+
+            startActivity(i)
+
+        }
 
         val dropdown_profile: ImageView = v.findViewById(R.id.profileBtn)
 
