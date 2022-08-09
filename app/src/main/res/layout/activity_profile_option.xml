@@ -10,16 +10,52 @@
         android:id="@+id/include"
         layout="@layout/toolbar" />
 
-    <Button
-        android:id="@+id/btn_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Profile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+    <ImageButton
+        android:id="@+id/btnToProfile"
+        android:layout_width="115dp"
+        android:layout_height="102dp"
+
+
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="312dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include"
-        app:layout_constraintVertical_bias="0.101" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_person_24"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/logoutbtn"
+        android:layout_width="115dp"
+        android:layout_height="102dp"
+        android:layout_marginTop="312dp"
+        android:layout_marginEnd="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_logout_24"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/convergence"
+        android:text="Profil"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnToProfile"
+        app:layout_constraintStart_toStartOf="@+id/btnToProfile"
+        app:layout_constraintTop_toBottomOf="@+id/btnToProfile" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/convergence"
+        android:text="Log Out"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/logoutbtn"
+        app:layout_constraintStart_toStartOf="@+id/logoutbtn"
+        app:layout_constraintTop_toBottomOf="@+id/logoutbtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

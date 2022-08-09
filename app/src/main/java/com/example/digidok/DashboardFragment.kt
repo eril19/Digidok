@@ -46,23 +46,24 @@ class DashboardFragment : Fragment() {
 
         val dateText = v.findViewById<TextView>(R.id.dateText)
 
-        val bind = FragmentDashboardBinding.inflate(layoutInflater)
-        bind.profileBtn.setOnClickListener {
+//        val bind = FragmentDashboardBinding.inflate(layoutInflater)
+//
+//        bind.profileArrow.setOnClickListener {
+//
+//            val i = Intent(this@DashboardFragment.requireContext(), ProfileOptionActivity::class.java)
+//
+//            startActivity(i)
+//
+//        }
 
-            val i = Intent(this@DashboardFragment.requireContext(), ProfileOptionActivity::class.java)
-
-            startActivity(i)
-
-        }
-
-        val dropdown_profile: ImageView = v.findViewById(R.id.profileBtn)
+        val dropdown_profile: ImageView = v.findViewById(R.id.profileArrow)
 
         dateText.setText(currentDate)
 
-        //       dropdown_profile.setOnClickListener {
+               dropdown_profile.setOnClickListener {
 //            val i = Intent(this@LoginActivity, MenuActivity::class.java)
- //           startActivity(Intent(this@ProfileOptionActivity, ProfileActivity::class.java))
- //       }
+            startActivity(Intent(this@DashboardFragment.requireContext(), ProfileOptionActivity::class.java))
+        }
 
         return v
     }
