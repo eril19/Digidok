@@ -1,7 +1,9 @@
 package com.example.digidok
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
@@ -20,7 +22,11 @@ class MenuActivity : AppCompatActivity() {
 ////            replace(R.id.)
 //        }
 
+        val notif:ImageView = findViewById(R.id.notificationbtn)
 
+        notif.setOnClickListener {
+            startActivity(Intent(this@MenuActivity , NotificationActivity::class.java))
+        }
 
         supportActionBar?.hide()
         addFragment(DashboardFragment.newInstance())
