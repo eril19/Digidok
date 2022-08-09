@@ -8,6 +8,5 @@
         android:radius="4sp"/>
 
     <solid
-        android:color="@color/white"/>
-
+        android:color="#EAE9E9"/>
 </shape>
