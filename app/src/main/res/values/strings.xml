@@ -11,4 +11,6 @@
     <string name="repositori_dokumen">Repositori Dokumen</string>
     <string name="todo">TODO</string>
     <string name="kerjasama">kerjasama</string>
+    <string name="notification_title">Notification Title</string>
+    <string name="notification_detail">Notification Detail</string>
 </resources>

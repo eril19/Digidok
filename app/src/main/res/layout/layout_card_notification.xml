@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -34,8 +35,7 @@
                 android:layout_alignParentEnd="false"
                 android:layout_marginEnd="16sp"
                 android:layout_marginRight="16sp"
-                android:src="@drawable/ic_baseline_mail_outline_24"
-                ></ImageView>
+                android:src="@drawable/ic_baseline_mail_outline_24"/>
 
             <TextView
                 android:id="@+id/notificationTitle"
@@ -44,20 +44,20 @@
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@id/notificationIcon"
                 android:layout_toRightOf="@id/notificationIcon"
-                android:text="Notification 1"
                 android:textColor="@color/black"
-                android:textSize="18sp"></TextView>
+                android:textSize="18sp"
+                tools:text = "@string/notification_title"/>
 
             <TextView
-                android:id="@+id/namaMitra"
+                android:id="@+id/notificationDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/notificationTitle"
                 android:layout_toEndOf="@id/notificationIcon"
                 android:layout_toRightOf="@id/notificationIcon"
-                android:text="NAMA MITRA"
                 android:textColor="@color/black"
-                android:textSize="13sp"></TextView>
+                android:textSize="13sp"
+                tools:text = "@string/notification_detail"/>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
