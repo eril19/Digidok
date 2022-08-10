@@ -22,7 +22,7 @@
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_notification.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_profile.xml" value="0.4" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_profile_option.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/fragment_dashboard.xml" value="0.35311143270622286" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/layout_card_dashboard.xml" value="0.253125" />
@@ -32,16 +32,10 @@
         <entry key="app/src/main/res/drawable/btn_background.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/custom_profile.xml" value="0.1785" />
         <entry key="app/src/main/res/drawable/editable_profile.xml" value="0.17" />
-        <entry key="app/src/main/res/drawable/ic_baseline_apps_24.xml" value="0.185" />
-        <entry key="app/src/main/res/drawable/ic_baseline_dashboard_24.xml" value="0.185" />
-        <entry key="app/src/main/res/drawable/ic_baseline_document_scanner_24.xml" value="0.185" />
-        <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.185" />
         <entry key="app/src/main/res/drawable/input_background.xml" value="0.1705" />
         <entry key="app/src/main/res/drawable/password.xml" value="0.1705" />
-        <entry key="app/src/main/res/drawable/profile_pass_bg.xml" value="0.21000671386718753" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.11666666666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18070652173913043" />
-        <entry key="app/src/main/res/layout/activity_menu.xml" value="0.17291666666666666" />
         <entry key="app/src/main/res/layout/activity_notification.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.10219879150390623" />
         <entry key="app/src/main/res/layout/activity_profile_option.xml" value="0.12563323201621074" />
