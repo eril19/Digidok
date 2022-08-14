@@ -56,9 +56,9 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="40dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="25dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginEnd="8dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
 
                     <TextView
                         android:id="@+id/username"
-                        android:layout_width="328dp"
+                        android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/custom_profile"
@@ -112,7 +112,7 @@
 
                     <TextView
                         android:id="@+id/name"
-                        android:layout_width="328dp"
+                        android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/editable_profile"
@@ -144,7 +144,7 @@
 
                     <TextView
                         android:id="@+id/nip"
-                        android:layout_width="328dp"
+                        android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/editable_profile"
@@ -176,7 +176,7 @@
 
                     <TextView
                         android:id="@+id/telepon"
-                        android:layout_width="328dp"
+                        android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/editable_profile"
@@ -208,7 +208,7 @@
 
                     <TextView
                         android:id="@+id/email"
-                        android:layout_width="328dp"
+                        android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/editable_profile"
@@ -240,7 +240,7 @@
 
                     <TextView
                         android:id="@+id/keterangan"
-                        android:layout_width="328dp"
+                        android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/editable_profile"
@@ -300,7 +300,7 @@
 
                         <TextView
                             android:id="@+id/new_password"
-                            android:layout_width="153dp"
+                            android:layout_width="match_parent"
                             android:layout_height="35dp"
                             android:layout_marginTop="5dp"
                             android:background="@drawable/editable_profile"
@@ -333,7 +333,7 @@
 
                         <TextView
                             android:id="@+id/confirm_password"
-                            android:layout_width="153dp"
+                            android:layout_width="match_parent"
                             android:layout_height="35dp"
                             android:layout_marginLeft="9dp"
                             android:layout_marginTop="5dp"
@@ -388,7 +388,7 @@
                     <Button
                         android:id="@+id/simpanBtn"
                         android:layout_width="150dp"
-                        android:layout_height="35dp"
+                        android:layout_height="48dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="5dp"
