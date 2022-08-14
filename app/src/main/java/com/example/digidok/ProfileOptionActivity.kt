@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 
 class ProfileOptionActivity : AppCompatActivity() {
@@ -17,6 +18,14 @@ class ProfileOptionActivity : AppCompatActivity() {
         val header = findViewById<TextView>(R.id.header_title)
         val btn_profile = findViewById<ImageButton>(R.id.btnToProfile)
         val logout = findViewById<ImageButton>(R.id.logoutbtn)
+        val back = findViewById<ImageView>(R.id.backbtn)
+
+
+
+        back.setOnClickListener {
+            val intent = Intent(this@ProfileOptionActivity, MenuActivity::class.java)
+            startActivity(intent)
+        }
 
         header.setText("Profile Options")
 

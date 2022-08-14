@@ -1,7 +1,10 @@
 package com.example.digidok
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -10,6 +13,19 @@ class NotificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
 
+        supportActionBar?.hide()
+
+        val header = findViewById<TextView>(R.id.header_title)
+
+        header.setText("Notification")
+        val back = findViewById<ImageView>(R.id.backbtn)
+
+
+
+        back.setOnClickListener {
+            val intent = Intent(this@NotificationActivity, MenuActivity::class.java)
+            startActivity(intent)
+        }
         val notificationList = listOf<NotificationModel>(
             NotificationModel(
                 R.drawable.ic_baseline_mail_outline_24,
