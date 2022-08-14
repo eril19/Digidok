@@ -29,38 +29,38 @@ class NotificationActivity : AppCompatActivity() {
         val notificationList = listOf<NotificationModel>(
             NotificationModel(
                 R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "Notification 1",
-                NotificationDetail = "Notification Detail"
+                NotificationTitle = "PT. Rifdah SegarBugar",
+                NotificationDetail = "Banyakin gerak plis"
             ),
             NotificationModel(
                 R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "Notification 2",
-                NotificationDetail = "Notification Detail"
+                NotificationTitle = "PT. Kaepee",
+                NotificationDetail = "Semangat bikin cv"
             ),
             NotificationModel(
                 R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "Notification 3",
-                NotificationDetail = "Notification Detail"
+                NotificationTitle = "CV. Cupapi Munyenyo",
+                NotificationDetail = "awokwokwowko"
             ),
             NotificationModel(
                 R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "Notification 4",
-                NotificationDetail = "Notification Detail"
+                NotificationTitle = "PT. Preefort",
+                NotificationDetail = "Minyak Bumi mantab"
             ),
             NotificationModel(
                 R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "Notification 5",
-                NotificationDetail = "Notification Detail"
+                NotificationTitle = "Universitas Binus",
+                NotificationDetail = "Bayaran jangan lupa"
             ),
             NotificationModel(
                 R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "Notification 6",
-                NotificationDetail = "Notification Detail"
+                NotificationTitle = "BAPD",
+                NotificationDetail = "Lahan kosong deket cipayung"
             ),
             NotificationModel(
                 R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "Notification 7",
-                NotificationDetail = "Notification Detail"
+                NotificationTitle = "Kanye West",
+                NotificationDetail = "Bayar utang jgn lupa"
             )
         )
 
