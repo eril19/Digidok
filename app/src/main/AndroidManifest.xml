@@ -14,13 +14,17 @@
         android:theme="@style/Theme.Digidok"
         tools:targetApi="31">
         <activity
+            android:name=".DaftarMitraActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileOptionActivity"
             android:exported="false" />
-        <activity android:name=".NotificationActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".NotificationActivity"
+            android:exported="false" />
         <activity
             android:name=".MenuActivity"
             android:exported="false" />

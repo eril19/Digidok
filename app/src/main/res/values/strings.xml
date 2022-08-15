@@ -13,4 +13,10 @@
     <string name="kerjasama">kerjasama</string>
     <string name="notification_title">Notification Title</string>
     <string name="notification_detail">Notification Detail</string>
+    <string name="id_mitra">MT-2000-0001</string>
+    <string name="nama_mitra">PT Wahana Nusantara</string>
+    <string name="jenis_mitra">Perusahaan Swasta</string>
+    <string name="status_mitra">Whitelist</string>
+    <string name="npwp">700481948005000</string>
+    <string name="status_aktif">Aktif</string>
 </resources>

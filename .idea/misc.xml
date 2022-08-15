@@ -30,16 +30,21 @@
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/toolbar.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/drawable-v24/custom_input.xml" value="0.1785" />
         <entry key="app/src/main/res/drawable/btn_background.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/card_mitra_bg_green.xml" value="0.1015" />
         <entry key="app/src/main/res/drawable/custom_profile.xml" value="0.1785" />
+        <entry key="app/src/main/res/drawable/dd_background.xml" value="0.1015" />
         <entry key="app/src/main/res/drawable/editable_profile.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/input_background.xml" value="0.1705" />
         <entry key="app/src/main/res/drawable/password.xml" value="0.1705" />
+        <entry key="app/src/main/res/layout/activity_daftar_mitra.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.11666666666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18070652173913043" />
         <entry key="app/src/main/res/layout/activity_notification.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.10219879150390623" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2715057373046875" />
         <entry key="app/src/main/res/layout/activity_profile_option.xml" value="0.12563323201621074" />
+        <entry key="app/src/main/res/layout/dd_text_status.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.24270833333333333" />
+        <entry key="app/src/main/res/layout/layout_card_daftar_mitra.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/layout_card_notification.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/layout_notification.xml" value="0.32526881720430106" />
       </map>
