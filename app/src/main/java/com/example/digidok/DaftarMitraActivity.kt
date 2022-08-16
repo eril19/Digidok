@@ -2,28 +2,38 @@ package com.example.digidok
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import android.widget.ArrayAdapter
 import com.example.digidok.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class DaftarMitraActivity : AppCompatActivity() {
+
+    var spinnerStatus : Spinner? = null
+    val listStatus = arrayListOf("SEMUA", "AKTIF", "NON AKTIF")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setContentView(R.layout.activity_daftar_mitra)
 
-        val listStatus = arrayListOf<String>("[SEMUA]", "AKTIF", "NON AKTIF")
         val adapter = ArrayAdapter(applicationContext,R.layout.dd_text_status, listStatus)
         //binding.spinnerStatus.adapter = adapter
 
         supportActionBar?.hide()
 
+        spinnerStatus = findViewById<Spinner>(R.id.spinner_status)
         val header = findViewById<TextView>(R.id.header_title)
 
         header.setText("Daftar Mitra")
@@ -78,6 +88,35 @@ class DaftarMitraActivity : AppCompatActivity() {
 
         }
 
+        setSpinnerKategori()
+
     }
+
+    fun setSpinnerKategori() {
+        val arrayString = arrayListOf("Pilih Status")
+        arrayString.addAll(listStatus)
+        spinnerStatus?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayString) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return if (convertView != null) {
+                    if (convertView is TextView) {
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        try {
+                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                        } catch (e: Exception) {
+                            showErrorInflateFont()
+                        }
+                        convertView
+                    } else {
+                        convertView
+                    }
+                } else {
+                    super.getView(position, convertView, parent)
+                }
+            }
+        }
+    }
+
+    private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
+
 
 }
