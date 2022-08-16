@@ -25,9 +25,9 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/header_color"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:background="@drawable/card_mitra_bg_green"
                 android:gravity="center"
                 android:text="@string/status_aktif"
                 android:textColor="@color/white"
