@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.DaftarMitraModel
 import com.example.digidok.R
@@ -20,15 +21,27 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
         val status_mitra = view.findViewById<TextView>(R.id.status_mitra)
         val npwp = view.findViewById<TextView>(R.id.npwp)
         val npwp_mitra = view.findViewById<TextView>(R.id.npwp_mitra)
+        val header_color = view.findViewById<TextView>(R.id.header_color)
 
-        fun bindView(DaftarMitraModel: DaftarMitraModel, listener: (DaftarMitraModel) -> Unit){
-            id_mitra.text = DaftarMitraModel.id_mitra
-            nama_mitra.text = DaftarMitraModel.nama_mitra
-            jenis_mitra.text = DaftarMitraModel.jenis_mitra
-            status.text = DaftarMitraModel.status
-            status_mitra.text = DaftarMitraModel.status_mitra
-            npwp.text = DaftarMitraModel.npwp
-            npwp_mitra.text = DaftarMitraModel.npwp_mitra
+        fun bindView(daftarMitraModel: DaftarMitraModel, listener: (DaftarMitraModel) -> Unit){
+            id_mitra.text = daftarMitraModel.id_mitra
+            nama_mitra.text = daftarMitraModel.nama_mitra
+            jenis_mitra.text = daftarMitraModel.jenis_mitra
+            status.text = daftarMitraModel.status
+            status_mitra.text = daftarMitraModel.status_mitra
+            npwp.text = daftarMitraModel.npwp
+            npwp_mitra.text = daftarMitraModel.npwp_mitra
+            header_color.text = daftarMitraModel.header_color
+            if (daftarMitraModel.header_color.equals("Tidak Aktif", true) ) {
+                header_color.background = ContextCompat.getDrawable(header_color.context,
+                    R.color.red2
+                )
+            }
+            else if(daftarMitraModel.header_color.equals("Aktif", true) ) {
+                header_color.background = ContextCompat.getDrawable(header_color.context,
+                    R.color.green
+                )
+            }
         }
     }
 

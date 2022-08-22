@@ -17,16 +17,16 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class DaftarMitraActivity : AppCompatActivity() {
+class PengajuanKerjasamaActivity : AppCompatActivity() {
 
     var spinnerStatus : Spinner? = null
-    val listStatus = arrayListOf("SEMUA", "AKTIF", "NON AKTIF")
+    val listStatus = arrayListOf("SEMUA", "DRAFT", "MENUNGGU VALIDASI", "DISETUJUI")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setContentView(R.layout.activity_daftar_mitra)
+        setContentView(R.layout.activity_pengajuan_kerjasama)
 
         val adapter = ArrayAdapter(applicationContext,R.layout.dd_text_status, listStatus)
 
@@ -35,11 +35,11 @@ class DaftarMitraActivity : AppCompatActivity() {
         spinnerStatus = findViewById<Spinner>(R.id.spinner_status)
         val header = findViewById<TextView>(R.id.header_title)
 
-        header.setText("Daftar Mitra")
+        header.setText("Daftar Pengajuan Kerjasama")
         val back = findViewById<ImageView>(R.id.backbtn)
 
         back.setOnClickListener {
-            val intent = Intent(this@DaftarMitraActivity, MenuActivity::class.java)
+            val intent = Intent(this@PengajuanKerjasamaActivity, MenuActivity::class.java)
             startActivity(intent)
         }
 
@@ -47,9 +47,9 @@ class DaftarMitraActivity : AppCompatActivity() {
 
 
 
-        val DaftarMitraList = listOf<DaftarMitraModel>(
-            DaftarMitraModel(
-                header_color = "Aktif",
+        val PengajuanKerjasamaList = listOf<PengajuanKerjasamaModel>(
+            PengajuanKerjasamaModel(
+                header_color = "Draft",
                 id_mitra = "MT-2000-0001",
                 nama_mitra = "PT INDOCATER",
                 jenis_mitra = "Perusahaan Swasta",
@@ -58,8 +58,8 @@ class DaftarMitraActivity : AppCompatActivity() {
                 npwp = "NPWP",
                 npwp_mitra = "02.623.519.2-061.000",
             ),
-            DaftarMitraModel(
-                header_color = "Tidak Aktif",
+            PengajuanKerjasamaModel(
+                header_color = "Dikirim",
                 id_mitra = "MT-2011-0001",
                 nama_mitra = "PT Wahana Nusantara",
                 jenis_mitra = "Perusahaan Swasta",
@@ -73,7 +73,7 @@ class DaftarMitraActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.rv_list_mitra)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = DaftarMitraAdapter(this, DaftarMitraList){
+        recyclerView.adapter = PengajuanKerjasamaAdapter(this, PengajuanKerjasamaList){
 
         }
 

@@ -46,6 +46,22 @@ class AppsFragment : Fragment() {
             startActivity(i)
         }
 
+        val pengajuanKerjasamaabtn : ImageButton = v.findViewById(R.id.pengajuanBtn)
+
+        pengajuanKerjasamaabtn.setOnClickListener {
+            val i : Intent = Intent(this@AppsFragment.requireContext(), PengajuanKerjasamaActivity::class.java)
+
+            startActivity(i)
+        }
+
+        val daftarKjppbtn : ImageButton = v.findViewById(R.id.kjppBtn)
+
+        daftarKjppbtn.setOnClickListener {
+            val i : Intent = Intent(this@AppsFragment.requireContext(), DaftarKjppActivity::class.java)
+
+            startActivity(i)
+        }
+
         return v
     }
 

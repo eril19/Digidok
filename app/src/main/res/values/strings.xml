@@ -13,10 +13,18 @@
     <string name="kerjasama">kerjasama</string>
     <string name="notification_title">Notification Title</string>
     <string name="notification_detail">Notification Detail</string>
-    <string name="id_mitra">MT-2000-0001</string>
-    <string name="nama_mitra">PT Wahana Nusantara</string>
-    <string name="jenis_mitra">Perusahaan Swasta</string>
-    <string name="status_mitra">Whitelist</string>
-    <string name="npwp">700481948005000</string>
-    <string name="status_aktif">Aktif</string>
+    <string name="id_mitra">id mitra</string>
+    <string name="nama_mitra">nama mitra</string>
+    <string name="jenis_mitra">jenis mitra</string>
+    <string name="status_mitra">status</string>
+    <string name="npwp">NPWP</string>
+    <string name="header_color">header color</string>
+    <string name="no_kjpp">2.08.0001</string>
+    <string name="nama_kjpp">Latief, Hanif dan Rekan</string>
+    <string name="telp_kjpp">021 25031890</string>
+    <string name="no_perizinan">760/KM.1/2008</string>
+    <string name="tgl_perizinan">2008-11-20</string>
+    <string name="klasifikasi_perizinan">Properti</string>
+    <string name="detail_mitra">detail_mitra</string>
+    <string name="detail_content">detail_content</string>
 </resources>

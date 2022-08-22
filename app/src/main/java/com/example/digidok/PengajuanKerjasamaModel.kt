@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class DaftarMitraModel(
+data class PengajuanKerjasamaModel(
     val header_color : String,
     val id_mitra : String,
     val nama_mitra: String,
