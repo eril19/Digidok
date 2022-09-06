@@ -23,7 +23,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_keyboard_arrow_down_24_2"
+            android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
             android:layout_gravity="end"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
@@ -95,10 +95,9 @@
                 android:background="#E5E5E5" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="175dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="8dp"
                 android:layout_gravity="center">
 
                 <LinearLayout
@@ -110,18 +109,23 @@
                         android:id="@+id/no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         tools:text="No." />
 
                     <TextView
+                        android:id="@+id/tgl"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         tools:text="Tanggal" />
 
                     <TextView
+                        android:id="@+id/klasifikasi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
@@ -139,7 +143,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="15dp"
                         android:textColor="@color/black"
                         android:textSize="13dp"
                         tools:text="@string/no_perizinan"/>
@@ -149,7 +154,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="15dp"
                         android:textColor="@color/black"
                         android:textSize="13dp"
                         tools:text="@string/tgl_perizinan"/>
@@ -158,7 +164,7 @@
                         android:id="@+id/klasifikasi_perizinan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="15dp"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         tools:text="@string/klasifikasi_perizinan" />
@@ -172,4 +178,3 @@
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

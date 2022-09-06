@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.databinding.ActivityMainBinding
 import com.example.digidok.databinding.FragmentDashboardBinding
 import java.text.DateFormat
 import java.util.*
@@ -58,14 +61,35 @@ class DashboardFragment : Fragment() {
 
         val dropdown_profile: ImageView = v.findViewById(R.id.profileArrow)
 
+
         dateText.setText(currentDate)
 
-               dropdown_profile.setOnClickListener {
+        dropdown_profile.setOnClickListener {
 //            val i = Intent(this@LoginActivity, MenuActivity::class.java)
             startActivity(Intent(this@DashboardFragment.requireContext(), ProfileOptionActivity::class.java))
         }
 
         return v
+
+
+        val DashboardList = listOf<DashboardModel>(
+            DashboardModel(
+                nama_mitra = "PT INDOCATER",
+                jenis_mitra = "Perusahaan Swasta",
+            ),
+            DashboardModel(
+                nama_mitra = "PT Wahana Nusantara",
+                jenis_mitra = "Perusahaan Swasta",
+            )
+        )
+
+//        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_dashboard)
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.setHasFixedSize(true)
+//        recyclerView.adapter = DashboardAdapter(this, DashboardList){
+//
+//        }
+
     }
 
     companion object {
@@ -79,9 +103,10 @@ class DashboardFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic fun newInstance() =
-                DashboardFragment().apply {
-                    arguments = Bundle().apply {
-                    }
+            DashboardFragment().apply {
+                arguments = Bundle().apply {
                 }
+            }
     }
+
 }
