@@ -27,4 +27,6 @@
     <string name="klasifikasi_perizinan">Properti</string>
     <string name="detail_mitra">detail_mitra</string>
     <string name="detail_content">detail_content</string>
+    <string name="jenis_kerjasama">jenis kerjasama</string>
+    <string name="no_surat">no surat</string>
 </resources>

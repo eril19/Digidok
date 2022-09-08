@@ -51,14 +51,16 @@
         <entry key="app/src/main/res/layout/activity_pengajuan_kerjasama.xml" value="0.17291666666666666" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2715057373046875" />
         <entry key="app/src/main/res/layout/activity_profile_option.xml" value="0.12563323201621074" />
+        <entry key="app/src/main/res/layout/activity_repositori_dokumen.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/layout/dd_text_status.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/fragment_apps.xml" value="0.25833333333333336" />
-        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.24270833333333333" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.12213740458015267" />
         <entry key="app/src/main/res/layout/fragment_pelaporan.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/layout/layout_card_daftar_kjpp.xml" value="0.171875" />
         <entry key="app/src/main/res/layout/layout_card_daftar_mitra.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/layout_card_dashboard.xml" value="0.12563323201621074" />
         <entry key="app/src/main/res/layout/layout_card_notification.xml" value="0.20516304347826086" />
+        <entry key="app/src/main/res/layout/layout_card_repositori.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/layout/layout_notification.xml" value="0.32526881720430106" />
       </map>
     </option>
