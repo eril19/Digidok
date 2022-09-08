@@ -10,8 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.databinding.ActivityMainBinding
-import com.example.digidok.databinding.FragmentDashboardBinding
 import java.text.DateFormat
 import java.util.*
 
@@ -19,7 +17,7 @@ import java.util.*
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
+private lateinit var adapter: DashboardAdapter
 /**
  * A simple [Fragment] subclass.
  * Use the [DashboardFragment.newInstance] factory method to
@@ -60,16 +58,12 @@ class DashboardFragment : Fragment() {
 //        }
 
         val dropdown_profile: ImageView = v.findViewById(R.id.profileArrow)
+        val recyclerview : RecyclerView = v.findViewById(R.id.rv_list_dashboard)
+//        val sizeofData : TextView = v.findViewById(R.id.dataSize)
 
 
-        dateText.setText(currentDate)
-
-        dropdown_profile.setOnClickListener {
-//            val i = Intent(this@LoginActivity, MenuActivity::class.java)
-            startActivity(Intent(this@DashboardFragment.requireContext(), ProfileOptionActivity::class.java))
-        }
-
-        return v
+        recyclerview.layoutManager = LinearLayoutManager(this.requireContext())
+//        recyclerview.setHasFixedSize(true)
 
 
         val DashboardList = listOf<DashboardModel>(
@@ -82,6 +76,27 @@ class DashboardFragment : Fragment() {
                 jenis_mitra = "Perusahaan Swasta",
             )
         )
+
+//        val showData = DashboardList.size
+//        sizeofData.setText(showData)
+
+//        adapter = DashboardAdapter(DashboardList)
+
+        recyclerview.adapter = DashboardAdapter(this.requireContext(),  DashboardList){
+
+        }
+
+        dateText.setText(currentDate)
+
+        dropdown_profile.setOnClickListener {
+//            val i = Intent(this@LoginActivity, MenuActivity::class.java)
+            startActivity(Intent(this@DashboardFragment.requireContext(), ProfileOptionActivity::class.java))
+        }
+
+        return v
+
+
+
 
 //        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_dashboard)
 //        recyclerView.layoutManager = LinearLayoutManager(this)

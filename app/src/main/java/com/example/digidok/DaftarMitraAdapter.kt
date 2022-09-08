@@ -1,6 +1,7 @@
 package com.example.digidok
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,19 @@ import com.example.digidok.R
 class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: List<DaftarMitraModel>, val listener: (DaftarMitraModel) -> Unit)
     : RecyclerView.Adapter<DaftarMitraAdapter.DaftarMitraViewHolder>(){
 
-    class DaftarMitraViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    private lateinit var mListener: onItemClickListener
+
+    interface onItemClickListener{
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
+    }
+
+
+    class DaftarMitraViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
+
         val id_mitra = view.findViewById<TextView>(R.id.id_mitra)
         val nama_mitra = view.findViewById<TextView>(R.id.nama_mitra)
         val jenis_mitra = view.findViewById<TextView>(R.id.jenis_mitra)
@@ -43,12 +56,23 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
                 )
             }
         }
+
+        init {
+            itemView.setOnClickListener {
+
+                listener.onItemClick(adapterPosition)
+
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DaftarMitraViewHolder {
-        return DaftarMitraViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_mitra, parent, false)
-        )
+
+        val itemView = LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_mitra, parent, false)
+
+        return DaftarMitraViewHolder(itemView, mListener)
+
+
     }
 
     override fun onBindViewHolder(holder: DaftarMitraViewHolder, position: Int) {

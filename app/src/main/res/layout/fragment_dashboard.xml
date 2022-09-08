@@ -231,7 +231,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="8dp"
-            android:text="3 Kerjasama ditemukan"
+            android:text="Kerjasama ditemukan: "
             android:textColor="#4E4E4E"
             android:textSize="11dp"
             app:layout_constraintStart_toStartOf="parent"

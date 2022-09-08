@@ -73,9 +73,21 @@ class DaftarMitraActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.rv_list_mitra)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
+
+
         recyclerView.adapter = DaftarMitraAdapter(this, DaftarMitraList){
 
+
         }
+
+        DaftarMitraAdapter(this,DaftarMitraList,{}).setOnItemClickListener(object : DaftarMitraAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                val i : Intent = Intent(this@DaftarMitraActivity,MitraDetailActivity::class.java)
+                startActivity(i)
+            }
+
+        })
+
 
         setSpinnerKategori()
 
