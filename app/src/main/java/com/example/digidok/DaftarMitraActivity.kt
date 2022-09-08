@@ -75,18 +75,17 @@ class DaftarMitraActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
 
 
-        recyclerView.adapter = DaftarMitraAdapter(this, DaftarMitraList){
+        recyclerView.adapter = DaftarMitraAdapter(this, DaftarMitraList,object : DaftarMitraAdapter.onItemClickListener{
 
-
-        }
-
-        DaftarMitraAdapter(this,DaftarMitraList,{}).setOnItemClickListener(object : DaftarMitraAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
-                val i : Intent = Intent(this@DaftarMitraActivity,MitraDetailActivity::class.java)
+                val i = Intent(this@DaftarMitraActivity, MitraDetailActivity::class.java)
                 startActivity(i)
             }
 
-        })
+        }){
+
+
+        }
 
 
         setSpinnerKategori()

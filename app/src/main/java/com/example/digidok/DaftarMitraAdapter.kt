@@ -11,18 +11,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.DaftarMitraModel
 import com.example.digidok.R
 
-class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: List<DaftarMitraModel>, val listener: (DaftarMitraModel) -> Unit)
+class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: List<DaftarMitraModel>, private val mListener: onItemClickListener,
+                         val listener: (DaftarMitraModel) -> Unit)
     : RecyclerView.Adapter<DaftarMitraAdapter.DaftarMitraViewHolder>(){
 
-    private lateinit var mListener: onItemClickListener
+//    private lateinit var mListener: onItemClickListener
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
     }
 
-    fun setOnItemClickListener(listener: onItemClickListener){
-        mListener = listener
-    }
+//    fun setOnItemClickListener(listener: onItemClickListener){
+//        mListener = listener
+//    }
 
 
     class DaftarMitraViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
@@ -35,6 +36,14 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
         val npwp = view.findViewById<TextView>(R.id.npwp)
         val npwp_mitra = view.findViewById<TextView>(R.id.npwp_mitra)
         val header_color = view.findViewById<TextView>(R.id.header_color)
+
+        init {
+            itemView.setOnClickListener {
+
+                listener.onItemClick(adapterPosition)
+
+            }
+        }
 
         fun bindView(daftarMitraModel: DaftarMitraModel, listener: (DaftarMitraModel) -> Unit){
             id_mitra.text = daftarMitraModel.id_mitra
@@ -55,15 +64,11 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
                     R.color.green
                 )
             }
+
+
         }
 
-        init {
-            itemView.setOnClickListener {
 
-                listener.onItemClick(adapterPosition)
-
-            }
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DaftarMitraViewHolder {

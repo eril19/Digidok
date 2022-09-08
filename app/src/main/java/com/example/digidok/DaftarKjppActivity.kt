@@ -98,7 +98,13 @@ class DaftarKjppActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.rv_list_kjpp)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = DaftarKjppAdapter(this, DaftarKJPPList){
+        recyclerView.adapter = DaftarKjppAdapter(this, DaftarKJPPList,object:DaftarKjppAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                val i = Intent(this@DaftarKjppActivity, KjppDetailActivity::class.java)
+                startActivity(i)
+            }
+
+        }){
 
         }
 

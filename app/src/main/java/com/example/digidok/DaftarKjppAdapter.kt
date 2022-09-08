@@ -7,10 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class DaftarKjppAdapter(private val context: Context, private val DaftarKJPP: List<DaftarKjppModel>, val listener: (DaftarKjppModel) -> Unit)
+class DaftarKjppAdapter(private val context: Context, private val DaftarKJPP: List<DaftarKjppModel>, private val mListener:onItemClickListener,val listener: (DaftarKjppModel) -> Unit)
     : RecyclerView.Adapter<DaftarKjppAdapter.DaftarKJPPViewHolder>(){
 
-    class DaftarKJPPViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    interface onItemClickListener{
+        fun onItemClick(position: Int)
+    }
+
+    class DaftarKJPPViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
         val no_kjpp = view.findViewById<TextView>(R.id.no_kjpp)
         val nama_kjpp = view.findViewById<TextView>(R.id.nama_kjpp)
         val telp_kjpp = view.findViewById<TextView>(R.id.telp_kjpp)
@@ -32,12 +36,19 @@ class DaftarKjppAdapter(private val context: Context, private val DaftarKJPP: Li
             klasifikasi.text = daftarKjppModel.klasifikasi
             klasifikasi_perizinan.text = daftarKjppModel.klasifikasi_perizinan
         }
+
+        init {
+            itemView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DaftarKJPPViewHolder {
-        return DaftarKJPPViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_kjpp, parent, false)
-        )
+
+        val itemView = LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_kjpp, parent, false)
+
+        return DaftarKJPPViewHolder(itemView,mListener)
     }
 
     override fun onBindViewHolder(holder: DaftarKJPPViewHolder, position: Int) {
