@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:context=".MitraDetailActivity2
+">
+
+            <TextView
+                android:id="@+id/title_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="40dp"
+                android:text="Detail Mitra"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_detail">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/title_id_mitra"
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:text="Kode Mitra"
+                        android:textColor="#627284"
+                        android:textSize="14dp"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/id_mitra"
+                        android:layout_width="206dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/custom_profile"
+                        android:layout_marginLeft="10dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/title_tahun_gabung"
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:text="Tahun Gabung"
+                        android:textColor="#627284"
+                        android:textSize="14dp"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tahun_gabung"
+                        android:layout_width="206dp"
+                        android:layout_height="35dp"
+                        android:gravity="center"
+                        android:background="@drawable/custom_profile"
+                        android:layout_marginLeft="10dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/title_jenis_mitra"
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:text="Jenis"
+                        android:textColor="#627284"
+                        android:textSize="14dp"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/jenis_mitra"
+                        android:layout_width="206dp"
+                        android:layout_height="35dp"
+                        android:gravity="center"
+                        android:background="@drawable/custom_profile"
+                        android:layout_marginLeft="10dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/title_status_mitra"
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        android:textColor="#627284"
+                        android:textSize="14dp"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/status_mitra"
+                        android:layout_width="206dp"
+                        android:layout_height="35dp"
+                        android:gravity="center"
+                        android:background="@drawable/custom_profile"
+                        android:layout_marginLeft="10dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/close_detail_btn"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Sebelumnya"
+                        android:textSize="14dp"
+                        android:textAllCaps="false"
+                        android:backgroundTint="#676767"
+                        android:layout_marginRight="10dp"
+                        />
+
+                    <Button
+                        android:id="@+id/next_detail_btn"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Tutup"
+                        android:textSize="14dp"
+                        android:textAllCaps="false"
+                        android:backgroundTint="#AEAEAE"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
