@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
 
         <TextView
             android:id="@+id/dateText"
@@ -43,6 +44,7 @@
             android:textColor="@color/black"
             android:textSize="11dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/profilepic"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -59,6 +61,7 @@
             app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/profilepic"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
@@ -67,6 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
             android:layout_marginTop="68dp"
+            app:layout_constraintLeft_toRightOf="@+id/profilepic"
             android:text="TextView"
             android:textColor="@color/black"
             android:textSize="13dp"
@@ -103,6 +107,7 @@
             android:id="@+id/view"
             android:layout_width="164dp"
             android:layout_height="3dp"
+            android:layout_marginLeft="2dp"
             android:layout_marginTop="2dp"
             android:background="#525354"
             app:layout_constraintEnd_toEndOf="parent"
@@ -112,20 +117,20 @@
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="wrap_content"
-            android:layout_height="190dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="12dp"
             android:layout_marginRight="25dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="12dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -218,6 +223,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             android:text="Daftar Kerjasama Per Mitra"
             android:textColor="@color/black"
             android:textSize="14dp"
@@ -239,13 +246,14 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_list_dashboard"
-            android:layout_width="412dp"
-            android:layout_height="606dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mitraDitemukan"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/layout_card_dashboard" />
 
