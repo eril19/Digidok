@@ -19,14 +19,16 @@
     <string name="status_mitra">status</string>
     <string name="npwp">NPWP</string>
     <string name="header_color">header color</string>
-    <string name="no_kjpp">2.08.0001</string>
-    <string name="nama_kjpp">Latief, Hanif dan Rekan</string>
-    <string name="telp_kjpp">021 25031890</string>
+    <string name="no_kjpp">No KJPP</string>
+    <string name="nama_kjpp">Nama KJPP</string>
+    <string name="telp_kjpp">No telepon</string>
     <string name="no_perizinan">760/KM.1/2008</string>
     <string name="tgl_perizinan">2008-11-20</string>
     <string name="klasifikasi_perizinan">Properti</string>
     <string name="detail_mitra">detail_mitra</string>
     <string name="detail_content">detail_content</string>
-    <string name="jenis_kerjasama">jenis kerjasama</string>
+    <string name="jenis_kerjasama">Jenis Kerjasama</string>
     <string name="no_surat">no surat</string>
+    <string name="id_pks">PKS-2022-000001</string>
+    <string name="jenis_bmd">Jenis BMD</string>
 </resources>
