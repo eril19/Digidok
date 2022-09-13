@@ -46,6 +46,14 @@ class PelaporanFragment : Fragment() {
             startActivity(i)
         }
 
+        val kerjasamaBtn : ImageButton = v.findViewById(R.id.kerjasamaBtn)
+
+        kerjasamaBtn.setOnClickListener {
+            val i : Intent = Intent(this@PelaporanFragment.requireContext(), LaporanPengajuanActivity::class.java)
+
+            startActivity(i)
+        }
+
         return v
     }
 

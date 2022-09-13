@@ -77,14 +77,14 @@
                             tools:text="@string/nama_mitra" />
 
                         <TextView
-                            android:id="@+id/jenis_mitra"
+                            android:id="@+id/no_mitra"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:layout_marginRight="10dp"
                             android:textColor="#616161"
                             android:textSize="13sp"
-                            tools:text="@string/jenis_mitra" />
+                            tools:text="700481948005000" />
                     </LinearLayout>
 
                     <View
@@ -177,6 +177,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/periode"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
@@ -186,7 +187,7 @@
                             tools:text="Periode" />
 
                         <TextView
-                            android:id="@+id/periode"
+                            android:id="@+id/jangka_periode"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -200,7 +201,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/harga"
+                    android:id="@+id/nilai_pks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -208,10 +209,10 @@
                     android:layout_marginLeft="10dp"
                     android:textColor="#616161"
                     android:textSize="13dp"
-                    tools:text="Rp. 45,560,339,000" />
+                    tools:text="@string/nilai_pks" />
 
                 <TextView
-                    android:id="@+id/isi"
+                    android:id="@+id/detail_pks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -221,7 +222,7 @@
                     android:textColor="#616161"
                     android:textSize="13dp"
                     android:layout_marginRight="10dp"
-                    tools:text="Pemanfaatan Barang Milik Daerah Pemerintah Provinsi DKI Jakarta Berupa Sebagian Tanah yang terletak di Jalan Perintis Kemerdekaan, Kawasan Terminal Kampung Rambutan dan Kawasan Terminal Rawa Buaya untuk Depo TransJakarta" />
+                    tools:text="@string/detail_pks" />
 
             </LinearLayout>
 
