@@ -63,11 +63,13 @@
 
                     <TextView
                         android:id="@+id/no_induk"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
                         android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text=""
+                        android:text="@string/no_kjpp"
+                        android:gravity="center|left|left"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -94,12 +96,13 @@
 
                     <TextView
                         android:id="@+id/nama"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
                         android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text=""
+                        android:text="@string/nama_kjpp"
+                        android:gravity="center|left|left"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -135,12 +138,13 @@
 
                     <TextView
                         android:id="@+id/no_perizinan"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
                         android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text=""
+                        android:text="@string/no_perizinan"
+                        android:gravity="center|left|left"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -168,12 +172,12 @@
 
                     <TextView
                         android:id="@+id/tgl_perizinan"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
-                        android:background="@drawable/custom_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
+                        android:gravity="center|left|left"                        android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text=""
+                        android:text="@string/tgl_perizinan"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -201,12 +205,12 @@
 
                     <TextView
                         android:id="@+id/klasifikasi_perizinan"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
-                        android:background="@drawable/custom_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
+                        android:gravity="center|left|left"                        android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text=""
+                        android:text="@string/klasifikasi_perizinan"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -226,19 +230,19 @@
                         android:id="@+id/title_alamat"
                         android:layout_width="135dp"
                         android:layout_height="wrap_content"
-                        android:text="alamat"
+                        android:text="Alamat"
                         android:textColor="#93A174"
                         android:textSize="14dp"
                         android:layout_gravity="center"/>
 
                     <TextView
                         android:id="@+id/alamat"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
-                        android:background="@drawable/custom_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
+                        android:gravity="center|left|left"                        android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text=""
+                        android:text="@string/alamat_kjpp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -265,12 +269,12 @@
 
                     <TextView
                         android:id="@+id/telp"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
                         android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text=""
+                        android:text="@string/telp_kjpp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 

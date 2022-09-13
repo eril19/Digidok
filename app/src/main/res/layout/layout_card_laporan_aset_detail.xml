@@ -40,11 +40,11 @@
 
                     <TextView
                         android:id="@+id/title_nama_bmd"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="47dp"
+                        android:layout_marginRight="30dp"
                         android:text="Nama BMD"
                         android:textColor="#93A174"
                         android:textSize="14dp" />
@@ -75,11 +75,11 @@
 
                     <TextView
                         android:id="@+id/title_jenis_bmd"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="48dp"
+                        android:layout_marginRight="30dp"
                         android:text="Detail BMD"
                         android:textColor="#93A174"
                         android:textSize="14dp" />
@@ -110,11 +110,11 @@
 
                     <TextView
                         android:id="@+id/title_kode_lokasi"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="40dp"
+                        android:layout_marginRight="30dp"
                         android:text="Kode Lokasi"
                         android:textColor="#93A174"
                         android:textSize="14dp" />
@@ -145,11 +145,11 @@
 
                     <TextView
                         android:id="@+id/title_kode_barang"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="37dp"
+                        android:layout_marginRight="30dp"
                         android:text="Kode Barang"
                         android:textColor="#93A174"
                         android:textSize="14dp" />
@@ -179,11 +179,11 @@
 
                     <TextView
                         android:id="@+id/title_luas_bmd"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="53dp"
+                        android:layout_marginRight="30dp"
                         android:text="Luas BMD"
                         android:textColor="#93A174"
                         android:textSize="14dp" />
@@ -213,11 +213,11 @@
 
                     <TextView
                         android:id="@+id/title_lokasi_bmd"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="42dp"
+                        android:layout_marginRight="30dp"
                         android:text="Loksai BMD"
                         android:textColor="#93A174"
                         android:textSize="14dp" />
