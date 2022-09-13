@@ -14,6 +14,12 @@
         android:theme="@style/Theme.Digidok"
         tools:targetApi="31">
         <activity
+            android:name=".LaporanAsetDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaporanAsetActivity"
+            android:exported="false" />
+        <activity
             android:name=".LaporanPengajuanActivity"
             android:exported="false" />
         <activity

@@ -14,7 +14,7 @@
     <string name="notification_title">Notification Title</string>
     <string name="notification_detail">Notification Detail</string>
     <string name="id_mitra">id mitra</string>
-    <string name="nama_mitra">nama mitra</string>
+    <string name="nama_mitra">Nama Mitra</string>
     <string name="jenis_mitra">jenis mitra</string>
     <string name="status_mitra">status</string>
     <string name="npwp">NPWP</string>
@@ -33,4 +33,10 @@
     <string name="jenis_bmd">Jenis BMD</string>
     <string name="nilai_pks">Rp. 45,560,339,000</string>
     <string name="detail_pks">Pemanfaatan Barang Milik Daerah Pemerintah Provinsi DKI Jakarta Berupa Sebagian Tanah yang terletak di Jalan Perintis Kemerdekaan, Kawasan Terminal Kampung Rambutan dan Kawasan Terminal Rawa Buaya untuk Depo TransJakarta</string>
+    <string name="nama_bmd">PUSAT PENYIMPANAN BARANG DAERAH</string>
+    <string name="kode_lokasi">00392</string>
+    <string name="kode_bmd">131010104001::000001</string>
+    <string name="luas_bmd">15855 M2</string>
+    <string name="lokasi_bmd">Jl. Perintis Kemerdekaan No. 1</string>
+    <string name="detail_bmd">Tanah Bangunan Kantor Pemerintah</string>
 </resources>
