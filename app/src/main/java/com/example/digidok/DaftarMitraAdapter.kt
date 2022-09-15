@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.DaftarMitraModel
 import com.example.digidok.R
 
-class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: List<DaftarMitraModel>, private val mListener: onItemClickListener,
+class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: List<DaftarMitraModel>, private var mListener: onItemClickListener,
                          val listener: (DaftarMitraModel) -> Unit)
     : RecyclerView.Adapter<DaftarMitraAdapter.DaftarMitraViewHolder>(){
 
@@ -21,9 +22,9 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
         fun onItemClick(position: Int)
     }
 
-//    fun setOnItemClickListener(listener: onItemClickListener){
-//        mListener = listener
-//    }
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
+    }
 
 
     class DaftarMitraViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
@@ -36,10 +37,10 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
         val npwp = view.findViewById<TextView>(R.id.npwp)
         val npwp_mitra = view.findViewById<TextView>(R.id.npwp_mitra)
         val header_color = view.findViewById<TextView>(R.id.header_color)
+        val cardView = view.findViewById<CardView>(R.id.cardView)
 
         init {
-            itemView.setOnClickListener {
-
+            cardView.setOnClickListener {
                 listener.onItemClick(adapterPosition)
 
             }
@@ -64,8 +65,6 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
                     R.color.green
                 )
             }
-
-
         }
 
 
