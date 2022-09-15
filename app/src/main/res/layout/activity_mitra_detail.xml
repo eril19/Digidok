@@ -53,7 +53,8 @@
 
                     <TextView
                         android:id="@+id/title_npwp"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="NPWP"
                         android:textColor="#627284"
@@ -61,19 +62,16 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/name"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
+                        android:id="@+id/npwp"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:padding="6dp"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -84,28 +82,24 @@
 
                     <TextView
                         android:id="@+id/title_nama"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Nama"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center" />
 
                     <TextView
                         android:id="@+id/nama"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout

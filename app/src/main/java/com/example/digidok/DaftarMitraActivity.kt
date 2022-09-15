@@ -76,12 +76,11 @@ class DaftarMitraActivity : AppCompatActivity() {
 
 
         recyclerView.adapter = DaftarMitraAdapter(this, DaftarMitraList,object : DaftarMitraAdapter.onItemClickListener{
-
             override fun onItemClick(position: Int) {
                 val i = Intent(this@DaftarMitraActivity, MitraDetailActivity::class.java)
+                i.putExtra("daftarMitra", DaftarMitraList[position])
                 startActivity(i)
             }
-
         }){
 
 
