@@ -30,6 +30,8 @@ class DaftarKjppActivity : AppCompatActivity() {
         val header = findViewById<TextView>(R.id.header_title)
 
         header.setText("Daftar Kantor Jasa Penilaian Publik")
+        header.setTextSize(16F)
+
         val back = findViewById<ImageView>(R.id.backbtn)
 
         back.setOnClickListener {
@@ -47,7 +49,9 @@ class DaftarKjppActivity : AppCompatActivity() {
                 tgl = "Tanggal",
                 tgl_perizinan = "2008-11-20",
                 klasifikasi = "Klasifikasi",
-                klasifikasi_perizinan = "Properti"
+                klasifikasi_perizinan = "Properti",
+                alamat = "jalan KACE"
+
             ),
             DaftarKjppModel(
                 no_kjpp = "2.08.0002",
@@ -58,7 +62,9 @@ class DaftarKjppActivity : AppCompatActivity() {
                 tgl = "Tanggal",
                 tgl_perizinan = "2008-11-26",
                 klasifikasi = "Klasifikasi",
-                klasifikasi_perizinan = "Properti"
+                klasifikasi_perizinan = "Properti",
+                alamat = "jalan KACE"
+
             ),
             DaftarKjppModel(
                 no_kjpp = "2.08.0003",
@@ -69,7 +75,9 @@ class DaftarKjppActivity : AppCompatActivity() {
                 tgl = "Tanggal",
                 tgl_perizinan = "2008-12-01",
                 klasifikasi = "Klasifikasi",
-                klasifikasi_perizinan = "Properti"
+                klasifikasi_perizinan = "Properti",
+                alamat = "jalan KACE"
+
             ),
             DaftarKjppModel(
                 no_kjpp = "2.08.0004",
@@ -80,7 +88,9 @@ class DaftarKjppActivity : AppCompatActivity() {
                 tgl = "Tanggal",
                 tgl_perizinan = "2020-07-20",
                 klasifikasi = "Klasifikasi",
-                klasifikasi_perizinan = "Properti"
+                klasifikasi_perizinan = "Properti",
+                alamat = "jalan KACE"
+
             ),
             DaftarKjppModel(
                 no_kjpp = "2.08.0005",
@@ -91,16 +101,21 @@ class DaftarKjppActivity : AppCompatActivity() {
                 tgl = "Tanggal",
                 tgl_perizinan = "2008-12-23",
                 klasifikasi = "Klasifikasi",
-                klasifikasi_perizinan = "Properti dan Bisnis"
+                klasifikasi_perizinan = "Properti dan Bisnis",
+                alamat = "jalan KACE"
+
             )
         )
 
         val recyclerView = findViewById<RecyclerView>(R.id.rv_list_kjpp)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
+
+
         recyclerView.adapter = DaftarKjppAdapter(this, DaftarKJPPList,object:DaftarKjppAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
                 val i = Intent(this@DaftarKjppActivity, KjppDetailActivity::class.java)
+                i.putExtra("daftarKJPP", DaftarKJPPList[position])
                 startActivity(i)
             }
 

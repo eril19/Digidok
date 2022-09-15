@@ -10,6 +10,8 @@ class MitraDetailActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mitra_detail2)
 
+        supportActionBar?.hide()
+
         val prev_detail_btn = findViewById<Button>(R.id.prev_detail_btn)
         prev_detail_btn.setOnClickListener {
             startActivity(Intent(this@MitraDetailActivity2, MitraDetailActivity::class.java))

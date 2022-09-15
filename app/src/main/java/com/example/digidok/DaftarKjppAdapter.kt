@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class DaftarKjppAdapter(private val context: Context, private val DaftarKJPP: List<DaftarKjppModel>, private val mListener:onItemClickListener,val listener: (DaftarKjppModel) -> Unit)
+class DaftarKjppAdapter(private val context: Context, private val DaftarKJPP: List<DaftarKjppModel>, private var mListener:onItemClickListener,val listener: (DaftarKjppModel) -> Unit)
     : RecyclerView.Adapter<DaftarKjppAdapter.DaftarKJPPViewHolder>(){
 
     interface onItemClickListener{
@@ -25,6 +26,8 @@ class DaftarKjppAdapter(private val context: Context, private val DaftarKJPP: Li
         val klasifikasi = view.findViewById<TextView>(R.id.klasifikasi)
         val klasifikasi_perizinan = view.findViewById<TextView>(R.id.klasifikasi_perizinan)
 
+        val cardView = view.findViewById<CardView>(R.id.cardViewkjpp)
+
         fun bindView(daftarKjppModel: DaftarKjppModel, listener: (DaftarKjppModel) -> Unit){
             no_kjpp.text = daftarKjppModel.no_kjpp
             nama_kjpp.text = daftarKjppModel.nama_kjpp
@@ -38,7 +41,7 @@ class DaftarKjppAdapter(private val context: Context, private val DaftarKJPP: Li
         }
 
         init {
-            itemView.setOnClickListener {
+            cardView.setOnClickListener {
                 listener.onItemClick(adapterPosition)
             }
         }
