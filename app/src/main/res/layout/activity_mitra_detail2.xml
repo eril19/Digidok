@@ -54,7 +54,8 @@
 
                     <TextView
                         android:id="@+id/title_id_mitra"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Kode Mitra"
                         android:textColor="#627284"
@@ -63,18 +64,13 @@
 
                     <TextView
                         android:id="@+id/id_mitra"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -85,7 +81,8 @@
 
                     <TextView
                         android:id="@+id/title_tahun_gabung"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Tahun Gabung"
                         android:textColor="#627284"
@@ -94,19 +91,13 @@
 
                     <TextView
                         android:id="@+id/tahun_gabung"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
+                        android:textSize="15dp"  />
                 </LinearLayout>
 
                 <LinearLayout
@@ -117,7 +108,8 @@
 
                     <TextView
                         android:id="@+id/title_jenis_mitra"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Jenis"
                         android:textColor="#627284"
@@ -126,19 +118,13 @@
 
                     <TextView
                         android:id="@+id/jenis_mitra"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
+                        android:textSize="15dp"  />
                 </LinearLayout>
 
                 <LinearLayout
@@ -149,7 +135,8 @@
 
                     <TextView
                         android:id="@+id/title_status_mitra"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Status"
                         android:textColor="#627284"
@@ -158,19 +145,13 @@
 
                     <TextView
                         android:id="@+id/status_mitra"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
+                        android:textSize="15dp"  />
                 </LinearLayout>
 
                 <LinearLayout
@@ -182,7 +163,7 @@
                     android:layout_gravity="center"
                     android:orientation="horizontal">
                     <Button
-                        android:id="@+id/close_detail_btn"
+                        android:id="@+id/prev_detail_btn"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Sebelumnya"
@@ -193,7 +174,7 @@
                         />
 
                     <Button
-                        android:id="@+id/next_detail_btn"
+                        android:id="@+id/close_detail_btn"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Tutup"

@@ -110,7 +110,8 @@
 
                     <TextView
                         android:id="@+id/title_alamat"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Alamat"
                         android:textColor="#627284"
@@ -119,19 +120,14 @@
 
                     <TextView
                         android:id="@+id/alamat"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -142,7 +138,8 @@
 
                     <TextView
                         android:id="@+id/title_kelurahan"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Kelurahan"
                         android:textColor="#627284"
@@ -151,19 +148,13 @@
 
                     <TextView
                         android:id="@+id/kelurahan"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -174,7 +165,8 @@
 
                     <TextView
                         android:id="@+id/title_kecamatan"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Kecamatan"
                         android:textColor="#627284"
@@ -183,19 +175,13 @@
 
                     <TextView
                         android:id="@+id/kecamatan"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -206,7 +192,8 @@
 
                     <TextView
                         android:id="@+id/title_kota"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Kota/Kabupaten"
                         android:textColor="#627284"
@@ -215,19 +202,13 @@
 
                     <TextView
                         android:id="@+id/kota"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -238,7 +219,8 @@
 
                     <TextView
                         android:id="@+id/title_provinsi"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Provinsi"
                         android:textColor="#627284"
@@ -247,19 +229,13 @@
 
                     <TextView
                         android:id="@+id/provinsi"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -270,7 +246,8 @@
 
                     <TextView
                         android:id="@+id/title_klu"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Klasifikasi (KLU)"
                         android:textColor="#627284"
@@ -279,20 +256,15 @@
 
                     <TextView
                         android:id="@+id/klu"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -301,7 +273,8 @@
 
                     <TextView
                         android:id="@+id/title_kpp"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Nama KPP"
                         android:textColor="#627284"
@@ -310,19 +283,13 @@
 
                     <TextView
                         android:id="@+id/kpp"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -333,7 +300,8 @@
 
                     <TextView
                         android:id="@+id/title_kanwil"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="KANWIL"
                         android:textColor="#627284"
@@ -342,19 +310,13 @@
 
                     <TextView
                         android:id="@+id/kanwil"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -365,7 +327,8 @@
 
                     <TextView
                         android:id="@+id/title_telp"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="No. Telepon"
                         android:textColor="#627284"
@@ -373,20 +336,14 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/telp"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:id="@+id/telp_mitra"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -397,7 +354,8 @@
 
                     <TextView
                         android:id="@+id/title_fax"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="No. Fax"
                         android:textColor="#627284"
@@ -405,20 +363,14 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/fax"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:id="@+id/fax_mitra"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -429,7 +381,8 @@
 
                     <TextView
                         android:id="@+id/title_email"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Alamat Email"
                         android:textColor="#627284"
@@ -437,20 +390,14 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/email"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:id="@+id/email_mitra"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -461,7 +408,8 @@
 
                     <TextView
                         android:id="@+id/title_ttl"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="TTL"
                         android:textColor="#627284"
@@ -469,20 +417,14 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/ttl"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:id="@+id/ttl_mitra"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
 
@@ -494,7 +436,8 @@
 
                     <TextView
                         android:id="@+id/title_tgl_daftar"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Tanggal Daftar"
                         android:textColor="#627284"
@@ -502,21 +445,16 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/tgl_daftar"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:id="@+id/tgl_daftar_mitra"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -525,7 +463,8 @@
 
                     <TextView
                         android:id="@+id/title_status_pkp"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Status PKP"
                         android:textColor="#627284"
@@ -533,20 +472,14 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/status_pkp"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:id="@+id/status_pkp_mitra"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -557,7 +490,8 @@
 
                     <TextView
                         android:id="@+id/title_tgl_pkp"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Tanggal Pengukuhan PKP"
                         android:textColor="#627284"
@@ -565,20 +499,14 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/tgl_pkp"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:id="@+id/tgl_pkp_mitra"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -589,7 +517,8 @@
 
                     <TextView
                         android:id="@+id/title_jenis_pajak"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Jenis Wajib Pajak"
                         android:textColor="#627284"
@@ -597,20 +526,14 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/jenis_pajak"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:id="@+id/jenis_pajak_mitra"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -621,7 +544,8 @@
 
                     <TextView
                         android:id="@+id/title_badan_hukum"
-                        android:layout_width="135dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Badan Hukum"
                         android:textColor="#627284"
@@ -629,20 +553,14 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/badan_hukum"
-                        android:layout_width="206dp"
-                        android:layout_height="35dp"
-                        android:gravity="center"
+                        android:id="@+id/badan_hukum_mitra"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
                         android:background="@drawable/custom_profile"
-                        android:layout_marginLeft="10dp"
-                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout

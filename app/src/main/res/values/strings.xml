@@ -15,6 +15,7 @@
     <string name="notification_detail">Notification Detail</string>
     <string name="id_mitra">id mitra</string>
     <string name="nama_mitra">Nama Mitra</string>
+    <string name="alamat_mitra">Nama Mitra</string>
     <string name="jenis_mitra">jenis mitra</string>
     <string name="status_mitra">status</string>
     <string name="npwp">NPWP</string>
