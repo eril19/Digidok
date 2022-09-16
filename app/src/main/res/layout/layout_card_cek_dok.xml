@@ -9,7 +9,7 @@
     android:foreground="?attr/selectableItemBackground">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewkjpp"
+        android:id="@+id/cardViewDokDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -43,7 +43,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="230dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center"

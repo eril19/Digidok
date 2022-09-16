@@ -65,7 +65,14 @@ class LaporanAsetActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.rv_list_laporan_aset)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = LaporanAsetAdapter(this,  LaporanAset){
+        recyclerView.adapter = LaporanAsetAdapter(this, LaporanAset,object : LaporanAsetAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                val i = Intent(this@LaporanAsetActivity, LaporanAsetDetailActivity::class.java)
+                i.putExtra("laporanAset", LaporanAset[position])
+                startActivity(i)
+            }
+        }){
+
 
         }
 

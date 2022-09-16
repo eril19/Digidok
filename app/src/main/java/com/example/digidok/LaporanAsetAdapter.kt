@@ -5,20 +5,40 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.LaporanAsetModel
-import com.example.digidok.R
 
-class LaporanAsetAdapter(private val context: Context, private val LaporanAset: List<LaporanAsetModel>, val listener: (LaporanAsetModel) -> Unit)
+class LaporanAsetAdapter(private val context: Context, private val LaporanAset: List<LaporanAsetModel>, private var mListener: onItemClickListener,
+                         val listener: (LaporanAsetModel) -> Unit)
     : RecyclerView.Adapter<LaporanAsetAdapter.LaporanAsetViewHolder>(){
 
-    class LaporanAsetViewHolder(view: View): RecyclerView.ViewHolder(view) {
+//    private lateinit var mListener: onItemClickListener
+
+    interface onItemClickListener{
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
+    }
+
+
+    class LaporanAsetViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
+
         val id_pks = view.findViewById<TextView>(R.id.id_pks)
         val nama_mitra = view.findViewById<TextView>(R.id.nama_mitra)
         val nilai_pks = view.findViewById<TextView>(R.id.nilai_pks)
         val jenis_kerjasama = view.findViewById<TextView>(R.id.jenis_kerjasama)
         val header_color = view.findViewById<TextView>(R.id.header_color)
+        val cardView = view.findViewById<CardView>(R.id.cardViewAset)
+
+        init {
+            cardView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+
+            }
+        }
 
         fun bindView(laporanAsetModel: LaporanAsetModel, listener: (LaporanAsetModel) -> Unit){
             id_pks.text = laporanAsetModel.id_pks
@@ -41,13 +61,19 @@ class LaporanAsetAdapter(private val context: Context, private val LaporanAset: 
                     android.R.color.system_neutral2_600
                 )
             }
+
         }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LaporanAsetViewHolder {
-        return LaporanAsetViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.layout_card_laporan_aset, parent, false)
-        )
+
+        val itemView = LayoutInflater.from(context).inflate(R.layout.layout_card_laporan_aset, parent, false)
+
+        return LaporanAsetViewHolder(itemView, mListener)
+
+
     }
 
     override fun onBindViewHolder(holder: LaporanAsetViewHolder, position: Int) {

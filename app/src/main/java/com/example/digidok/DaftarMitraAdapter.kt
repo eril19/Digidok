@@ -34,7 +34,7 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
         val npwp = view.findViewById<TextView>(R.id.npwp)
         val npwp_mitra = view.findViewById<TextView>(R.id.npwp_mitra)
         val header_color = view.findViewById<TextView>(R.id.header_color)
-        val cardView = view.findViewById<CardView>(R.id.cardViewkjpp)
+        val cardView = view.findViewById<CardView>(R.id.cardViewMitra)
 
         init {
             cardView.setOnClickListener {
