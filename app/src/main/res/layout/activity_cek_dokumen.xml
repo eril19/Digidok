@@ -13,7 +13,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="40dp"
-        android:text="Detail Laporan Aset Kerjasama"
+        android:text="Cek Dokumen inimah namanya"
         android:textSize="15dp"
         android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent" />

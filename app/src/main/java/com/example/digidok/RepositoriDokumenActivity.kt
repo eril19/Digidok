@@ -1,7 +1,6 @@
 package com.example.digidok
 
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Typeface
 import android.widget.ArrayAdapter
 import com.example.digidok.databinding.ActivityMainBinding
@@ -82,7 +81,16 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.rv_list_repositori)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = RepositoriDokumemAdapter(this,  RepositoriList){
+        recyclerView.adapter = RepositoriDokumemAdapter(this,  RepositoriList, object:RepositoriDokumemAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+
+                val i = Intent(this@RepositoriDokumenActivity, CekDokumenActivity::class.java)
+//                i.putExtra("daftarRepositoriDokumen",RepositoriList)
+                startActivity(i)
+            }
+
+        }
+        ){
 
         }
 

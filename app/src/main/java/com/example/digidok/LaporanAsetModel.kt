@@ -10,6 +10,7 @@ class LaporanAsetModel(
     val nama_mitra: String,
     val nilai_pks : String,
     val jenis_kerjasama : String
+
 ): Parcelable  {
 
     constructor(parcel: Parcel) :this(

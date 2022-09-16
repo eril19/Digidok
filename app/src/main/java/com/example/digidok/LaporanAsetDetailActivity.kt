@@ -17,10 +17,10 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
         data = intent.getParcelableExtra("laporanAset")
 
         val tutup = findViewById<TextView>(R.id.close_detail_btn)
-        val id_pks = findViewById<TextView>(R.id.id_pks)
-        val nama_mitra = findViewById<TextView>(R.id.nama_mitra)
-        val nilai_pks = findViewById<TextView>(R.id.nilai_pks)
-        val jenis_kerjasama = findViewById<TextView>(R.id.jenis_kerjasama)
+        val id_pks = findViewById<TextView>(R.id.nomerpks)
+        val nama_mitra = findViewById<TextView>(R.id.namamitra)
+        val nilai_pks = findViewById<TextView>(R.id.hargapks)
+        val jenis_kerjasama = findViewById<TextView>(R.id.jeniskerjasama)
 
 
         tutup.setOnClickListener {

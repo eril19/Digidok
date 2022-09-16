@@ -18,9 +18,12 @@
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/drawable/input_background.xml" value="0.1355" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/drawable/profileactivity.xml" value="0.1935" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/drawable/username.xml" value="0.1355" />
+        <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_cek_dokumen.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_daftar_kjpp.xml" value="0.4" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_daftar_mitra.xml" value="0.4" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_kjpp_detail.xml" value="0.264" />
+        <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_laporan_aset.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_laporan_aset_detail.xml" value="0.370138017565872" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_menu.xml" value="0.25416666666666665" />
@@ -28,10 +31,14 @@
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_notification.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_profile_option.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/activity_repositori_dokumen.xml" value="0.3841145833333333" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/fragment_dashboard.xml" value="0.36240786240786244" />
+        <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/layout_card_cek_dok.xml" value="0.15364583333333334" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/layout_card_daftar_kjpp.xml" value="0.4" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/layout_card_daftar_mitra.xml" value="0.4" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/layout_card_dashboard.xml" value="0.536" />
+        <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/layout_card_laporan_aset.xml" value="0.4" />
+        <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/layout_card_laporan_aset_detail.xml" value="0.4" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/layout_card_notification.xml" value="0.15364583333333334" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/layout_card_repositori.xml" value="0.4" />
         <entry key="..\:/Users/erielfario/Documents/GitHub/Digidok/app/src/main/res/layout/layout_notification.xml" value="0.25416666666666665" />

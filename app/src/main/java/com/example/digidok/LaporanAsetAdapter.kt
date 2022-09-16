@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -31,10 +32,10 @@ class LaporanAsetAdapter(private val context: Context, private val LaporanAset: 
         val nilai_pks = view.findViewById<TextView>(R.id.nilai_pks)
         val jenis_kerjasama = view.findViewById<TextView>(R.id.jenis_kerjasama)
         val header_color = view.findViewById<TextView>(R.id.header_color)
-        val cardView = view.findViewById<CardView>(R.id.cardViewAset)
+        val tomboldetail = view.findViewById<Button>(R.id.cek_detail)
 
         init {
-            cardView.setOnClickListener {
+            tomboldetail.setOnClickListener {
                 listener.onItemClick(adapterPosition)
 
             }

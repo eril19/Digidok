@@ -91,7 +91,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/cek_dokumen_btn"
+                    android:id="@+id/cek_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
