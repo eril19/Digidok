@@ -47,7 +47,7 @@ class RepositoriDokumemAdapter(private val context: Context, private val Reposit
 
             else if(repositorDashboardModel.header_color.equals("Draft", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
-                    android.R.color.system_neutral2_600
+                    android.R.color.darker_gray
                 )
             }
 

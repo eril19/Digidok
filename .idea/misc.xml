@@ -56,7 +56,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24_2.xml" value="0.119" />
         <entry key="app/src/main/res/drawable/input_background.xml" value="0.1705" />
         <entry key="app/src/main/res/drawable/password.xml" value="0.1705" />
-        <entry key="app/src/main/res/layout/activity_cek_dokumen.xml" value="0.196746826171875" />
+        <entry key="app/src/main/res/layout/activity_cek_dokumen.xml" value="0.14617462158203126" />
         <entry key="app/src/main/res/layout/activity_daftar_kjpp.xml" value="0.15885416666666666" />
         <entry key="app/src/main/res/layout/activity_daftar_mitra.xml" value="0.1901504516601562" />
         <entry key="app/src/main/res/layout/activity_kjpp_detail.xml" value="0.19722222222222222" />
@@ -77,7 +77,7 @@
         <entry key="app/src/main/res/layout/fragment_apps.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.2189178000879652" />
         <entry key="app/src/main/res/layout/fragment_pelaporan.xml" value="0.25833333333333336" />
-        <entry key="app/src/main/res/layout/layout_card_cek_dok.xml" value="0.25833333333333336" />
+        <entry key="app/src/main/res/layout/layout_card_cek_dok.xml" value="0.1549901326497396" />
         <entry key="app/src/main/res/layout/layout_card_daftar_kjpp.xml" value="0.171875" />
         <entry key="app/src/main/res/layout/layout_card_daftar_mitra.xml" value="0.24290220820189273" />
         <entry key="app/src/main/res/layout/layout_card_dashboard.xml" value="0.3831100386568358" />
