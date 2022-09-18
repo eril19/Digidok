@@ -70,6 +70,7 @@
         <entry key="app/src/main/res/layout/activity_mitra_detail2.xml" value="0.19722222222222222" />
         <entry key="app/src/main/res/layout/activity_notification.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_pengajuan_kerjasama.xml" value="0.17291666666666666" />
+        <entry key="app/src/main/res/layout/activity_pengajuan_kerjasama_detail.xml" value="0.21655629475911461" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2715057373046875" />
         <entry key="app/src/main/res/layout/activity_profile_option.xml" value="0.12563323201621074" />
         <entry key="app/src/main/res/layout/activity_repositori_dokumen.xml" value="0.19018758138020836" />
@@ -78,6 +79,7 @@
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.2189178000879652" />
         <entry key="app/src/main/res/layout/fragment_pelaporan.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/layout/layout_card_cek_dok.xml" value="0.1549901326497396" />
+        <entry key="app/src/main/res/layout/layout_card_daftar_aset.xml" value="0.2310236612955729" />
         <entry key="app/src/main/res/layout/layout_card_daftar_kjpp.xml" value="0.171875" />
         <entry key="app/src/main/res/layout/layout_card_daftar_mitra.xml" value="0.24290220820189273" />
         <entry key="app/src/main/res/layout/layout_card_dashboard.xml" value="0.3831100386568358" />
