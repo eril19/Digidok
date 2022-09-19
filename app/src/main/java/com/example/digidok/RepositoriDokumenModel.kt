@@ -7,6 +7,7 @@ import android.os.Parcelable
 class RepositoriDokumenModel(
     val header_color: String,
     val jenis_kerjasama: String,
+    val harga: String,
     val no_surat: String,
     val nama_mitra: String,
 
@@ -14,6 +15,7 @@ class RepositoriDokumenModel(
 
 
     constructor(parcel: Parcel) : this(
+        parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
@@ -28,6 +30,7 @@ class RepositoriDokumenModel(
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(header_color)
         parcel.writeString(jenis_kerjasama)
+        parcel.writeString(harga)
         parcel.writeString(no_surat)
         parcel.writeString(nama_mitra)
     }

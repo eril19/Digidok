@@ -55,26 +55,30 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             RepositoriDokumenModel(
                 header_color = "Dikirim",
                 jenis_kerjasama = "SEWA",
+                harga = "Rp. 4.000.000",
                 no_surat = "21 Tahun 2017",
                 nama_mitra = "TRANSPORTASI JAKARTA"
             ),
             RepositoriDokumenModel(
                 header_color = "Dikirim",
                 jenis_kerjasama = "SEWA",
-                no_surat = "21 Tahun 2017",
-                nama_mitra = "TRANSPORTASI JAKARTA"
+                harga = "Rp. 4.000.000",
+                no_surat = "15 Tahun 2015",
+                nama_mitra = "KACEDIRA EXPRESS"
             ),
             RepositoriDokumenModel(
                 header_color = "Dikembalikan",
                 jenis_kerjasama = "SEWA",
-                no_surat = "21 Tahun 2017",
-                nama_mitra = "TRANSPORTASI JAKARTA"
+                harga = "Rp. 4.000.000",
+                no_surat = "12 Tahun 2012",
+                nama_mitra = "TRANSPORTASI BIBIR SEXY"
             ),
             RepositoriDokumenModel(
                 header_color = "Draft",
                 jenis_kerjasama = "SEWA",
-                no_surat = "21 Tahun 2017",
-                nama_mitra = "TRANSPORTASI JAKARTA"
+                harga = "Rp. 4.000.000",
+                no_surat = "22 Tahun 2024",
+                nama_mitra = "TRANSPORTASI BICEP PURNOMO"
             )
         )
 
@@ -85,7 +89,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             override fun onItemClick(position: Int) {
 
                 val i = Intent(this@RepositoriDokumenActivity, CekDokumenActivity::class.java)
-//                i.putExtra("daftarRepositoriDokumen",RepositoriList)
+                i.putExtra("Cek Dokumen",RepositoriList[position])
                 startActivity(i)
             }
 

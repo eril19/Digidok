@@ -9,11 +9,11 @@ class DaftarKjppModel(
     val no_kjpp : String,
     val nama_kjpp : String,
     val telp_kjpp : String,
-    val no : String,
+//    val no : String,
     val no_perizinan: String,
-    val tgl : String,
+//    val tgl : String,
     val tgl_perizinan : String,
-    val klasifikasi : String,
+//    val klasifikasi : String,
     val klasifikasi_perizinan : String,
     val alamat:String,
 ): Parcelable  {
@@ -21,9 +21,9 @@ class DaftarKjppModel(
     constructor(parcel: Parcel) :this(
 
         parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.readString().toString(),
+//        parcel.readString().toString(),
+//        parcel.readString().toString(),
+//        parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
@@ -35,14 +35,15 @@ class DaftarKjppModel(
 
     }
         override fun writeToParcel(parcel: Parcel, flags: Int) {
+            parcel.writeString(no_kjpp)
             parcel.writeString(nama_kjpp)
-            parcel.writeString(tgl)
+//            parcel.writeString(tgl)
+            parcel.writeString(no_perizinan)
             parcel.writeString(tgl_perizinan)
-            parcel.writeString(klasifikasi)
+//            parcel.writeString(klasifikasi)
             parcel.writeString(klasifikasi_perizinan)
             parcel.writeString(alamat)
-            parcel.writeString(no_perizinan)
-            parcel.writeString(no_kjpp)
+            parcel.writeString(telp_kjpp)
         }
 
     override fun describeContents(): Int {

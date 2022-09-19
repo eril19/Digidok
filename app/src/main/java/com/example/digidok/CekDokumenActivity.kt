@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CekDokumenActivity : AppCompatActivity() {
 
-    var data:LaporanAsetModel? = null
+    var data:RepositoriDokumenModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +17,17 @@ class CekDokumenActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
         data = intent.getParcelableExtra("Cek Dokumen")
+
+        val nama = findViewById<TextView>(R.id.namamitradokumen)
+        val nomer = findViewById<TextView>(R.id.nomerpksdokumen)
+        val jenis = findViewById<TextView>(R.id.jeniskerjadokumen)
+        val harga = findViewById<TextView>(R.id.hargadokumen)
+
+
+        nama.setText(data?.nama_mitra)
+        nomer.setText(data?.no_surat)
+        harga.setText(data?.harga)
+        jenis.setText(data?.jenis_kerjasama)
 
         val tutup = findViewById<TextView>(R.id.close_detail_btn)
 

@@ -62,7 +62,7 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/no_induk"
+                        android:id="@+id/no_indukdetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="7dp"
@@ -95,7 +95,7 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/nama"
+                        android:id="@+id/namadetailkjpp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="7dp"
@@ -137,7 +137,7 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/no_perizinan"
+                        android:id="@+id/no_perizinandetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="7dp"
@@ -171,7 +171,7 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/tgl_perizinan"
+                        android:id="@+id/tgl_perizinandetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="7dp"
@@ -204,7 +204,7 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/klasifikasi_perizinan"
+                        android:id="@+id/klasifikasi_perizinandetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="7dp"
@@ -236,7 +236,7 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/alamat"
+                        android:id="@+id/alamatdetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="7dp"
@@ -268,7 +268,7 @@
                         android:layout_gravity="center"/>
 
                     <TextView
-                        android:id="@+id/telp"
+                        android:id="@+id/telpdetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="7dp"

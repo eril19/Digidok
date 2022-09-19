@@ -9,6 +9,7 @@
     tools:layout_editor_absoluteY="1dp"
     android:fillViewport="true">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -43,43 +44,47 @@
                 app:layout_constraintTop_toBottomOf="@+id/title_detail">
 
                 <TextView
+                    android:id="@+id/nomerpksdokumen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
                     android:layout_marginRight="24dp"
                     android:layout_marginBottom="3dp"
+                    android:paddingLeft="20dp"
                     android:text="@string/id_pks"
                     android:textColor="@color/black"
                     android:textSize="14dp" />
 
                 <TextView
+                    android:id="@+id/namamitradokumen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
                     android:layout_marginRight="24dp"
                     android:layout_marginBottom="3dp"
+                    android:paddingLeft="20dp"
                     android:text="@string/nama_mitra"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/hargadokumen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
                     android:layout_marginRight="24dp"
                     android:layout_marginBottom="3dp"
+                    android:paddingLeft="20dp"
                     android:text="@string/nilai_pks"
                     android:textColor="#C09012"
                     android:textSize="14dp" />
 
                 <TextView
+                    android:id="@+id/jeniskerjadokumen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
                     android:layout_marginRight="24dp"
-                    android:text="@string/jenis_kerjasama"
                     android:layout_marginBottom="20dp"
+                    android:paddingLeft="20dp"
+                    android:text="@string/jenis_kerjasama"
                     android:textColor="#616161"
                     android:textSize="14dp" />
 

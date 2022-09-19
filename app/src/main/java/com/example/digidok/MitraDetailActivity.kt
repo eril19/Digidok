@@ -3,7 +3,6 @@ package com.example.digidok
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -29,8 +28,8 @@ class MitraDetailActivity : AppCompatActivity() {
 
         data = intent.getParcelableExtra("daftarMitra")
         val npwp = findViewById<TextView>(R.id.npwp)
-        val nama = findViewById<TextView>(R.id.nama)
-        val alamat = findViewById<TextView>(R.id.alamat)
+        val nama = findViewById<TextView>(R.id.namadetailkjpp)
+        val alamat = findViewById<TextView>(R.id.alamatdetail)
         val kelurahan = findViewById<TextView>(R.id.kelurahan)
         val kecamatan = findViewById<TextView>(R.id.kecamatan)
         val kota = findViewById<TextView>(R.id.kota)

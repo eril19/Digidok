@@ -44,11 +44,11 @@ class DaftarKjppActivity : AppCompatActivity() {
                 no_kjpp = "2.08.0001",
                 nama_kjpp = "Latief, Hanif dan Rekan",
                 telp_kjpp = "021-7198751, 7198752",
-                no = "No.",
+//                no = "No.",
                 no_perizinan = "760/KM.1/2008",
-                tgl = "Tanggal",
+//                tgl = "Tanggal",
                 tgl_perizinan = "2008-11-20",
-                klasifikasi = "Klasifikasi",
+//                klasifikasi = "Klasifikasi",
                 klasifikasi_perizinan = "Properti",
                 alamat = "jalan KACE"
 
@@ -57,11 +57,11 @@ class DaftarKjppActivity : AppCompatActivity() {
                 no_kjpp = "2.08.0002",
                 nama_kjpp = "Aditya Iskandar dan Rekan",
                 telp_kjpp = "021 25031890",
-                no = "No.",
+//                no = "No.",
                 no_perizinan = "772/KM.1/2008",
-                tgl = "Tanggal",
+//                tgl = "Tanggal",
                 tgl_perizinan = "2008-11-26",
-                klasifikasi = "Klasifikasi",
+//                klasifikasi = "Klasifikasi",
                 klasifikasi_perizinan = "Properti",
                 alamat = "jalan KACE"
 
@@ -70,11 +70,11 @@ class DaftarKjppActivity : AppCompatActivity() {
                 no_kjpp = "2.08.0003",
                 nama_kjpp = "Pung's Zulkarnain & Rekan",
                 telp_kjpp = "021-230 3840",
-                no = "No.",
+//                no = "No.",
                 no_perizinan = "798/KM.1/2008",
-                tgl = "Tanggal",
+//                tgl = "Tanggal",
                 tgl_perizinan = "2008-12-01",
-                klasifikasi = "Klasifikasi",
+//                klasifikasi = "Klasifikasi",
                 klasifikasi_perizinan = "Properti",
                 alamat = "jalan KACE"
 
@@ -83,11 +83,11 @@ class DaftarKjppActivity : AppCompatActivity() {
                 no_kjpp = "2.08.0004",
                 nama_kjpp = "Aditya Masroni Nur RahmanAnizar Hadiyanto dan Rekan",
                 telp_kjpp = "021-22868170",
-                no = "No.",
+//                no = "No.",
                 no_perizinan = "349/KM.1/2020",
-                tgl = "Tanggal",
+//                tgl = "Tanggal",
                 tgl_perizinan = "2020-07-20",
-                klasifikasi = "Klasifikasi",
+//                klasifikasi = "Klasifikasi",
                 klasifikasi_perizinan = "Properti",
                 alamat = "jalan KACE"
 
@@ -96,11 +96,11 @@ class DaftarKjppActivity : AppCompatActivity() {
                 no_kjpp = "2.08.0005",
                 nama_kjpp = "Stefanus Tonny Hardi & Rekan",
                 telp_kjpp = "021- 5637373",
-                no = "No.",
+//                no = "No.",
                 no_perizinan = "907/KM.1/2008",
-                tgl = "Tanggal",
+//                tgl = "Tanggal",
                 tgl_perizinan = "2008-12-23",
-                klasifikasi = "Klasifikasi",
+//                klasifikasi = "Klasifikasi",
                 klasifikasi_perizinan = "Properti dan Bisnis",
                 alamat = "jalan KACE"
 
