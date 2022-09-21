@@ -73,7 +73,15 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.rv_list_mitra)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = PengajuanKerjasamaAdapter(this, PengajuanKerjasamaList){
+        recyclerView.adapter = PengajuanKerjasamaAdapter(this, PengajuanKerjasamaList,object : PengajuanKerjasamaAdapter.onItemClickListener{
+
+            override fun onItemClick(position: Int) {
+                val i = Intent(this@PengajuanKerjasamaActivity,PengajuanKerjasamaDetailActivity::class.java)
+
+                startActivity(i)
+            }
+
+        }){
 
         }
 

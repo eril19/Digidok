@@ -5,15 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.PengajuanKerjasamaModel
 import com.example.digidok.R
 
-class PengajuanKerjasamaAdapter(private val context: Context, private val DaftarMitra: List<PengajuanKerjasamaModel>, val listener: (PengajuanKerjasamaModel) -> Unit)
+class PengajuanKerjasamaAdapter(private val context: Context, private val DaftarMitra: List<PengajuanKerjasamaModel>,
+    var mListener: onItemClickListener,
+                                val listener: (PengajuanKerjasamaModel) -> Unit)
     : RecyclerView.Adapter<PengajuanKerjasamaAdapter.PengajuanKerjasamaViewHolder>(){
 
-    class PengajuanKerjasamaViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    interface onItemClickListener{
+        fun onItemClick(position: Int)
+    }
+
+    class PengajuanKerjasamaViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
         val id_mitra = view.findViewById<TextView>(R.id.id_mitra)
         val nama_mitra = view.findViewById<TextView>(R.id.nama_mitra)
         val jenis_mitra = view.findViewById<TextView>(R.id.jenis_mitra)
@@ -22,6 +29,13 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Daftar
         val npwp = view.findViewById<TextView>(R.id.npwp)
         val npwp_mitra = view.findViewById<TextView>(R.id.npwp_mitra)
         val header_color = view.findViewById<TextView>(R.id.header_color)
+        val cardview = view.findViewById<CardView>(R.id.cardViewkjpp)
+
+        init {
+            cardview.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+        }
 
         fun bindView(pengajuanKerjasamaModel: PengajuanKerjasamaModel, listener: (PengajuanKerjasamaModel) -> Unit){
             id_mitra.text = pengajuanKerjasamaModel.id_mitra
@@ -32,6 +46,10 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Daftar
             npwp.text = pengajuanKerjasamaModel.npwp
             npwp_mitra.text = pengajuanKerjasamaModel.npwp_mitra
             header_color.text = pengajuanKerjasamaModel.header_color
+
+
+
+
             if (pengajuanKerjasamaModel.header_color.equals("Draft", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     android.R.color.darker_gray
@@ -56,9 +74,11 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Daftar
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PengajuanKerjasamaViewHolder {
-        return PengajuanKerjasamaViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_mitra, parent, false)
-        )
+
+        val itemView =  LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_mitra, parent, false)
+
+
+        return PengajuanKerjasamaViewHolder(itemView,mListener)
     }
 
     override fun onBindViewHolder(holder: PengajuanKerjasamaViewHolder, position: Int) {
