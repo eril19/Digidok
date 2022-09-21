@@ -39,7 +39,6 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
         init {
             cardView.setOnClickListener {
                 listener.onItemClick(adapterPosition)
-
             }
         }
 

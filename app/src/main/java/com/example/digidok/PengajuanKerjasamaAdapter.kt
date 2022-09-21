@@ -11,9 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.PengajuanKerjasamaModel
 import com.example.digidok.R
 
-class PengajuanKerjasamaAdapter(private val context: Context, private val DaftarMitra: List<PengajuanKerjasamaModel>,
-    var mListener: onItemClickListener,
-                                val listener: (PengajuanKerjasamaModel) -> Unit)
+class PengajuanKerjasamaAdapter(private val context: Context, private val PengajuanKerja: List<PengajuanKerjasamaModel>,
+   private var mListener: onItemClickListener, val listener: (PengajuanKerjasamaModel) -> Unit)
     : RecyclerView.Adapter<PengajuanKerjasamaAdapter.PengajuanKerjasamaViewHolder>(){
 
     interface onItemClickListener{
@@ -48,8 +47,6 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Daftar
             header_color.text = pengajuanKerjasamaModel.header_color
 
 
-
-
             if (pengajuanKerjasamaModel.header_color.equals("Draft", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     android.R.color.darker_gray
@@ -75,16 +72,16 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Daftar
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PengajuanKerjasamaViewHolder {
 
-        val itemView =  LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_mitra, parent, false)
+        val itemView =  LayoutInflater.from(context).inflate(R.layout.layout_card_pengajuan, parent, false)
 
 
         return PengajuanKerjasamaViewHolder(itemView,mListener)
     }
 
     override fun onBindViewHolder(holder: PengajuanKerjasamaViewHolder, position: Int) {
-        holder.bindView(DaftarMitra[position], listener)
+        holder.bindView(PengajuanKerja[position], listener)
     }
 
-    override fun getItemCount(): Int = DaftarMitra.size
+    override fun getItemCount(): Int = PengajuanKerja.size
 
 }
