@@ -77,6 +77,16 @@
                             tools:text="@string/nama_mitra" />
 
                         <TextView
+                            android:id="@+id/jenis_mitra"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginRight="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="13dp"
+                            tools:text="@string/jenis_mitra" />
+
+                        <TextView
                             android:id="@+id/no_mitra"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
