@@ -53,9 +53,9 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                 id_mitra = "MT-2000-0001",
                 nama_mitra = "PT INDOCATER",
                 jenis_mitra = "Perusahaan Swasta",
-                status = "Status:",
+//                status = "Status:",
                 status_mitra = "whitelist",
-                npwp = "NPWP",
+//                npwp = "NPWP",
                 npwp_mitra = "02.623.519.2-061.000",
             ),
             PengajuanKerjasamaModel(
@@ -63,9 +63,9 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                 id_mitra = "MT-2011-0001",
                 nama_mitra = "PT Wahana Nusantara",
                 jenis_mitra = "Perusahaan Swasta",
-                status = "Status:",
+//                status = "Status:",
                 status_mitra = "whitelist",
-                npwp = "NPWP",
+//                npwp = "NPWP",
                 npwp_mitra = "013121280073000",
             )
         )

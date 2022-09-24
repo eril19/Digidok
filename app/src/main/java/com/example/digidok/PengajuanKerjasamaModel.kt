@@ -10,9 +10,9 @@ data class PengajuanKerjasamaModel(
     val id_mitra : String,
     val nama_mitra: String,
     val jenis_mitra : String,
-    val status : String,
+//    val status : String,
     val status_mitra: String,
-    val npwp : String,
+//    val npwp : String,
     val npwp_mitra : String,
 ): Parcelable {
     constructor(parcel: Parcel) : this(
@@ -20,8 +20,7 @@ data class PengajuanKerjasamaModel(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.readString().toString(),
+//        parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString()
     ) {
@@ -32,9 +31,9 @@ data class PengajuanKerjasamaModel(
         parcel.writeString(id_mitra)
         parcel.writeString(nama_mitra)
         parcel.writeString(jenis_mitra)
-        parcel.writeString(status)
+//        parcel.writeString(status)
         parcel.writeString(status_mitra)
-        parcel.writeString(npwp)
+//        parcel.writeString(npwp)
         parcel.writeString(npwp_mitra)
     }
 

@@ -130,6 +130,21 @@
                             android:textColor="#616161"
                             android:textSize="13dp"
                             tools:text="@string/jenis_kerjasama" />
+
+                        <TextView
+                            android:id="@+id/statusmitra"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="TextView"
+                            android:textAlignment="viewEnd" />
+
+                        <TextView
+                            android:id="@+id/npwpmitra"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            android:textAlignment="viewEnd" />
                     </LinearLayout>
 
                 </LinearLayout>

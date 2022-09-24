@@ -11,6 +11,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pengajuan_kerjasama_detail)
 
+        supportActionBar?.hide()
 
         data = intent.getParcelableExtra("PengajuanKerjasama")
 //        samain sama i.putExtra!
