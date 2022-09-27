@@ -79,6 +79,13 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                 harga = "Rp. 4.000.000",
                 no_surat = "22 Tahun 2024",
                 nama_mitra = "TRANSPORTASI BICEP PURNOMO"
+            ),
+            RepositoriDokumenModel(
+                header_color = "Dikembalikan",
+                jenis_kerjasama = "SEWA",
+                harga = "Rp. 1.000.000",
+                no_surat = "10 Tahun 2021",
+                nama_mitra = "NAMA MITRA 3"
             )
         )
 

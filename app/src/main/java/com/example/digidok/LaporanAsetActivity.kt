@@ -59,6 +59,48 @@ class LaporanAsetActivity : AppCompatActivity() {
                 nama_mitra = "TRANSPORTASI JAKARTA",
                 nilai_pks = "Rp. 17,687,975,000",
                 jenis_kerjasama = "SEWA"
+            ),
+            LaporanAsetModel(
+                header_color = "Dikirim",
+                id_pks = "PKS-2022-000001",
+                nama_mitra = "TRANSPORTASI JAKARTA",
+                nilai_pks = "Rp. 17,687,975,000",
+                jenis_kerjasama = "SEWA"
+            ),
+            LaporanAsetModel(
+                header_color = "Dikembalikan",
+                id_pks = "PKS-2022-000001",
+                nama_mitra = "TRANSPORTASI JAKARTA",
+                nilai_pks = "Rp. 17,687,975,000",
+                jenis_kerjasama = "SEWA"
+            ),
+            LaporanAsetModel(
+                header_color = "Dikembalikan",
+                id_pks = "PKS-2022-000001",
+                nama_mitra = "TRANSPORTASI JAKARTA",
+                nilai_pks = "Rp. 17,687,975,000",
+                jenis_kerjasama = "SEWA"
+            ),
+            LaporanAsetModel(
+                header_color = "Draft",
+                id_pks = "PKS-2022-000001",
+                nama_mitra = "TRANSPORTASI JAKARTA",
+                nilai_pks = "Rp. 17,687,975,000",
+                jenis_kerjasama = "SEWA"
+            ),
+            LaporanAsetModel(
+                header_color = "Draft",
+                id_pks = "PKS-2022-000001",
+                nama_mitra = "TRANSPORTASI JAKARTA",
+                nilai_pks = "Rp. 17,687,975,000",
+                jenis_kerjasama = "SEWA"
+            ),
+            LaporanAsetModel(
+                header_color = "Dikirim",
+                id_pks = "PKS-2022-000001",
+                nama_mitra = "TRANSPORTASI JAKARTA",
+                nilai_pks = "Rp. 17,687,975,000",
+                jenis_kerjasama = "SEWA"
             )
         )
 

@@ -65,6 +65,32 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                 detail_pks = "Pemanfaatan Barang Milik Daerah Pemerintah Provinsi DKI Jakarta Berupa Sebagian Tanah yang terletak di Jalan Perintis Kemerdekaan, Kawasan Terminal Kampung Rambutan dan Kawasan Terminal Rawa Buaya untuk Depo TransJakarta",
                 periode = "Periode",
                 jangka_periode ="02/03/2020 - 01/03/2025"
+            ),
+            LaporanPengajuanModel(
+                header_color = "Draft",
+                id_mitra = "MT-2020-0001",
+                nama_mitra = "TRANSPORTASI JAKARTA",
+                id_pks = "PKS-2022-000001",
+                jenis_kerjasama = "SEWA",
+                no_surat = "21 TAHUN 2017",
+                jenis_bmd = "tanah",
+                nilai_pks = "Rp. 17,687,975,000",
+                detail_pks = "Pemanfaatan Barang Milik Daerah Pemerintah Provinsi DKI Jakarta Berupa Sebagian Tanah yang terletak di Jalan Perintis Kemerdekaan, Kawasan Terminal Kampung Rambutan dan Kawasan Terminal Rawa Buaya untuk Depo TransJakarta",
+                periode = "Periode",
+                jangka_periode ="02/03/2020 - 01/03/2025"
+            ),
+            LaporanPengajuanModel(
+                header_color = "Dikembalikan",
+                id_mitra = "MT-2020-0001",
+                nama_mitra = "TRANSPORTASI JAKARTA",
+                id_pks = "PKS-2022-000001",
+                jenis_kerjasama = "SEWA",
+                no_surat = "21 TAHUN 2017",
+                jenis_bmd = "tanah",
+                nilai_pks = "Rp. 17,687,975,000",
+                detail_pks = "Pemanfaatan Barang Milik Daerah Pemerintah Provinsi DKI Jakarta Berupa Sebagian Tanah yang terletak di Jalan Perintis Kemerdekaan, Kawasan Terminal Kampung Rambutan dan Kawasan Terminal Rawa Buaya untuk Depo TransJakarta",
+                periode = "Periode",
+                jangka_periode ="02/03/2020 - 01/03/2025"
             )
         )
 
