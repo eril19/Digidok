@@ -65,7 +65,7 @@
                     android:id="@+id/rv_list_pengajuan_kerjasama"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:listitem="@layout/layout_card_daftar_mitra" />
+                    tools:listitem="@layout/layout_card_daftar_pengajuan" />
             </LinearLayout>
 
         </ScrollView>

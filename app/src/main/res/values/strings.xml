@@ -42,4 +42,6 @@
     <string name="keterangan_bmd">Jl. Perintis Kemerdekaan No. 1</string>
     <string name="nama_bmd">Tanah Bangunan Kantor Pemerintah</string>
     <string name="num_laporan">#num</string>
+    <string name="tgl_mulai">tgl mulai</string>
+    <string name="tgl_akhir">tgl akhir</string>
 </resources>
