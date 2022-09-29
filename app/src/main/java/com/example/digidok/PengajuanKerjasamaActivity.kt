@@ -70,7 +70,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
             )
         )
 
-        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_mitra)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_pengajuan_kerjasama)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = PengajuanKerjasamaAdapter(this, PengajuanKerjasamaList,object : PengajuanKerjasamaAdapter.onItemClickListener{

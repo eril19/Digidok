@@ -8,6 +8,7 @@ data class LaporanPengajuanModel(
     val header_color : String,
     val id_mitra : String,
     val nama_mitra: String,
+    val no_mitra: String,
     val id_pks : String,
     val jenis_kerjasama: String,
     val no_surat: String,

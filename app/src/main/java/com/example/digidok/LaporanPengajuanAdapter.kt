@@ -16,7 +16,7 @@ class LaporanPengajuanAdapter(private val context: Context, private val LaporanP
     class LaporanPengajuanViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val id_mitra = view.findViewById<TextView>(R.id.id_mitra)
         val nama_mitra = view.findViewById<TextView>(R.id.nama_mitra)
-        val jenis_mitra = view.findViewById<TextView>(R.id.jenis_mitra)
+        val no_mitra = view.findViewById<TextView>(R.id.no_mitra)
         val id_pks = view.findViewById<TextView>(R.id.id_pks)
         val jenis_kerjasama = view.findViewById<TextView>(R.id.jenis_kerjasama)
         val no_surat = view.findViewById<TextView>(R.id.no_surat)
@@ -30,7 +30,7 @@ class LaporanPengajuanAdapter(private val context: Context, private val LaporanP
         fun bindView(laporanPengajuanModel: LaporanPengajuanModel, listener: (LaporanPengajuanModel) -> Unit){
             id_mitra.text = laporanPengajuanModel.id_mitra
             nama_mitra.text = laporanPengajuanModel.nama_mitra
-            //jenis_mitra.text = laporanPengajuanModel.jenis_mitra
+            no_mitra.text = laporanPengajuanModel.no_mitra
             id_pks.text = laporanPengajuanModel.id_pks
             jenis_kerjasama.text = laporanPengajuanModel.jenis_kerjasama
             no_surat.text = laporanPengajuanModel.no_surat
