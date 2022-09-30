@@ -89,7 +89,9 @@
                             android:layout_weight="1"
                             android:text="No. Pengajuan"
                             android:textColor="#787878"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
 
                         <TextView
                             android:id="@+id/no_pengajuan"
@@ -117,7 +119,9 @@
                             android:layout_weight="1"
                             android:text="Mitra"
                             android:textColor="#787878"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
 
                         <TextView
                             android:id="@+id/nama_mitra"
@@ -145,7 +149,9 @@
                             android:layout_weight="1"
                             android:text="Skema Pemanfaatan"
                             android:textColor="#787878"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
 
                         <TextView
                             android:id="@+id/skema_pemanfaatan"
@@ -173,7 +179,9 @@
                             android:layout_weight="1"
                             android:text="Tujuan"
                             android:textColor="#787878"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
 
                         <TextView
                             android:id="@+id/tujuan"
@@ -239,7 +247,9 @@
                             android:layout_weight="1"
                             android:text="Nomor Surat"
                             android:textColor="#787878"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
 
                         <TextView
                             android:id="@+id/no_surat"
@@ -267,7 +277,9 @@
                             android:layout_weight="1"
                             android:text="Tanggal Surat"
                             android:textColor="#787878"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
 
                         <TextView
                             android:id="@+id/tgl_surat"
@@ -295,7 +307,9 @@
                             android:layout_weight="1"
                             android:text="Objek"
                             android:textColor="#787878"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
 
                         <TextView
                             android:id="@+id/objek"
@@ -323,7 +337,9 @@
                             android:layout_weight="1"
                             android:text="Nilai"
                             android:textColor="#787878"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
 
                         <TextView
                             android:id="@+id/nilai"
@@ -351,7 +367,9 @@
                             android:layout_weight="1"
                             android:text="Tanggal Mulai"
                             android:textColor="#787878"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
 
                         <TextView
                             android:id="@+id/tgl_mulai"
@@ -379,7 +397,9 @@
                             android:layout_weight="1"
                             android:text="Tanggal Akhir"
                             android:textColor="#787878"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
 
                         <TextView
                             android:id="@+id/tgl_akhir"
@@ -407,7 +427,9 @@
                             android:layout_weight="1"
                             android:text="Perihal"
                             android:textColor="#787878"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
 
                         <TextView
                             android:id="@+id/perihal"
@@ -435,7 +457,9 @@
                             android:layout_weight="1"
                             android:text="Dokumen"
                             android:textColor="#787878"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
                     </LinearLayout>
 
                 </LinearLayout>

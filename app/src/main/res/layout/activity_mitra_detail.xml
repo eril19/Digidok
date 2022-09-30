@@ -42,6 +42,7 @@
                 android:layout_marginEnd="30dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_detail">
 
@@ -54,20 +55,22 @@
                     <TextView
                         android:id="@+id/title_npwp"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="NPWP"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/npwp"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
-                        android:padding="6dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="15dp" />
@@ -83,20 +86,22 @@
                     <TextView
                         android:id="@+id/title_nama"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Nama"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center" />
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/namadetailkjpp"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -111,20 +116,22 @@
                     <TextView
                         android:id="@+id/title_alamat"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Alamat"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/alamatdetail"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -139,20 +146,22 @@
                     <TextView
                         android:id="@+id/title_kelurahan"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Kelurahan"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/kelurahan"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -166,20 +175,22 @@
                     <TextView
                         android:id="@+id/title_kecamatan"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Kecamatan"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/kecamatan"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -193,20 +204,22 @@
                     <TextView
                         android:id="@+id/title_kota"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Kota/Kabupaten"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/kota"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -220,20 +233,22 @@
                     <TextView
                         android:id="@+id/title_provinsi"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Provinsi"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/provinsi"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -247,20 +262,22 @@
                     <TextView
                         android:id="@+id/title_klu"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Klasifikasi (KLU)"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/klu"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -274,20 +291,22 @@
                     <TextView
                         android:id="@+id/title_kpp"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Nama KPP"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/kpp"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -301,20 +320,22 @@
                     <TextView
                         android:id="@+id/title_kanwil"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="KANWIL"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/kanwil"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -328,20 +349,22 @@
                     <TextView
                         android:id="@+id/title_telp"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="No. Telepon"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/telp_mitra"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -355,20 +378,22 @@
                     <TextView
                         android:id="@+id/title_fax"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="No. Fax"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/fax_mitra"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -382,20 +407,22 @@
                     <TextView
                         android:id="@+id/title_email"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Alamat Email"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/email_mitra"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -409,20 +436,22 @@
                     <TextView
                         android:id="@+id/title_ttl"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="TTL"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/ttl_mitra"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -437,20 +466,22 @@
                     <TextView
                         android:id="@+id/title_tgl_daftar"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Tanggal Daftar"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/tgl_daftar_mitra"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -464,20 +495,22 @@
                     <TextView
                         android:id="@+id/title_status_pkp"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Status PKP"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/status_pkp_mitra"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -491,20 +524,22 @@
                     <TextView
                         android:id="@+id/title_tgl_pkp"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Tanggal Pengukuhan PKP"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/tgl_pkp_mitra"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -518,20 +553,22 @@
                     <TextView
                         android:id="@+id/title_jenis_pajak"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Jenis Wajib Pajak"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/jenis_pajak_mitra"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -545,20 +582,22 @@
                     <TextView
                         android:id="@+id/title_badan_hukum"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Badan Hukum"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/badan_hukum_mitra"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_weight="2"
                         android:background="@drawable/custom_profile"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -566,31 +605,31 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="20dp"
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="horizontal">
+
                     <Button
                         android:id="@+id/close_detail_btn"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="Tutup"
-                        android:textSize="14dp"
-                        android:textAllCaps="false"
-                        android:backgroundTint="#AEAEAE"
                         android:layout_marginRight="10dp"
-                        />
+                        android:backgroundTint="#AEAEAE"
+                        android:text="Tutup"
+                        android:textAllCaps="false"
+                        android:textSize="14dp" />
 
                     <Button
                         android:id="@+id/next_detail_btn"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="Selanjutnya"
-                        android:textSize="14dp"
-                        android:textAllCaps="false"
+                        android:layout_marginLeft="10dp"
                         android:backgroundTint="#676767"
-                        android:layout_marginLeft="10dp"/>
+                        android:text="Selanjutnya"
+                        android:textAllCaps="false"
+                        android:textSize="14dp" />
                 </LinearLayout>
 
             </LinearLayout>

@@ -27,12 +27,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="40dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="40dp"
                 android:text="Detail Laporan Aset Kerjasama"
-                android:textSize="15dp"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toTopOf="parent"/>
+                android:textSize="15dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="25dp"
+                tools:visibility="visible" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"

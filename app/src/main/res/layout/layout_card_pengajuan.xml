@@ -194,7 +194,9 @@
                             android:layout_gravity="end"
                             android:textColor="@color/black"
                             android:textSize="13dp"
-                            tools:text="Periode" />
+                            android:visibility="visible"
+                            tools:text="Periode"
+                            tools:visibility="visible" />
 
                         <TextView
                             android:id="@+id/jangka_periode"

@@ -57,7 +57,9 @@
                         android:layout_marginRight="20dp"
                         android:text="Kode Barang"
                         android:textColor="#93A174"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/kode_barang"
@@ -91,7 +93,9 @@
                         android:layout_marginRight="20dp"
                         android:text="Nama BMD"
                         android:textColor="#93A174"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/nama_bmd"
@@ -126,7 +130,9 @@
                         android:layout_marginRight="20dp"
                         android:text="Kode Lokasi"
                         android:textColor="#93A174"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/kode_lokasi"
@@ -150,7 +156,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    tools:visibility="visible">
 
                     <TextView
                         android:id="@+id/title_nama_lokasi"
@@ -167,10 +175,10 @@
                         android:id="@+id/nama_lokasi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="7dp"
                         android:layout_marginRight="20dp"
                         android:background="@drawable/custom_profile"
                         android:gravity="center|left|left"
+                        android:padding="7dp"
                         android:text="@string/nama_lokasi"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
@@ -196,7 +204,9 @@
                         android:layout_marginRight="20dp"
                         android:text="Luas BMD"
                         android:textColor="#93A174"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/luas_bmd"
@@ -230,7 +240,9 @@
                         android:layout_marginRight="20dp"
                         android:text="Keterangan BMD"
                         android:textColor="#93A174"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/keterangan_bmd"

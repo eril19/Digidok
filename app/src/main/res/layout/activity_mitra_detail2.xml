@@ -27,12 +27,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="40dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="40dp"
                 android:text="Detail Mitra"
-                android:textSize="15dp"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="15dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="25dp"
+                tools:visibility="visible" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -55,12 +56,14 @@
                     <TextView
                         android:id="@+id/title_id_mitra"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Kode Mitra"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/id_mitra"
@@ -82,12 +85,14 @@
                     <TextView
                         android:id="@+id/title_tahun_gabung"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Tahun Gabung"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/tahun_gabung"
@@ -109,12 +114,14 @@
                     <TextView
                         android:id="@+id/title_jenis_mitra"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Jenis"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/jenis_mitra"
@@ -136,12 +143,14 @@
                     <TextView
                         android:id="@+id/title_status_mitra"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="Status"
                         android:textColor="#627284"
                         android:textSize="14dp"
-                        android:layout_gravity="center"/>
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/status_mitra"

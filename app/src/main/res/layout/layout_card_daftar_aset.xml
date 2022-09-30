@@ -69,7 +69,9 @@
                         android:layout_weight="1"
                         android:text="Kode Lokasi"
                         android:textColor="#787878"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/kode_lokasi"
@@ -100,7 +102,9 @@
                         android:layout_weight="1"
                         android:text="Nama Lokasi"
                         android:textColor="#787878"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/nama_lokasi"
@@ -142,7 +146,9 @@
                         android:layout_weight="1"
                         android:text="Kode Barang"
                         android:textColor="#787878"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/kode_barang"
@@ -173,7 +179,9 @@
                         android:layout_weight="1"
                         android:text="Nama Barang"
                         android:textColor="#787878"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/nama_barang"
@@ -204,7 +212,9 @@
                         android:layout_weight="1"
                         android:text="Alamat"
                         android:textColor="#787878"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/alamat_barang"
@@ -235,7 +245,9 @@
                         android:layout_weight="1"
                         android:text="Luas"
                         android:textColor="#787878"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/luas_barang"
@@ -266,7 +278,9 @@
                         android:layout_weight="1"
                         android:text="Luas yang dimanfaatkan"
                         android:textColor="#787878"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="visible"
+                        tools:visibility="visible" />
 
                     <TextView
                         android:id="@+id/luas_manfaat"
