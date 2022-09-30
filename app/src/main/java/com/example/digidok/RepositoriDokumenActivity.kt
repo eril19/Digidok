@@ -21,8 +21,14 @@ class RepositoriDokumenActivity : AppCompatActivity() {
     var spinnerTahun : Spinner? = null
     val listTahun = arrayListOf("2022", "2021", "2020")
 
-//    var spinnerWilayah : Spinner? = null
-//    val listWilayah = arrayListOf("Wilayah 1", "Wilayah 2", "Wilayah 3")
+    var spinnerWilayah : Spinner? = null
+    val listWilayah = arrayListOf("Wilayah 1", "Wilayah 2", "Wilayah 3")
+
+    var spinnerKelurahan : Spinner? = null
+    val listKelurahan = arrayListOf("Kelurahan 1", "Kelurahan 2", "Kelurahan 3")
+
+    var spinnerStatus : Spinner? = null
+    val listStatus = arrayListOf("Dikirim", "Draft", "Dikembalikan")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +41,9 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         spinnerTahun = findViewById<Spinner>(R.id.spinner_tahun)
-//        spinnerWilayah = findViewById<Spinner>(R.id.spinner_wilayah)
+        spinnerWilayah = findViewById<Spinner>(R.id.spinner_wilayah)
+        spinnerKelurahan = findViewById<Spinner>(R.id.spinner_kelurahan)
+        spinnerStatus = findViewById<Spinner>(R.id.spinner_status)
         val header = findViewById<TextView>(R.id.header_title)
 
 
@@ -132,27 +140,71 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             }
         }
 
-//        val arrayStringWilayah = arrayListOf("Pilih Wilayah")
-//        arrayStringWilayah.addAll(listWilayah)
-//        spinnerTahun?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringWilayah) {
-//            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-//                return if (convertView != null) {
-//                    if (convertView is TextView) {
-//                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
-//                        try {
-//                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
-//                        } catch (e: Exception) {
-//                            showErrorInflateFont()
-//                        }
-//                        convertView
-//                    } else {
-//                        convertView
-//                    }
-//                } else {
-//                    super.getView(position, convertView, parent)
-//                }
-//            }
-//        }
+        val arrayStringWilayah = arrayListOf("Pilih Wilayah")
+        arrayStringWilayah.addAll(listWilayah)
+        spinnerWilayah?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringWilayah) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return if (convertView != null) {
+                    if (convertView is TextView) {
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        try {
+                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                        } catch (e: Exception) {
+                            showErrorInflateFont()
+                        }
+                        convertView
+                    } else {
+                        convertView
+                    }
+                } else {
+                    super.getView(position, convertView, parent)
+                }
+            }
+        }
+
+        val arrayStringKelurahan = arrayListOf("Pilih Kelurahan")
+        arrayStringKelurahan.addAll(listKelurahan)
+        spinnerKelurahan?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringKelurahan) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return if (convertView != null) {
+                    if (convertView is TextView) {
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        try {
+                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                        } catch (e: Exception) {
+                            showErrorInflateFont()
+                        }
+                        convertView
+                    } else {
+                        convertView
+                    }
+                } else {
+                    super.getView(position, convertView, parent)
+                }
+            }
+        }
+
+        val arrayStringStatus = arrayListOf("Pilih Status")
+        arrayStringStatus.addAll(listStatus)
+        spinnerStatus?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringStatus) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return if (convertView != null) {
+                    if (convertView is TextView) {
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        try {
+                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                        } catch (e: Exception) {
+                            showErrorInflateFont()
+                        }
+                        convertView
+                    } else {
+                        convertView
+                    }
+                } else {
+                    super.getView(position, convertView, parent)
+                }
+            }
+        }
     }
 
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
