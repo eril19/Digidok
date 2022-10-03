@@ -19,13 +19,13 @@ class DaftarKjppAdapter(private val context: Context, private val DaftarKJPP: Li
         val no_kjpp = view.findViewById<TextView>(R.id.no_kjpp)
         val nama_kjpp = view.findViewById<TextView>(R.id.nama_kjpp)
         val telp_kjpp = view.findViewById<TextView>(R.id.telp_kjpp)
-//        val no = view.findViewById<TextView>(R.id.no)
+
         val no_perizinan = view.findViewById<TextView>(R.id.no_perizinan)
-//        val tgl = view.findViewById<TextView>(R.id.tgl)
+
         val tgl_perizinan = view.findViewById<TextView>(R.id.tgl_perizinan)
-//        val klasifikasi = view.findViewById<TextView>(R.id.klasifikasi)
+
         val klasifikasi_perizinan = view.findViewById<TextView>(R.id.klasifikasi_perizinan)
-//        val alamat = view.findViewById<TextView>(R.id.)
+
 
         val cardView = view.findViewById<CardView>(R.id.cardViewkjpp)
 
@@ -57,6 +57,8 @@ class DaftarKjppAdapter(private val context: Context, private val DaftarKJPP: Li
         holder.bindView(DaftarKJPP[position], listener)
     }
 
-    override fun getItemCount(): Int = DaftarKJPP.size
+    override fun getItemCount(): Int {
+        return DaftarKJPP.size
+    }
 
 }

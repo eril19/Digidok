@@ -1,5 +1,8 @@
 package com.example.digidok
 
-data class PostRespond {
-    val id: int,
+ class PostRespond {
+//    val id: Integer,
+//    val title: String?,
+//
+//
 }

@@ -53,22 +53,34 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                 id_mitra = "MT-2000-0001",
                 nama_mitra = "PT INDOCATER",
                 jenis_mitra = "Perusahaan Swasta",
-//                titlePeriode =  "Periode: ",
-                periode = "20 agustus 2020 - 21 mei 2025",
-////                npwp = "NPWP",
-//                npwp_mitra = "02.623.519.2-061.000",
+                noPengajuan = "002-0203-12120",
+                skemaPemanfaatan = "BTO",
+                tujuan = "Perubahan alamat aset",
+                noSurat = "112-32323-34342",
+                tglSurat = "11/02/2021",
+                objek = "Tanah",
+                nilai = "Rp. 123,030,340",
+                tglMulai = "11/10/2020",
+                tglAkhir = "12/12/2022",
+                perihal = "perubahan",
             ),
             PengajuanKerjasamaModel(
                 header_color = "Dikirim",
-//                titlePeriode =  "Periode: ",
+
                 id_mitra = "MT-2011-0001",
                 nama_mitra = "PT Wahana Nusantara",
                 jenis_mitra = "Perusahaan Swasta",
-                periode = "20 april 2020 - 22 mei 2024",
-////                status = "Status:",
-//                status_mitra = "whitelist",
-////                npwp = "NPWP",
-//                npwp_mitra = "013121280073000",
+                noPengajuan = "002-0203-12120",
+
+                skemaPemanfaatan = "BTO",
+                tujuan = "Perubahan alamat aset",
+                noSurat = "112-32323-34342",
+                tglSurat = "11/02/2021",
+                objek = "Tanah",
+                nilai = "Rp. 123,030,340",
+                tglMulai = "11/10/2020",
+                tglAkhir = "12/12/2022",
+                perihal = "perubahan",
             )
         )
 
@@ -79,7 +91,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
 
             override fun onItemClick(position: Int) {
                 val i = Intent(this@PengajuanKerjasamaActivity,PengajuanKerjasamaDetailActivity::class.java)
-
+                i.putExtra("PengajuanKerjasama",PengajuanKerjasamaList[position])
                 startActivity(i)
             }
 

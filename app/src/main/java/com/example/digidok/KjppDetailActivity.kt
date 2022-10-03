@@ -16,6 +16,7 @@ class KjppDetailActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
         data = intent.getParcelableExtra("daftarKJPP")
+
         val tutup = findViewById<Button>(R.id.close_detail_btn)
 
 
@@ -33,12 +34,12 @@ class KjppDetailActivity : AppCompatActivity() {
             startActivity(i)
         }
 
-        nomer.setText(data?.no_kjpp)
-        nama.setText(data?.nama_kjpp)
-        noperizinan.setText(data?.no_perizinan)
-        tglperizinan.setText(data?.tgl_perizinan)
-        klasifikasi.setText(data?.klasifikasi_perizinan)
-        telp.setText(data?.telp_kjpp)
-        alamat.setText(data?.alamat)
+        nomer.text = data?.no_kjpp
+        nama.text = data?.nama_kjpp
+        noperizinan.text = data?.no_perizinan
+        tglperizinan.text =  data?.tgl_perizinan
+        klasifikasi.text = data?.klasifikasi_perizinan
+        telp.text = data?.telp_kjpp
+        alamat.text =  data?.alamat
     }
 }

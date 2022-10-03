@@ -31,8 +31,9 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
         val nama_mitra = view.findViewById<TextView>(R.id.nama_mitra)
         val jenis_mitra = view.findViewById<TextView>(R.id.jenis_mitra)
         val header_color = view.findViewById<TextView>(R.id.header_color)
-        val periode = view.findViewById<TextView>(R.id.periode)
-//        val titlePeriode = view.findViewById<TextView>(R.id.title_periode)
+        val tglmulai = view.findViewById<TextView>(R.id.tglMulai)
+        val tglakhir = view.findViewById<TextView>(R.id.tglAkhir)
+
         val cardView = view.findViewById<CardView>(R.id.cardViewDaftarPengajuan)
 
         init {
@@ -46,19 +47,21 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
             nama_mitra.text = pengajuanKerjasamaModel.nama_mitra
             jenis_mitra.text = pengajuanKerjasamaModel.jenis_mitra
             header_color.text = pengajuanKerjasamaModel.header_color
-//            titlePeriode.text = pengajuanKerjasamaModel.titlePeriode
-            periode.text = pengajuanKerjasamaModel.periode
+            tglakhir.text = pengajuanKerjasamaModel.tglAkhir
+            tglmulai.text = pengajuanKerjasamaModel.tglMulai
 
             if (pengajuanKerjasamaModel.header_color.equals("Draft", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     android.R.color.darker_gray
                 )
             }
+
             else if(pengajuanKerjasamaModel.header_color.equals("Dikirim", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     R.color.blue
                 )
             }
+
             else if(pengajuanKerjasamaModel.header_color.equals("Menunggu Validasi", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     android.R.color.holo_orange_dark
