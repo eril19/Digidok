@@ -1,11 +1,11 @@
 package com.example.digidok.data
 
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
 import com.example.digidok.data.model.UserModel
 import com.example.digidok.utils.UtilsApplication
 import com.google.gson.GsonBuilder
-import com.readystatesoftware.chuck.ChuckInterceptor
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -58,7 +58,7 @@ interface ApiService {
                     val newRequest = request.newBuilder().url(url).build()
                     chain.proceed(newRequest)
                 }
-                .addInterceptor(ChuckInterceptor(UtilsApplication.getContextInstance()))
+                .addInterceptor(ChuckerInterceptor(UtilsApplication.getContextInstance()))
                 .readTimeout(30, TimeUnit.SECONDS)
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .build()
