@@ -2,9 +2,9 @@ package com.example.digidok.data
 
 import com.example.digidok.BuildConfig.VERSION_NAME
 import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.BeritaModel
 import com.example.digidok.data.model.UserModel
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 object RemoteDataSource : DataSource {
@@ -30,6 +30,26 @@ object RemoteDataSource : DataSource {
                 }
             })
     }
+
+    override fun getBerita(start: String, limit: String, callback: DataSource.BeritaDataCallback) {
+        mApiServiceDev.berita("android", "android", "sampleToken", start, limit)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<BeritaModel?>>() {
+                override fun onSuccess(model: BaseApiModel<BeritaModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
 
     override fun onClearDisposables() {
     }

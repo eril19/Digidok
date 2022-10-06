@@ -20,6 +20,7 @@ import com.example.digidok.utils.Injection
 class LoginActivity : AppCompatActivity() {
 
     val mRepository: Repository = Injection.provideRepository(this)
+
     private var loginbtn: CardView? = null
     private var username: EditText? = null
     private var password: EditText? = null
