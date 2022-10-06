@@ -27,7 +27,6 @@ private const val ARG_PARAM2 = "param2"
 private lateinit var adapter: DashboardAdapter
 var isLoading : Boolean = false
 var dashboardList: ArrayList<DashboardModel> = ArrayList()
-
 private var recyclerview: RecyclerView? = null
 
 
