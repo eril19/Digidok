@@ -12,6 +12,10 @@ open class Repository (private val remoteDataSource: DataSource) : DataSource {
         remoteDataSource.login(user, password, deviceId, fid, callback)
     }
 
+    override fun getBerita(start: String, limit: String, callback: DataSource.BeritaDataCallback) {
+        remoteDataSource.getBerita(start, limit, callback)
+    }
+
     override fun onClearDisposables() {
         remoteDataSource.onClearDisposables()
     }

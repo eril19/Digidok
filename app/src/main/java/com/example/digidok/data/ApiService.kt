@@ -1,6 +1,7 @@
 package com.example.digidok.data
 
 import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.BeritaModel
 import com.example.digidok.data.model.UserModel
 import com.example.digidok.utils.UtilsApplication
 import com.google.gson.GsonBuilder
@@ -32,6 +33,16 @@ interface ApiService {
         @Field("deviceId") deviceId: String,
         @Field("fid") fid: String
     ): Observable<BaseApiModel<UserModel?>>
+
+    @FormUrlEncoded
+    @POST("cms/berita")
+    fun berita(
+        @Header("deviceType") deviceType: String,
+        @Header("deviceName") deviceName: String,
+        @Header("Authorization") token: String,
+        @Field("start") start: String,
+        @Field("limit") limit: String
+    ): Observable<BaseApiModel<BeritaModel?>>
 
     companion object Factory {
 

@@ -5,6 +5,6 @@ import android.os.Parcelable
 
 //@Parcelize
 data class DashboardModel(
-    val nama_mitra: String,
-    val jenis_mitra : String,
+    var nama_mitra: String,
+    var jenis_mitra : String,
 )

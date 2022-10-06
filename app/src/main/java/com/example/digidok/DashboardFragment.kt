@@ -2,22 +2,35 @@ package com.example.digidok
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.data.DataSource
+import com.example.digidok.data.Repository
+import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.utils.Injection
 import java.text.DateFormat
 import java.util.*
+import kotlin.collections.ArrayList
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 private lateinit var adapter: DashboardAdapter
+var isLoading : Boolean = false
+var dashboardList: ArrayList<DashboardModel> = ArrayList()
+
+private var recyclerview: RecyclerView? = null
+
+
 /**
  * A simple [Fragment] subclass.
  * Use the [DashboardFragment.newInstance] factory method to
@@ -58,35 +71,12 @@ class DashboardFragment : Fragment() {
 //        }
 
         val dropdown_profile: ImageView = v.findViewById(R.id.profileArrow)
-        val recyclerview : RecyclerView = v.findViewById(R.id.rv_list_dashboard)
-//        val sizeofData : TextView = v.findViewById(R.id.dataSize)
-
-
-        recyclerview.layoutManager = LinearLayoutManager(this.requireContext())
-//        recyclerview.setHasFixedSize(true)
-
-
-        val DashboardList = listOf<DashboardModel>(
-            DashboardModel(
-                nama_mitra = "PT INDOCATER",
-                jenis_mitra = "Perusahaan Swasta",
-            ),
-            DashboardModel(
-                nama_mitra = "PT Wahana Nusantara",
-                jenis_mitra = "Perusahaan Swasta",
-            )
-        )
-
-//        val showData = DashboardList.size
-//        sizeofData.setText(showData)
-
-//        adapter = DashboardAdapter(DashboardList)
-
-        recyclerview.adapter = DashboardAdapter(this.requireContext(),  DashboardList){
-
-        }
+        recyclerview = v.findViewById(R.id.rv_list_dashboard)
 
         dateText.setText(currentDate)
+
+        setListData()
+        getBerita()
 
         dropdown_profile.setOnClickListener {
 //            val i = Intent(this@LoginActivity, MenuActivity::class.java)
@@ -106,6 +96,46 @@ class DashboardFragment : Fragment() {
 //        }
 
     }
+
+    fun setListData() {
+//        val sizeofData : TextView = v.findViewById(R.id.dataSize)
+
+
+        recyclerview?.layoutManager = LinearLayoutManager(this.requireContext())
+        recyclerview?.setHasFixedSize(true)
+
+//        val showData = DashboardList.size
+//        sizeofData.setText(showData)
+        recyclerview?.adapter = DashboardAdapter(this.requireContext(), dashboardList) {
+            }
+    }
+
+    fun getBerita() {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(requireContext())
+        mRepository.getBerita("0", "10",  object : DataSource.BeritaDataCallback {
+                override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
+                    isLoading = false
+                    if (data.success) {
+                        dashboardList.clear()
+                        data.rows?.forEach {
+                            dashboardList?.add(DashboardModel(it?.editor.toString(), it?.tanggal.toString()))
+                        }
+                        setListData()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading = false
+                }
+
+                override fun onFinish() {
+                    isLoading = false
+                }
+
+            })
+    }
+
 
     companion object {
         /**
