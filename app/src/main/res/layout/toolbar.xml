@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/lighttusk"
-    >
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp">
+        android:layout_height="70dp"
+        android:padding="15dp"
+        android:background="@drawable/bg_shadow_toolbar_main">
 
         <ImageView
             android:id="@+id/backbtn"
@@ -22,12 +21,11 @@
             android:id="@+id/header_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="Header"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:fontFamily="sans-serif-black"
-            android:textSize="20dp"
-            />
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

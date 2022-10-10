@@ -2,21 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/lighttusk"
-
-    >
+    android:background="@drawable/bg_shadow_toolbar_main">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:padding="15dp">
 
         <ImageView
-            android:id="@+id/logo"
-            android:layout_width="90dp"
+            android:id="@+id/logo_1"
+            android:layout_width="50dp"
             android:layout_height="39dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="5dp"
+            android:src="@drawable/logo_img" />
+
+        <ImageView
+            android:id="@+id/logo_2"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="40dp"
             android:src="@drawable/logo_digidok_img" />
 
         <TextView
@@ -32,6 +37,5 @@
             android:src="@drawable/ic_baseline_notifications_24" />
 
     </RelativeLayout>
-
-
 </RelativeLayout>
+
