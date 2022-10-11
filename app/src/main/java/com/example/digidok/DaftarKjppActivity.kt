@@ -16,8 +16,17 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.data.DataSource
+import com.example.digidok.data.Repository
+import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.utils.Injection
 
 class DaftarKjppActivity : AppCompatActivity() {
+
+    var isLoading : Boolean = false
+    var daftarKJPP: ArrayList<DaftarKjppModel> = ArrayList()
+    private var recyclerview: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +44,7 @@ class DaftarKjppActivity : AppCompatActivity() {
         val back = findViewById<ImageView>(R.id.backbtn)
 
         back.setOnClickListener {
-            val intent = Intent(this@DaftarKjppActivity, MenuActivity::class.java)
+            val intent = Intent(this@DaftarKjppActivity, DashboardActivity::class.java)
             startActivity(intent)
         }
 
@@ -107,15 +116,22 @@ class DaftarKjppActivity : AppCompatActivity() {
             )
         )
 
-        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_kjpp)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.setHasFixedSize(true)
+        setList()
+        getDaftarKJPP()
 
+    }
 
-        recyclerView.adapter = DaftarKjppAdapter(this, DaftarKJPPList,object:DaftarKjppAdapter.onItemClickListener{
+    private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
+
+    fun setList(){
+        recyclerview = findViewById<RecyclerView>(R.id.rv_list_kjpp)
+        recyclerview?.layoutManager = LinearLayoutManager(this)
+        recyclerview?.setHasFixedSize(true)
+
+        recyclerview?.adapter = DaftarKjppAdapter(this, daftarKJPP,object:DaftarKjppAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
                 val i = Intent(this@DaftarKjppActivity, KjppDetailActivity::class.java)
-                i.putExtra("daftarKJPP", DaftarKJPPList[position])
+                i.putExtra("daftarKJPP", daftarKJPP[position])
                 startActivity(i)
             }
 
@@ -125,7 +141,41 @@ class DaftarKjppActivity : AppCompatActivity() {
 
     }
 
-    private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
+    fun getDaftarKJPP() {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getBerita("0", "10",  object : DataSource.BeritaDataCallback {
+            override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
+                isLoading = false
+                if (data.success) {
+                    daftarKJPP.clear()
+                    data.rows?.forEach {
+                        daftarKJPP?.add(
+                            DaftarKjppModel(
+                                no_kjpp = "2.08.0005",
+                                nama_kjpp = "Stefanus Tonny Hardi & Rekan",
+                                telp_kjpp = "021- 5637373",
+                                no_perizinan = "907/KM.1/2008",
+                                tgl_perizinan = "2008-12-23",
+                                klasifikasi_perizinan = "Properti dan Bisnis",
+                                alamat = "jalan KACE"
 
+                            )
+                        )
+                    }
+                    setList()
+                }
+            }
+
+            override fun onError(message: String) {
+                isLoading = false
+            }
+
+            override fun onFinish() {
+                isLoading = false
+            }
+
+        })
+    }
 
 }

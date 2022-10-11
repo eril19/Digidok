@@ -64,7 +64,7 @@ class DaftarMitraActivity : AppCompatActivity() {
         val back = findViewById<ImageView>(R.id.backbtn)
 
         back.setOnClickListener {
-            val intent = Intent(this@DaftarMitraActivity, MenuActivity::class.java)
+            val intent = Intent(this@DaftarMitraActivity, DashboardActivity::class.java)
             startActivity(intent)
         }
 

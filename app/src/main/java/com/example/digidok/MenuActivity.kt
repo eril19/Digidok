@@ -29,33 +29,34 @@ class MenuActivity : AppCompatActivity() {
         }
 
         supportActionBar?.hide()
+
         addFragment(DashboardFragment.newInstance())
-        val bottomNavigation = findViewById<MeowBottomNavigation>(R.id.bottomNavigation)
-        bottomNavigation.show(2)
-        bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.ic_baseline_file_copy_50))
-        bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.ic_baseline_dashboard_24))
-        bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_baseline_apps_24))
-
-        bottomNavigation.setOnClickMenuListener {
-            when(it.id){
-                1 -> {
-//                    Toast.makeText(this@MenuActivity, "option 1" , Toast.LENGTH_SHORT).show()
-                    replaceFragment(PelaporanFragment.newInstance())
-                }
-
-                2 -> {
-//                    Toast.makeText(this@MenuActivity, "option 2" , Toast.LENGTH_SHORT).show()
-                    replaceFragment(DashboardFragment.newInstance())
-
-                }
-
-                3 -> {
-//                    Toast.makeText(this@MenuActivity, "option 3" , Toast.LENGTH_SHORT).show()
-                    replaceFragment(AppsFragment.newInstance())
-
-                }
-            }
-        }
+//        val bottomNavigation = findViewById<MeowBottomNavigation>(R.id.bottomNavigation)
+//        bottomNavigation.show(2)
+//        bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.ic_baseline_file_copy_50))
+//        bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.ic_baseline_dashboard_24))
+//        bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_baseline_apps_24))
+//
+//        bottomNavigation.setOnClickMenuListener {
+//            when(it.id){
+//                1 -> {
+////                    Toast.makeText(this@MenuActivity, "option 1" , Toast.LENGTH_SHORT).show()
+//                    replaceFragment(PelaporanFragment.newInstance())
+//                }
+//
+//                2 -> {
+////                    Toast.makeText(this@MenuActivity, "option 2" , Toast.LENGTH_SHORT).show()
+//                    replaceFragment(DashboardFragment.newInstance())
+//
+//                }
+//
+//                3 -> {
+////                    Toast.makeText(this@MenuActivity, "option 3" , Toast.LENGTH_SHORT).show()
+//                    replaceFragment(AppsFragment.newInstance())
+//
+//                }
+//            }
+//        }
     }
 
     private fun replaceFragment(fragment: Fragment){

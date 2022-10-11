@@ -16,8 +16,16 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.data.DataSource
+import com.example.digidok.data.Repository
+import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.utils.Injection
 
 class LaporanAsetActivity : AppCompatActivity() {
+    var isLoading : Boolean = false
+    var daftarLaporanAset: ArrayList<LaporanAsetModel> = ArrayList()
+    private var recyclerview: RecyclerView? = null
 
     var spinnerTahun : Spinner? = null
     val listTahun = arrayListOf("2022", "2021", "2020")
@@ -52,7 +60,7 @@ class LaporanAsetActivity : AppCompatActivity() {
         val back = findViewById<ImageView>(R.id.backbtn)
 
         back.setOnClickListener {
-            val intent = Intent(this@LaporanAsetActivity, MenuActivity::class.java)
+            val intent = Intent(this@LaporanAsetActivity, DashboardActivity::class.java)
             startActivity(intent)
         }
 
@@ -60,74 +68,62 @@ class LaporanAsetActivity : AppCompatActivity() {
 
 
 
-        val LaporanAset = listOf<LaporanAsetModel>(
-            LaporanAsetModel(
-                header_color = "Dikirim",
-                id_pks = "PKS-2022-000001",
-                nama_mitra = "TRANSPORTASI JAKARTA",
-                nilai_pks = "Rp. 17,687,975,000",
-                jenis_kerjasama = "SEWA"
-            ),
-            LaporanAsetModel(
-                header_color = "Dikirim",
-                id_pks = "PKS-2022-000001",
-                nama_mitra = "TRANSPORTASI JAKARTA",
-                nilai_pks = "Rp. 17,687,975,000",
-                jenis_kerjasama = "SEWA"
-            ),
-            LaporanAsetModel(
-                header_color = "Dikembalikan",
-                id_pks = "PKS-2022-000001",
-                nama_mitra = "TRANSPORTASI JAKARTA",
-                nilai_pks = "Rp. 17,687,975,000",
-                jenis_kerjasama = "SEWA"
-            ),
-            LaporanAsetModel(
-                header_color = "Dikembalikan",
-                id_pks = "PKS-2022-000001",
-                nama_mitra = "TRANSPORTASI JAKARTA",
-                nilai_pks = "Rp. 17,687,975,000",
-                jenis_kerjasama = "SEWA"
-            ),
-            LaporanAsetModel(
-                header_color = "Draft",
-                id_pks = "PKS-2022-000001",
-                nama_mitra = "TRANSPORTASI JAKARTA",
-                nilai_pks = "Rp. 17,687,975,000",
-                jenis_kerjasama = "SEWA"
-            ),
-            LaporanAsetModel(
-                header_color = "Draft",
-                id_pks = "PKS-2022-000001",
-                nama_mitra = "TRANSPORTASI JAKARTA",
-                nilai_pks = "Rp. 17,687,975,000",
-                jenis_kerjasama = "SEWA"
-            ),
-            LaporanAsetModel(
-                header_color = "Dikirim",
-                id_pks = "PKS-2022-000001",
-                nama_mitra = "TRANSPORTASI JAKARTA",
-                nilai_pks = "Rp. 17,687,975,000",
-                jenis_kerjasama = "SEWA"
-            )
-        )
-
-        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_laporan_aset)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = LaporanAsetAdapter(this, LaporanAset,object : LaporanAsetAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
-                val i = Intent(this@LaporanAsetActivity, LaporanAsetDetailActivity::class.java)
-                i.putExtra("laporanAset", LaporanAset[position])
-                startActivity(i)
-            }
-        }){
+//        val LaporanAset = listOf<LaporanAsetModel>(
+//            LaporanAsetModel(
+//                header_color = "Dikirim",
+//                id_pks = "PKS-2022-000001",
+//                nama_mitra = "TRANSPORTASI JAKARTA",
+//                nilai_pks = "Rp. 17,687,975,000",
+//                jenis_kerjasama = "SEWA"
+//            ),
+//            LaporanAsetModel(
+//                header_color = "Dikirim",
+//                id_pks = "PKS-2022-000001",
+//                nama_mitra = "TRANSPORTASI JAKARTA",
+//                nilai_pks = "Rp. 17,687,975,000",
+//                jenis_kerjasama = "SEWA"
+//            ),
+//            LaporanAsetModel(
+//                header_color = "Dikembalikan",
+//                id_pks = "PKS-2022-000001",
+//                nama_mitra = "TRANSPORTASI JAKARTA",
+//                nilai_pks = "Rp. 17,687,975,000",
+//                jenis_kerjasama = "SEWA"
+//            ),
+//            LaporanAsetModel(
+//                header_color = "Dikembalikan",
+//                id_pks = "PKS-2022-000001",
+//                nama_mitra = "TRANSPORTASI JAKARTA",
+//                nilai_pks = "Rp. 17,687,975,000",
+//                jenis_kerjasama = "SEWA"
+//            ),
+//            LaporanAsetModel(
+//                header_color = "Draft",
+//                id_pks = "PKS-2022-000001",
+//                nama_mitra = "TRANSPORTASI JAKARTA",
+//                nilai_pks = "Rp. 17,687,975,000",
+//                jenis_kerjasama = "SEWA"
+//            ),
+//            LaporanAsetModel(
+//                header_color = "Draft",
+//                id_pks = "PKS-2022-000001",
+//                nama_mitra = "TRANSPORTASI JAKARTA",
+//                nilai_pks = "Rp. 17,687,975,000",
+//                jenis_kerjasama = "SEWA"
+//            ),
+//            LaporanAsetModel(
+//                header_color = "Dikirim",
+//                id_pks = "PKS-2022-000001",
+//                nama_mitra = "TRANSPORTASI JAKARTA",
+//                nilai_pks = "Rp. 17,687,975,000",
+//                jenis_kerjasama = "SEWA"
+//            )
+//        )
 
 
-        }
-
+        setList()
         setSpinnerKategori()
-
+        getDaftarLaporanAset()
     }
 
     fun setSpinnerKategori() {
@@ -222,5 +218,56 @@ class LaporanAsetActivity : AppCompatActivity() {
 
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
+    fun setList(){
+        recyclerview = findViewById<RecyclerView>(R.id.rv_list_laporan_aset)
+        recyclerview?.layoutManager = LinearLayoutManager(this)
+        recyclerview?.setHasFixedSize(true)
+
+        recyclerview?.adapter = LaporanAsetAdapter(this, daftarLaporanAset,object : LaporanAsetAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                val i = Intent(this@LaporanAsetActivity, LaporanAsetDetailActivity::class.java)
+                i.putExtra("laporanAset", daftarLaporanAset[position])
+                startActivity(i)
+            }
+        }){
+
+
+        }
+
+    }
+
+    fun getDaftarLaporanAset() {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getBerita("0", "10",  object : DataSource.BeritaDataCallback {
+            override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
+                isLoading = false
+                if (data.success) {
+                    daftarLaporanAset.clear()
+                    data.rows?.forEach {
+                        daftarLaporanAset?.add(
+                            LaporanAsetModel(
+                                header_color = "Dikirim",
+                                id_pks = "PKS-2022-000001",
+                                nama_mitra = "TRANSPORTASI JAKARTA",
+                                nilai_pks = "Rp. 17,687,975,000",
+                                jenis_kerjasama = "SEWA"
+                            )
+                        )
+                    }
+                    setList()
+                }
+            }
+
+            override fun onError(message: String) {
+                isLoading = false
+            }
+
+            override fun onFinish() {
+                isLoading = false
+            }
+
+        })
+    }
 
 }

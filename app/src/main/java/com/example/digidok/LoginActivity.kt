@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     statusLogin(false)
                     if (data.success) {
-                        startActivity(Intent(this@LoginActivity, MenuActivity::class.java))
+                        startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                     }
                 }
 

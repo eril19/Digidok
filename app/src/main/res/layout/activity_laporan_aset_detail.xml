@@ -92,7 +92,7 @@
                     android:textSize="14dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_list_laporan_aset"
+                    android:id="@+id/rv_list_laporan_aset_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"

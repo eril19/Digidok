@@ -19,7 +19,7 @@ class ProfileActivity : AppCompatActivity() {
 
 
         back.setOnClickListener {
-            val intent = Intent(this@ProfileActivity, MenuActivity::class.java)
+            val intent = Intent(this@ProfileActivity, DashboardActivity::class.java)
             startActivity(intent)
         }
         header.setText("Profile")

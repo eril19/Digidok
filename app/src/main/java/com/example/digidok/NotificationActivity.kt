@@ -23,7 +23,7 @@ class NotificationActivity : AppCompatActivity() {
 
 
         back.setOnClickListener {
-            val intent = Intent(this@NotificationActivity, MenuActivity::class.java)
+            val intent = Intent(this@NotificationActivity, DashboardActivity::class.java)
             startActivity(intent)
         }
         val notificationList = listOf<NotificationModel>(

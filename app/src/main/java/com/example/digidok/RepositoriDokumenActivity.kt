@@ -15,8 +15,16 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.data.DataSource
+import com.example.digidok.data.Repository
+import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.utils.Injection
 
 class RepositoriDokumenActivity : AppCompatActivity() {
+    var isLoading : Boolean = false
+    var repositoriDokumen: ArrayList<RepositoriDokumenModel> = ArrayList()
+    private var recyclerview: RecyclerView? = null
 
     var spinnerTahun : Spinner? = null
     val listTahun = arrayListOf("2022", "2021", "2020")
@@ -51,70 +59,55 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         val back = findViewById<ImageView>(R.id.backbtn)
 
         back.setOnClickListener {
-            val intent = Intent(this@RepositoriDokumenActivity, MenuActivity::class.java)
+            val intent = Intent(this@RepositoriDokumenActivity, DashboardActivity::class.java)
             startActivity(intent)
         }
 
         //val bg:TextView = findViewById(R.id.header_color)
 
 
-
-        val RepositoriList = listOf<RepositoriDokumenModel>(
-            RepositoriDokumenModel(
-                header_color = "Dikirim",
-                jenis_kerjasama = "SEWA",
-                harga = "Rp. 4.000.000",
-                no_surat = "21 Tahun 2017",
-                nama_mitra = "TRANSPORTASI JAKARTA"
-            ),
-            RepositoriDokumenModel(
-                header_color = "Dikirim",
-                jenis_kerjasama = "SEWA",
-                harga = "Rp. 4.000.000",
-                no_surat = "15 Tahun 2015",
-                nama_mitra = "KACEDIRA EXPRESS"
-            ),
-            RepositoriDokumenModel(
-                header_color = "Dikembalikan",
-                jenis_kerjasama = "SEWA",
-                harga = "Rp. 4.000.000",
-                no_surat = "12 Tahun 2012",
-                nama_mitra = "TRANSPORTASI BIBIR SEXY"
-            ),
-            RepositoriDokumenModel(
-                header_color = "Draft",
-                jenis_kerjasama = "SEWA",
-                harga = "Rp. 4.000.000",
-                no_surat = "22 Tahun 2024",
-                nama_mitra = "TRANSPORTASI BICEP PURNOMO"
-            ),
-            RepositoriDokumenModel(
-                header_color = "Dikembalikan",
-                jenis_kerjasama = "SEWA",
-                harga = "Rp. 1.000.000",
-                no_surat = "10 Tahun 2021",
-                nama_mitra = "NAMA MITRA 3"
-            )
-        )
-
-        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_repositori)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = RepositoriDokumemAdapter(this,  RepositoriList, object:RepositoriDokumemAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
-
-                val i = Intent(this@RepositoriDokumenActivity, CekDokumenActivity::class.java)
-                i.putExtra("Cek Dokumen",RepositoriList[position])
-                startActivity(i)
-            }
-
-        }
-        ){
-
-        }
+//
+//        val RepositoriList = listOf<RepositoriDokumenModel>(
+//            RepositoriDokumenModel(
+//                header_color = "Dikirim",
+//                jenis_kerjasama = "SEWA",
+//                harga = "Rp. 4.000.000",
+//                no_surat = "21 Tahun 2017",
+//                nama_mitra = "TRANSPORTASI JAKARTA"
+//            ),
+//            RepositoriDokumenModel(
+//                header_color = "Dikirim",
+//                jenis_kerjasama = "SEWA",
+//                harga = "Rp. 4.000.000",
+//                no_surat = "15 Tahun 2015",
+//                nama_mitra = "KACEDIRA EXPRESS"
+//            ),
+//            RepositoriDokumenModel(
+//                header_color = "Dikembalikan",
+//                jenis_kerjasama = "SEWA",
+//                harga = "Rp. 4.000.000",
+//                no_surat = "12 Tahun 2012",
+//                nama_mitra = "TRANSPORTASI BIBIR SEXY"
+//            ),
+//            RepositoriDokumenModel(
+//                header_color = "Draft",
+//                jenis_kerjasama = "SEWA",
+//                harga = "Rp. 4.000.000",
+//                no_surat = "22 Tahun 2024",
+//                nama_mitra = "TRANSPORTASI BICEP PURNOMO"
+//            ),
+//            RepositoriDokumenModel(
+//                header_color = "Dikembalikan",
+//                jenis_kerjasama = "SEWA",
+//                harga = "Rp. 1.000.000",
+//                no_surat = "10 Tahun 2021",
+//                nama_mitra = "NAMA MITRA 3"
+//            )
+//        )
 
         setSpinnerKategori()
-
+        setList()
+        getRepositoriDokumen()
     }
 
     fun setSpinnerKategori() {
@@ -207,7 +200,63 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
+
+    fun setList(){
+        recyclerview = findViewById<RecyclerView>(R.id.rv_list_repositori)
+        recyclerview?.layoutManager = LinearLayoutManager(this)
+        recyclerview?.setHasFixedSize(true)
+
+        recyclerview?.adapter = RepositoriDokumemAdapter(this,  repositoriDokumen, object:RepositoriDokumemAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+
+                val i = Intent(this@RepositoriDokumenActivity, CekDokumenActivity::class.java)
+                i.putExtra("Cek Dokumen",repositoriDokumen[position])
+                startActivity(i)
+            }
+
+        }
+        ){
+
+        }
+
+    }
+
+    fun getRepositoriDokumen() {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getBerita("0", "5",  object : DataSource.BeritaDataCallback {
+            override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
+                isLoading = false
+                if (data.success) {
+                    repositoriDokumen.clear()
+                    data.rows?.forEach {
+                        repositoriDokumen?.add(
+                            RepositoriDokumenModel(
+                                header_color = "Dikembalikan",
+                                jenis_kerjasama = "SEWA",
+                                harga = "Rp. 1.000.000",
+                                no_surat = "10 Tahun 2021",
+                                nama_mitra = "NAMA MITRA 3"
+                            )
+                        )
+                    }
+                    setList()
+                }
+            }
+
+            override fun onError(message: String) {
+                isLoading = false
+            }
+
+            override fun onFinish() {
+                isLoading = false
+            }
+
+        })
+    }
 
 }
