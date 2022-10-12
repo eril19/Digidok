@@ -49,8 +49,8 @@
                 android:layout_toEndOf="@id/notificationIcon"
                 android:layout_toRightOf="@id/notificationIcon"
                 android:textColor="@color/black"
-                android:textSize="15dp"
-                android:textStyle="bold"
+                android:textSize="14dp"
+                android:fontFamily="@font/roboto_medium"
                 android:visibility="visible"
                 tools:text="@string/notification_title"
                 tools:visibility="visible" />
@@ -64,7 +64,8 @@
                 android:layout_toEndOf="@id/notificationIcon"
                 android:layout_toRightOf="@id/notificationIcon"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="13sp"
+                android:fontFamily="@font/roboto"
                 android:visibility="visible"
                 tools:text="@string/notification_detail"
                 tools:visibility="visible" />
@@ -76,8 +77,9 @@
                 android:layout_below="@id/notificationDetail"
                 android:layout_toEndOf="@id/notificationIcon"
                 android:layout_toRightOf="@id/notificationIcon"
-                android:textColor="#888888"
-                android:textSize="14sp"
+                android:textColor="#6D6D6D"
+                android:textSize="13sp"
+                android:fontFamily="@font/roboto"
                 android:visibility="visible"
                 tools:text="7 Okt 2022, 11:55"
                 tools:visibility="visible" />

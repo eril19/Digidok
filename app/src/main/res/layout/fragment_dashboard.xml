@@ -25,12 +25,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="60dp"
-                    android:text="TextView"
-                    android:textColor="@color/black"
-                    android:textSize="13dp"
+                    android:text="date/month/year"
+                    android:textColor="#6D6D6D"
+                    android:textSize="12dp"
+                    android:gravity="right"
+                    android:layout_marginRight="35dp"
+                    android:fontFamily="@font/roboto"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.702"
-                    app:layout_constraintStart_toEndOf="@+id/textView5"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
@@ -52,6 +53,7 @@
                     android:text="Selamat datang,"
                     android:textColor="@color/black"
                     android:textSize="11dp"
+                    android:fontFamily="@font/roboto"
                     app:layout_constraintLeft_toRightOf="@+id/profilepic"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -59,14 +61,14 @@
                 <TextView
                     android:id="@+id/namaUser"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
                     android:layout_marginStart="80dp"
                     android:layout_marginTop="4dp"
-                    android:fontFamily="sans-serif-black"
-                    android:text="TextView"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Nama User"
+                    android:gravity="bottom"
                     android:textColor="@color/black"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
+                    android:textSize="14dp"
                     app:layout_constraintBottom_toTopOf="@+id/textView5"
                     app:layout_constraintLeft_toRightOf="@+id/profilepic"
                     app:layout_constraintStart_toStartOf="parent"
@@ -79,8 +81,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="80dp"
                     android:layout_marginTop="56dp"
-                    android:text="TextView"
+                    android:text="User"
+                    android:gravity="center"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
                     android:textSize="13dp"
                     app:layout_constraintLeft_toRightOf="@+id/profilepic"
                     app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +94,7 @@
                     android:id="@+id/profileArrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginTop="33dp"
                     android:layout_marginEnd="112dp"
                     android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -104,18 +108,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="17dp"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Dashboard"
                     android:textColor="@color/black"
                     android:textSize="17dp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
                 <View
                     android:id="@+id/view"
                     android:layout_width="87dp"
-                    android:layout_height="3dp"
+                    android:layout_height="2dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginTop="2dp"
                     android:background="@color/black"
@@ -157,6 +160,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="25dp"
+                                android:fontFamily="@font/roboto"
                                 android:text="0"
                                 android:textColor="@color/white"
                                 android:textSize="50dp" />
@@ -169,6 +173,7 @@
                                 android:layout_marginEnd="23dp"
                                 android:layout_marginBottom="6dp"
                                 android:text="Jumlah Kerjasama"
+                                android:fontFamily="@font/roboto"
                                 android:textColor="@color/white"
                                 android:textSize="13dp" />
                         </RelativeLayout>
@@ -193,6 +198,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="25dp"
+                                android:fontFamily="@font/roboto"
                                 android:text="0"
                                 android:textColor="@color/white"
                                 android:textSize="50dp" />
@@ -204,6 +210,7 @@
                                 android:layout_marginTop="63dp"
                                 android:layout_marginEnd="23dp"
                                 android:layout_marginBottom="6dp"
+                                android:fontFamily="@font/roboto"
                                 android:text="Jumlah Mitra"
                                 android:textColor="@color/white"
                                 android:textSize="13dp" />
@@ -225,6 +232,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="25dp"
                             android:text="Rp. 0.000"
+                            android:fontFamily="@font/roboto"
                             android:textColor="@color/white"
                             android:textSize="50dp" />
 
@@ -236,6 +244,7 @@
                             android:layout_marginEnd="23dp"
                             android:layout_marginBottom="6dp"
                             android:text="Jumlah Nilai Kerjasama"
+                            android:fontFamily="@font/roboto"
                             android:textColor="@color/white"
                             android:textSize="13dp" />
                     </RelativeLayout>
@@ -296,8 +305,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="16dp"
                                 android:gravity="center"
+                                android:fontFamily="@font/roboto_medium"
                                 android:text="Daftar Mitra"
-                                android:textColor="#6D6D6D"
+                                android:textColor="#616161"
                                 android:textSize="12dp" />
                         </LinearLayout>
 
@@ -331,7 +341,8 @@
                                 android:layout_marginStart="16dp"
                                 android:layout_marginTop="16dp"
                                 android:text="Daftar KJPP"
-                                android:textColor="#6D6D6D"
+                                android:textColor="#616161"
+                                android:fontFamily="@font/roboto_medium"
                                 android:textSize="12dp" />
                         </LinearLayout>
 
@@ -364,7 +375,8 @@
                                 android:layout_marginTop="9dp"
                                 android:gravity="center"
                                 android:text="Daftar Pengajuan Kerjasama"
-                                android:textColor="#6D6D6D"
+                                android:textColor="#616161"
+                                android:fontFamily="@font/roboto_medium"
                                 android:textSize="12dp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -403,7 +415,8 @@
                                 android:layout_marginTop="9dp"
                                 android:gravity="center"
                                 android:text="Repositori Dokumen"
-                                android:textColor="#6D6D6D"
+                                android:textColor="#616161"
+                                android:fontFamily="@font/roboto_medium"
                                 android:textSize="12dp" />
                         </LinearLayout>
 
@@ -436,7 +449,8 @@
                                 android:layout_marginTop="9dp"
                                 android:gravity="center"
                                 android:text="Laporan Aset Dikerjasamakan"
-                                android:textColor="#6D6D6D"
+                                android:textColor="#616161"
+                                android:fontFamily="@font/roboto_medium"
                                 android:textSize="12dp" />
                         </LinearLayout>
 
@@ -468,7 +482,8 @@
                                 android:layout_marginTop="9dp"
                                 android:gravity="center"
                                 android:text="Laporan Pengajuan Kerjasama"
-                                android:textColor="#6D6D6D"
+                                android:textColor="#616161"
+                                android:fontFamily="@font/roboto_medium"
                                 android:textSize="12dp" />
                         </LinearLayout>
                     </LinearLayout>

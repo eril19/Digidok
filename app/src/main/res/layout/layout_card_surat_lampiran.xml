@@ -31,8 +31,8 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/num_laporan"
                 android:textColor="#616161"
-                android:textStyle="bold"
-                android:textSize="14dp" />
+                android:textSize="13dp"
+                android:fontFamily="@font/roboto_medium" />
 
             <LinearLayout
                 android:id="@+id/linear1"
@@ -57,9 +57,9 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:text="Kode Dokumen"
-                        android:textColor="#616161"
-                        android:textSize="14dp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="#104B7C"
+                        android:textSize="13dp"
                         android:visibility="visible"
                         tools:visibility="visible" />
 
@@ -73,7 +73,8 @@
                         android:padding="6dp"
                         android:text="-"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:fontFamily="@font/roboto"
+                        android:textSize="13dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -91,9 +92,9 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:text="Jenis Dokumen"
-                        android:textColor="#616161"
-                        android:textSize="14dp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="#104B7C"
+                        android:textSize="13dp"
                         android:visibility="visible"
                         tools:visibility="visible" />
 
@@ -107,7 +108,8 @@
                         android:padding="6dp"
                         android:text="-"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:fontFamily="@font/roboto"
+                        android:textSize="13dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -125,8 +127,9 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:text="No. Surat"
-                        android:textColor="#787878"
-                        android:textSize="14dp"
+                        android:textColor="#627E97"
+                        android:textSize="13dp"
+                        android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
 
@@ -140,7 +143,8 @@
                         android:padding="6dp"
                         android:text="-"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:fontFamily="@font/roboto"
+                        android:textSize="13dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -158,8 +162,9 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:text="Tanggal"
-                        android:textColor="#787878"
-                        android:textSize="14dp"
+                        android:textColor="#627E97"
+                        android:textSize="13dp"
+                        android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
 
@@ -173,7 +178,8 @@
                         android:padding="6dp"
                         android:text="-"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:fontFamily="@font/roboto"
+                        android:textSize="13dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -191,8 +197,9 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:text="Keterangan"
-                        android:textColor="#787878"
-                        android:textSize="14dp"
+                        android:textColor="#627E97"
+                        android:textSize="13dp"
+                        android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
 
@@ -206,7 +213,8 @@
                         android:padding="6dp"
                         android:text="-"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:fontFamily="@font/roboto"
+                        android:textSize="13dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -224,8 +232,9 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:text="Lampiran"
-                        android:textColor="#787878"
-                        android:textSize="14dp"
+                        android:textColor="#627E97"
+                        android:textSize="13dp"
+                        android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
                 </LinearLayout>

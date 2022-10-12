@@ -12,7 +12,6 @@
         android:id="@+id/cardViewLaporanPengajuan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="5dp"
@@ -62,6 +61,7 @@
                             android:layout_alignParentTop="true"
                             android:layout_marginRight="10dp"
                             android:textColor="@color/black"
+                            android:fontFamily="@font/roboto"
                             android:textSize="12dp"
                             tools:text="@string/id_mitra" />
 
@@ -69,11 +69,11 @@
                             android:id="@+id/nama_mitra"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="1dp"
                             android:layout_marginRight="10dp"
                             android:textColor="@color/black"
-                            android:textSize="15dp"
-                            android:textStyle="bold"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textSize="13dp"
                             tools:text="@string/nama_mitra" />
 
 <!--                        <TextView-->
@@ -90,9 +90,10 @@
                             android:id="@+id/no_mitra"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginTop="1dp"
                             android:layout_marginRight="10dp"
                             android:textColor="#616161"
+                            android:fontFamily="@font/roboto"
                             android:textSize="13sp"
                             tools:text="700481948005000" />
                     </LinearLayout>
@@ -118,6 +119,7 @@
                             android:layout_gravity="end"
                             android:textColor="@color/black"
                             android:textSize="13dp"
+                            android:fontFamily="@font/roboto_medium"
                             tools:text="@string/id_pks" />
 
                         <TextView
@@ -125,10 +127,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="3dp"
                             android:layout_gravity="end"
                             android:textColor="#616161"
                             android:textSize="13dp"
+                            android:fontFamily="@font/roboto"
                             tools:text="@string/jenis_kerjasama" />
                     </LinearLayout>
 
@@ -163,17 +166,19 @@
                             android:layout_alignParentTop="true"
                             android:layout_marginRight="10dp"
                             android:textColor="@color/black"
-                            android:textSize="12dp"
+                            android:textSize="13dp"
+                            android:fontFamily="@font/roboto"
                             tools:text="@string/no_surat" />
 
                         <TextView
                             android:id="@+id/jenis_bmd"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="1dp"
                             android:layout_marginRight="10dp"
                             android:textColor="#B6875C"
                             android:textSize="12dp"
+                            android:fontFamily="@font/roboto_medium"
                             android:textAllCaps="true"
                             tools:text="@string/jenis_bmd" />
 
@@ -194,6 +199,7 @@
                             android:layout_gravity="end"
                             android:textColor="@color/black"
                             android:textSize="13dp"
+                            android:fontFamily="@font/roboto"
                             android:visibility="visible"
                             tools:text="Periode"
                             tools:visibility="visible" />
@@ -202,9 +208,10 @@
                             android:id="@+id/jangka_periode"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="1dp"
                             android:layout_alignParentTop="true"
                             android:layout_gravity="end"
+                            android:fontFamily="@font/roboto"
                             android:textColor="#616161"
                             android:textSize="13dp"
                             tools:text="02/03/2020 - 01/03/2025" />
@@ -217,10 +224,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginLeft="10dp"
-                    android:textColor="#616161"
+                    android:textColor="#0A3E0C"
                     android:textSize="13dp"
+                    android:fontFamily="@font/roboto"
                     tools:text="@string/nilai_pks" />
 
                 <TextView
@@ -233,6 +241,7 @@
                     android:layout_marginBottom="10dp"
                     android:textColor="#616161"
                     android:textSize="13dp"
+                    android:fontFamily="@font/roboto"
                     android:layout_marginRight="10dp"
                     tools:text="@string/detail_pks" />
 

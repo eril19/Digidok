@@ -12,7 +12,6 @@
         android:id="@+id/cardViewDaftarPengajuan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="5dp"
@@ -32,7 +31,7 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="15dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/roboto_medium"
                 tools:text="@string/header_color">
             </TextView>
 
@@ -49,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
                 android:baselineAligned="false">
 
@@ -66,29 +66,30 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginRight="10dp"
                         android:textColor="@color/black"
-                        android:textSize="12dp"
+                        android:fontFamily="@font/roboto"
+                        android:textSize="13dp"
                         tools:text="@string/id_mitra" />
 
                     <TextView
                         android:id="@+id/nama_mitra"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="3dp"
                         android:layout_marginRight="10dp"
                         android:textColor="@color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="14dp"
                         tools:text="@string/nama_mitra" />
 
                     <TextView
                         android:id="@+id/jenis_mitra"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="1dp"
                         android:layout_marginRight="10dp"
                         android:textColor="#616161"
-                        android:textSize="13sp"
+                        android:fontFamily="@font/roboto"
+                        android:textSize="13dp"
                         tools:text="@string/jenis_mitra" />
                 </LinearLayout>
 
@@ -111,8 +112,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_gravity="end"
+                        android:fontFamily="@font/roboto"
                         android:text="Periode:"
-                        android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="13dp"
                         android:visibility="visible"
@@ -122,15 +123,19 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="end">
 
                         <TextView
                             android:id="@+id/tglMulai"
-                            android:layout_width="wrap_content"
+                            android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="TextView"
-                            android:textAlignment="center" />
+                            android:text="dd/mm/yyyy"
+                            android:fontFamily="@font/roboto"
+                            android:textAlignment="center"/>
 
                         <TextView
                             android:id="@+id/textView8"
@@ -144,10 +149,11 @@
 
                         <TextView
                             android:id="@+id/tglAkhir"
-                            android:layout_width="wrap_content"
+                            android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="TextView"
+                            android:text="dd/mm/yyyy"
+                            android:fontFamily="@font/roboto"
                             android:textAlignment="center" />
                     </LinearLayout>
 

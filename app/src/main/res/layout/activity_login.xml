@@ -22,6 +22,7 @@
         android:layout_width="421dp"
         android:layout_height="531dp"
         android:layout_marginTop="276dp"
+        android:alpha="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -64,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:background="@color/blue">
+            android:background="#104B7C">
 
             <TextView
                 android:id="@+id/tvLogin"
