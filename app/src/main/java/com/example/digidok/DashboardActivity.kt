@@ -84,7 +84,7 @@ class DashboardActivity : AppCompatActivity() {
         getBerita()
 
         dropdown_profile.setOnClickListener {
-            startActivity(Intent(this@DashboardActivity, ProfileOptionActivity::class.java))
+            startActivity(Intent(this@DashboardActivity, ProfileActivity::class.java))
         }
 
         notifBtn.setOnClickListener {

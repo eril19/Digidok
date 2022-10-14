@@ -56,20 +56,22 @@
 
             <Button
                 android:id="@+id/logout"
-                android:layout_width="80dp"
-                android:layout_height="38dp"
+                android:layout_width="113dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
+                android:backgroundTint="#AA2D34"
+                android:drawableEnd="@drawable/ic_baseline_logout_5"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Logout"
+                android:textAllCaps="false"
+                android:textSize="13dp"
                 app:layout_constraintBottom_toTopOf="@+id/circleImageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.90"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:backgroundTint="#AA2D34"
-                android:text="Logout"
-                android:textSize="13dp"
-                android:fontFamily="@font/roboto_medium"
-                android:textAllCaps="false"
-                android:layout_gravity="center"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/circleImageView"
@@ -156,7 +158,7 @@
                         android:fontFamily="@font/roboto"                        android:textColor="@color/black"
                         android:textSize="13dp"/>
 
-                    <TextView
+                    <EditText
                         android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
@@ -190,7 +192,7 @@
                         android:fontFamily="@font/roboto"                        android:textColor="@color/black"
                         android:textSize="13dp"/>
 
-                    <TextView
+                    <EditText
                         android:id="@+id/nip"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
@@ -224,7 +226,7 @@
                         android:fontFamily="@font/roboto"                        android:textColor="@color/black"
                         android:textSize="13dp"/>
 
-                    <TextView
+                    <EditText
                         android:id="@+id/telepon"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
@@ -258,7 +260,7 @@
                         android:fontFamily="@font/roboto"                        android:textColor="@color/black"
                         android:textSize="13dp"/>
 
-                    <TextView
+                    <EditText
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
@@ -292,7 +294,7 @@
                         android:fontFamily="@font/roboto"                        android:textColor="@color/black"
                         android:textSize="13dp"/>
 
-                    <TextView
+                    <EditText
                         android:id="@+id/keterangan"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
@@ -358,7 +360,7 @@
                             android:fontFamily="@font/roboto"                            android:textColor="#627E97"
                             android:textSize="13dp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/new_password"
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
@@ -394,7 +396,7 @@
                             android:fontFamily="@font/roboto"                            android:textColor="#627E97"
                             android:textSize="13dp" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/confirm_password"
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
@@ -437,7 +439,7 @@
                         android:fontFamily="@font/roboto"
                         android:textSize="13dp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/old_password"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
