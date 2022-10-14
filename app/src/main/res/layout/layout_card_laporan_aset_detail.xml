@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
+        android:layout_marginTop="3dp"
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintTop_toTopOf="parent"
@@ -32,7 +33,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/num_laporan"
                 android:textColor="#616161"
-                android:textSize="13dp"/>
+                android:textSize="14dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,14 +50,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="97dp"
+                        android:layout_width="105dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="15dp"
                         android:text="Kode Barang"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
@@ -71,7 +72,7 @@
                         android:text="@string/kode_bmd"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -87,14 +88,14 @@
 
                     <TextView
                         android:id="@+id/title_nama_bmd"
-                        android:layout_width="97dp"
+                        android:layout_width="105dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="15dp"
                         android:text="Nama BMD"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
@@ -109,7 +110,7 @@
                         android:padding="10dp"
                         android:text="@string/nama_bmd"
                         android:textColor="@color/black"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto" />
 
                     <View
@@ -126,14 +127,14 @@
 
                     <TextView
                         android:id="@+id/title_kode_lokasi"
-                        android:layout_width="97dp"
+                        android:layout_width="105dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="15dp"
                         android:text="Kode Lokasi"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
@@ -148,7 +149,7 @@
                         android:gravity="center|left|left"
                         android:text="@string/kode_lokasi"
                         android:textColor="@color/black"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto" />
 
                     <View
@@ -167,14 +168,14 @@
 
                     <TextView
                         android:id="@+id/title_nama_lokasi"
-                        android:layout_width="97dp"
+                        android:layout_width="105dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="15dp"
                         android:text="Nama Lokasi"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto" />
 
                     <TextView
@@ -187,7 +188,7 @@
                         android:padding="7dp"
                         android:text="@string/nama_lokasi"
                         android:textColor="@color/black"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"/>
 
                     <View
@@ -204,14 +205,14 @@
 
                     <TextView
                         android:id="@+id/title_luas_bmd"
-                        android:layout_width="97dp"
+                        android:layout_width="105dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="15dp"
                         android:text="Luas BMD"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
@@ -225,7 +226,7 @@
                         android:background="@drawable/custom_profile"
                         android:text="@string/luas_bmd"
                         android:textColor="@color/black"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"/>
 
                     <View
@@ -242,14 +243,14 @@
 
                     <TextView
                         android:id="@+id/title_keterangan_bmd"
-                        android:layout_width="97dp"
+                        android:layout_width="105dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="15dp"
                         android:text="Keterangan BMD"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
@@ -263,7 +264,7 @@
                         android:background="@drawable/custom_profile"
                         android:text="@string/keterangan_bmd"
                         android:textColor="@color/black"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto" />
 
                     <View

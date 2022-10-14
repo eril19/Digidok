@@ -20,6 +20,7 @@
         android:orientation="vertical"
         android:paddingTop="85dp"
         android:paddingBottom="10dp"
+        android:layout_marginLeft="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,10 +34,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
                 android:text="Tahun"
                 android:textColor="@color/black"
-                android:fontFamily="@font/roboto"
+                android:fontFamily="@font/roboto_medium"
                 android:textSize="14dp" />
 
             <Spinner
@@ -45,7 +45,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="45dp"
                 android:layout_marginRight="120dp"
-                android:fontFamily="@font/roboto"
                 android:background="@drawable/dd_background" />
         </LinearLayout>
 
@@ -58,11 +57,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
                 android:text="Wilayah"
-                android:fontFamily="@font/roboto"
                 android:textColor="@color/black"
-                android:textSize="14dp" />
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14dp"/>
 
             <Spinner
                 android:id="@+id/spinner_wilayah"
@@ -70,7 +68,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="34dp"
                 android:layout_marginRight="120dp"
-                android:fontFamily="@font/roboto"
                 android:background="@drawable/dd_background" />
         </LinearLayout>
 
@@ -83,24 +80,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
                 android:text="Kelurahan"
-                android:fontFamily="@font/roboto"
                 android:textColor="@color/black"
-                android:textSize="14dp" />
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14dp"/>
 
             <Spinner
                 android:id="@+id/spinner_kelurahan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:fontFamily="@font/roboto"
                 android:layout_marginRight="120dp"
                 android:background="@drawable/dd_background" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -109,11 +103,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
                 android:text="Status"
-                android:fontFamily="@font/roboto"
                 android:textColor="@color/black"
-                android:textSize="14dp" />
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14dp"/>
 
             <Spinner
                 android:id="@+id/spinner_status"
@@ -121,7 +114,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="43dp"
                 android:layout_marginRight="120dp"
-                android:fontFamily="@font/roboto"
                 android:background="@drawable/dd_background" />
         </LinearLayout>
 
@@ -141,7 +133,7 @@
                     android:id="@+id/rv_list_repositori"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="3dp"
+                    android:layout_marginRight="20dp"
                     tools:listitem="@layout/layout_card_repositori" />
             </LinearLayout>
 

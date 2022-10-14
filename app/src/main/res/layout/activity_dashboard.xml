@@ -38,7 +38,7 @@
                     android:layout_marginTop="60dp"
                     android:text="date/month/year"
                     android:textColor="#6D6D6D"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:gravity="right"
                     android:layout_marginRight="35dp"
                     android:fontFamily="@font/roboto"
@@ -63,7 +63,7 @@
                     android:layout_marginTop="20dp"
                     android:text="Selamat datang,"
                     android:textColor="@color/black"
-                    android:textSize="11dp"
+                    android:textSize="13dp"
                     android:fontFamily="@font/roboto"
                     app:layout_constraintLeft_toRightOf="@+id/profilepic"
                     app:layout_constraintStart_toStartOf="parent"
@@ -186,7 +186,7 @@
                                 android:text="Jumlah Kerjasama"
                                 android:fontFamily="@font/roboto"
                                 android:textColor="@color/white"
-                                android:textSize="13dp" />
+                                android:textSize="14dp" />
                         </RelativeLayout>
 
                         <View
@@ -224,7 +224,7 @@
                                 android:fontFamily="@font/roboto"
                                 android:text="Jumlah Mitra"
                                 android:textColor="@color/white"
-                                android:textSize="13dp" />
+                                android:textSize="14dp" />
                         </RelativeLayout>
 
 
@@ -257,7 +257,7 @@
                             android:text="Jumlah Nilai Kerjasama"
                             android:fontFamily="@font/roboto"
                             android:textColor="@color/white"
-                            android:textSize="13dp" />
+                            android:textSize="14dp" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -319,7 +319,7 @@
                                 android:fontFamily="@font/roboto_medium"
                                 android:text="Daftar Mitra"
                                 android:textColor="#616161"
-                                android:textSize="12dp" />
+                                android:textSize="13dp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -345,7 +345,7 @@
 
                             <TextView
                                 android:id="@+id/textView6"
-                                android:layout_width="100dp"
+                                android:layout_width="107dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:gravity="center"
@@ -354,7 +354,7 @@
                                 android:text="Daftar KJPP"
                                 android:textColor="#616161"
                                 android:fontFamily="@font/roboto_medium"
-                                android:textSize="12dp" />
+                                android:textSize="13dp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -388,7 +388,7 @@
                                 android:text="Daftar Pengajuan Kerjasama"
                                 android:textColor="#616161"
                                 android:fontFamily="@font/roboto_medium"
-                                android:textSize="12dp" />
+                                android:textSize="13dp" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -428,7 +428,7 @@
                                 android:text="Repositori Dokumen"
                                 android:textColor="#616161"
                                 android:fontFamily="@font/roboto_medium"
-                                android:textSize="12dp" />
+                                android:textSize="13dp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -453,8 +453,8 @@
 
                             <TextView
                                 android:id="@+id/txt_laporan_aset"
-                                android:layout_width="100dp"
-                                android:layout_height="27dp"
+                                android:layout_width="107dp"
+                                android:layout_height="30dp"
                                 android:layout_gravity="center"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginTop="9dp"
@@ -462,7 +462,7 @@
                                 android:text="Laporan Aset Dikerjasamakan"
                                 android:textColor="#616161"
                                 android:fontFamily="@font/roboto_medium"
-                                android:textSize="12dp" />
+                                android:textSize="13dp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -495,7 +495,7 @@
                                 android:text="Laporan Pengajuan Kerjasama"
                                 android:textColor="#616161"
                                 android:fontFamily="@font/roboto_medium"
-                                android:textSize="12dp" />
+                                android:textSize="13dp" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -529,7 +529,7 @@
                         android:layout_marginStart="30dp"
                         android:text="Daftar Terbaru Kerjasama"
                         android:textColor="@color/black"
-                        android:textSize="14dp"
+                        android:textSize="15.5dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -540,7 +540,7 @@
                         android:layout_marginRight="30dp"
                         android:text="View All"
                         android:textColor="#616161"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
 
                 <TextView
@@ -551,7 +551,7 @@
                     android:layout_marginTop="8dp"
                     android:text="Kerjasama ditemukan: "
                     android:textColor="#4E4E4E"
-                    android:textSize="11dp"
+                    android:textSize="13dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/daftarDash" />
 

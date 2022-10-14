@@ -89,7 +89,7 @@
                         android:layout_marginBottom="10dp"
                         android:textColor="#616161"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13sp"
+                        android:textSize="14dp"
                         tools:text="@string/telp_kjpp" />
 
                 </LinearLayout>
@@ -161,11 +161,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="11dp"
+                        android:layout_marginBottom="12dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         tools:text="@string/no_perizinan" />
 
                     <TextView
@@ -173,18 +173,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="11dp"
+                        android:layout_marginBottom="14dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         tools:text="@string/tgl_perizinan" />
 
                     <TextView
                         android:id="@+id/klasifikasi_perizinan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="11dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
                         android:textSize="13sp"

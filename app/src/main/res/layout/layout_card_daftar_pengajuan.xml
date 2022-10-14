@@ -31,7 +31,7 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="15dp"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/roboto_bold"
                 tools:text="@string/header_color">
             </TextView>
 
@@ -89,7 +89,7 @@
                         android:layout_marginRight="10dp"
                         android:textColor="#616161"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         tools:text="@string/jenis_mitra" />
                 </LinearLayout>
 
@@ -115,7 +115,7 @@
                         android:fontFamily="@font/roboto"
                         android:text="Periode:"
                         android:textColor="@color/black"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:visibility="visible"
                         tools:text="Periode:"
                         tools:visibility="visible" />

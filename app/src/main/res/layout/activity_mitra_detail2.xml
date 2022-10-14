@@ -37,14 +37,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Detail Mitra"
-                    android:textSize="13dp"
+                    android:textSize="15.5dp"
                     android:fontFamily="@font/roboto_bold"
                     android:textStyle="bold"
                     android:textColor="@color/black" />
 
                 <View
                     android:id="@+id/view"
-                    android:layout_width="75dp"
+                    android:layout_width="83dp"
                     android:layout_height="1dp"
                     android:background="@color/black"
                     android:layout_marginTop="3dp"
@@ -78,7 +78,7 @@
                         android:text="Kode Mitra"
                         android:fontFamily="@font/roboto"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:visibility="visible"
                         tools:visibility="visible" />
 
@@ -108,7 +108,7 @@
                         android:text="Tahun Gabung"
                         android:fontFamily="@font/roboto"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:visibility="visible"
                         tools:visibility="visible" />
 
@@ -138,7 +138,7 @@
                         android:text="Jenis"
                         android:fontFamily="@font/roboto"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:visibility="visible"
                         tools:visibility="visible" />
 
@@ -168,7 +168,7 @@
                         android:text="Status"
                         android:fontFamily="@font/roboto"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:visibility="visible"
                         tools:visibility="visible" />
 
@@ -196,7 +196,7 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Sebelumnya"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto_medium"
                         android:textAllCaps="false"
                         android:backgroundTint="#676767"
@@ -208,7 +208,7 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Tutup"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto_medium"                        android:textAllCaps="false"
                         android:backgroundTint="#104B7C"
                         android:layout_marginLeft="10dp"/>

@@ -33,8 +33,8 @@
                 android:layout_height="wrap_content"
                 android:text="Tahun"
                 android:textColor="@color/black"
-                android:fontFamily="@font/roboto"
-                android:textSize="13dp" />
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14dp" />
 
             <Spinner
                 android:id="@+id/spinner_tahun"
@@ -56,8 +56,8 @@
                 android:layout_height="wrap_content"
                 android:text="Wilayah"
                 android:textColor="@color/black"
-                android:fontFamily="@font/roboto"
-                        android:textSize="13dp"/>
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14dp"/>
 
             <Spinner
                 android:id="@+id/spinner_wilayah"
@@ -79,8 +79,8 @@
                 android:layout_height="wrap_content"
                 android:text="Kelurahan"
                 android:textColor="@color/black"
-                android:fontFamily="@font/roboto"
-                        android:textSize="13dp"/>
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14dp"/>
 
             <Spinner
                 android:id="@+id/spinner_kelurahan"
@@ -102,8 +102,8 @@
                 android:layout_height="wrap_content"
                 android:text="Status"
                 android:textColor="@color/black"
-                android:fontFamily="@font/roboto"
-                        android:textSize="13dp"/>
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14dp"/>
 
             <Spinner
                 android:id="@+id/spinner_status"
@@ -128,7 +128,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_list_laporan_aset"
-                    android:layout_marginRight="25dp"
+                    android:layout_marginRight="23dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:listitem="@layout/layout_card_laporan_aset" />
@@ -137,19 +137,6 @@
         </ScrollView>
 
     </LinearLayout>
-
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/rv_list_laporan_aset"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/dropdown_status"-->
-<!--        app:layout_constraintVertical_bias="0.0"-->
-<!--        tools:listitem="@layout/layout_card_laporan_aset" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

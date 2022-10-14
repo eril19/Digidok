@@ -31,7 +31,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/num_laporan"
                 android:textColor="#616161"
-                android:textSize="13dp"
+                android:textSize="14dp"
                 android:fontFamily="@font/roboto_medium"/>
 
             <LinearLayout
@@ -51,7 +51,7 @@
                     android:text="Lokasi:"
                     android:fontFamily="@font/roboto_medium"
                     android:textColor="#104B7C"
-                    android:textSize="13dp" />
+                    android:textSize="14dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                         android:layout_weight="1"
                         android:text="Kode Lokasi"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
@@ -86,7 +86,7 @@
                         android:text="-"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -105,7 +105,7 @@
                         android:layout_weight="1"
                         android:text="Nama Lokasi"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
@@ -121,7 +121,7 @@
                         android:text="-"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
 
                 <TextView
@@ -130,7 +130,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:textSize="13dp"
+                    android:textSize="14dp"
                     android:text="Barang:"
                     android:fontFamily="@font/roboto_medium"
                     android:textColor="#104B7C" />
@@ -151,7 +151,7 @@
                         android:layout_weight="1"
                         android:text="Kode Barang"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
@@ -167,7 +167,7 @@
                         android:text="-"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -186,7 +186,7 @@
                         android:layout_weight="1"
                         android:text="Nama Barang"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
@@ -202,7 +202,7 @@
                         android:text="-"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -221,7 +221,7 @@
                         android:layout_weight="1"
                         android:text="Alamat"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
@@ -237,7 +237,7 @@
                         android:text="-"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -256,7 +256,7 @@
                         android:layout_weight="1"
                         android:text="Luas"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
@@ -272,7 +272,7 @@
                         android:text="-"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -291,7 +291,7 @@
                         android:layout_weight="1"
                         android:text="Luas yang dimanfaatkan"
                         android:textColor="#627E97"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
@@ -307,7 +307,7 @@
                         android:text="-"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
 
             </LinearLayout>

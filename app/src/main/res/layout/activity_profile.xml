@@ -24,9 +24,24 @@
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@+id/include2"
             tools:context=".ProfileActivity">
 
+            <TextView
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="Logout"
+                android:textColor="#616161"
+                android:textSize="13dp"
+                app:layout_constraintBottom_toTopOf="@+id/circleImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/circleImageView"
@@ -77,7 +92,7 @@
                         android:text="Username"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/black"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/username"
@@ -92,7 +107,7 @@
                         android:fontFamily="@font/roboto"
                         android:gravity="left|center"
                         android:textColor="@color/black"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -113,7 +128,7 @@
                         android:text="Nama"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/black"
-                        android:textSize="13dp"/>
+                        android:textSize="14dp"/>
 
                     <TextView
                         android:id="@+id/name"
@@ -128,7 +143,7 @@
                        android:fontFamily="@font/roboto"
                         android:gravity="left|center"
                         android:textColor="@color/black"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -148,7 +163,7 @@
                         android:text="NIP"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/black"
-                        android:textSize="13dp"/>
+                        android:textSize="14dp"/>
 
                     <TextView
                         android:id="@+id/nip"
@@ -163,7 +178,7 @@
                        android:fontFamily="@font/roboto"
                         android:gravity="left|center"
                         android:textColor="@color/black"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -183,7 +198,7 @@
                         android:text="Telepon"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/black"
-                        android:textSize="13dp"/>
+                        android:textSize="14dp"/>
 
                     <TextView
                         android:id="@+id/telepon"
@@ -198,7 +213,7 @@
                        android:fontFamily="@font/roboto"
                         android:gravity="left|center"
                         android:textColor="@color/black"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -218,7 +233,7 @@
                         android:text="Email"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/black"
-                        android:textSize="13dp"/>
+                        android:textSize="14dp"/>
 
                     <TextView
                         android:id="@+id/email"
@@ -233,7 +248,7 @@
                        android:fontFamily="@font/roboto"
                         android:gravity="left|center"
                         android:textColor="@color/black"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -253,7 +268,7 @@
                         android:text="Keterangan"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/black"
-                        android:textSize="13dp"/>
+                        android:textSize="14dp"/>
 
                     <TextView
                         android:id="@+id/keterangan"
@@ -268,7 +283,7 @@
                        android:fontFamily="@font/roboto"
                         android:gravity="left|center"
                         android:textColor="@color/black"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -297,7 +312,7 @@
                         android:text="Ganti Password"
                         android:textColor="#627E97"
                         android:fontFamily="@font/roboto_medium"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -335,7 +350,7 @@
                             android:fontFamily="@font/roboto"
                             android:gravity="left|center"
                             android:textColor="@color/black"
-                            android:textSize="13dp"/>
+                            android:textSize="14dp"/>
 
                         <View
                             android:layout_width="wrap_content"
@@ -373,7 +388,7 @@
                             android:fontFamily="@font/roboto"
                             android:gravity="left|center"
                             android:textColor="@color/black"
-                            android:textSize="13dp"/>
+                            android:textSize="14dp"/>
 
                         <View
                             android:layout_width="wrap_content"
@@ -400,7 +415,7 @@
                         android:text="Password"
                         android:textColor="#D16400"
                         android:fontFamily="@font/roboto_medium"
-                        android:textSize="13dp" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/old_password"
@@ -417,7 +432,7 @@
                         android:fontFamily="@font/roboto"
                         android:gravity="left|center"
                         android:textColor="#7c7c7c7c"
-                        android:textSize="13dp"/>
+                        android:textSize="14dp"/>
 
                     <Button
                         android:id="@+id/simpanBtn"
@@ -428,7 +443,7 @@
                         android:layout_marginBottom="5dp"
                         android:backgroundTint="#104B7C"
                         android:text="SIMPAN"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:fontFamily="@font/roboto_medium"/>
 
                     <View
