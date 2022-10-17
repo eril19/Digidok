@@ -3,10 +3,7 @@ package com.example.digidok
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
     private var password: EditText? = null
     private var tvLogin: TextView? = null
     private var progressLogin: ProgressBar? = null
+    var messageError = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +51,9 @@ class LoginActivity : AppCompatActivity() {
                     statusLogin(false)
                     if (data.success) {
                         startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                    } else {
+                        messageError = data.message
+                        Toast.makeText(this@LoginActivity, messageError, Toast.LENGTH_LONG).show()
                     }
                 }
 
