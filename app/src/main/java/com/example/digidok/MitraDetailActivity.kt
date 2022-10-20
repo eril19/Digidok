@@ -1,6 +1,7 @@
 package com.example.digidok
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -26,6 +27,11 @@ class MitraDetailActivity : AppCompatActivity() {
             startActivity(Intent(this@MitraDetailActivity, DaftarMitraActivity::class.java))
         }
 
+        val non_aktif_btn = findViewById<Button>(R.id.nonAktifBtn)
+        non_aktif_btn.setOnClickListener {
+            non_aktif_btn.setBackgroundColor(Color.RED)
+        }
+
         data = intent.getParcelableExtra("daftarMitra")
         val npwp = findViewById<TextView>(R.id.npwp)
         val nama = findViewById<TextView>(R.id.namadetailkjpp)
@@ -34,7 +40,7 @@ class MitraDetailActivity : AppCompatActivity() {
         val kecamatan = findViewById<TextView>(R.id.kecamatan)
         val kota = findViewById<TextView>(R.id.kota)
         val provinsi = findViewById<TextView>(R.id.provinsi)
-        val klasifikasi = findViewById<TextView>(R.id.klasifikasi)
+        val klasifikasi = findViewById<TextView>(R.id.klu)
         val kpp = findViewById<TextView>(R.id.kpp)
         val kanwil = findViewById<TextView>(R.id.kanwil)
         val telp= findViewById<TextView>(R.id.telp_mitra)

@@ -32,7 +32,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Tahun"
                 android:textColor="@color/black"
@@ -41,9 +42,9 @@
 
             <Spinner
                 android:id="@+id/spinner_tahun"
-                android:layout_width="match_parent"
+                android:layout_width="20dp"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="45dp"
                 android:layout_marginRight="120dp"
                 android:background="@drawable/dd_background" />
         </LinearLayout>
@@ -55,7 +56,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Wilayah"
                 android:textColor="@color/black"
@@ -64,9 +66,9 @@
 
             <Spinner
                 android:id="@+id/spinner_wilayah"
-                android:layout_width="match_parent"
+                android:layout_width="20dp"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="34dp"
                 android:layout_marginRight="120dp"
                 android:background="@drawable/dd_background" />
         </LinearLayout>
@@ -78,7 +80,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Kelurahan"
                 android:textColor="@color/black"
@@ -87,9 +90,9 @@
 
             <Spinner
                 android:id="@+id/spinner_kelurahan"
-                android:layout_width="match_parent"
+                android:layout_width="20dp"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:layout_marginRight="120dp"
                 android:background="@drawable/dd_background" />
         </LinearLayout>
@@ -101,7 +104,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Status"
                 android:textColor="@color/black"
@@ -110,9 +114,9 @@
 
             <Spinner
                 android:id="@+id/spinner_status"
-                android:layout_width="match_parent"
+                android:layout_width="20dp"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="43dp"
                 android:layout_marginRight="120dp"
                 android:background="@drawable/dd_background" />
         </LinearLayout>

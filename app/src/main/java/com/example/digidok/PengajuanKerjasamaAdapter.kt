@@ -27,7 +27,7 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
 
     class PengajuanKerjasamaViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
 
-        val id_mitra = view.findViewById<TextView>(R.id.id_mitra)
+        val id_pks = view.findViewById<TextView>(R.id.id_pks)
         val nama_mitra = view.findViewById<TextView>(R.id.nama_mitra)
         val jenis_mitra = view.findViewById<TextView>(R.id.jenis_mitra)
         val header_color = view.findViewById<TextView>(R.id.header_color)
@@ -43,7 +43,7 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
         }
 
         fun bindView(pengajuanKerjasamaModel: PengajuanKerjasamaModel, listener: (PengajuanKerjasamaModel) -> Unit){
-            id_mitra.text = pengajuanKerjasamaModel.id_mitra
+            id_pks.text = pengajuanKerjasamaModel.id_pks
             nama_mitra.text = pengajuanKerjasamaModel.nama_mitra
             jenis_mitra.text = pengajuanKerjasamaModel.jenis_mitra
             header_color.text = pengajuanKerjasamaModel.header_color

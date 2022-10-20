@@ -160,12 +160,10 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                         pengajuanKerjasama?.add(
                             PengajuanKerjasamaModel(
                                 header_color = "Dikirim",
-
-                                id_mitra = "MT-2011-0001",
+                                id_pks = "PKS-2022-00001",
                                 nama_mitra = "PT Wahana Nusantara",
                                 jenis_mitra = "Perusahaan Swasta",
                                 noPengajuan = "002-0203-12120",
-
                                 skemaPemanfaatan = "BTO",
                                 tujuan = "Perubahan alamat aset",
                                 noSurat = "112-32323-34342",

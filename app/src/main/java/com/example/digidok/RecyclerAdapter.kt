@@ -12,14 +12,14 @@ class RecyclerAdapter(private val context: Context, private val notification: Li
     : RecyclerView.Adapter<RecyclerAdapter.NotificationViewHolder>(){
 
     class NotificationViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val imgIcon = view.findViewById<ImageView>(R.id.notificationIcon)
         val notificationTitle = view.findViewById<TextView>(R.id.notificationTitle)
         val notificationDetail = view.findViewById<TextView>(R.id.notificationDetail)
+        val NotificationDateTime = view.findViewById<TextView>(R.id.NotificationDateTime)
 
         fun bindView(NotificationModel: NotificationModel, listener: (NotificationModel) -> Unit){
-            imgIcon.setImageResource(NotificationModel.imgIcon)
             notificationTitle.text = NotificationModel.NotificationTitle
             notificationDetail.text = NotificationModel.NotificationDetail
+            NotificationDateTime.text = NotificationModel.NotificationDateTime
         }
     }
 

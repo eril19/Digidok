@@ -71,7 +71,7 @@
                 tools:visibility="visible" />
 
             <TextView
-                android:id="@+id/time_date"
+                android:id="@+id/NotificationDateTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/notificationDetail"

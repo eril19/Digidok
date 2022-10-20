@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 
 data class PengajuanKerjasamaModel(
     val header_color : String,
-    val id_mitra : String,
+    val id_pks : String,
     val nama_mitra: String,
     val jenis_mitra : String,
     val noPengajuan : String,
@@ -42,7 +42,7 @@ data class PengajuanKerjasamaModel(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(header_color)
-        parcel.writeString(id_mitra)
+        parcel.writeString(id_pks)
         parcel.writeString(nama_mitra)
         parcel.writeString(jenis_mitra)
         parcel.writeString(noPengajuan)

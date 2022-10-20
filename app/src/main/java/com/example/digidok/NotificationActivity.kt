@@ -28,39 +28,39 @@ class NotificationActivity : AppCompatActivity() {
         }
         val notificationList = listOf<NotificationModel>(
             NotificationModel(
-                R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "PT. Rifdah SegarBugar",
-                NotificationDetail = "Banyakin gerak plis"
+                NotificationTitle = "PKS-2022-000021 - Tanah",
+                NotificationDetail = "BINA NUSANTARA",
+                NotificationDateTime = "7 Okt 2022, 11:55"
             ),
             NotificationModel(
-                R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "PT. Kaepee",
-                NotificationDetail = "Semangat bikin cv"
+                NotificationTitle = "PKS-2022-000022 - Tanah",
+                NotificationDetail = "Jakarta Asset Management Center",
+                NotificationDateTime = "7 Okt 2022, 11:55"
             ),
             NotificationModel(
-                R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "CV. Cupapi Munyenyo",
-                NotificationDetail = "awokwokwowko"
+                NotificationTitle = "No PKS - Jenis BMD",
+                NotificationDetail = "Nama mitra",
+                NotificationDateTime = "7 Okt 2022, 11:55"
             ),
             NotificationModel(
-                R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "PT. Preefort",
-                NotificationDetail = "Minyak Bumi mantab"
+                NotificationTitle = "No PKS - Jenis BMD",
+                NotificationDetail = "Nama mitra",
+                NotificationDateTime = "7 Okt 2022, 11:55"
             ),
             NotificationModel(
-                R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "Universitas Binus",
-                NotificationDetail = "Bayaran jangan lupa"
+                NotificationTitle = "No PKS - Jenis BMD",
+                NotificationDetail = "Nama mitra",
+                NotificationDateTime = "7 Okt 2022, 11:55"
             ),
             NotificationModel(
-                R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "BAPD",
-                NotificationDetail = "Lahan kosong deket cipayung"
+                NotificationTitle = "No PKS - Jenis BMD",
+                NotificationDetail = "Nama mitra",
+                NotificationDateTime = "7 Okt 2022, 11:55"
             ),
             NotificationModel(
-                R.drawable.ic_baseline_mail_outline_24,
-                NotificationTitle = "Kanye West",
-                NotificationDetail = "Bayar utang jgn lupa"
+                NotificationTitle = "No PKS - Jenis BMD",
+                NotificationDetail = "Nama mitra",
+                NotificationDateTime = "7 Okt 2022, 11:55"
             )
         )
 

@@ -105,9 +105,10 @@
                     android:id="@+id/profileArrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="33dp"
+                    android:layout_marginTop="35dp"
                     android:layout_marginEnd="112dp"
                     android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                    app:layout_constraintLeft_toRightOf="@+id/namaUser"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.067"
                     app:layout_constraintStart_toEndOf="@+id/namaUser"
@@ -130,7 +131,7 @@
                     android:id="@+id/view"
                     android:layout_width="87dp"
                     android:layout_height="2dp"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginLeft="3dp"
                     android:layout_marginTop="2dp"
                     android:background="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -315,7 +316,7 @@
                                 android:id="@+id/textView4"
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="9dp"
                                 android:gravity="center"
                                 android:fontFamily="@font/roboto_medium"
                                 android:text="Daftar Mitra"
@@ -350,7 +351,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:gravity="center"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="9dp"
                                 android:text="Daftar KJPP"
                                 android:textColor="#616161"
                                 android:fontFamily="@font/roboto_medium"
@@ -392,13 +393,14 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:gravity="center">
@@ -431,8 +433,10 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
                             android:orientation="vertical">
 
                             <ImageButton
@@ -440,8 +444,7 @@
                                 style="@style/imageButton"
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
-                                android:layout_marginStart="40dp"
-                                android:layout_weight="2"
+                                android:layout_weight="1"
                                 android:contentDescription="kerjasama"
                                 android:src="@drawable/ic_laporan_aset"
                                 android:padding="13dp"
@@ -452,10 +455,9 @@
 
                             <TextView
                                 android:id="@+id/txt_laporan_aset"
-                                android:layout_width="107dp"
-                                android:layout_height="30dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_marginStart="16dp"
                                 android:layout_marginTop="9dp"
                                 android:gravity="center"
                                 android:text="Laporan Aset Dikerjasamakan"
@@ -465,8 +467,10 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:layout_height="wrap_content"
+                            android:gravity="center"
                             android:orientation="vertical">
 
                             <ImageButton
@@ -474,7 +478,6 @@
                                 style="@style/imageButton"
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
-                                android:layout_marginStart="40dp"
                                 android:layout_weight="3"
                                 android:contentDescription="kerjasama"
                                 android:src="@drawable/ic_laporan_pengajuan"
@@ -486,9 +489,8 @@
 
                             <TextView
                                 android:id="@+id/txt_laporan_pengajuan"
-                                android:layout_width="100dp"
-                                android:layout_height="32dp"
-                                android:layout_marginStart="25dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_marginTop="9dp"
                                 android:gravity="center"
                                 android:text="Laporan Pengajuan Kerjasama"
@@ -523,7 +525,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/view_3">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
                         android:text="Daftar Terbaru Kerjasama"
@@ -533,13 +536,13 @@
 
                     <TextView
                         android:id="@+id/view_all"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginRight="30dp"
+                        android:layout_marginRight="40dp"
                         android:text="View All"
                         android:textColor="#616161"
-                        android:textSize="14dp" />
+                        android:textSize="13dp" />
                 </LinearLayout>
 
                 <TextView
