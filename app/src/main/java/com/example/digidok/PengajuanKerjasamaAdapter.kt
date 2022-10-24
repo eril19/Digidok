@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -42,7 +43,6 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
             cardView.setOnClickListener {
                 listener.onItemClick(adapterPosition)
             }
- //           menu_popup.setOnClickListener { menuPopup(it) }
         }
 
 //        private fun menuPopup(view: View){
@@ -81,8 +81,6 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
                 )
             }
         }
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PengajuanKerjasamaViewHolder {
@@ -91,11 +89,24 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
 
         return PengajuanKerjasamaViewHolder(itemView, mListener)
 
-
     }
 
     override fun onBindViewHolder(holder: PengajuanKerjasamaViewHolder, position: Int) {
         holder.bindView(PengajuanKerja[position], listener)
+        holder.menu_popup.setOnClickListener(View.OnClickListener {
+            val popup = PopupMenu(context, holder.menu_popup)
+            popup.inflate(R.menu.daftar_pengajuan_menu)
+            popup.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.menu_view -> {}
+                    R.id.menu_edit -> {}
+                    R.id.menu_telaah -> {}
+                }
+                false
+            }
+            popup.show()
+        })
+
     }
 
     override fun getItemCount(): Int = PengajuanKerja.size
