@@ -3,16 +3,13 @@ package com.example.digidok
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
-import android.widget.ArrayAdapter
 import com.example.digidok.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,11 +21,11 @@ import com.example.digidok.utils.Injection
 
 class PengajuanKerjasamaActivity : AppCompatActivity() {
 
-    var isLoading : Boolean = false
+    var isLoading: Boolean = false
     var pengajuanKerjasama: ArrayList<PengajuanKerjasamaModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
 
-    var spinnerStatus : Spinner? = null
+    var spinnerStatus: Spinner? = null
     val listStatus = arrayListOf("SEMUA", "DRAFT", "MENUNGGU VALIDASI", "DISETUJUI")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +34,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
         setContentView(binding.root)
         setContentView(R.layout.activity_pengajuan_kerjasama)
 
-        val adapter = ArrayAdapter(applicationContext,R.layout.dd_text_status, listStatus)
+        val adapter = ArrayAdapter(applicationContext, R.layout.dd_text_status, listStatus)
 
         supportActionBar?.hide()
 
@@ -53,7 +50,6 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
         }
 
         //val bg:TextView = findViewById(R.id.header_color)
-
 
 
 //        val PengajuanKerjasamaList = listOf<PengajuanKerjasamaModel>(
@@ -105,53 +101,65 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
     fun setSpinnerKategori() {
         val arrayString = arrayListOf("Pilih Status")
         arrayString.addAll(listStatus)
-        spinnerStatus?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayString) {
-            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                return if (convertView != null) {
-                    if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
-                        try {
-                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
-                        } catch (e: Exception) {
-                            showErrorInflateFont()
+        spinnerStatus?.adapter =
+            object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayString) {
+                override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                    return if (convertView != null) {
+                        if (convertView is TextView) {
+                            if (position == 0) convertView.setTextColor(
+                                ContextCompat.getColor(
+                                    context,
+                                    R.color.black
+                                )
+                            )
+                            try {
+                                convertView.typeface = Typeface.createFromAsset(
+                                    convertView.context.resources.assets,
+                                    "fonts/cs.ttf"
+                                )
+                            } catch (e: Exception) {
+                                showErrorInflateFont()
+                            }
+                            convertView
+                        } else {
+                            convertView
                         }
-                        convertView
                     } else {
-                        convertView
+                        super.getView(position, convertView, parent)
                     }
-                } else {
-                    super.getView(position, convertView, parent)
                 }
             }
-        }
     }
 
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
-    fun setList(){
+    fun setList() {
         recyclerview = findViewById<RecyclerView>(R.id.rv_list_pengajuan_kerjasama)
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = PengajuanKerjasamaAdapter(this, pengajuanKerjasama,object : PengajuanKerjasamaAdapter.onItemClickListener{
+        recyclerview?.adapter = PengajuanKerjasamaAdapter(
+            this,
+            pengajuanKerjasama,
+            object : PengajuanKerjasamaAdapter.onItemClickListener {
 
-            override fun onItemClick(position: Int) {
-                val i = Intent(this@PengajuanKerjasamaActivity,PengajuanKerjasamaDetailActivity::class.java)
-                i.putExtra("PengajuanKerjasama",pengajuanKerjasama[position])
-                startActivity(i)
-            }
-
-        }){
+                override fun onItemClick(position: Int) {
+                    val i = Intent(
+                        this@PengajuanKerjasamaActivity,
+                        PengajuanKerjasamaDetailActivity::class.java
+                    )
+                    i.putExtra("PengajuanKerjasama", pengajuanKerjasama[position])
+                    startActivity(i)
+                }
+            }) {
 
         }
-
-
     }
 
     fun getPengajuanKerjasama() {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getBerita("0", "10",  object : DataSource.BeritaDataCallback {
+        mRepository.getBerita("0", "10", object : DataSource.BeritaDataCallback {
             override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
                 isLoading = false
                 if (data.success) {
