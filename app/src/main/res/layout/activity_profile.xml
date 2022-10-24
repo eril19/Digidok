@@ -366,7 +366,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="5dp"
                         android:backgroundTint="#104B7C"
-                        android:text="SIMPAN"
+                        android:text="Simpan"
                         android:textSize="14dp"
                         android:fontFamily="@font/roboto_medium"/>
 

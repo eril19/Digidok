@@ -5,6 +5,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -33,14 +35,20 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
         val header_color = view.findViewById<TextView>(R.id.header_color)
         val tglmulai = view.findViewById<TextView>(R.id.tglMulai)
         val tglakhir = view.findViewById<TextView>(R.id.tglAkhir)
-
         val cardView = view.findViewById<CardView>(R.id.cardViewDaftarPengajuan)
+        val menu_popup = view.findViewById<ImageView>(R.id.menu_popup)
 
         init {
             cardView.setOnClickListener {
                 listener.onItemClick(adapterPosition)
             }
+ //           menu_popup.setOnClickListener { menuPopup(it) }
         }
+
+//        private fun menuPopup(view: View){
+//            val menuPopups = menuPopup(view)
+//            menuPopups.inflate(R.menu.daftar_pengajuan_menu)
+//        }
 
         fun bindView(pengajuanKerjasamaModel: PengajuanKerjasamaModel, listener: (PengajuanKerjasamaModel) -> Unit){
             id_pks.text = pengajuanKerjasamaModel.id_pks

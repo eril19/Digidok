@@ -263,7 +263,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
-                    android:text="Save"
+                    android:text="Simpan"
                     android:textSize="14dp"
                     android:fontFamily="@font/roboto_medium"
                     android:textAllCaps="false"
