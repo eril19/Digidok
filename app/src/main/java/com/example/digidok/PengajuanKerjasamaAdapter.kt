@@ -1,6 +1,7 @@
 
 package com.example.digidok
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -23,9 +24,9 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
         fun onItemClick(position: Int)
     }
 
-//    fun setOnItemClickListener(listener: onItemClickListener){
-//        mListener = listener
-//    }
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
+    }
 
 
     class PengajuanKerjasamaViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
@@ -39,15 +40,10 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
         val cardView = view.findViewById<CardView>(R.id.cardViewDaftarPengajuan)
         val menu_popup = view.findViewById<ImageView>(R.id.menu_popup)
 
-        init {
-            cardView.setOnClickListener {
-                listener.onItemClick(adapterPosition)
-            }
-        }
-
-//        private fun menuPopup(view: View){
-//            val menuPopups = menuPopup(view)
-//            menuPopups.inflate(R.menu.daftar_pengajuan_menu)
+//        init {
+//            cardView.setOnClickListener {
+//                listener.onItemClick(adapterPosition)
+//            }
 //        }
 
         fun bindView(pengajuanKerjasamaModel: PengajuanKerjasamaModel, listener: (PengajuanKerjasamaModel) -> Unit){
@@ -98,7 +94,9 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
             popup.inflate(R.menu.daftar_pengajuan_menu)
             popup.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
-                    R.id.menu_view -> {}
+                    R.id.menu_view -> {
+                        val intent = LayoutInflater.from(context).inflate(R.layout.activity_pengajuan_kerjasama_detail, null)
+                    }
                     R.id.menu_edit -> {}
                     R.id.menu_telaah -> {}
                 }
