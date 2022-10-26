@@ -13,6 +13,7 @@ import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
 import com.example.digidok.utils.Injection
+import com.example.digidok.utils.Preferences
 import org.w3c.dom.Text
 import java.text.DateFormat
 import java.util.*
@@ -41,7 +42,7 @@ class DashboardActivity : AppCompatActivity() {
         val dokumenBtn : ImageButton = findViewById(R.id.repositoriDokumenBtn)
 
 
-        namaUser.text = sharedPref.getString("user_name",null)
+        namaUser.text = Preferences.toString()
 
         dokumenBtn.setOnClickListener {
             val i : Intent = Intent(this@DashboardActivity, RepositoriDokumenActivity::class.java)
