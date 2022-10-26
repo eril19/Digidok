@@ -12,6 +12,7 @@ import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.UserModel
 import com.example.digidok.utils.Injection
+import com.example.digidok.utils.Preferences
 
 
 class LoginActivity : AppCompatActivity() {
@@ -25,8 +26,8 @@ class LoginActivity : AppCompatActivity() {
     private var progressLogin: ProgressBar? = null
     var messageError = ""
 
-    var sharedPref =  getSharedPreferences("myPref", MODE_PRIVATE)
-    var editor = sharedPref.edit()
+//    var sharedPref =  getSharedPreferences("myPref", MODE_PRIVATE)
+//    var editor = sharedPref.edit()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +55,12 @@ class LoginActivity : AppCompatActivity() {
                     statusLogin(false)
                     if (data.success) {
                         val userName = findViewById<EditText>(R.id.editTextusername).text.toString()
-                        editor.apply{
-                            putString("user_name",userName)
-                            apply()
-                        }
+//                        editor.apply{
+//                            putString("user_name",userName)
+//                            apply()
+//                        }
 
-
+                        Preferences.saveLogin(this@LoginActivity, true)
                         startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                     } else {
                         messageError = data.message

@@ -3,6 +3,7 @@ package com.example.digidok
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.digidok.utils.Preferences
 import android.os.Handler as Handler1
 
 class MainActivity : AppCompatActivity() {
@@ -13,8 +14,12 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         Handler1().postDelayed({
-            val intent = Intent(this@MainActivity, LoginActivity::class.java)
-            startActivity(intent)
+            if(Preferences.isLogin(this@MainActivity)){
+                startActivity(Intent(this@MainActivity, DashboardActivity::class.java))
+            } else {
+                val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                startActivity(intent)
+            }
         }, 2000)
 
     }
