@@ -93,17 +93,28 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
         holder.menu_popup.setOnClickListener(View.OnClickListener {
             val popup = PopupMenu(context, holder.menu_popup)
             popup.inflate(R.menu.daftar_pengajuan_menu)
+
             popup.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.menu_view -> {
-//                        val intent = Intent(this, PengajuanKerjasamaDetailActivity::class.java)
-//                        startActivity(intent)
+                        val intent = Intent(context, PengajuanKerjasamaDetailActivity::class.java)
+                        context.startActivity(intent)
+                        true
                     }
-                    R.id.menu_edit -> {}
-                    R.id.menu_telaah -> {}
+                    R.id.menu_edit -> {
+                        val intent = Intent(context, PengajuanKerjasamaDetailActivity::class.java)
+                        context.startActivity(intent)
+                        true
+                    }
+                    R.id.menu_telaah -> {
+                        val intent = Intent(context, PengajuanKerjasamaDetailActivity::class.java)
+                        context.startActivity(intent)
+                        true
+                    }
                 }
                 false
             }
+
             popup.show()
         })
 
