@@ -25,10 +25,13 @@ class LoginActivity : AppCompatActivity() {
     private var progressLogin: ProgressBar? = null
     var messageError = ""
 
+    var sharedPref =  getSharedPreferences("myPref", MODE_PRIVATE)
+    var editor = sharedPref.edit()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
 
         loginbtn = findViewById<CardView>(R.id.loginBtn)
         username = findViewById<EditText>(R.id.editTextusername)
@@ -50,6 +53,13 @@ class LoginActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     statusLogin(false)
                     if (data.success) {
+                        val userName = findViewById<EditText>(R.id.editTextusername).text.toString()
+                        editor.apply{
+                            putString("user_name",userName)
+                            apply()
+                        }
+
+
                         startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                     } else {
                         messageError = data.message

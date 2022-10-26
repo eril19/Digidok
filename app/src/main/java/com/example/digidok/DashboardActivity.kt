@@ -13,6 +13,7 @@ import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
 import com.example.digidok.utils.Injection
+import org.w3c.dom.Text
 import java.text.DateFormat
 import java.util.*
 
@@ -32,9 +33,15 @@ class DashboardActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
+
+        val namaUser = findViewById<TextView>(R.id.namaUser)
         val notifBtn:ImageView = findViewById(R.id.notificationbtn)
         val dropdown_profile: ImageView = findViewById(R.id.profileArrow)
         val dokumenBtn : ImageButton = findViewById(R.id.repositoriDokumenBtn)
+
+
+        namaUser.text = sharedPref.getString("user_name",null)
 
         dokumenBtn.setOnClickListener {
             val i : Intent = Intent(this@DashboardActivity, RepositoriDokumenActivity::class.java)
