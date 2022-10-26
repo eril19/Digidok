@@ -16,6 +16,20 @@
         android:theme="@style/Theme.Digidok"
         tools:targetApi="31">
         <activity
+            android:name=".PengajuanKerjasamaDetailActivity3"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".pengajuanKerjasamaDetailActivity3"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".PengajuanKerjasamaDetailActivity2"
             android:exported="false">
             <meta-data

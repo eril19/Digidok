@@ -3,6 +3,7 @@ package com.example.digidok
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,11 +41,11 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
         val cardView = view.findViewById<CardView>(R.id.cardViewDaftarPengajuan)
         val menu_popup = view.findViewById<ImageView>(R.id.menu_popup)
 
-//        init {
-//            cardView.setOnClickListener {
-//                listener.onItemClick(adapterPosition)
-//            }
-//        }
+        init {
+            cardView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+        }
 
         fun bindView(pengajuanKerjasamaModel: PengajuanKerjasamaModel, listener: (PengajuanKerjasamaModel) -> Unit){
             id_pks.text = pengajuanKerjasamaModel.id_pks
@@ -95,7 +96,8 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
             popup.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.menu_view -> {
-                        val intent = LayoutInflater.from(context).inflate(R.layout.activity_pengajuan_kerjasama_detail, null)
+//                        val intent = Intent(this, PengajuanKerjasamaDetailActivity::class.java)
+//                        startActivity(intent)
                     }
                     R.id.menu_edit -> {}
                     R.id.menu_telaah -> {}

@@ -27,8 +27,14 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
+        val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
+
         close_detail_btn.setOnClickListener {
             startActivity(Intent(this@PengajuanKerjasamaDetailActivity, PengajuanKerjasamaActivity::class.java))
+        }
+
+        next_detail_btn.setOnClickListener {
+            startActivity(Intent(this@PengajuanKerjasamaDetailActivity, PengajuanKerjasamaDetailActivity2::class.java))
         }
 
         val nomerPengajuan = findViewById<TextView>(R.id.no_pengajuan)

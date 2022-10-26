@@ -30,7 +30,7 @@
                 android:layout_height="30dp"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:fontFamily="@font/roboto_bold"
                 tools:text="@string/header_color"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="7dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -75,7 +76,7 @@
                         android:layout_marginRight="10dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13dp"
+                        android:textSize="13sp"
                         tools:text="@string/id_pks" />
 
                     <TextView
@@ -86,7 +87,7 @@
                         android:layout_marginRight="10dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto_medium"
-                        android:textSize="14dp"
+                        android:textSize="14sp"
                         tools:text="@string/nama_mitra" />
 
                     <TextView
@@ -97,7 +98,7 @@
                         android:layout_marginRight="10dp"
                         android:textColor="#616161"
                         android:fontFamily="@font/roboto"
-                        android:textSize="14dp"
+                        android:textSize="14sp"
                         tools:text="@string/jenis_mitra" />
                 </LinearLayout>
 
@@ -123,7 +124,7 @@
                         android:fontFamily="@font/roboto"
                         android:text="Periode:"
                         android:textColor="@color/black"
-                        android:textSize="14dp"
+                        android:textSize="14sp"
                         android:visibility="visible"
                         tools:text="Periode:"
                         tools:visibility="visible" />
@@ -143,7 +144,7 @@
                             android:layout_weight="2"
                             android:fontFamily="@font/roboto"
                             android:text="dd/mm/yyyy"
-                            android:textSize="12dp"
+                            android:textSize="12sp"
                             android:textAlignment="center" />
 
                         <TextView
@@ -163,7 +164,7 @@
                             android:layout_weight="2"
                             android:fontFamily="@font/roboto"
                             android:text="dd/mm/yyyy"
-                            android:textSize="12dp"
+                            android:textSize="12sp"
 
                             android:textAlignment="center" />
                     </LinearLayout>

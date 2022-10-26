@@ -20,7 +20,6 @@ RecyclerView.Adapter<PengajuanKerjasamaDetailAdapter.PengajuanKerjasamaDetailVie
 
     class PengajuanKerjasamaDetailViewHolder(view: View, listener: onItemClickListener)
         : RecyclerView.ViewHolder(view) {
-
         val alamat = view.findViewById<TextView>(R.id.alamat_barang)
         val kodeLokasi = view.findViewById<TextView>(R.id.kode_lokasi)
         val kodeBarang = view.findViewById<TextView>(R.id.kode_barang)
