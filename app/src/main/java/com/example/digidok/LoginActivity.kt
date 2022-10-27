@@ -13,6 +13,7 @@ import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.UserModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 
 
 class LoginActivity : AppCompatActivity() {
@@ -60,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
 //                            apply()
 //                        }
 
+                        Preferences.saveUser(this@LoginActivity, data.data?.username.safe())
                         Preferences.saveLogin(this@LoginActivity, true)
                         startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                     } else {

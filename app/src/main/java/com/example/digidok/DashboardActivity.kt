@@ -42,7 +42,7 @@ class DashboardActivity : AppCompatActivity() {
         val dokumenBtn : ImageButton = findViewById(R.id.repositoriDokumenBtn)
 
 
-        namaUser.text = Preferences.toString()
+        namaUser.text = Preferences.isUser(this@DashboardActivity)
 
         dokumenBtn.setOnClickListener {
             val i : Intent = Intent(this@DashboardActivity, RepositoriDokumenActivity::class.java)
