@@ -17,7 +17,6 @@ object Preferences {
         preferenceManager.putBoolean(IS_LOGIN, status).apply()
     }
 
-
     fun isUser(context: Context): String {
         val preferenceManager = PreferenceManager.getDefaultSharedPreferences(context)
         return preferenceManager.getString(IS_USER, "").safe()
