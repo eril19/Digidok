@@ -28,7 +28,7 @@ interface ApiService {
         @Header("url") url: String,
         @Header("versionName") versinName: String,
         @Header("versionCode") versinCode: String,
-        @Field("user") user: String,
+        @Field("username") username: String,
         @Field("password") password: String,
         @Field("deviceId") deviceId: String,
         @Field("fid") fid: String

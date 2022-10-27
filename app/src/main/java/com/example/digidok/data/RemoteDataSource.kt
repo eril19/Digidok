@@ -9,7 +9,7 @@ import io.reactivex.schedulers.Schedulers
 
 object RemoteDataSource : DataSource {
 
-    private val mApiServiceDev = ApiService.getApiService("https://jakaset.jakarta.go.id/stagingaset/")
+    private val mApiServiceDev = ApiService.getApiService("https://jamc.jakarta.go.id/api-digidok/")
 
     override fun login(user: String, password: String, deviceId: String, fId: String, callback: DataSource.LoginDataCallback) {
         mApiServiceDev.login("android", "Android", "login",
