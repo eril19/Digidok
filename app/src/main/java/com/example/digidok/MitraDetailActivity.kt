@@ -3,6 +3,7 @@ package com.example.digidok
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 class MitraDetailActivity : AppCompatActivity() {
 
     var data: DaftarMitraModel? = null
+    var hideButton : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,12 +29,20 @@ class MitraDetailActivity : AppCompatActivity() {
             startActivity(Intent(this@MitraDetailActivity, DaftarMitraActivity::class.java))
         }
 
+        data = intent.getParcelableExtra("daftarMitra")
+        hideButton = intent.getBooleanExtra("hideButton", false)
         val non_aktif_btn = findViewById<Button>(R.id.nonAktifBtn)
         non_aktif_btn.setOnClickListener {
             non_aktif_btn.setBackgroundColor(Color.RED)
         }
 
-        data = intent.getParcelableExtra("daftarMitra")
+        /*non_aktif_btn dihide ketika hideButton bernilai true*/
+        if(hideButton){
+            non_aktif_btn.visibility = View.GONE
+        } else {
+            non_aktif_btn.visibility = View.VISIBLE
+        }
+
         val npwp = findViewById<TextView>(R.id.npwp)
         val nama = findViewById<TextView>(R.id.namadetailkjpp)
         val alamat = findViewById<TextView>(R.id.alamatdetail)

@@ -10,6 +10,7 @@ import io.reactivex.schedulers.Schedulers
 object RemoteDataSource : DataSource {
 
     private val mApiServiceDev = ApiService.getApiService("https://jamc.jakarta.go.id/api-digidok/")
+    private val mApiService = ApiService.getApiService("https://jakaset.jakarta.go.id/stagingaset/")
 
     override fun login(user: String, password: String, deviceId: String, fId: String, callback: DataSource.LoginDataCallback) {
         mApiServiceDev.login("android", "Android", "login",
@@ -32,7 +33,7 @@ object RemoteDataSource : DataSource {
     }
 
     override fun getBerita(start: String, limit: String, callback: DataSource.BeritaDataCallback) {
-        mApiServiceDev.berita("android", "android", "sampleToken", start, limit)
+        mApiService.berita("android", "android", "sampleToken", start, limit)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : ApiCallback<BaseApiModel<BeritaModel?>>() {
