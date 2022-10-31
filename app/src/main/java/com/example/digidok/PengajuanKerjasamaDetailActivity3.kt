@@ -37,7 +37,7 @@ class PengajuanKerjasamaDetailActivity3 : AppCompatActivity() {
         if(hideTelaah.equals("Telaah",true)){
             menuTelaah.visibility = View.VISIBLE
         } else {
-            menuTelaah.visibility = View.VISIBLE
+            menuTelaah.visibility = View.GONE
         }
 
 
