@@ -36,6 +36,7 @@ class DashboardActivity : AppCompatActivity() {
 
         val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
 
+        val namaRole = findViewById<TextView>(R.id.namaRole)
         val namaUser = findViewById<TextView>(R.id.namaUser)
         val notifBtn:ImageView = findViewById(R.id.notificationbtn)
         val dropdown_profile: ImageView = findViewById(R.id.profileArrow)
@@ -43,6 +44,7 @@ class DashboardActivity : AppCompatActivity() {
 
 
         namaUser.text = Preferences.isUser(this@DashboardActivity)
+        namaRole.text = Preferences.Role(this@DashboardActivity)
 
         dokumenBtn.setOnClickListener {
             val i : Intent = Intent(this@DashboardActivity, RepositoriDokumenActivity::class.java)

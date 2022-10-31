@@ -33,12 +33,14 @@ class MitraDetailActivity2 : AppCompatActivity() {
 
         val prev_detail_btn = findViewById<Button>(R.id.prev_detail_btn)
         prev_detail_btn.setOnClickListener {
-            startActivity(Intent(this@MitraDetailActivity2, MitraDetailActivity::class.java))
+//            startActivity(Intent(this@MitraDetailActivity2, MitraDetailActivity::class.java))
+            onBackPressed()
         }
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
             startActivity(Intent(this@MitraDetailActivity2, DaftarMitraActivity::class.java))
+            finish()
         }
 
         setSpinnerKategori()

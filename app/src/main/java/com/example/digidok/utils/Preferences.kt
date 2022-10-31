@@ -6,6 +6,7 @@ import android.preference.PreferenceManager
 object Preferences {
     private val IS_LOGIN = "IS_LOGIN"
     private val IS_USER = "IS_USER"
+    private val IS_ROLE = "IS_ROLE"
 
     fun isLogin(context: Context): Boolean {
         val preferenceManager = PreferenceManager.getDefaultSharedPreferences(context)
@@ -25,6 +26,16 @@ object Preferences {
     fun saveUser(context: Context, user: String) {
         val preferenceManager = PreferenceManager.getDefaultSharedPreferences(context).edit()
         preferenceManager.putString(IS_USER, user).apply()
+    }
+
+    fun Role(context: Context): String {
+        val preferenceManager = PreferenceManager.getDefaultSharedPreferences(context)
+        return preferenceManager.getString(IS_ROLE, "").safe()
+    }
+
+    fun saveRole(context: Context, role: String) {
+        val preferenceManager = PreferenceManager.getDefaultSharedPreferences(context).edit()
+        preferenceManager.putString(IS_ROLE, role).apply()
     }
 
     fun String?.safe(default: String = "-"): String {

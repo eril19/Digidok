@@ -27,21 +27,18 @@ class MitraDetailActivity : AppCompatActivity() {
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
             startActivity(Intent(this@MitraDetailActivity, DaftarMitraActivity::class.java))
+            finish()
         }
 
         data = intent.getParcelableExtra("daftarMitra")
-        hideButton = intent.getBooleanExtra("hideButton", false)
+        hideButton = intent.getBooleanExtra("hideButton", true)
         val non_aktif_btn = findViewById<Button>(R.id.nonAktifBtn)
         non_aktif_btn.setOnClickListener {
             non_aktif_btn.setBackgroundColor(Color.RED)
         }
 
         /*non_aktif_btn dihide ketika hideButton bernilai true*/
-<<<<<<< HEAD
-        if(hideButton  == false){
-=======
-        if(hideButton==false){
->>>>>>> e64f4930ed1cb60711b0010ddefb89e6a47d7e09
+        if(hideButton){
             non_aktif_btn.visibility = View.GONE
         } else {
             non_aktif_btn.visibility = View.VISIBLE

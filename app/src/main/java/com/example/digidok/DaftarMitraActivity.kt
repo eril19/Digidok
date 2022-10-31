@@ -157,7 +157,7 @@ class DaftarMitraActivity : AppCompatActivity() {
             override fun onItemClick(position: Int) {
                 val i = Intent(this@DaftarMitraActivity, MitraDetailActivity::class.java)
                 i.putExtra("daftarMitra", daftarMitra[position])
-                i.putExtra("hideButton", true)
+                i.putExtra("hideButton", false)
                 startActivity(i)
             }
         }){

@@ -4,17 +4,22 @@ import android.content.Intent
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 
 class PengajuanKerjasamaDetailActivity3 : AppCompatActivity() {
 
+    var hideTelaah : String = ""
+    var data : PengajuanKerjasamaModel? = null
     var spinnerTelaah : Spinner? = null
     val listTelaah = arrayListOf("Disetujui", "Dikembalikan", "Ditolak")
 
@@ -22,9 +27,24 @@ class PengajuanKerjasamaDetailActivity3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pengajuan_kerjasama_detail3)
 
+        supportActionBar?.hide()
+
+        data = intent.getParcelableExtra("PengajuanKerjasama")
+        hideTelaah = intent.getStringExtra("status")?:""
+
+        var menuTelaah = findViewById<LinearLayout>(R.id.menu_telaah)
+
+        if(hideTelaah.equals("Telaah",true)){
+            menuTelaah.visibility = View.VISIBLE
+        } else {
+            menuTelaah.visibility = View.VISIBLE
+        }
+
+
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
             startActivity(Intent(this@PengajuanKerjasamaDetailActivity3, PengajuanKerjasamaActivity::class.java))
+            finish()
         }
 
         val prev_detail_btn = findViewById<Button>(R.id.prev_detail_btn)

@@ -31,10 +31,13 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         close_detail_btn.setOnClickListener {
             startActivity(Intent(this@PengajuanKerjasamaDetailActivity, PengajuanKerjasamaActivity::class.java))
+            finish()
         }
 
         next_detail_btn.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaDetailActivity, PengajuanKerjasamaDetailActivity2::class.java))
+            val i = Intent(this@PengajuanKerjasamaDetailActivity, PengajuanKerjasamaDetailActivity2::class.java)
+            i.putExtra("hideTelaah", true)
+            startActivity(i)
         }
 
         val nomerPengajuan = findViewById<TextView>(R.id.no_pengajuan)

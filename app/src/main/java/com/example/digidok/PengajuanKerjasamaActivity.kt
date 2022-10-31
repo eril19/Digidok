@@ -149,6 +149,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                         PengajuanKerjasamaDetailActivity::class.java
                     )
                     i.putExtra("PengajuanKerjasama", pengajuanKerjasama[position])
+//                    i.putExtra("hideTelaah", true)
                     startActivity(i)
                 }
             }) {
