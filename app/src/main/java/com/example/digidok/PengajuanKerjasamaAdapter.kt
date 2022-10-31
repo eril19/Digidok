@@ -41,11 +41,11 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
         val cardView = view.findViewById<CardView>(R.id.cardViewDaftarPengajuan)
         val menu_popup = view.findViewById<ImageView>(R.id.menu_popup)
 
-        init {
-            cardView.setOnClickListener {
-                listener.onItemClick(adapterPosition)
-            }
-        }
+//        init {
+//            cardView.setOnClickListener {
+//                listener.onItemClick(adapterPosition)
+//            }
+//        }
 
         fun bindView(pengajuanKerjasamaModel: PengajuanKerjasamaModel, listener: (PengajuanKerjasamaModel) -> Unit){
             id_pks.text = pengajuanKerjasamaModel.id_pks

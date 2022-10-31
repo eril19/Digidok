@@ -61,12 +61,18 @@ class DaftarMitraActivity : AppCompatActivity() {
 
         val header = findViewById<TextView>(R.id.header_title)
         header.setText("Daftar Mitra")
-        val back = findViewById<ImageView>(R.id.backbtn)
 
+        val back = findViewById<ImageView>(R.id.backbtn)
         back.setOnClickListener {
             val intent = Intent(this@DaftarMitraActivity, DashboardActivity::class.java)
             startActivity(intent)
         }
+
+        val tambahMitraBtn = findViewById<Button>(R.id.tambahMitraBtn)
+        tambahMitraBtn.setOnClickListener {
+            startActivity(Intent(this@DaftarMitraActivity, MitraDetailActivity::class.java))
+        }
+
 
         //val bg:TextView = findViewById(R.id.header_color)
 
