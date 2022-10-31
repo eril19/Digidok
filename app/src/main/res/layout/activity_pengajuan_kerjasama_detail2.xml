@@ -117,9 +117,9 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
-                        android:backgroundTint="#AAAAAA"
-                        android:text="Sebelumnya"
+                        android:backgroundTint="#104B7C"
                         android:fontFamily="@font/roboto_medium"
+                        android:text="Sebelumnya"
                         android:textAllCaps="false"
                         android:textSize="14dp" />
 
@@ -128,9 +128,9 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:backgroundTint="#AAAAAA"
-                        android:text="Selanjutnya"
+                        android:backgroundTint="#104B7C"
                         android:fontFamily="@font/roboto_medium"
+                        android:text="Selanjutnya"
                         android:textAllCaps="false"
                         android:textSize="14dp" />
                 </LinearLayout>
@@ -147,9 +147,9 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:backgroundTint="#676767"
-                        android:text="Tutup"
+                        android:backgroundTint="@color/red"
                         android:fontFamily="@font/roboto_medium"
+                        android:text="Tutup"
                         android:textAllCaps="false"
                         android:textSize="14dp" />
                 </LinearLayout>

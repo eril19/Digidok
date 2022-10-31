@@ -37,7 +37,7 @@ class MitraDetailActivity : AppCompatActivity() {
         }
 
         /*non_aktif_btn dihide ketika hideButton bernilai true*/
-        if(hideButton){
+        if(hideButton  == false){
             non_aktif_btn.visibility = View.GONE
         } else {
             non_aktif_btn.visibility = View.VISIBLE
