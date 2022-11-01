@@ -5,6 +5,8 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -40,12 +42,7 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
         val tglakhir = view.findViewById<TextView>(R.id.tglAkhir)
         val cardView = view.findViewById<CardView>(R.id.cardViewDaftarPengajuan)
         val menu_popup = view.findViewById<ImageView>(R.id.menu_popup)
-
-//        init {
-//            cardView.setOnClickListener {
-//                listener.onItemClick(adapterPosition)
-//            }
-//        }
+        var statusPengajuan = ""
 
         fun bindView(pengajuanKerjasamaModel: PengajuanKerjasamaModel, listener: (PengajuanKerjasamaModel) -> Unit){
             id_pks.text = pengajuanKerjasamaModel.id_pks
@@ -54,6 +51,7 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
             header_color.text = pengajuanKerjasamaModel.header_color
             tglakhir.text = pengajuanKerjasamaModel.tglAkhir
             tglmulai.text = pengajuanKerjasamaModel.tglMulai
+            statusPengajuan = pengajuanKerjasamaModel.header_color
 
             if (pengajuanKerjasamaModel.header_color.equals("Draft", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
@@ -94,18 +92,23 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
             val popup = PopupMenu(context, holder.menu_popup)
             popup.inflate(R.menu.daftar_pengajuan_menu)
 
+            if (holder.statusPengajuan.equals("Dikirim",true)) {
+                popup.menu.findItem(R.id.menu_view).isVisible = false
+            } else {
+                popup.menu.findItem(R.id.menu_view).isVisible = true
+            }
+
             popup.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.menu_view -> {
                         val intent = Intent(context, PengajuanKerjasamaDetailActivity::class.java)
-//                        intent.putExtra("status", "View")
+                        intent.putExtra("status", "View")
                         context.startActivity(intent)
-
                         true
                     }
                     R.id.menu_edit -> {
                         val intent = Intent(context, PengajuanKerjasamaDetailActivity::class.java)
-//                        intent.putExtra("status", "Edit")
+                        intent.putExtra("status", "Edit")
                         context.startActivity(intent)
                         true
                     }
