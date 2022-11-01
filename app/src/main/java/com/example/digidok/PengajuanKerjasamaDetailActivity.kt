@@ -3,7 +3,9 @@ package com.example.digidok
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +17,7 @@ import com.example.digidok.utils.Injection
 import org.w3c.dom.Text
 
 class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
+    var isStatusEdit : String = ""
     var isLoading : Boolean = false
     var pengajuanKerjasamaDetail: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
     var data : PengajuanKerjasamaModel ?= null
@@ -28,6 +31,18 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
+        val no_pengajuan = findViewById<EditText>(R.id.no_pengajuan)
+        val nama_mitra = findViewById<EditText>(R.id.nama_mitra)
+
+        isStatusEdit = intent.getStringExtra("status")?:""
+        if(isStatusEdit.equals("Edit",true)){
+            no_pengajuan.isEnabled = true
+            nama_mitra.isEnabled = true
+        } else {
+            no_pengajuan.isEnabled = false
+            nama_mitra.isEnabled = false
+        }
+
 
         close_detail_btn.setOnClickListener {
             startActivity(Intent(this@PengajuanKerjasamaDetailActivity, PengajuanKerjasamaActivity::class.java))
