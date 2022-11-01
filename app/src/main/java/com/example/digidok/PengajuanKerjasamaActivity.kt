@@ -187,7 +187,43 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
 
                         pengajuanKerjasama?.add(
                             PengajuanKerjasamaModel(
-                                header_color = "Menunggu Validasi",
+                                header_color = "Dikembalikan",
+                                id_pks = "PKS-2022-00001",
+                                nama_mitra = "PT Wahana Nusantara",
+                                jenis_mitra = "Perusahaan Swasta",
+                                noPengajuan = "002-0203-12120",
+                                skemaPemanfaatan = "BTO",
+                                tujuan = "Perubahan alamat aset",
+                                noSurat = "112-32323-34342",
+                                tglSurat = "11/02/2021",
+                                objek = "Tanah",
+                                nilai = "Rp. 123,030,340",
+                                tglMulai = "11/10/2020",
+                                tglAkhir = "12/12/2022",
+                                perihal = "perubahan",
+                            )
+                        )
+                        pengajuanKerjasama?.add(
+                            PengajuanKerjasamaModel(
+                                header_color = "Draft",
+                                id_pks = "PKS-2022-00001",
+                                nama_mitra = "PT Wahana Nusantara",
+                                jenis_mitra = "Perusahaan Swasta",
+                                noPengajuan = "002-0203-12120",
+                                skemaPemanfaatan = "BTO",
+                                tujuan = "Perubahan alamat aset",
+                                noSurat = "112-32323-34342",
+                                tglSurat = "11/02/2021",
+                                objek = "Tanah",
+                                nilai = "Rp. 123,030,340",
+                                tglMulai = "11/10/2020",
+                                tglAkhir = "12/12/2022",
+                                perihal = "perubahan",
+                            )
+                        )
+                        pengajuanKerjasama?.add(
+                            PengajuanKerjasamaModel(
+                                header_color = "Disetujui",
                                 id_pks = "PKS-2022-00001",
                                 nama_mitra = "PT Wahana Nusantara",
                                 jenis_mitra = "Perusahaan Swasta",

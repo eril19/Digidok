@@ -65,7 +65,7 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
                 )
             }
 
-            else if(pengajuanKerjasamaModel.header_color.equals("Menunggu Validasi", true) ) {
+            else if(pengajuanKerjasamaModel.header_color.equals("Dikembalikan", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     android.R.color.holo_orange_dark
                 )
@@ -93,9 +93,15 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
             popup.inflate(R.menu.daftar_pengajuan_menu)
 
             if (holder.statusPengajuan.equals("Dikirim",true)) {
-                popup.menu.findItem(R.id.menu_view).isVisible = false
-            } else {
-                popup.menu.findItem(R.id.menu_view).isVisible = true
+                popup.menu.findItem(R.id.menu_edit).isVisible = false
+                popup.menu.findItem(R.id.menu_hapus).isVisible = false
+
+            } else if(holder.statusPengajuan.equals("Disetujui",true)) {
+                popup.menu.findItem(R.id.menu_telaah).isVisible = false
+                popup.menu.findItem(R.id.menu_edit).isVisible = false
+                popup.menu.findItem(R.id.menu_hapus).isVisible = false
+            } else{
+                popup.menu.findItem(R.id.menu_telaah).isVisible = false
             }
 
             popup.setOnMenuItemClickListener { item ->
@@ -115,6 +121,12 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
                     R.id.menu_telaah -> {
                         val intent = Intent(context, PengajuanKerjasamaDetailActivity3::class.java)
                         intent.putExtra("status", "Telaah")
+                        context.startActivity(intent)
+                        true
+                    }
+                    R.id.menu_hapus -> {
+                        val intent = Intent(context, PengajuanKerjasamaDetailActivity3::class.java)
+                        intent.putExtra("status", "Hapus")
                         context.startActivity(intent)
                         true
                     }
