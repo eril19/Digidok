@@ -45,8 +45,9 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
 
 
         tutup.setOnClickListener {
-            val i = Intent(this@LaporanAsetDetailActivity, LaporanAsetActivity::class.java)
-            startActivity(i)
+//            val i = Intent(this@LaporanAsetDetailActivity, LaporanAsetActivity::class.java)
+//            startActivity(i)
+            onBackPressed()
         }
 
 

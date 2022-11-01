@@ -35,13 +35,14 @@ class PengajuanKerjasamaDetailActivity2 : AppCompatActivity() {
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
         next_detail_btn.setOnClickListener {
             val i = Intent(this@PengajuanKerjasamaDetailActivity2, PengajuanKerjasamaDetailActivity3::class.java)
-            i.putExtra("hideTelaah",true)
+//            i.putExtra("hideTelaah",true)
             startActivity(i)
         }
 
         val prev_detail_btn = findViewById<Button>(R.id.prev_detail_btn)
         prev_detail_btn.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaDetailActivity2, PengajuanKerjasamaDetailActivity::class.java))
+//            startActivity(Intent(this@PengajuanKerjasamaDetailActivity2, PengajuanKerjasamaDetailActivity::class.java))
+        onBackPressed()
         }
 
 

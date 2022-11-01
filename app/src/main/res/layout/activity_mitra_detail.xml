@@ -695,17 +695,16 @@
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
-                    android:layout_marginBottom="20dp"
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/close_detail_btn"
+                        android:id="@+id/prev_detail_btn"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
-                        android:backgroundTint="#676767"
-                        android:text="Tutup"
+                        android:backgroundTint="#6A809C"
                         android:fontFamily="@font/roboto_medium"
+                        android:text="Sebelumnya"
                         android:textAllCaps="false"
                         android:textSize="14dp" />
 
@@ -714,9 +713,28 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:backgroundTint="#AAAAAA"
-                        android:text="Selanjutnya"
+                        android:backgroundTint="#104B7C"
                         android:fontFamily="@font/roboto_medium"
+                        android:text="Selanjutnya"
+                        android:textAllCaps="false"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/close_detail_btn"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/red"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Tutup"
                         android:textAllCaps="false"
                         android:textSize="14dp" />
                 </LinearLayout>

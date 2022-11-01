@@ -45,8 +45,16 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
         val back = findViewById<ImageView>(R.id.backbtn)
 
         back.setOnClickListener {
-            val intent = Intent(this@PengajuanKerjasamaActivity, DashboardActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@PengajuanKerjasamaActivity, DashboardActivity::class.java)
+//            startActivity(intent)
+            onBackPressed()
+        }
+
+        val tambahMitraBtn = findViewById<Button>(R.id.tambahMitraBtn)
+        tambahMitraBtn.setOnClickListener {
+            val i = Intent(this@PengajuanKerjasamaActivity, PengajuanKerjasamaDetailActivity::class.java)
+            i.putExtra("status", "Edit")
+            startActivity(i)
         }
 
         //val bg:TextView = findViewById(R.id.header_color)

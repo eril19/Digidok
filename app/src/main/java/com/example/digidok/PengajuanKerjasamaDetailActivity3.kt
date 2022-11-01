@@ -49,7 +49,8 @@ class PengajuanKerjasamaDetailActivity3 : AppCompatActivity() {
 
         val prev_detail_btn = findViewById<Button>(R.id.prev_detail_btn)
         prev_detail_btn.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaDetailActivity3, PengajuanKerjasamaDetailActivity2::class.java))
+//            startActivity(Intent(this@PengajuanKerjasamaDetailActivity3, PengajuanKerjasamaDetailActivity2::class.java))
+        onBackPressed()
         }
 
         spinnerTelaah = findViewById<Spinner>(R.id.spinner_telaah)

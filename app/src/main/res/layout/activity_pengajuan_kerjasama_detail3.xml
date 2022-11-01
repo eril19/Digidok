@@ -195,9 +195,9 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:backgroundTint="#AAAAAA"
-                        android:text="Selanjutnya"
+                        android:backgroundTint="#6A809C"
                         android:fontFamily="@font/roboto_medium"
+                        android:text="Selanjutnya"
                         android:textAllCaps="false"
                         android:textSize="14dp" />
                 </LinearLayout>

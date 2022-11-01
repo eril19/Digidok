@@ -30,8 +30,9 @@ class KjppDetailActivity : AppCompatActivity() {
 
 
         tutup.setOnClickListener {
-            val i = Intent(this@KjppDetailActivity, DaftarKjppActivity::class.java)
-            startActivity(i)
+//            val i = Intent(this@KjppDetailActivity, DaftarKjppActivity::class.java)
+//            startActivity(i)
+            onBackPressed()
         }
 
         nomer.text = data?.no_kjpp

@@ -30,7 +30,7 @@
             android:layout_gravity="right"
             android:layout_marginTop="10dp"
             android:layout_marginRight="25dp"
-            android:backgroundTint="#BCBCBC"
+            android:backgroundTint="@color/green"
             android:drawableLeft="@drawable/ic_add"
             android:drawablePadding="5dp"
             android:fontFamily="@font/roboto_medium"

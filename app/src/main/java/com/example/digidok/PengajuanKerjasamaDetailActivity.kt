@@ -17,10 +17,10 @@ import com.example.digidok.utils.Injection
 import org.w3c.dom.Text
 
 class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
-    var isStatusEdit : String = ""
-    var isLoading : Boolean = false
+    var isStatusEdit: String = ""
+    var isLoading: Boolean = false
     var pengajuanKerjasamaDetail: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
-    var data : PengajuanKerjasamaModel ?= null
+    var data: PengajuanKerjasamaModel? = null
     private var recyclerview: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,24 +33,61 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
         val no_pengajuan = findViewById<EditText>(R.id.no_pengajuan)
         val nama_mitra = findViewById<EditText>(R.id.nama_mitra)
+        val ETtujuan = findViewById<EditText>(R.id.tujuan)
+        val no_Surat = findViewById<EditText>(R.id.no_surat)
+        val tgl_Surat = findViewById<EditText>(R.id.tgl_surat)
+        val Objek = findViewById<EditText>(R.id.objek)
+        val tgl_mulai = findViewById<EditText>(R.id.tgl_mulai)
+        val nilai_ = findViewById<EditText>(R.id.nilai)
+        val tgl_akhir = findViewById<EditText>(R.id.tgl_akhir)
+        val prihal = findViewById<EditText>(R.id.perihal)
 
-        isStatusEdit = intent.getStringExtra("status")?:""
-        if(isStatusEdit.equals("Edit",true)){
+
+        isStatusEdit = intent.getStringExtra("status") ?: ""
+
+        if (isStatusEdit.equals("Edit", true)) {
             no_pengajuan.isEnabled = true
+            no_pengajuan.setBackgroundResource("@drawable/custom_profile_enable.xml")
+
+
             nama_mitra.isEnabled = true
+            ETtujuan.isEnabled = true
+            no_Surat.isEnabled = true
+            tgl_akhir.isEnabled = true
+            tgl_mulai.isEnabled = true
+            tgl_Surat.isEnabled = true
+            prihal.isEnabled = true
+            nilai_.isEnabled = true
+            Objek.isEnabled = true
         } else {
             no_pengajuan.isEnabled = false
             nama_mitra.isEnabled = false
+            ETtujuan.isEnabled = false
+            no_Surat.isEnabled = false
+            tgl_akhir.isEnabled = false
+            tgl_mulai.isEnabled = false
+            tgl_Surat.isEnabled = false
+            prihal.isEnabled = false
+            nilai_.isEnabled = false
+            Objek.isEnabled = false
         }
 
 
         close_detail_btn.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaDetailActivity, PengajuanKerjasamaActivity::class.java))
+            startActivity(
+                Intent(
+                    this@PengajuanKerjasamaDetailActivity,
+                    PengajuanKerjasamaActivity::class.java
+                )
+            )
             finish()
         }
 
         next_detail_btn.setOnClickListener {
-            val i = Intent(this@PengajuanKerjasamaDetailActivity, PengajuanKerjasamaDetailActivity2::class.java)
+            val i = Intent(
+                this@PengajuanKerjasamaDetailActivity,
+                PengajuanKerjasamaDetailActivity2::class.java
+            )
             i.putExtra("hideTelaah", true)
             startActivity(i)
         }
@@ -70,12 +107,12 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         val PengajuanKerjasamaDetail = listOf<PengajuanKerjasamaDetailModel>(
             PengajuanKerjasamaDetailModel(
                 kodeLokasi = "0089879000",
-                namaLokasi  = "Metro Jaya",
-                kodeBarang  = "0009-0989-0087",
-                namaBarang  = "Rumah",
-                alamat  = "JL. Kundur Jaya",
-                Luas  = "2000m2",
-                LuasManfaat  = "1500m2"
+                namaLokasi = "Metro Jaya",
+                kodeBarang = "0009-0989-0087",
+                namaBarang = "Rumah",
+                alamat = "JL. Kundur Jaya",
+                Luas = "2000m2",
+                LuasManfaat = "1500m2"
             )
         )
 
@@ -90,7 +127,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         namaMitra.text = data?.nama_mitra
         skemaPemanfaatan.text = data?.skemaPemanfaatan
         tujuan.text = data?.tujuan
-        noSurat.text= data?.noSurat
+        noSurat.text = data?.noSurat
         tglSurat.text = data?.tglSurat
         tglAkhir.text = data?.tglAkhir
         tglMulai.text = data?.tglAkhir
@@ -101,17 +138,20 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         getPengajuanDetail()
     }
 
-    fun setList(){
+    fun setList() {
         recyclerview = findViewById<RecyclerView>(R.id.rv_list_daftar_aset)
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = PengajuanKerjasamaDetailAdapter(this, pengajuanKerjasamaDetail, object:PengajuanKerjasamaDetailAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
-                TODO("Not yet implemented")
-            }
+        recyclerview?.adapter = PengajuanKerjasamaDetailAdapter(
+            this,
+            pengajuanKerjasamaDetail,
+            object : PengajuanKerjasamaDetailAdapter.onItemClickListener {
+                override fun onItemClick(position: Int) {
+                    TODO("Not yet implemented")
+                }
 
-        }){
+            }) {
 
         }
 
@@ -120,7 +160,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
     fun getPengajuanDetail() {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getBerita("0", "5",  object : DataSource.BeritaDataCallback {
+        mRepository.getBerita("0", "5", object : DataSource.BeritaDataCallback {
             override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
                 isLoading = false
                 if (data.success) {
@@ -129,12 +169,12 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                         pengajuanKerjasamaDetail?.add(
                             PengajuanKerjasamaDetailModel(
                                 kodeLokasi = "0089879000",
-                                namaLokasi  = "Metro Jaya",
-                                kodeBarang  = "0009-0989-0087",
-                                namaBarang  = "Rumah",
-                                alamat  = "JL. Kundur Jaya",
-                                Luas  = "2000m2",
-                                LuasManfaat  = "1500m2"
+                                namaLokasi = "Metro Jaya",
+                                kodeBarang = "0009-0989-0087",
+                                namaBarang = "Rumah",
+                                alamat = "JL. Kundur Jaya",
+                                Luas = "2000m2",
+                                LuasManfaat = "1500m2"
                             )
                         )
                     }

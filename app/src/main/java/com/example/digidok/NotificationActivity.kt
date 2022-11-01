@@ -23,8 +23,9 @@ class NotificationActivity : AppCompatActivity() {
 
 
         back.setOnClickListener {
-            val intent = Intent(this@NotificationActivity, DashboardActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@NotificationActivity, DashboardActivity::class.java)
+//            startActivity(intent)
+            onBackPressed()
         }
         val notificationList = listOf<NotificationModel>(
             NotificationModel(
