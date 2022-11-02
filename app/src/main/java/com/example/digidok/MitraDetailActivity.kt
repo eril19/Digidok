@@ -33,6 +33,7 @@ class MitraDetailActivity : AppCompatActivity() {
         }
 
         data = intent.getParcelableExtra("daftarMitra")
+        isEdit = intent.getStringExtra("menu")?:""
 
 //        hideButton = intent.getBooleanExtra("hideButton", true)
 //
