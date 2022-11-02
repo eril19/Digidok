@@ -36,7 +36,7 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
         val status_mitra = view.findViewById<TextView>(R.id.status_mitra)
         val npwp = view.findViewById<TextView>(R.id.npwp)
         val npwp_mitra = view.findViewById<TextView>(R.id.npwp_mitra)
-        val header_color = view.findViewById<TextView>(R.id.header_color)
+        var header_color = view.findViewById<TextView>(R.id.header_color)
         val cardView = view.findViewById<CardView>(R.id.cardViewMitra)
         val popup = view.findViewById<ImageView>(R.id.menupopup)
         var statusMitra = ""
@@ -110,11 +110,18 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
                 }
                 R.id.setAktif ->{
                     holder.statusMitra = "Aktif"
+                    holder.header_color.text = "Aktif"
+                    holder.header_color.background = ContextCompat.getDrawable(holder.header_color.context,
+                        R.color.green
+                    )
                     true
                 }
                 R.id.setNonAktif ->{
                     holder.statusMitra = "Tidak Aktif"
-                    
+                    holder.header_color.text = "Tidak Aktif"
+                    holder.header_color.background = ContextCompat.getDrawable(holder.header_color.context,
+                        R.color.red2
+                    )
                     true
                 }
             }
