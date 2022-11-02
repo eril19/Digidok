@@ -53,7 +53,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
         val tambahMitraBtn = findViewById<Button>(R.id.tambahMitraBtn)
         tambahMitraBtn.setOnClickListener {
             val i = Intent(this@PengajuanKerjasamaActivity, PengajuanKerjasamaDetailActivity::class.java)
-            i.putExtra("status", "Edit")
+            i.putExtra("status", "Tambah")
             startActivity(i)
         }
 

@@ -46,7 +46,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         isStatusEdit = intent.getStringExtra("status") ?: ""
 
-        if (isStatusEdit.equals("Edit", true)) {
+        if (isStatusEdit.equals("Edit", true) || isStatusEdit.equals("Tambah",true)) {
             no_pengajuan.isEnabled = true
             no_pengajuan.background =
                 ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)

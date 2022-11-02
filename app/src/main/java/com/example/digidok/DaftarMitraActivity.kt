@@ -71,7 +71,9 @@ class DaftarMitraActivity : AppCompatActivity() {
 
         val tambahMitraBtn = findViewById<Button>(R.id.tambahMitraBtn)
         tambahMitraBtn.setOnClickListener {
-            startActivity(Intent(this@DaftarMitraActivity, MitraDetailActivity::class.java))
+            val i = Intent(this@DaftarMitraActivity, MitraDetailActivity::class.java)
+            i.putExtra("add","Tambah")
+            startActivity(i)
         }
 
 

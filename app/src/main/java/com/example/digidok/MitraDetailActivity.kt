@@ -12,6 +12,7 @@ class MitraDetailActivity : AppCompatActivity() {
 
     var data: DaftarMitraModel? = null
     var hideButton : Boolean = false
+    var isEdit : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,18 +33,20 @@ class MitraDetailActivity : AppCompatActivity() {
         }
 
         data = intent.getParcelableExtra("daftarMitra")
-        hideButton = intent.getBooleanExtra("hideButton", true)
-        val non_aktif_btn = findViewById<Button>(R.id.nonAktifBtn)
-        non_aktif_btn.setOnClickListener {
-            non_aktif_btn.setBackgroundColor(Color.RED)
-        }
 
-        /*non_aktif_btn dihide ketika hideButton bernilai true*/
-        if(hideButton){
-            non_aktif_btn.visibility = View.GONE
-        } else {
-            non_aktif_btn.visibility = View.VISIBLE
-        }
+//        hideButton = intent.getBooleanExtra("hideButton", true)
+//
+//        val non_aktif_btn = findViewById<Button>(R.id.nonAktifBtn)
+//        non_aktif_btn.setOnClickListener {
+//            non_aktif_btn.setBackgroundColor(Color.RED)
+//        }
+//
+//        /*non_aktif_btn dihide ketika hideButton bernilai true*/
+//        if(hideButton){
+//            non_aktif_btn.visibility = View.GONE
+//        } else {
+//            non_aktif_btn.visibility = View.VISIBLE
+//        }
 
         val npwp = findViewById<TextView>(R.id.npwp)
         val nama = findViewById<TextView>(R.id.namadetailkjpp)
