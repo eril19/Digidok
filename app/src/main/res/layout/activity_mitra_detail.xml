@@ -60,11 +60,13 @@
                         android:id="@+id/NPWPSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="false"
                         android:text="Memiliki NPWP" />
 
                     <ImageView
+                        android:id="@+id/refreshButton"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:src="@drawable/ic_refresh" />
                 </LinearLayout>
 
@@ -108,9 +110,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:background="@drawable/input_background"
-                        android:padding="6dp"
+                        android:background="@drawable/custom_profile"
+                        android:enabled="false"
                         android:fontFamily="@font/roboto"
+                        android:padding="6dp"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -141,9 +144,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:background="@drawable/custom_profile"
-                        android:padding="6dp"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
 
@@ -173,8 +177,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -205,8 +210,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -236,9 +242,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:background="@drawable/custom_profile"
-                        android:padding="6dp"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
+                        android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
                 </LinearLayout>
@@ -267,8 +274,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -298,8 +306,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -329,7 +338,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:background="@drawable/custom_profile"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -360,8 +370,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -391,8 +402,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -422,8 +434,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -453,8 +466,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -484,8 +498,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -515,8 +530,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -547,8 +563,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -578,8 +595,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -609,8 +627,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -640,8 +659,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -671,8 +691,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:background="@drawable/custom_profile_enable"
+                        android:enabled="true"
                         android:fontFamily="@font/roboto"
-                        android:background="@drawable/custom_profile"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />

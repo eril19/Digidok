@@ -53,43 +53,43 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
             nama_mitra.isEnabled = true
             nama_mitra.background =
-                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+                ContextCompat.getDrawable(nama_mitra.context, R.drawable.custom_profile_enable)
 
             ETtujuan.isEnabled = true
             ETtujuan.background =
-                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+                ContextCompat.getDrawable(ETtujuan.context, R.drawable.custom_profile_enable)
 
             no_Surat.isEnabled = true
             no_Surat.background =
-                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+                ContextCompat.getDrawable(no_Surat.context, R.drawable.custom_profile_enable)
 
             tgl_akhir.isEnabled = true
             tgl_akhir.background =
-                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+                ContextCompat.getDrawable(tgl_akhir.context, R.drawable.custom_profile_enable)
 
             tgl_mulai.isEnabled = true
             tgl_mulai.background =
-                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+                ContextCompat.getDrawable(tgl_mulai.context, R.drawable.custom_profile_enable)
 
             tgl_Surat.isEnabled = true
             tgl_Surat.background =
-                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+                ContextCompat.getDrawable(tgl_Surat.context, R.drawable.custom_profile_enable)
 
             prihal.isEnabled = true
             prihal.background =
-                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+                ContextCompat.getDrawable(prihal.context, R.drawable.custom_profile_enable)
 
             nilai_.isEnabled = true
             nilai_.background =
-                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+                ContextCompat.getDrawable(nilai_.context, R.drawable.custom_profile_enable)
 
             Objek.isEnabled = true
             Objek.background =
-                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+                ContextCompat.getDrawable(Objek.context, R.drawable.custom_profile_enable)
 
             skema.isEnabled = true
             skema.background =
-                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+                ContextCompat.getDrawable(skema.context, R.drawable.custom_profile_enable)
         } else {
             no_pengajuan.isEnabled = false
             skema.isEnabled = false

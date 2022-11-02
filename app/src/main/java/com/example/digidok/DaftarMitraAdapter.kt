@@ -105,6 +105,7 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
                 R.id.menuEdit ->{
                     val i = Intent(context, MitraDetailActivity::class.java)
                     i.putExtra("menu","Edit")
+
                     context.startActivity(i)
                     true
                 }

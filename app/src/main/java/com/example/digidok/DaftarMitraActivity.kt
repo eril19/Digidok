@@ -72,77 +72,9 @@ class DaftarMitraActivity : AppCompatActivity() {
         val tambahMitraBtn = findViewById<Button>(R.id.tambahMitraBtn)
         tambahMitraBtn.setOnClickListener {
             val i = Intent(this@DaftarMitraActivity, MitraDetailActivity::class.java)
-            i.putExtra("add","Tambah")
+            i.putExtra("menu","Tambah")
             startActivity(i)
         }
-
-
-        //val bg:TextView = findViewById(R.id.header_color)
-
-
-
-//        val DaftarMitraList = listOf<DaftarMitraModel>(
-//            DaftarMitraModel(
-//                header_color = "Aktif",
-//                id_mitra = "MT-2000-0001",
-//                nama_mitra = "PT INDOCATER",
-//                jenis_mitra = "Perusahaan Swasta",
-//                status = "Status:",
-//                status_mitra = "whitelist",
-//                npwp = "NPWP",
-//                npwp_mitra = "02.623.519.2-061.000",
-//            ),
-//            DaftarMitraModel(
-//                header_color = "Tidak Aktif",
-//                id_mitra = "MT-2011-0001",
-//                nama_mitra = "PT Wahana Nusantara",
-//                jenis_mitra = "Perusahaan Swasta",
-//                status = "Status:",
-//                status_mitra = "whitelist",
-//                npwp = "NPWP",
-//                npwp_mitra = "013121280073000",
-//            ),
-//            DaftarMitraModel(
-//                header_color = "Tidak Aktif",
-//                id_mitra = "MT-2011-0001",
-//                nama_mitra = "PT Wahana Nusantara",
-//                jenis_mitra = "Perusahaan Swasta",
-//                status = "Status:",
-//                status_mitra = "whitelist",
-//                npwp = "NPWP",
-//                npwp_mitra = "013121280073000",
-//            ),
-//            DaftarMitraModel(
-//                header_color = "Aktif",
-//                id_mitra = "MT-2011-0001",
-//                nama_mitra = "PT Wahana Nusantara",
-//                jenis_mitra = "Perusahaan Swasta",
-//                status = "Status:",
-//                status_mitra = "whitelist",
-//                npwp = "NPWP",
-//                npwp_mitra = "013121280073000",
-//            ),
-//            DaftarMitraModel(
-//                header_color = "Aktif",
-//                id_mitra = "MT-2011-0001",
-//                nama_mitra = "PT Wahana Nusantara",
-//                jenis_mitra = "Perusahaan Swasta",
-//                status = "Status:",
-//                status_mitra = "whitelist",
-//                npwp = "NPWP",
-//                npwp_mitra = "013121280073000",
-//            ),
-//            DaftarMitraModel(
-//                header_color = "Aktif",
-//                id_mitra = "MT-2011-0001",
-//                nama_mitra = "PT Wahana Nusantara",
-//                jenis_mitra = "Perusahaan Swasta",
-//                status = "Status:",
-//                status_mitra = "whitelist",
-//                npwp = "NPWP",
-//                npwp_mitra = "013121280073000",
-//            )
-//        )
 
         setList()
         setSpinnerKategori()
@@ -160,7 +92,6 @@ class DaftarMitraActivity : AppCompatActivity() {
             override fun onItemClick(position: Int) {
                 val i = Intent(this@DaftarMitraActivity, MitraDetailActivity::class.java)
                 i.putExtra("daftarMitra", daftarMitra[position])
-                i.putExtra("hideButton", false)
                 startActivity(i)
             }
         }){
