@@ -92,8 +92,9 @@ class CekDokumenActivity : AppCompatActivity() {
 
 
         tutup.setOnClickListener {
-            val i = Intent(this@CekDokumenActivity, RepositoriDokumenActivity::class.java)
-            startActivity(i)
+//            val i = Intent(this@CekDokumenActivity, RepositoriDokumenActivity::class.java)
+//            startActivity(i)
+            onBackPressed()
         }
 
 

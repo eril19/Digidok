@@ -342,7 +342,7 @@
                             android:visibility="visible"
                             tools:visibility="visible" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/objek"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"

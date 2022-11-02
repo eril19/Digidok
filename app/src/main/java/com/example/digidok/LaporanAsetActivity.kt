@@ -60,9 +60,9 @@ class LaporanAsetActivity : AppCompatActivity() {
         val back = findViewById<ImageView>(R.id.backbtn)
 
         back.setOnClickListener {
-//            val intent = Intent(this@LaporanAsetActivity, DashboardActivity::class.java)
-//            startActivity(intent)
-            onBackPressed()
+            val intent = Intent(this@LaporanAsetActivity, DashboardActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         //val bg:TextView = findViewById(R.id.header_color)

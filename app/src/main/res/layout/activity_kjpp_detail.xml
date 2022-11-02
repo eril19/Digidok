@@ -326,16 +326,16 @@
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="center"
                     android:orientation="horizontal">
+
                     <Button
                         android:id="@+id/close_detail_btn"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="Tutup"
-                        android:textSize="14dp"
-                        android:textAllCaps="false"
-                        android:backgroundTint="#104B7C"
                         android:layout_marginRight="10dp"
-                        />
+                        android:backgroundTint="@color/red"
+                        android:text="Tutup"
+                        android:textAllCaps="false"
+                        android:textSize="14dp" />
                 </LinearLayout>
 
             </LinearLayout>

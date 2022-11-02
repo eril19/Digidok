@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    android:backgroundTint="#104B7C"
+                    android:backgroundTint="@color/red"
                     android:text="Tutup"
                     android:textAllCaps="false"
                     android:textSize="14dp" />

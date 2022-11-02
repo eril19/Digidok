@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.data.DataSource
@@ -41,26 +42,57 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         val nilai_ = findViewById<EditText>(R.id.nilai)
         val tgl_akhir = findViewById<EditText>(R.id.tgl_akhir)
         val prihal = findViewById<EditText>(R.id.perihal)
-
+        val skema = findViewById<EditText>(R.id.skema_pemanfaatan)
 
         isStatusEdit = intent.getStringExtra("status") ?: ""
 
         if (isStatusEdit.equals("Edit", true)) {
             no_pengajuan.isEnabled = true
-            no_pengajuan.setBackgroundResource("@drawable/custom_profile_enable.xml")
-
+            no_pengajuan.background =
+                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
 
             nama_mitra.isEnabled = true
+            nama_mitra.background =
+                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+
             ETtujuan.isEnabled = true
+            ETtujuan.background =
+                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+
             no_Surat.isEnabled = true
+            no_Surat.background =
+                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+
             tgl_akhir.isEnabled = true
+            tgl_akhir.background =
+                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+
             tgl_mulai.isEnabled = true
+            tgl_mulai.background =
+                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+
             tgl_Surat.isEnabled = true
+            tgl_Surat.background =
+                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+
             prihal.isEnabled = true
+            prihal.background =
+                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+
             nilai_.isEnabled = true
+            nilai_.background =
+                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+
             Objek.isEnabled = true
+            Objek.background =
+                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+
+            skema.isEnabled = true
+            skema.background =
+                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
         } else {
             no_pengajuan.isEnabled = false
+            skema.isEnabled = false
             nama_mitra.isEnabled = false
             ETtujuan.isEnabled = false
             no_Surat.isEnabled = false

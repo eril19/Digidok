@@ -25,8 +25,9 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         back.setOnClickListener {
-            val intent = Intent(this@ProfileActivity, DashboardActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@ProfileActivity, DashboardActivity::class.java)
+//            startActivity(intent)
+            onBackPressed()
         }
         header.setText("Profile")
     }
