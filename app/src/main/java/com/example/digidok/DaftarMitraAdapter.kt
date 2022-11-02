@@ -41,11 +41,7 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
         val popup = view.findViewById<ImageView>(R.id.menupopup)
         var statusMitra = ""
 
-        init {
-            cardView.setOnClickListener {
-                listener.onItemClick(adapterPosition)
-            }
-        }
+
 
         fun bindView(daftarMitraModel: DaftarMitraModel, listener: (DaftarMitraModel) -> Unit){
             id_mitra.text = daftarMitraModel.id_mitra
@@ -118,6 +114,7 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
                 }
                 R.id.setNonAktif ->{
                     holder.statusMitra = "Tidak Aktif"
+                    
                     true
                 }
             }
