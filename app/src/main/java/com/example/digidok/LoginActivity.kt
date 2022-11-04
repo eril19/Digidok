@@ -56,10 +56,6 @@ class LoginActivity : AppCompatActivity() {
                     statusLogin(false)
                     if (data.isSuccess) {
                         val userName = findViewById<EditText>(R.id.editTextusername).text.toString()
-//                        editor.apply{
-//                            putString("user_name",userName)
-//                            apply()
-//                        }
 
                         Preferences.saveUser(this@LoginActivity, data.data?.namaUser.safe())
                         Preferences.saveRole(this@LoginActivity,data.data?.namaRole.safe())
