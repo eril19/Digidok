@@ -109,18 +109,21 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
                     R.id.menu_view -> {
                         val intent = Intent(context, PengajuanKerjasamaDetailActivity::class.java)
                         intent.putExtra("status", "View")
+                        intent.putExtra("PengajuanKerjasama", PengajuanKerja[position])
                         context.startActivity(intent)
                         true
                     }
                     R.id.menu_edit -> {
                         val intent = Intent(context, PengajuanKerjasamaDetailActivity::class.java)
                         intent.putExtra("status", "Edit")
+                        intent.putExtra("PengajuanKerjasama", PengajuanKerja[position])
                         context.startActivity(intent)
                         true
                     }
                     R.id.menu_telaah -> {
                         val intent = Intent(context, PengajuanKerjasamaDetailActivity3::class.java)
                         intent.putExtra("status", "Telaah")
+                        intent.putExtra("PengajuanKerjasama", PengajuanKerja[position])
                         context.startActivity(intent)
                         true
                     }
