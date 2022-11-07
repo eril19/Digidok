@@ -3,6 +3,7 @@ package com.example.digidok.data
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.data.model.ProfileModel
 import com.example.digidok.data.model.UserModel
 import com.example.digidok.utils.UtilsApplication
 import com.google.gson.GsonBuilder
@@ -33,6 +34,12 @@ interface ApiService {
         @Field("deviceId") deviceId: String,
         @Field("fid") fid: String
     ): Observable<BaseApiModel<UserModel?>>
+
+    @FormUrlEncoded
+    @POST("auth/get-data")
+    fun profile(
+        @Header("Token") token: String,
+    ): Observable<BaseApiModel<ProfileModel?>>
 
     @FormUrlEncoded
     @POST("cms/berita")

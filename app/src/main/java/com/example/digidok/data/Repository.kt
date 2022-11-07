@@ -16,6 +16,10 @@ open class Repository (private val remoteDataSource: DataSource) : DataSource {
         remoteDataSource.getBerita(start, limit, callback)
     }
 
+    override fun getProfile(token: String, callback: DataSource.ProfileCallback) {
+        remoteDataSource.getProfile(token, callback)
+    }
+
     override fun onClearDisposables() {
         remoteDataSource.onClearDisposables()
     }

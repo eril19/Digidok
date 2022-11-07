@@ -10,7 +10,9 @@ class UserModel(
     @SerializedName("namaUser")
     val namaUser: String = "",
     @SerializedName("roles")
-    val roles: List<Roles>
+    val roles: List<Roles>,
+    @SerializedName("token")
+    val token : String,
 
 ) {
     class Roles(

@@ -3,13 +3,28 @@ package com.example.digidok
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import com.example.digidok.data.DataSource
+import com.example.digidok.data.Repository
+import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.ProfileModel
+import com.example.digidok.data.model.UserModel
+import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 
 class ProfileActivity : AppCompatActivity() {
+
+    val mRepository: Repository = Injection.provideRepository(this)
+
+    var uName : TextView? = null
+    var Nama :EditText? = null
+//    var Keterangan : EditText?=null
+    var NIP : EditText?=null
+    var Telepon : EditText?=null
+    var Email : EditText?=null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -18,13 +33,14 @@ class ProfileActivity : AppCompatActivity() {
         val header = findViewById<TextView>(R.id.header_title)
         val logoout = findViewById<Button>(R.id.logout)
         val back = findViewById<ImageView>(R.id.backbtn)
-        val uName = findViewById<TextView>(R.id.username)
-        val Nama = findViewById<EditText>(R.id.name)
-        val Keterangan = findViewById<EditText>(R.id.keterangan)
-        val NIP = findViewById<EditText>(R.id.nip)
-        val Telepon = findViewById<EditText>(R.id.telepon)
-        val Email = findViewById<EditText>(R.id.email)
 
+
+        uName =  findViewById<TextView>(R.id.username)
+        Nama = findViewById<EditText>(R.id.name)
+//        Keterangan = findViewById<EditText>(R.id.keterangan)
+         NIP = findViewById<EditText>(R.id.nip)
+         Telepon = findViewById<EditText>(R.id.telepon)
+         Email = findViewById<EditText>(R.id.email)
 
         logoout.setOnClickListener {
             Preferences.saveLogin(this@ProfileActivity, false)
@@ -39,7 +55,37 @@ class ProfileActivity : AppCompatActivity() {
         }
         header.setText("Profile")
 
+        getProfileData()
 
+    }
 
+    fun getProfileData() {
+        mRepository.getProfile(token = Preferences.isToken(this@ProfileActivity),
+            object : DataSource.ProfileCallback {
+                override fun onSuccess(data: BaseApiModel<ProfileModel?>) {
+
+                    if (data.isSuccess) {
+                         uName?.text = data.data?.userId
+                         Nama?.setText(data.data?.nama)
+//                         Keterangan?.text = data.data?.
+                         NIP?.setText( data.data?.nip)
+                         Telepon?.setText(data.data?.noHP)
+                         Email?.setText(data.data?.email)
+
+                    } else {
+//                        messageError = data.message
+                        Toast.makeText(this@ProfileActivity, "Data Gagal", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    Toast.makeText(this@ProfileActivity, "Data Gagal", Toast.LENGTH_LONG).show()
+                }
+
+                override fun onFinish() {
+                    Toast.makeText(this@ProfileActivity, "Data Selesai", Toast.LENGTH_LONG).show()
+                }
+
+            })
     }
 }

@@ -7,6 +7,17 @@ object Preferences {
     private val IS_LOGIN = "IS_LOGIN"
     private val IS_USER = "IS_USER"
     private val IS_ROLE = "IS_ROLE"
+    private val TOKEN = "TOKEN"
+
+    fun isToken(context: Context): String {
+        val preferenceManager = PreferenceManager.getDefaultSharedPreferences(context)
+        return preferenceManager.getString(TOKEN, "").safe()
+    }
+
+    fun saveToken(context: Context, token: String) {
+        val preferenceManager = PreferenceManager.getDefaultSharedPreferences(context).edit()
+        preferenceManager.putString(TOKEN, token).apply()
+    }
 
     fun isLogin(context: Context): Boolean {
         val preferenceManager = PreferenceManager.getDefaultSharedPreferences(context)

@@ -3,6 +3,7 @@ package com.example.digidok.data
 import com.example.digidok.BuildConfig.VERSION_NAME
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.data.model.ProfileModel
 import com.example.digidok.data.model.UserModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -31,6 +32,28 @@ object RemoteDataSource : DataSource {
                 }
             })
     }
+
+
+    override fun getProfile(token: String, callback: DataSource.ProfileCallback) {
+        mApiServiceDev.profile(token)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<ProfileModel?>>() {
+                override fun onSuccess(model: BaseApiModel<ProfileModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+
 
     override fun getBerita(start: String, limit: String, callback: DataSource.BeritaDataCallback) {
         mApiService.berita("android", "android", "sampleToken", start, limit)

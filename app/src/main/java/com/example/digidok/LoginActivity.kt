@@ -59,6 +59,7 @@ class LoginActivity : AppCompatActivity() {
 
                         Preferences.saveUser(this@LoginActivity, data.data?.namaUser.safe())
                         Preferences.saveRole(this@LoginActivity,data.data?.namaRole.safe())
+                        Preferences.saveToken(this@LoginActivity, data.data?.token.safe())
                         Preferences.saveLogin(this@LoginActivity, true)
                         startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                     } else {
