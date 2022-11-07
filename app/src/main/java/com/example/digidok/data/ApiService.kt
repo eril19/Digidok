@@ -38,7 +38,8 @@ interface ApiService {
     @FormUrlEncoded
     @POST("auth/get-data")
     fun profile(
-        @Header("Token") token: String,
+        @Header("Authorization") token: String,
+        @Field("fid") fid: String
     ): Observable<BaseApiModel<ProfileModel?>>
 
     @FormUrlEncoded
