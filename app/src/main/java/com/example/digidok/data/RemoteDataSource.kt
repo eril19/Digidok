@@ -35,7 +35,7 @@ object RemoteDataSource : DataSource {
 
 
     override fun getProfile(token: String, callback: DataSource.ProfileCallback) {
-        mApiServiceDev.profile(token)
+        mApiServiceDev.profile("Bearer $token", "Tes")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : ApiCallback<BaseApiModel<ProfileModel?>>() {
