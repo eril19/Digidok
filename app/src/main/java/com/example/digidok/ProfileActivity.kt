@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.digidok.utils.Preferences
@@ -17,6 +18,13 @@ class ProfileActivity : AppCompatActivity() {
         val header = findViewById<TextView>(R.id.header_title)
         val logoout = findViewById<Button>(R.id.logout)
         val back = findViewById<ImageView>(R.id.backbtn)
+        val uName = findViewById<TextView>(R.id.username)
+        val Nama = findViewById<EditText>(R.id.name)
+        val Keterangan = findViewById<EditText>(R.id.keterangan)
+        val NIP = findViewById<EditText>(R.id.nip)
+        val Telepon = findViewById<EditText>(R.id.telepon)
+        val Email = findViewById<EditText>(R.id.email)
+
 
         logoout.setOnClickListener {
             Preferences.saveLogin(this@ProfileActivity, false)
@@ -30,5 +38,8 @@ class ProfileActivity : AppCompatActivity() {
             onBackPressed()
         }
         header.setText("Profile")
+
+
+
     }
 }
