@@ -32,7 +32,8 @@ class DaftarMitraActivity : AppCompatActivity() {
     var order: String = "asc"
     var statusFilter = "1"
     var spinnerStatus: Spinner? = null
-    val listStatus = arrayListOf("SEMUA", "AKTIF", "NON AKTIF")
+    val listStatus = arrayListOf("NON AKTIF", "AKTIF", "SEMUA")
+    //id semua = 0 ,...., non aktif = 2
 
     var isLoading: Boolean = false
     var daftarMitra: ArrayList<DaftarMitraModel> = ArrayList()
@@ -61,7 +62,7 @@ class DaftarMitraActivity : AppCompatActivity() {
                 id: Long
             ) {
                 if (position != 0) {
-                    getDaftarMitra()
+                    getDaftarMitra(position-1)
                 }
             }
 
@@ -86,7 +87,7 @@ class DaftarMitraActivity : AppCompatActivity() {
 
         setList()
         setSpinnerKategori()
-        getDaftarMitra()
+        getDaftarMitra(1)
 
     }
 
@@ -109,7 +110,7 @@ class DaftarMitraActivity : AppCompatActivity() {
             }
     }
 
-    fun getDaftarMitra() {
+    fun getDaftarMitra(status:Int) {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
         mRepository.getDaftarMitra(
@@ -118,20 +119,22 @@ class DaftarMitraActivity : AppCompatActivity() {
             row = 10,
             order = "asc",
             sortColumn = "no",
-            statusFilter = 1,
+            statusFilter = status,
             object : DataSource.daftarMitraCallback {
                 override fun onSuccess(data: BaseApiModel<daftarMitraModel?>) {
                     isLoading = false
-                    if (data.success) {
+                    if (data.isSuccess) {
                         daftarMitra.clear()
                         data.data?.forEach {
                             daftarMitra?.add(
                                 DaftarMitraModel(
-                                    header_color = if (it?.status == 1) {
+                                    header_color = if (it?.status == 0) {
+                                        "Non Aktif"
+                                    } else if(it?.status == 1) {
                                         "Aktif"
-                                    } else {
-                                        "Non-Aktif"
-                                    },
+                                    }else{
+                                         ""
+                                         },
                                     id_mitra = it?.kodeMitra.safe(),
                                     nama_mitra = it?.namaMitra.safe(),
                                     jenis_mitra = it?.jenisMitra.safe(),
