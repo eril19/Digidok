@@ -150,7 +150,7 @@ class DaftarKjppActivity : AppCompatActivity() {
                 isLoading = false
                 if (data.success) {
                     daftarKJPP.clear()
-                    data.rows?.forEach {
+                    data.data?.forEach {
                         daftarKJPP?.add(
                             DaftarKjppModel(
                                 no_kjpp = "2.08.0005",

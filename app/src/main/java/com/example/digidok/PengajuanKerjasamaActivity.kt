@@ -173,7 +173,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                 isLoading = false
                 if (data.success) {
                     pengajuanKerjasama.clear()
-                    data.rows?.forEach {
+                    data.data?.forEach {
                         pengajuanKerjasama?.add(
                             PengajuanKerjasamaModel(
                                 header_color = "Dikirim",

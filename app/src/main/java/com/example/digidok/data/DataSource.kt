@@ -1,9 +1,6 @@
 package com.example.digidok.data
 
-import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.BeritaModel
-import com.example.digidok.data.model.ProfileModel
-import com.example.digidok.data.model.UserModel
+import com.example.digidok.data.model.*
 
 interface DataSource : BaseDataSource {
 
@@ -13,6 +10,7 @@ interface DataSource : BaseDataSource {
 
     fun getProfile(token:String, callback: ProfileCallback)
 
+    fun getDaftarMitra(token: String, start:Int,row:Int,order:String,sortColumn:String,statusFilter:Int, callback: daftarMitraCallback)
 
     interface LoginDataCallback {
         fun onSuccess(data: BaseApiModel<UserModel?>)
@@ -38,4 +36,11 @@ interface DataSource : BaseDataSource {
         fun onFinish()
     }
 
+    interface daftarMitraCallback {
+        fun onSuccess(data: BaseApiModel<daftarMitraModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
 }

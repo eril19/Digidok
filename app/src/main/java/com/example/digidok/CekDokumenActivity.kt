@@ -120,7 +120,7 @@ class CekDokumenActivity : AppCompatActivity() {
                 isLoading = false
                 if (data.success) {
                     cekDokumen.clear()
-                    data.rows?.forEach {
+                    data.data?.forEach {
                         cekDokumen?.add(
                             CekDokumenModel(
                                 header_color = "Disetujui",

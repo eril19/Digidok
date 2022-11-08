@@ -1,10 +1,7 @@
 package com.example.digidok.data
 
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.BeritaModel
-import com.example.digidok.data.model.ProfileModel
-import com.example.digidok.data.model.UserModel
+import com.example.digidok.data.model.*
 import com.example.digidok.utils.UtilsApplication
 import com.google.gson.GsonBuilder
 import io.reactivex.Observable
@@ -15,8 +12,10 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
 interface ApiService {
@@ -41,6 +40,18 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Field("fid") fid: String
     ): Observable<BaseApiModel<ProfileModel?>>
+
+    @FormUrlEncoded
+    @GET("setup/mitra")
+    fun daftarMitra(
+        @Header("Authorization") token: String,
+        @Query("start") start: Int,
+        @Query("row") row: Int,
+        @Query("order") order: String,
+        @Query("sortColumn") sortColumn: String,
+        @Query("statusFilter") statusFilter: Int,
+
+    ): Observable<BaseApiModel<daftarMitraModel?>>
 
     @FormUrlEncoded
     @POST("cms/berita")

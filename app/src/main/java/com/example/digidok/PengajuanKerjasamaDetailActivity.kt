@@ -197,7 +197,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 isLoading = false
                 if (data.success) {
                     pengajuanKerjasamaDetail.clear()
-                    data.rows?.forEach {
+                    data.data?.forEach {
                         pengajuanKerjasamaDetail?.add(
                             PengajuanKerjasamaDetailModel(
                                 kodeLokasi = "0089879000",
