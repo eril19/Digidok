@@ -234,7 +234,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                 isLoading = false
                 if (data.success) {
                     repositoriDokumen.clear()
-                    data.data?.forEach {
+                    data.rows?.forEach {
                         repositoriDokumen?.add(
                             RepositoriDokumenModel(
                                 header_color = "Dikembalikan",

@@ -12,6 +12,8 @@ interface DataSource : BaseDataSource {
 
     fun getDaftarMitra(token: String, start:Int,row:Int,order:String,sortColumn:String,statusFilter:Int, callback: daftarMitraCallback)
 
+    fun getSetAktifNonAktif(token: String,kodeMitra:String,isAktif:Int, callback: setAktifNonAktifCallback)
+
     interface LoginDataCallback {
         fun onSuccess(data: BaseApiModel<UserModel?>)
 
@@ -38,6 +40,14 @@ interface DataSource : BaseDataSource {
 
     interface daftarMitraCallback {
         fun onSuccess(data: BaseApiModel<daftarMitraModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface setAktifNonAktifCallback {
+        fun onSuccess(data: BaseApiModel<setAktifNonAktifModel?>)
 
         fun onError(message: String)
 

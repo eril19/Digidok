@@ -17,6 +17,7 @@ open class Repository (private val remoteDataSource: DataSource) : DataSource {
     }
 
 
+
     override fun getProfile(token: String, callback: DataSource.ProfileCallback) {
         remoteDataSource.getProfile(token, callback)
     }
@@ -31,6 +32,15 @@ open class Repository (private val remoteDataSource: DataSource) : DataSource {
         callback: DataSource.daftarMitraCallback
     ) {
         remoteDataSource.getDaftarMitra(token,start, row, order, sortColumn, statusFilter, callback)
+    }
+
+    override fun getSetAktifNonAktif(
+        token: String,
+        kodeMitra: String,
+        isAktif: Int,
+        callback: DataSource.setAktifNonAktifCallback
+    ) {
+        remoteDataSource.getSetAktifNonAktif(token, kodeMitra, isAktif, callback)
     }
 
     override fun onClearDisposables() {

@@ -78,7 +78,7 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
                 isLoading = false
                 if (data.success) {
                     laporanAsetDetail.clear()
-                    data.data?.forEach {
+                    data.rows?.forEach {
                         laporanAsetDetail?.add(
                             LaporanAsetDetailModel(
                                 num_laporan = "#1",

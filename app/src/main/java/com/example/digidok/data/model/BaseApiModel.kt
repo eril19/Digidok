@@ -8,9 +8,9 @@ data class BaseApiModel<T>(
     @SerializedName("msg") val message: String,
     @SerializedName("code") val code: String,
     @SerializedName("message") val message1: String,
-//    @SerializedName("data") val data: T? = null,
+    @SerializedName("data") val data: T? = null,
     @SerializedName("user") val user: T? = null,
     @SerializedName("success") val success: Boolean,
-    @SerializedName("data") val data: List<T>? = null,
+    @SerializedName("rows") val rows: List<T>? = null,
     @SerializedName("totalRecord") val totalRecord: Int,
 )

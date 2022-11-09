@@ -18,6 +18,7 @@ import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
 import com.example.digidok.data.model.daftarMitraModel
+import com.example.digidok.data.model.setAktifNonAktifModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
@@ -62,7 +63,7 @@ class DaftarMitraActivity : AppCompatActivity() {
                 id: Long
             ) {
                 if (position != 0) {
-                    getDaftarMitra(position-1)
+                    getDaftarMitra(position - 1)
                 }
             }
 
@@ -100,9 +101,56 @@ class DaftarMitraActivity : AppCompatActivity() {
         recyclerview?.adapter =
             DaftarMitraAdapter(this, daftarMitra, object : DaftarMitraAdapter.onItemClickListener {
                 override fun onItemClick(position: Int) {
-                    val i = Intent(this@DaftarMitraActivity, MitraDetailActivity::class.java)
-                    i.putExtra("daftarMitra", daftarMitra[position])
-                    startActivity(i)
+
+                }
+
+                override fun onItemClickPopupMenu(position: Int, kodeMitra: String, view: View) {
+                    val popupPencet = PopupMenu(this@DaftarMitraActivity, view)
+                    popupPencet.inflate(R.menu.daftar_mitra_menu)
+
+                    popupPencet.setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.menuView -> {
+                                val i = Intent(
+                                    this@DaftarMitraActivity,
+                                    MitraDetailActivity::class.java
+                                )
+                                i.putExtra("menu", "View")
+                                startActivity(i)
+                                true
+                            }
+                            R.id.menuEdit -> {
+                                val i = Intent(
+                                    this@DaftarMitraActivity,
+                                    MitraDetailActivity::class.java
+                                )
+                                i.putExtra("menu", "Edit")
+
+                                startActivity(i)
+                                true
+                            }
+                            R.id.setAktif -> {
+//                                holder.statusMitra = "Aktif"
+//                                holder.header_color.text = "Aktif"
+//                                holder.header_color.background = ContextCompat.getDrawable(holder.header_color.context,
+//                                    R.color.green
+//                                )
+                                getSetAktifNonAktif(kodeMitra, true)
+                                true
+                            }
+                            R.id.setNonAktif -> {
+//                                holder.statusMitra = "Tidak Aktif"
+//                                holder.header_color.text = "Tidak Aktif"
+//                                holder.header_color.background = ContextCompat.getDrawable(holder.header_color.context,
+//                                    R.color.red2
+//                                )
+                                getSetAktifNonAktif(kodeMitra, false)
+                                true
+                            }
+                        }
+                        false
+
+                    }
                 }
             }) {
 
@@ -110,7 +158,36 @@ class DaftarMitraActivity : AppCompatActivity() {
             }
     }
 
-    fun getDaftarMitra(status:Int) {
+    fun getSetAktifNonAktif(kodeMitra: String, isAktif: Boolean) {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getSetAktifNonAktif(
+            token = Preferences.isToken(context = this@DaftarMitraActivity),
+            kodeMitra = kodeMitra,
+            isAktif = if (isAktif) {
+                1
+            } else {
+                0
+            },
+            object : DataSource.setAktifNonAktifCallback {
+                override fun onSuccess(data: BaseApiModel<setAktifNonAktifModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading = false
+                }
+
+                override fun onFinish() {
+                    isLoading = false
+                }
+
+            })
+    }
+
+    fun getDaftarMitra(status: Int) {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
         mRepository.getDaftarMitra(
@@ -125,16 +202,16 @@ class DaftarMitraActivity : AppCompatActivity() {
                     isLoading = false
                     if (data.isSuccess) {
                         daftarMitra.clear()
-                        data.data?.forEach {
+                        data.data?.dataMitra?.forEach {
                             daftarMitra?.add(
                                 DaftarMitraModel(
                                     header_color = if (it?.status == 0) {
-                                        "Non Aktif"
-                                    } else if(it?.status == 1) {
+                                        "Tidak Aktif"
+                                    } else if (it?.status == 1) {
                                         "Aktif"
-                                    }else{
-                                         ""
-                                         },
+                                    } else {
+                                        ""
+                                    },
                                     id_mitra = it?.kodeMitra.safe(),
                                     nama_mitra = it?.namaMitra.safe(),
                                     jenis_mitra = it?.jenisMitra.safe(),

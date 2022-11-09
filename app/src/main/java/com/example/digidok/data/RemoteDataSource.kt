@@ -70,6 +70,24 @@ object RemoteDataSource : DataSource {
             })
     }
 
+    override fun getSetAktifNonAktif(token: String, kodeMitra:String,isAktif:Int,callback: DataSource.setAktifNonAktifCallback) {
+        mApiServiceDev.setAktifNonAktif(token = "Bearer $token", kodeMitra = kodeMitra, isAktif = isAktif)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<setAktifNonAktifModel?>>() {
+                override fun onSuccess(model: BaseApiModel<setAktifNonAktifModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
 
     override fun getBerita(start: String, limit: String, callback: DataSource.BeritaDataCallback) {
         mApiService.berita("android", "android", "sampleToken", start, limit)

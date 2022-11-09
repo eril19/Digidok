@@ -41,6 +41,13 @@ interface ApiService {
         @Field("fid") fid: String
     ): Observable<BaseApiModel<ProfileModel?>>
 
+    @FormUrlEncoded
+    @POST("setup/mitra/set-aktif")
+    fun setAktifNonAktif(
+        @Header("Authorization") token: String,
+        @Field("kodeMitra") kodeMitra: String,
+        @Field("isAktif") isAktif:Int,
+    ): Observable<BaseApiModel<setAktifNonAktifModel?>>
 
     @GET("setup/mitra")
     fun daftarMitra(

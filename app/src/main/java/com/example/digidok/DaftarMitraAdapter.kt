@@ -5,12 +5,14 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.PopupMenu
-import android.widget.TextView
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.data.DataSource
+import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.UserModel
+import com.example.digidok.utils.Preferences
 
 class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: List<DaftarMitraModel>, private var mListener: onItemClickListener,
                          val listener: (DaftarMitraModel) -> Unit)
@@ -20,11 +22,14 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
+
+        fun onItemClickPopupMenu(position: Int, kodeMitra:String, view : View)
     }
 
     fun setOnItemClickListener(listener: onItemClickListener){
         mListener = listener
     }
+
 
 
     class DaftarMitraViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
@@ -40,7 +45,13 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
         val cardView = view.findViewById<CardView>(R.id.cardViewMitra)
         val popup = view.findViewById<ImageView>(R.id.menupopup)
         var statusMitra = ""
+        var kodeMitra = ""
 
+        init {
+            popup.setOnClickListener {
+                listener.onItemClickPopupMenu(adapterPosition, kodeMitra, popup)
+            }
+        }
 
 
         fun bindView(daftarMitraModel: DaftarMitraModel, listener: (DaftarMitraModel) -> Unit){
@@ -53,6 +64,8 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
             npwp_mitra.text = daftarMitraModel.npwp_mitra
             header_color.text = daftarMitraModel.header_color
             statusMitra = daftarMitraModel.header_color
+            kodeMitra = daftarMitraModel.id_mitra
+
 
             if (daftarMitraModel.header_color.equals("Tidak Aktif", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
@@ -94,46 +107,14 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
             }
 
 
-        popupPencet.setOnMenuItemClickListener { item ->
-            when(item.itemId){
-                R.id.menuView ->{
-                    val i = Intent(context, MitraDetailActivity::class.java)
-                    i.putExtra("menu","View")
-                    context.startActivity(i)
-                    true
-                }
-                R.id.menuEdit ->{
-                    val i = Intent(context, MitraDetailActivity::class.java)
-                    i.putExtra("menu","Edit")
 
-                    context.startActivity(i)
-                    true
-                }
-                R.id.setAktif ->{
-                    holder.statusMitra = "Aktif"
-                    holder.header_color.text = "Aktif"
-                    holder.header_color.background = ContextCompat.getDrawable(holder.header_color.context,
-                        R.color.green
-                    )
-                    true
-                }
-                R.id.setNonAktif ->{
-                    holder.statusMitra = "Tidak Aktif"
-                    holder.header_color.text = "Tidak Aktif"
-                    holder.header_color.background = ContextCompat.getDrawable(holder.header_color.context,
-                        R.color.red2
-                    )
-                    true
-                }
-            }
-            false
-
-        }
 
             popupPencet.show()
         })
     }
 
     override fun getItemCount(): Int = DaftarMitra.size
+
+
 
 }
