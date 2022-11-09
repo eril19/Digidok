@@ -124,7 +124,7 @@ class DashboardActivity : AppCompatActivity() {
                 isLoading = false
                 if (data.success) {
                     dashboardList.clear()
-                    data.data?.forEach {
+                    data.rows?.forEach {
                         dashboardList?.add(DashboardModel(it?.editor.toString(), it?.tanggal.toString()))
                     }
                     setListData()

@@ -245,7 +245,7 @@ class LaporanAsetActivity : AppCompatActivity() {
                 isLoading = false
                 if (data.success) {
                     daftarLaporanAset.clear()
-                    data.data?.forEach {
+                    data.rows?.forEach {
                         daftarLaporanAset?.add(
                             LaporanAsetModel(
                                 header_color = "Dikirim",
