@@ -3,7 +3,6 @@ package com.example.digidok
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
-import com.example.digidok.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -42,8 +41,6 @@ class DaftarMitraActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         setContentView(R.layout.activity_daftar_mitra)
 
         val adapter = ArrayAdapter(applicationContext, R.layout.dd_text_status, listStatus)
@@ -101,13 +98,18 @@ class DaftarMitraActivity : AppCompatActivity() {
         recyclerview?.adapter =
             DaftarMitraAdapter(this, daftarMitra, object : DaftarMitraAdapter.onItemClickListener {
                 override fun onItemClick(position: Int) {
+                    val i = Intent(
+                        this@DaftarMitraActivity,
+                        MitraDetailActivity::class.java
+                    )
+                    i.putExtra("menu", "Edit")
 
+                    startActivity(i)
                 }
 
                 override fun onItemClickPopupMenu(position: Int, kodeMitra: String, view: View) {
                     val popupPencet = PopupMenu(this@DaftarMitraActivity, view)
                     popupPencet.inflate(R.menu.daftar_mitra_menu)
-
                     popupPencet.setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.menuView -> {
@@ -151,6 +153,7 @@ class DaftarMitraActivity : AppCompatActivity() {
                         false
 
                     }
+                    popupPencet.show()
                 }
             }) {
 

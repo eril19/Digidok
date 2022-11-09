@@ -1,7 +1,6 @@
 package com.example.digidok
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,6 @@ import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.data.DataSource
-import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.UserModel
-import com.example.digidok.utils.Preferences
 
 class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: List<DaftarMitraModel>, private var mListener: onItemClickListener,
                          val listener: (DaftarMitraModel) -> Unit)
@@ -25,12 +20,6 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
 
         fun onItemClickPopupMenu(position: Int, kodeMitra:String, view : View)
     }
-
-    fun setOnItemClickListener(listener: onItemClickListener){
-        mListener = listener
-    }
-
-
 
     class DaftarMitraViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
 
@@ -48,11 +37,14 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
         var kodeMitra = ""
 
         init {
+//            cardView.setOnClickListener {
+//                listener.onItemClick(adapterPosition)
+//            }
+
             popup.setOnClickListener {
                 listener.onItemClickPopupMenu(adapterPosition, kodeMitra, popup)
             }
         }
-
 
         fun bindView(daftarMitraModel: DaftarMitraModel, listener: (DaftarMitraModel) -> Unit){
             id_mitra.text = daftarMitraModel.id_mitra
@@ -94,23 +86,19 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
     override fun onBindViewHolder(holder: DaftarMitraViewHolder, position: Int) {
         holder.bindView(DaftarMitra[position], listener)
 
-        holder.popup.setOnClickListener(View.OnClickListener{
-            val popupPencet = PopupMenu(context, holder.popup)
-            popupPencet.inflate(R.menu.daftar_mitra_menu)
-
-            if(holder.statusMitra.equals("Aktif",true)){
-                popupPencet.menu.findItem(R.id.setAktif).isVisible = false
-
-            }
-            else{
-                popupPencet.menu.findItem(R.id.setNonAktif).isVisible = false
-            }
-
-
-
-
-            popupPencet.show()
-        })
+//        holder.popup.setOnClickListener(View.OnClickListener{
+//            val popupPencet = PopupMenu(context, holder.popup)
+//            popupPencet.inflate(R.menu.daftar_mitra_menu)
+//
+//            if(holder.statusMitra.equals("Aktif",true)){
+//                popupPencet.menu.findItem(R.id.setAktif).isVisible = false
+//
+//            }
+//            else{
+//                popupPencet.menu.findItem(R.id.setNonAktif).isVisible = false
+//            }
+//            popupPencet.show()
+//        })
     }
 
     override fun getItemCount(): Int = DaftarMitra.size

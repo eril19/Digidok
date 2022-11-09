@@ -231,7 +231,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                 isLoading = false
                 if (data.success) {
                     laporanPengajuan.clear()
-                    data.data?.forEach {
+                    data.rows?.forEach {
                         laporanPengajuan?.add(
                             LaporanPengajuanModel(
                                 header_color = "Dikembalikan",
