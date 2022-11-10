@@ -14,6 +14,8 @@ interface DataSource : BaseDataSource {
 
     fun getSetAktifNonAktif(token: String,kodeMitra:String,isAktif:Int, callback: setAktifNonAktifCallback)
 
+    fun getNPWP(token: String, noNpwp:String, callback: NPWPCallback)
+
     interface LoginDataCallback {
         fun onSuccess(data: BaseApiModel<UserModel?>)
 
@@ -48,6 +50,14 @@ interface DataSource : BaseDataSource {
 
     interface setAktifNonAktifCallback {
         fun onSuccess(data: BaseApiModel<setAktifNonAktifModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface NPWPCallback {
+        fun onSuccess(data: BaseApiModel<NPWPModel?>)
 
         fun onError(message: String)
 

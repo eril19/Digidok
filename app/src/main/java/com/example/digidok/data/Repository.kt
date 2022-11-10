@@ -43,6 +43,10 @@ open class Repository (private val remoteDataSource: DataSource) : DataSource {
         remoteDataSource.getSetAktifNonAktif(token, kodeMitra, isAktif, callback)
     }
 
+    override fun getNPWP(token: String, noNpwp: String, callback: DataSource.NPWPCallback) {
+        remoteDataSource.getNPWP(token, noNpwp, callback)
+    }
+
     override fun onClearDisposables() {
         remoteDataSource.onClearDisposables()
     }

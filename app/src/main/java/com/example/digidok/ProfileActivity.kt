@@ -19,7 +19,7 @@ class ProfileActivity : AppCompatActivity() {
 
     var uName : TextView? = null
     var Nama :EditText? = null
-//    var Keterangan : EditText?=null
+    var Keterangan : EditText?=null
     var NIP : EditText?=null
     var Telepon : EditText?=null
     var Email : EditText?=null
@@ -37,14 +37,16 @@ class ProfileActivity : AppCompatActivity() {
 
         uName =  findViewById<TextView>(R.id.username)
         Nama = findViewById<EditText>(R.id.name)
-//        Keterangan = findViewById<EditText>(R.id.keterangan)
+        Keterangan = findViewById<EditText>(R.id.keterangan)
          NIP = findViewById<EditText>(R.id.nip)
          Telepon = findViewById<EditText>(R.id.telepon)
          Email = findViewById<EditText>(R.id.email)
 
         logoout.setOnClickListener {
             Preferences.saveLogin(this@ProfileActivity, false)
-            
+            Preferences.saveUser(this@ProfileActivity, "")
+            Preferences.saveRole(this@ProfileActivity,"")
+            Preferences.saveToken(this@ProfileActivity, "")
             startActivity(Intent(this@ProfileActivity, LoginActivity::class.java))
             finish()
         }
@@ -68,9 +70,9 @@ class ProfileActivity : AppCompatActivity() {
                     if (data.isSuccess) {
                          uName?.text = data.data?.userId
                          Nama?.setText(data.data?.nama)
-//                         Keterangan?.text = data.data?.
+                         Keterangan?.setText(data.data?.description)
                          NIP?.setText( data.data?.nip)
-                         Telepon?.setText(data.data?.noHP)
+                         Telepon?.setText(data.data?.noHp)
                          Email?.setText(data.data?.email)
 
                     } else {

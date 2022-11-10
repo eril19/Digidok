@@ -35,6 +35,8 @@ class DaftarMitraActivity : AppCompatActivity() {
     val listStatus = arrayListOf("NON AKTIF", "AKTIF", "SEMUA")
     //id semua = 0 ,...., non aktif = 2
 //    var statusMitra = findViewById<TextView>(R.id.header_color)
+
+
     var isLoading: Boolean = false
     var daftarMitra: ArrayList<DaftarMitraModel> = ArrayList()
     private var recyclerview: RecyclerView? = null

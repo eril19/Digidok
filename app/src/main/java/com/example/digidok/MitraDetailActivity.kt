@@ -3,25 +3,49 @@ package com.example.digidok
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Switch
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.digidok.data.DataSource
+import com.example.digidok.data.Repository
+import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.NPWPModel
+import com.example.digidok.data.model.daftarMitraModel
+import com.example.digidok.utils.Injection
+import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
+import org.w3c.dom.Text
 
 class MitraDetailActivity : AppCompatActivity() {
 
-    var data: DaftarMitraModel? = null
+//    var data: DaftarMitraModel? = null
     var hideButton: Boolean = false
     var isEdit: String = ""
+    var npwp: EditText? = null
+    var nama: EditText? = null
+    var alamat: EditText? = null
+    var kelurahan: EditText? = null
+    var kecamatan: EditText? = null
+    var kota: EditText? = null
+    var provinsi: EditText? = null
+    var klasifikasi: EditText? = null
+    var kpp: EditText? = null
+    var kanwil: EditText? = null
+    var telp: EditText? = null
+    var fax: EditText? = null
+    var email: EditText? = null
+    var ttl: EditText? = null
+    var tgl_daftar: EditText? = null
+    var status_pkp: EditText? = null
+    var tgl_pkp: EditText? = null
+    var jenis_pajak: EditText? = null
+    var badan_hukum: EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mitra_detail)
 
         supportActionBar?.hide()
-
 
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
@@ -32,31 +56,32 @@ class MitraDetailActivity : AppCompatActivity() {
             finish()
         }
 
-        data = intent.getParcelableExtra("daftarMitra")
+//        data = intent.getParcelableExtra("daftarMitra")
         isEdit = intent.getStringExtra("menu") ?: ""
 
 
-        val npwp = findViewById<TextView>(R.id.npwp)
-        val nama = findViewById<TextView>(R.id.namadetailkjpp)
-        val alamat = findViewById<TextView>(R.id.alamatdetail)
-        val kelurahan = findViewById<TextView>(R.id.kelurahan)
-        val kecamatan = findViewById<TextView>(R.id.kecamatan)
-        val kota = findViewById<TextView>(R.id.kota)
-        val provinsi = findViewById<TextView>(R.id.provinsi)
-        val klasifikasi = findViewById<TextView>(R.id.klu)
-        val kpp = findViewById<TextView>(R.id.kpp)
-        val kanwil = findViewById<TextView>(R.id.kanwil)
-        val telp = findViewById<TextView>(R.id.telp_mitra)
-        val fax = findViewById<TextView>(R.id.fax_mitra)
-        val email = findViewById<TextView>(R.id.email_mitra)
-        val ttl = findViewById<TextView>(R.id.ttl_mitra)
-        val tgl_daftar = findViewById<TextView>(R.id.tgl_daftar_mitra)
-        val status_pkp = findViewById<TextView>(R.id.status_pkp_mitra)
-        val tgl_pkp = findViewById<TextView>(R.id.tgl_pkp_mitra)
-        val jenis_pajak = findViewById<TextView>(R.id.jenis_pajak_mitra)
-        val badan_hukum = findViewById<TextView>(R.id.badan_hukum_mitra)
-        var switch = findViewById<Switch>(R.id.NPWPSwitch)
-        var refresh = findViewById<ImageView>(R.id.refreshButton)
+        npwp = findViewById<EditText>(R.id.npwp)
+        nama = findViewById<EditText>(R.id.namadetailkjpp)
+        alamat = findViewById<EditText>(R.id.alamatdetail)
+        kelurahan = findViewById<EditText>(R.id.kelurahan)
+        kecamatan = findViewById<EditText>(R.id.kecamatan)
+        kota = findViewById<EditText>(R.id.kota)
+        provinsi = findViewById<EditText>(R.id.provinsi)
+        klasifikasi = findViewById<EditText>(R.id.klu)
+        kpp = findViewById<EditText>(R.id.kpp)
+        kanwil = findViewById<EditText>(R.id.kanwil)
+        telp = findViewById<EditText>(R.id.telp_mitra)
+        fax = findViewById<EditText>(R.id.fax_mitra)
+        email = findViewById<EditText>(R.id.email_mitra)
+        ttl = findViewById<EditText>(R.id.ttl_mitra)
+        tgl_daftar = findViewById<EditText>(R.id.tgl_daftar_mitra)
+        status_pkp = findViewById<EditText>(R.id.status_pkp_mitra)
+        tgl_pkp = findViewById<EditText>(R.id.tgl_pkp_mitra)
+        jenis_pajak = findViewById<EditText>(R.id.jenis_pajak_mitra)
+        badan_hukum = findViewById<EditText>(R.id.badan_hukum_mitra)
+
+        val switch = findViewById<Switch>(R.id.NPWPSwitch)
+        val refresh = findViewById<ImageView>(R.id.refreshButton)
 
         if (isEdit.equals("Edit", true) || isEdit.equals("Tambah", true)) {
 
@@ -82,7 +107,8 @@ class MitraDetailActivity : AppCompatActivity() {
                     badan_hukum.isEnabled = false
 
                     npwp.isEnabled = true
-                    npwp.background = ContextCompat.getDrawable(nama.context, R.drawable.custom_profile_enable)
+                    npwp.background =
+                        ContextCompat.getDrawable(nama.context, R.drawable.custom_profile_enable)
                     nama.background =
                         ContextCompat.getDrawable(nama.context, R.drawable.custom_profile)
                     alamat.background =
@@ -122,7 +148,8 @@ class MitraDetailActivity : AppCompatActivity() {
                 } else {
 
                     npwp.isEnabled = false
-                    npwp.background = ContextCompat.getDrawable(npwp.context, R.drawable.custom_profile)
+                    npwp.background =
+                        ContextCompat.getDrawable(npwp.context, R.drawable.custom_profile)
                     nama.isEnabled = true
                     nama.background =
                         ContextCompat.getDrawable(nama.context, R.drawable.custom_profile_enable)
@@ -131,19 +158,31 @@ class MitraDetailActivity : AppCompatActivity() {
                         ContextCompat.getDrawable(alamat.context, R.drawable.custom_profile_enable)
                     kelurahan.isEnabled = true
                     kelurahan.background =
-                        ContextCompat.getDrawable(kelurahan.context, R.drawable.custom_profile_enable)
+                        ContextCompat.getDrawable(
+                            kelurahan.context,
+                            R.drawable.custom_profile_enable
+                        )
                     kecamatan.isEnabled = true
                     kecamatan.background =
-                        ContextCompat.getDrawable(kecamatan.context, R.drawable.custom_profile_enable)
+                        ContextCompat.getDrawable(
+                            kecamatan.context,
+                            R.drawable.custom_profile_enable
+                        )
                     kota.isEnabled = true
                     kota.background =
                         ContextCompat.getDrawable(kota.context, R.drawable.custom_profile_enable)
                     provinsi.isEnabled = true
                     provinsi.background =
-                        ContextCompat.getDrawable(provinsi.context, R.drawable.custom_profile_enable)
+                        ContextCompat.getDrawable(
+                            provinsi.context,
+                            R.drawable.custom_profile_enable
+                        )
                     klasifikasi.isEnabled = true
                     klasifikasi.background =
-                        ContextCompat.getDrawable(klasifikasi.context, R.drawable.custom_profile_enable)
+                        ContextCompat.getDrawable(
+                            klasifikasi.context,
+                            R.drawable.custom_profile_enable
+                        )
                     kpp.isEnabled = true
                     kpp.background =
                         ContextCompat.getDrawable(kpp.context, R.drawable.custom_profile_enable)
@@ -164,19 +203,31 @@ class MitraDetailActivity : AppCompatActivity() {
                         ContextCompat.getDrawable(ttl.context, R.drawable.custom_profile_enable)
                     tgl_daftar.isEnabled = true
                     tgl_daftar.background =
-                        ContextCompat.getDrawable(tgl_daftar.context, R.drawable.custom_profile_enable)
+                        ContextCompat.getDrawable(
+                            tgl_daftar.context,
+                            R.drawable.custom_profile_enable
+                        )
                     status_pkp.isEnabled = true
                     status_pkp.background =
-                        ContextCompat.getDrawable(status_pkp.context, R.drawable.custom_profile_enable)
+                        ContextCompat.getDrawable(
+                            status_pkp.context,
+                            R.drawable.custom_profile_enable
+                        )
                     tgl_pkp.isEnabled = true
                     tgl_pkp.background =
                         ContextCompat.getDrawable(tgl_pkp.context, R.drawable.custom_profile_enable)
                     jenis_pajak.isEnabled = true
                     jenis_pajak.background =
-                        ContextCompat.getDrawable(jenis_pajak.context, R.drawable.custom_profile_enable)
+                        ContextCompat.getDrawable(
+                            jenis_pajak.context,
+                            R.drawable.custom_profile_enable
+                        )
                     badan_hukum.isEnabled = true
                     badan_hukum.background =
-                        ContextCompat.getDrawable(badan_hukum.context, R.drawable.custom_profile_enable)
+                        ContextCompat.getDrawable(
+                            badan_hukum.context,
+                            R.drawable.custom_profile_enable
+                        )
 
 
                 }
@@ -246,33 +297,59 @@ class MitraDetailActivity : AppCompatActivity() {
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
         next_detail_btn.setOnClickListener {
             val i = Intent(this@MitraDetailActivity, MitraDetailActivity2::class.java)
-            if(isEdit.equals("Edit",true)||isEdit.equals("Tambah",true)){
+            if (isEdit.equals("Edit", true) || isEdit.equals("Tambah", true)) {
                 i.putExtra("menu2", "Edit")
-            }
-            else{
+            } else {
                 i.putExtra("menu2", "View")
             }
             startActivity(i)
         }
 
-        npwp.setText(data?.npwp)
-        nama.setText(data?.nama_mitra)
-//        alamat.setText(data?.alamat_mitra)
-//        kelurahan.setText(data?.kelurahan_mitra)
-//        kecamatan.setText(data?.kecamatan_mitra)
-//        kota.setText(data?.kota_mitra)
-//        provinsi.setText(data?.provinsi_mitra)
-//        klasifikasi.setText(data?.klasifikasi_mitra)
-//        kpp.setText(data?.kpp_mitra)
-//        kanwil.setText(data?.kanwil_mitra)
-//        telp.setText(data?.telp_mitra)
-//        fax.setText(data?.fax_mitra)
-//        email.setText(data?.email_mitra)
-//        ttl.setText(data?.ttl_mitra)
-//        tgl_daftar.setText(data?.tgl_daftar_mitra)
-//        status_pkp.setText(data?.status_pkp_mitra)
-//        tgl_pkp.setText(data?.tgl_pkp_mitra)
-//        jenis_pajak.setText(data?.jeniw_pajak_mitra)
-//        badan_hukum.setText(data?.badan_hukum_mitra)
+        refresh.setOnClickListener {
+            getNpwp(npwp.text)
+        }
+
+    }
+
+    fun getNpwp(noNpwp: String) {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getNPWP(
+            token = Preferences.isToken(context = this@MitraDetailActivity),
+            noNpwp = noNpwp,
+            object : DataSource.NPWPCallback {
+                override fun onSuccess(data: BaseApiModel<NPWPModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        nama?.setText(data.data?.nama)
+                        alamat?.setText(data.data?.alamat)
+                        kelurahan?.setText(data.data?.kelurahan)
+                        kecamatan?.setText(data.data?.kecamatan)
+                        kota?.setText(data.data?.kabKota)
+                        provinsi?.setText(data.data?.provinsi)
+                        klasifikasi?.setText(data.data?.klasifikasiKlu)
+//                        kpp.setText(data.data?.)
+                        kanwil?.setText(data.data?.kanwil)
+                        telp?.setText(data.data?.nomorTelepon)
+                        fax?.setText(data.data?.nomorFax)
+                        email?.setText(data.data?.email)
+                        ttl?.setText(data.data?.ttl)
+                        tgl_daftar?.setText(data.data?.tanggalDaftar)
+                        status_pkp?.setText(data.data?.statusPkp)
+                        tgl_pkp?.setText(data.data?.tanggalPengukuhanPkp)
+                        jenis_pajak?.setText(data.data?.jenisWajibPajak)
+                        badan_hukum?.setText(data.data?.badanHukum)
+                    }
+                }
+
+                override fun onError(message: String) {
+                    Toast.makeText(this@MitraDetailActivity, "Data gagal dimuat", Toast.LENGTH_LONG).show()
+                }
+
+                override fun onFinish() {
+                    Toast.makeText(this@MitraDetailActivity, "Data selesai dimuat", Toast.LENGTH_LONG).show()
+                }
+
+            })
     }
 }

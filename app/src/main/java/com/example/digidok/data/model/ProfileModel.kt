@@ -9,8 +9,11 @@ class ProfileModel (
     val nama: String = "",
     @SerializedName("nip")
     val nip: String = "",
-    @SerializedName("noHP")
-    val noHP: String,
+    @SerializedName("noHp")
+    val noHp: String,
     @SerializedName("email")
     val email : String,
-        )
+    @SerializedName("description")
+    val description : String,
+
+    )

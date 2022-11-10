@@ -60,6 +60,12 @@ interface ApiService {
 
     ): Observable<BaseApiModel<daftarMitraModel?>>
 
+    @GET("master/get-npwp")
+    fun NPWP(
+        @Header("Authorization") token: String,
+        @Query("noNpwp") noNpwp: String,
+        ): Observable<BaseApiModel<NPWPModel?>>
+
     @FormUrlEncoded
     @POST("cms/berita")
     fun berita(

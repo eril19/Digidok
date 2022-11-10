@@ -89,6 +89,25 @@ object RemoteDataSource : DataSource {
             })
     }
 
+    override fun getNPWP(token: String, noNpwp: String, callback: DataSource.NPWPCallback) {
+        mApiServiceDev.NPWP(token = "Bearer $token", noNpwp = noNpwp)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<NPWPModel?>>() {
+                override fun onSuccess(model: BaseApiModel<NPWPModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
     override fun getBerita(start: String, limit: String, callback: DataSource.BeritaDataCallback) {
         mApiService.berita("android", "android", "sampleToken", start, limit)
             .subscribeOn(Schedulers.io())
