@@ -18,7 +18,7 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
     interface onItemClickListener{
         fun onItemClick(position: Int)
 
-        fun onItemClickPopupMenu(position: Int, kodeMitra:String, view : View)
+        fun onItemClickPopupMenu(position: Int, kodeMitra:String, statusMitra:String ,view : View)
     }
 
     class DaftarMitraViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
@@ -42,7 +42,7 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
 //            }
 
             popup.setOnClickListener {
-                listener.onItemClickPopupMenu(adapterPosition, kodeMitra, popup)
+                listener.onItemClickPopupMenu(adapterPosition, kodeMitra, statusMitra,popup)
             }
         }
 

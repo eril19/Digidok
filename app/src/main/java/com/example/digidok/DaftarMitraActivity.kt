@@ -34,7 +34,7 @@ class DaftarMitraActivity : AppCompatActivity() {
     var spinnerStatus: Spinner? = null
     val listStatus = arrayListOf("NON AKTIF", "AKTIF", "SEMUA")
     //id semua = 0 ,...., non aktif = 2
-
+//    var statusMitra = findViewById<TextView>(R.id.header_color)
     var isLoading: Boolean = false
     var daftarMitra: ArrayList<DaftarMitraModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
@@ -107,9 +107,17 @@ class DaftarMitraActivity : AppCompatActivity() {
                     startActivity(i)
                 }
 
-                override fun onItemClickPopupMenu(position: Int, kodeMitra: String, view: View) {
+                override fun onItemClickPopupMenu(position: Int, kodeMitra: String, statusMitra:String ,view: View) {
                     val popupPencet = PopupMenu(this@DaftarMitraActivity, view)
                     popupPencet.inflate(R.menu.daftar_mitra_menu)
+
+                    if ( statusMitra.equals("Aktif")) {
+                        popupPencet.menu.findItem(R.id.setAktif).isVisible = false
+
+                    } else {
+                        popupPencet.menu.findItem(R.id.setNonAktif).isVisible = false
+                    }
+
                     popupPencet.setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.menuView -> {

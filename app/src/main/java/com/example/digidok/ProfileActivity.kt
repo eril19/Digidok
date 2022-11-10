@@ -44,6 +44,7 @@ class ProfileActivity : AppCompatActivity() {
 
         logoout.setOnClickListener {
             Preferences.saveLogin(this@ProfileActivity, false)
+            
             startActivity(Intent(this@ProfileActivity, LoginActivity::class.java))
             finish()
         }
