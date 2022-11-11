@@ -11,15 +11,15 @@ class NPWPModel(
     val kelurahan: String,
     @SerializedName("kecamatan")
     val kecamatan: String,
-    @SerializedName("kabkota")
+    @SerializedName("kabKota")
     val kabKota: String,
     @SerializedName("provinsi")
     val provinsi: String,
-    @SerializedName("klasifikasiklu")
+    @SerializedName("klasifikasiKlu")
     val klasifikasiKlu: String,
     @SerializedName("kanwil")
     val kanwil: String,
-    @SerializedName("nomorTelepom")
+    @SerializedName("nomorTelepon")
     val nomorTelepon: String,
     @SerializedName("nomorFax")
     val nomorFax: String,
