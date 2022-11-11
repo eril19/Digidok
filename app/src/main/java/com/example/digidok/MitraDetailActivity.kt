@@ -87,145 +87,145 @@ class MitraDetailActivity : AppCompatActivity() {
 
             switch.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (switch.isChecked) {
-                    nama.isEnabled = false
-                    alamat.isEnabled = false
-                    kelurahan.isEnabled = false
-                    kecamatan.isEnabled = false
-                    kota.isEnabled = false
-                    provinsi.isEnabled = false
-                    klasifikasi.isEnabled = false
-                    kpp.isEnabled = false
-                    kanwil.isEnabled = false
-                    telp.isEnabled = false
-                    fax.isEnabled = false
-                    email.isEnabled = false
-                    ttl.isEnabled = false
-                    tgl_daftar.isEnabled = false
-                    status_pkp.isEnabled = false
-                    tgl_pkp.isEnabled = false
-                    jenis_pajak.isEnabled = false
-                    badan_hukum.isEnabled = false
+                    nama?.isEnabled = false
+                    alamat?.isEnabled = false
+                    kelurahan?.isEnabled = false
+                    kecamatan?.isEnabled = false
+                    kota?.isEnabled = false
+                    provinsi?.isEnabled = false
+                    klasifikasi?.isEnabled = false
+                    kpp?.isEnabled = false
+                    kanwil?.isEnabled = false
+                    telp?.isEnabled = false
+                    fax?.isEnabled = false
+                    email?.isEnabled = false
+                    ttl?.isEnabled = false
+                    tgl_daftar?.isEnabled = false
+                    status_pkp?.isEnabled = false
+                    tgl_pkp?.isEnabled = false
+                    jenis_pajak?.isEnabled = false
+                    badan_hukum?.isEnabled = false
 
-                    npwp.isEnabled = true
-                    npwp.background =
-                        ContextCompat.getDrawable(nama.context, R.drawable.custom_profile_enable)
-                    nama.background =
-                        ContextCompat.getDrawable(nama.context, R.drawable.custom_profile)
-                    alamat.background =
-                        ContextCompat.getDrawable(alamat.context, R.drawable.custom_profile)
-                    kelurahan.background =
-                        ContextCompat.getDrawable(kelurahan.context, R.drawable.custom_profile)
-                    kecamatan.background =
-                        ContextCompat.getDrawable(kecamatan.context, R.drawable.custom_profile)
-                    kota.background =
-                        ContextCompat.getDrawable(kota.context, R.drawable.custom_profile)
-                    provinsi.background =
-                        ContextCompat.getDrawable(provinsi.context, R.drawable.custom_profile)
-                    klasifikasi.background =
-                        ContextCompat.getDrawable(klasifikasi.context, R.drawable.custom_profile)
-                    kpp.background =
-                        ContextCompat.getDrawable(kpp.context, R.drawable.custom_profile)
-                    kanwil.background =
-                        ContextCompat.getDrawable(kanwil.context, R.drawable.custom_profile)
-                    telp.background =
-                        ContextCompat.getDrawable(telp.context, R.drawable.custom_profile)
-                    fax.background =
-                        ContextCompat.getDrawable(fax.context, R.drawable.custom_profile)
-                    email.background =
-                        ContextCompat.getDrawable(email.context, R.drawable.custom_profile)
-                    ttl.background =
-                        ContextCompat.getDrawable(ttl.context, R.drawable.custom_profile)
-                    tgl_daftar.background =
-                        ContextCompat.getDrawable(tgl_daftar.context, R.drawable.custom_profile)
-                    status_pkp.background =
-                        ContextCompat.getDrawable(status_pkp.context, R.drawable.custom_profile)
-                    tgl_pkp.background =
-                        ContextCompat.getDrawable(tgl_pkp.context, R.drawable.custom_profile)
-                    jenis_pajak.background =
-                        ContextCompat.getDrawable(jenis_pajak.context, R.drawable.custom_profile)
-                    badan_hukum.background =
-                        ContextCompat.getDrawable(badan_hukum.context, R.drawable.custom_profile)
+                    npwp?.isEnabled = true
+                    npwp?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile_enable)
+                    nama?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    alamat?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    kelurahan?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    kecamatan?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    kota?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    provinsi?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    klasifikasi?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    kpp?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    kanwil?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    telp?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    fax?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    email?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    ttl?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    tgl_daftar?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    status_pkp?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    tgl_pkp?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    jenis_pajak?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    badan_hukum?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
                 } else {
 
-                    npwp.isEnabled = false
-                    npwp.background =
-                        ContextCompat.getDrawable(npwp.context, R.drawable.custom_profile)
-                    nama.isEnabled = true
-                    nama.background =
-                        ContextCompat.getDrawable(nama.context, R.drawable.custom_profile_enable)
-                    alamat.isEnabled = true
-                    alamat.background =
-                        ContextCompat.getDrawable(alamat.context, R.drawable.custom_profile_enable)
-                    kelurahan.isEnabled = true
-                    kelurahan.background =
+                    npwp?.isEnabled = false
+                    npwp?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+                    nama?.isEnabled = true
+                    nama?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile_enable)
+                    alamat?.isEnabled = true
+                    alamat?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile_enable)
+                    kelurahan?.isEnabled = true
+                    kelurahan?.background =
                         ContextCompat.getDrawable(
-                            kelurahan.context,
+                            this@MitraDetailActivity,
                             R.drawable.custom_profile_enable
                         )
-                    kecamatan.isEnabled = true
-                    kecamatan.background =
+                    kecamatan?.isEnabled = true
+                    kecamatan?.background =
                         ContextCompat.getDrawable(
-                            kecamatan.context,
+                            this@MitraDetailActivity,
                             R.drawable.custom_profile_enable
                         )
-                    kota.isEnabled = true
-                    kota.background =
-                        ContextCompat.getDrawable(kota.context, R.drawable.custom_profile_enable)
-                    provinsi.isEnabled = true
-                    provinsi.background =
+                    kota?.isEnabled = true
+                    kota?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile_enable)
+                    provinsi?.isEnabled = true
+                    provinsi?.background =
                         ContextCompat.getDrawable(
-                            provinsi.context,
+                            this@MitraDetailActivity,
                             R.drawable.custom_profile_enable
                         )
-                    klasifikasi.isEnabled = true
-                    klasifikasi.background =
+                    klasifikasi?.isEnabled = true
+                    klasifikasi?.background =
                         ContextCompat.getDrawable(
-                            klasifikasi.context,
+                            this@MitraDetailActivity,
                             R.drawable.custom_profile_enable
                         )
-                    kpp.isEnabled = true
-                    kpp.background =
-                        ContextCompat.getDrawable(kpp.context, R.drawable.custom_profile_enable)
-                    kanwil.isEnabled = true
-                    kanwil.background =
-                        ContextCompat.getDrawable(kanwil.context, R.drawable.custom_profile_enable)
-                    telp.isEnabled = true
-                    telp.background =
-                        ContextCompat.getDrawable(telp.context, R.drawable.custom_profile_enable)
-                    fax.isEnabled = true
-                    fax.background =
-                        ContextCompat.getDrawable(fax.context, R.drawable.custom_profile_enable)
-                    email.isEnabled = true
-                    email.background =
-                        ContextCompat.getDrawable(email.context, R.drawable.custom_profile_enable)
-                    ttl.isEnabled = true
-                    ttl.background =
-                        ContextCompat.getDrawable(ttl.context, R.drawable.custom_profile_enable)
-                    tgl_daftar.isEnabled = true
-                    tgl_daftar.background =
+                    kpp?.isEnabled = true
+                    kpp?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile_enable)
+                    kanwil?.isEnabled = true
+                    kanwil?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile_enable)
+                    telp?.isEnabled = true
+                    telp?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile_enable)
+                    fax?.isEnabled = true
+                    fax?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile_enable)
+                    email?.isEnabled = true
+                    email?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile_enable)
+                    ttl?.isEnabled = true
+                    ttl?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile_enable)
+                    tgl_daftar?.isEnabled = true
+                    tgl_daftar?.background =
                         ContextCompat.getDrawable(
-                            tgl_daftar.context,
+                            this@MitraDetailActivity,
                             R.drawable.custom_profile_enable
                         )
-                    status_pkp.isEnabled = true
-                    status_pkp.background =
+                    status_pkp?.isEnabled = true
+                    status_pkp?.background =
                         ContextCompat.getDrawable(
-                            status_pkp.context,
+                            this@MitraDetailActivity,
                             R.drawable.custom_profile_enable
                         )
-                    tgl_pkp.isEnabled = true
-                    tgl_pkp.background =
-                        ContextCompat.getDrawable(tgl_pkp.context, R.drawable.custom_profile_enable)
-                    jenis_pajak.isEnabled = true
-                    jenis_pajak.background =
+                    tgl_pkp?.isEnabled = true
+                    tgl_pkp?.background =
+                        ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile_enable)
+                    jenis_pajak?.isEnabled = true
+                    jenis_pajak?.background =
                         ContextCompat.getDrawable(
-                            jenis_pajak.context,
+                            this@MitraDetailActivity,
                             R.drawable.custom_profile_enable
                         )
-                    badan_hukum.isEnabled = true
-                    badan_hukum.background =
+                    badan_hukum?.isEnabled = true
+                    badan_hukum?.background =
                         ContextCompat.getDrawable(
-                            badan_hukum.context,
+                            this@MitraDetailActivity,
                             R.drawable.custom_profile_enable
                         )
 
@@ -236,62 +236,62 @@ class MitraDetailActivity : AppCompatActivity() {
         } else {
             refresh.visibility = View.GONE
             switch.visibility = View.GONE
-            npwp.isEnabled = false
-            npwp.background = ContextCompat.getDrawable(npwp.context, R.drawable.custom_profile)
-            nama.isEnabled = false
-            alamat.isEnabled = false
-            kelurahan.isEnabled = false
-            kecamatan.isEnabled = false
-            kota.isEnabled = false
-            provinsi.isEnabled = false
-            klasifikasi.isEnabled = false
-            kpp.isEnabled = false
-            kanwil.isEnabled = false
-            telp.isEnabled = false
-            fax.isEnabled = false
-            email.isEnabled = false
-            ttl.isEnabled = false
-            tgl_daftar.isEnabled = false
-            status_pkp.isEnabled = false
-            tgl_pkp.isEnabled = false
-            jenis_pajak.isEnabled = false
-            badan_hukum.isEnabled = false
-            nama.background =
-                ContextCompat.getDrawable(nama.context, R.drawable.custom_profile)
-            alamat.background =
-                ContextCompat.getDrawable(alamat.context, R.drawable.custom_profile)
-            kelurahan.background =
-                ContextCompat.getDrawable(kelurahan.context, R.drawable.custom_profile)
-            kecamatan.background =
-                ContextCompat.getDrawable(kecamatan.context, R.drawable.custom_profile)
-            kota.background =
-                ContextCompat.getDrawable(kota.context, R.drawable.custom_profile)
-            provinsi.background =
-                ContextCompat.getDrawable(provinsi.context, R.drawable.custom_profile)
-            klasifikasi.background =
-                ContextCompat.getDrawable(klasifikasi.context, R.drawable.custom_profile)
-            kpp.background =
-                ContextCompat.getDrawable(kpp.context, R.drawable.custom_profile)
-            kanwil.background =
-                ContextCompat.getDrawable(kanwil.context, R.drawable.custom_profile)
-            telp.background =
-                ContextCompat.getDrawable(telp.context, R.drawable.custom_profile)
-            fax.background =
-                ContextCompat.getDrawable(fax.context, R.drawable.custom_profile)
-            email.background =
-                ContextCompat.getDrawable(email.context, R.drawable.custom_profile)
-            ttl.background =
-                ContextCompat.getDrawable(ttl.context, R.drawable.custom_profile)
-            tgl_daftar.background =
-                ContextCompat.getDrawable(tgl_daftar.context, R.drawable.custom_profile)
-            status_pkp.background =
-                ContextCompat.getDrawable(status_pkp.context, R.drawable.custom_profile)
-            tgl_pkp.background =
-                ContextCompat.getDrawable(tgl_pkp.context, R.drawable.custom_profile)
-            jenis_pajak.background =
-                ContextCompat.getDrawable(jenis_pajak.context, R.drawable.custom_profile)
-            badan_hukum.background =
-                ContextCompat.getDrawable(badan_hukum.context, R.drawable.custom_profile)
+            npwp?.isEnabled = false
+            npwp?.background = ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            nama?.isEnabled = false
+            alamat?.isEnabled = false
+            kelurahan?.isEnabled = false
+            kecamatan?.isEnabled = false
+            kota?.isEnabled = false
+            provinsi?.isEnabled = false
+            klasifikasi?.isEnabled = false
+            kpp?.isEnabled = false
+            kanwil?.isEnabled = false
+            telp?.isEnabled = false
+            fax?.isEnabled = false
+            email?.isEnabled = false
+            ttl?.isEnabled = false
+            tgl_daftar?.isEnabled = false
+            status_pkp?.isEnabled = false
+            tgl_pkp?.isEnabled = false
+            jenis_pajak?.isEnabled = false
+            badan_hukum?.isEnabled = false
+            nama?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            alamat?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            kelurahan?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            kecamatan?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            kota?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            provinsi?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            klasifikasi?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            kpp?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            kanwil?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            telp?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            fax?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            email?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            ttl?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            tgl_daftar?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            status_pkp?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            tgl_pkp?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            jenis_pajak?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
+            badan_hukum?.background =
+                ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
         }
 
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
@@ -306,7 +306,7 @@ class MitraDetailActivity : AppCompatActivity() {
         }
 
         refresh.setOnClickListener {
-            getNpwp(npwp.text)
+            getNpwp(npwp?.text.toString())
         }
 
     }
