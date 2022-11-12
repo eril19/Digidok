@@ -109,7 +109,13 @@ class DaftarMitraActivity : AppCompatActivity() {
                     startActivity(i)
                 }
 
-                override fun onItemClickPopupMenu(position: Int, kodeMitra: String, statusMitra:String ,view: View) {
+                override fun onItemClickPopupMenu(
+                    position: Int,
+                    kodeMitra: String,
+                    statusMitra: String,
+                    NPWP: String,
+                    view: View
+                ) {
                     val popupPencet = PopupMenu(this@DaftarMitraActivity, view)
                     popupPencet.inflate(R.menu.daftar_mitra_menu)
 
@@ -128,6 +134,7 @@ class DaftarMitraActivity : AppCompatActivity() {
                                     MitraDetailActivity::class.java
                                 )
                                 i.putExtra("menu", "View")
+                                i.putExtra("npwp",NPWP)
                                 startActivity(i)
                                 true
                             }
@@ -137,7 +144,7 @@ class DaftarMitraActivity : AppCompatActivity() {
                                     MitraDetailActivity::class.java
                                 )
                                 i.putExtra("menu", "Edit")
-
+                                i.putExtra("npwp",NPWP)
                                 startActivity(i)
                                 true
                             }

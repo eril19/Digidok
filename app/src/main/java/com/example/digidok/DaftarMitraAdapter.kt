@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.data.model.daftarMitraModel
 
 class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: List<DaftarMitraModel>, private var mListener: onItemClickListener,
                          val listener: (DaftarMitraModel) -> Unit)
@@ -18,7 +19,7 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
     interface onItemClickListener{
         fun onItemClick(position: Int)
 
-        fun onItemClickPopupMenu(position: Int, kodeMitra:String, statusMitra:String ,view : View)
+        fun onItemClickPopupMenu(position: Int, kodeMitra:String, statusMitra:String , NPWP:String, view : View)
     }
 
     class DaftarMitraViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
@@ -35,6 +36,7 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
         val popup = view.findViewById<ImageView>(R.id.menupopup)
         var statusMitra = ""
         var kodeMitra = ""
+        var NPWP = ""
 
         init {
 //            cardView.setOnClickListener {
@@ -42,7 +44,7 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
 //            }
 
             popup.setOnClickListener {
-                listener.onItemClickPopupMenu(adapterPosition, kodeMitra, statusMitra,popup)
+                listener.onItemClickPopupMenu(adapterPosition, kodeMitra, statusMitra, NPWP, popup)
             }
         }
 
@@ -57,6 +59,7 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
             header_color.text = daftarMitraModel.header_color
             statusMitra = daftarMitraModel.header_color
             kodeMitra = daftarMitraModel.id_mitra
+            NPWP = daftarMitraModel.npwp_mitra
 
 
             if (daftarMitraModel.header_color.equals("Tidak Aktif", true) ) {

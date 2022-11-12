@@ -58,7 +58,16 @@ interface ApiService {
         @Query("sortColumn") sortColumn: String,
         @Query("statusFilter") statusFilter: Int,
 
-    ): Observable<BaseApiModel<daftarMitraModel?>>
+        ): Observable<BaseApiModel<daftarMitraModel?>>
+
+    @GET("setup/kjpp")
+    fun daftarKJPP(
+        @Header("Authorization") token: String,
+        @Query("start") start: Int,
+        @Query("row") row: Int,
+        @Query("order") order: String,
+        @Query("sortColumn") sortColumn: String,
+        ): Observable<BaseApiModel<daftarKJPPModel?>>
 
     @GET("master/get-npwp")
     fun NPWP(

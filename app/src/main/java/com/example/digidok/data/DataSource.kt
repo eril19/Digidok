@@ -16,6 +16,8 @@ interface DataSource : BaseDataSource {
 
     fun getNPWP(token: String, noNpwp:String, callback: NPWPCallback)
 
+    fun getKJPP(token: String, start:Int,row:Int,order:String,sortColumn:String, callback: KJPPCallback)
+
     interface LoginDataCallback {
         fun onSuccess(data: BaseApiModel<UserModel?>)
 
@@ -58,6 +60,14 @@ interface DataSource : BaseDataSource {
 
     interface NPWPCallback {
         fun onSuccess(data: BaseApiModel<NPWPModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface KJPPCallback {
+        fun onSuccess(data: BaseApiModel<daftarKJPPModel?>)
 
         fun onError(message: String)
 

@@ -47,6 +47,17 @@ open class Repository (private val remoteDataSource: DataSource) : DataSource {
         remoteDataSource.getNPWP(token, noNpwp, callback)
     }
 
+    override fun getKJPP(
+        token: String,
+        start: Int,
+        row: Int,
+        order: String,
+        sortColumn: String,
+        callback: DataSource.KJPPCallback
+    ) {
+        remoteDataSource.getKJPP(token,start, row, order, sortColumn, callback)
+    }
+
     override fun onClearDisposables() {
         remoteDataSource.onClearDisposables()
     }

@@ -70,6 +70,25 @@ object RemoteDataSource : DataSource {
             })
     }
 
+    override fun getKJPP(token: String, start:Int,row:Int,order:String,sortColumn:String,callback: DataSource.KJPPCallback) {
+        mApiServiceDev.daftarKJPP(token = "Bearer $token", start = start, row = row, order = order, sortColumn = sortColumn)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<daftarKJPPModel?>>() {
+                override fun onSuccess(model: BaseApiModel<daftarKJPPModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
     override fun getSetAktifNonAktif(token: String, kodeMitra:String,isAktif:Int,callback: DataSource.setAktifNonAktifCallback) {
         mApiServiceDev.setAktifNonAktif(token = "Bearer $token", kodeMitra = kodeMitra, isAktif = isAktif)
             .subscribeOn(Schedulers.io())

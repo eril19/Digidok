@@ -21,6 +21,8 @@ class MitraDetailActivity : AppCompatActivity() {
 //    var data: DaftarMitraModel? = null
     var hideButton: Boolean = false
     var isEdit: String = ""
+    var NPWPcheck = ""
+
     var npwp: EditText? = null
     var nama: EditText? = null
     var alamat: EditText? = null
@@ -57,6 +59,7 @@ class MitraDetailActivity : AppCompatActivity() {
         }
 
 //        data = intent.getParcelableExtra("daftarMitra")
+        NPWPcheck = intent.getStringExtra("npwp") ?: ""
         isEdit = intent.getStringExtra("menu") ?: ""
 
 
@@ -82,6 +85,11 @@ class MitraDetailActivity : AppCompatActivity() {
 
         val switch = findViewById<Switch>(R.id.NPWPSwitch)
         val refresh = findViewById<ImageView>(R.id.refreshButton)
+
+        if (!NPWPcheck.equals("")){
+            getNpwp(NPWPcheck)
+            npwp?.setText(NPWPcheck)
+        }
 
         if (isEdit.equals("Edit", true) || isEdit.equals("Tambah", true)) {
 
@@ -321,6 +329,7 @@ class MitraDetailActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<NPWPModel?>) {
                     isLoading = false
                     if (data.isSuccess) {
+
                         nama?.setText(data.data?.nama)
                         alamat?.setText(data.data?.alamat)
                         kelurahan?.setText(data.data?.kelurahan)
