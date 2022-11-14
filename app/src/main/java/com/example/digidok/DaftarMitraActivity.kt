@@ -214,8 +214,8 @@ class DaftarMitraActivity : AppCompatActivity() {
             token = Preferences.isToken(context = this@DaftarMitraActivity),
             start = start,
             row = 10,
-            order = "asc",
-            sortColumn = "no",
+            order = order,
+            sortColumn = sortColumn,
             statusFilter = status,
             object : DataSource.daftarMitraCallback {
                 override fun onSuccess(data: BaseApiModel<daftarMitraModel?>) {

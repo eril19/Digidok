@@ -20,10 +20,19 @@ import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.data.model.daftarKJPPModel
+import com.example.digidok.data.model.daftarMitraModel
 import com.example.digidok.utils.Injection
+import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 
 class DaftarKjppActivity : AppCompatActivity() {
 
+    var start: Int = 0
+    var row: Int = 0
+    var sortColumn: String = "no"
+    var order: String = "asc"
+    var statusFilter = "1"
     var isLoading : Boolean = false
     var daftarKJPP: ArrayList<DaftarKjppModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
@@ -49,76 +58,8 @@ class DaftarKjppActivity : AppCompatActivity() {
             finish()
         }
 
-        val DaftarKJPPList = listOf<DaftarKjppModel>(
-            DaftarKjppModel(
-                no_kjpp = "2.08.0001",
-                nama_kjpp = "Latief, Hanif dan Rekan",
-                telp_kjpp = "021-7198751, 7198752",
-//                no = "No.",
-                no_perizinan = "760/KM.1/2008",
-//                tgl = "Tanggal",
-                tgl_perizinan = "2008-11-20",
-//                klasifikasi = "Klasifikasi",
-                klasifikasi_perizinan = "Properti",
-                alamat = "jalan KACE"
-
-            ),
-            DaftarKjppModel(
-                no_kjpp = "2.08.0002",
-                nama_kjpp = "Aditya Iskandar dan Rekan",
-                telp_kjpp = "021 25031890",
-//                no = "No.",
-                no_perizinan = "772/KM.1/2008",
-//                tgl = "Tanggal",
-                tgl_perizinan = "2008-11-26",
-//                klasifikasi = "Klasifikasi",
-                klasifikasi_perizinan = "Properti",
-                alamat = "jalan KACE"
-
-            ),
-            DaftarKjppModel(
-                no_kjpp = "2.08.0003",
-                nama_kjpp = "Pung's Zulkarnain & Rekan",
-                telp_kjpp = "021-230 3840",
-//                no = "No.",
-                no_perizinan = "798/KM.1/2008",
-//                tgl = "Tanggal",
-                tgl_perizinan = "2008-12-01",
-//                klasifikasi = "Klasifikasi",
-                klasifikasi_perizinan = "Properti",
-                alamat = "jalan KACE"
-
-            ),
-            DaftarKjppModel(
-                no_kjpp = "2.08.0004",
-                nama_kjpp = "Aditya Masroni Nur RahmanAnizar Hadiyanto dan Rekan",
-                telp_kjpp = "021-22868170",
-//                no = "No.",
-                no_perizinan = "349/KM.1/2020",
-//                tgl = "Tanggal",
-                tgl_perizinan = "2020-07-20",
-//                klasifikasi = "Klasifikasi",
-                klasifikasi_perizinan = "Properti",
-                alamat = "jalan KACE"
-
-            ),
-            DaftarKjppModel(
-                no_kjpp = "2.08.0005",
-                nama_kjpp = "Stefanus Tonny Hardi & Rekan",
-                telp_kjpp = "021- 5637373",
-//                no = "No.",
-                no_perizinan = "907/KM.1/2008",
-//                tgl = "Tanggal",
-                tgl_perizinan = "2008-12-23",
-//                klasifikasi = "Klasifikasi",
-                klasifikasi_perizinan = "Properti dan Bisnis",
-                alamat = "jalan KACE"
-
-            )
-        )
-
         setList()
-        getDaftarKJPP()
+        getKJPP()
 
     }
 
@@ -142,41 +83,48 @@ class DaftarKjppActivity : AppCompatActivity() {
 
     }
 
-    fun getDaftarKJPP() {
+
+    fun getKJPP() {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getBerita("0", "10",  object : DataSource.BeritaDataCallback {
-            override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
-                isLoading = false
-                if (data.success) {
-                    daftarKJPP.clear()
-                    data.rows?.forEach {
-                        daftarKJPP?.add(
-                            DaftarKjppModel(
-                                no_kjpp = "2.08.0005",
-                                nama_kjpp = "Stefanus Tonny Hardi & Rekan",
-                                telp_kjpp = "021- 5637373",
-                                no_perizinan = "907/KM.1/2008",
-                                tgl_perizinan = "2008-12-23",
-                                klasifikasi_perizinan = "Properti dan Bisnis",
-                                alamat = "jalan KACE"
+        mRepository.getKJPP(
+            token = Preferences.isToken(context = this@DaftarKjppActivity),
+            start = start,
+            row = 10,
+            order = order,
+            sortColumn = sortColumn,
+            object : DataSource.KJPPCallback {
+                override fun onSuccess(data: BaseApiModel<daftarKJPPModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        daftarKJPP.clear()
+                        data.data?.dataKjpp?.forEach {
+                            daftarKJPP?.add(
+                                DaftarKjppModel(
+                                    no_kjpp = it?.noInduk.safe(),
+                                    no_perizinan = it?.noIzin.safe(),
+                                    nama_kjpp = it?.nama.safe(),
+                                    tgl_perizinan = it?.tglIzin.safe(),
+                                    alamat = it?.alamat.safe(),
+                                    telp_kjpp = it?.phone.safe(),
+                                    klasifikasi_perizinan = it?.klasifikasiIzin.safe(),
 
+                                )
                             )
-                        )
+                        }
+                        setList()
                     }
-                    setList()
                 }
-            }
 
-            override fun onError(message: String) {
-                isLoading = false
-            }
+                override fun onError(message: String) {
+                    isLoading = false
+                }
 
-            override fun onFinish() {
-                isLoading = false
-            }
+                override fun onFinish() {
+                    isLoading = false
+                }
 
-        })
+            })
     }
 
 }

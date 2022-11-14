@@ -7,18 +7,20 @@ class daftarKJPPModel(
     val dataKjpp: List<listDaftarKjpp>,
 ) {
     data class listDaftarKjpp(
+        @SerializedName("no")
+        val no: Int,
         @SerializedName("periode")
         val periode: Int,
-        @SerializedName("no_induk")
-        val no_induk: String = "",
+        @SerializedName("noInduk")
+        val noInduk: String = "",
         @SerializedName("nama")
         val nama: String = "",
-        @SerializedName("no_izin")
-        val no_izin: Int,
-        @SerializedName("tgl_izin")
-        val tgl_izin: String = "",
-        @SerializedName("klasifikasi_izin")
-        val klasifikasi_izin: String = "",
+        @SerializedName("noIzin")
+        val noIzin: String,
+        @SerializedName("tglIzin")
+        val tglIzin: String = "",
+        @SerializedName("klasifikasiIzin")
+        val klasifikasiIzin: String = "",
         @SerializedName("domisili")
         val domisili: String = "",
         @SerializedName("alamat")
