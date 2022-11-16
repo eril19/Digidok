@@ -3,10 +3,10 @@ package com.example.digidok
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,15 +14,31 @@ import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.data.model.NPWPModel
+import com.example.digidok.data.model.daftarPengajuanKerjasamaDetailModel
 import com.example.digidok.utils.Injection
-import org.w3c.dom.Text
+import com.example.digidok.utils.Preferences
 
 class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
+
     var isStatusEdit: String = ""
     var isLoading: Boolean = false
     var pengajuanKerjasamaDetail: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
-    var data: PengajuanKerjasamaModel? = null
     private var recyclerview: RecyclerView? = null
+
+    var idPkscheck = ""
+    var no_pengajuan: EditText? = null
+    var nama_mitra: EditText? = null
+    var ETtujuan: EditText? = null
+    var no_surat: EditText? = null
+    var tgl_surat: EditText? = null
+    var Objek: EditText? = null
+    var nilai_: EditText? = null
+    var tgl_akhir: EditText? = null
+    var tgl_mulai: EditText? = null
+    var prihal: EditText? = null
+    var skema: EditText? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,80 +46,85 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        idPkscheck = intent.getStringExtra("idPks") ?: ""
+
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
-        val no_pengajuan = findViewById<EditText>(R.id.no_pengajuan)
-        val nama_mitra = findViewById<EditText>(R.id.nama_mitra)
-        val ETtujuan = findViewById<EditText>(R.id.tujuan)
-        val no_Surat = findViewById<EditText>(R.id.no_surat)
-        val tgl_Surat = findViewById<EditText>(R.id.tgl_surat)
-        val Objek = findViewById<EditText>(R.id.objek)
-        val tgl_mulai = findViewById<EditText>(R.id.tgl_mulai)
-        val nilai_ = findViewById<EditText>(R.id.nilai)
-        val tgl_akhir = findViewById<EditText>(R.id.tgl_akhir)
-        val prihal = findViewById<EditText>(R.id.perihal)
-        val skema = findViewById<EditText>(R.id.skema_pemanfaatan)
+         no_pengajuan = findViewById<EditText>(R.id.no_pengajuan)
+         nama_mitra = findViewById<EditText>(R.id.nama_mitra)
+         ETtujuan = findViewById<EditText>(R.id.tujuan)
+         no_surat = findViewById<EditText>(R.id.no_surat)
+         tgl_surat = findViewById<EditText>(R.id.tgl_surat)
+         Objek = findViewById<EditText>(R.id.objek)
+         tgl_mulai = findViewById<EditText>(R.id.tgl_mulai)
+         nilai_ = findViewById<EditText>(R.id.nilai)
+        tgl_akhir = findViewById<EditText>(R.id.tgl_akhir)
+         prihal = findViewById<EditText>(R.id.perihal)
+         skema = findViewById<EditText>(R.id.skema_pemanfaatan)
 
         isStatusEdit = intent.getStringExtra("status") ?: ""
 
         if (isStatusEdit.equals("Edit", true) || isStatusEdit.equals("Tambah",true)) {
-            no_pengajuan.isEnabled = true
-            no_pengajuan.background =
-                ContextCompat.getDrawable(no_pengajuan.context, R.drawable.custom_profile_enable)
+            no_pengajuan?.isEnabled = true
+            no_pengajuan?.background =
+                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
 
-            nama_mitra.isEnabled = true
-            nama_mitra.background =
-                ContextCompat.getDrawable(nama_mitra.context, R.drawable.custom_profile_enable)
+            nama_mitra?.isEnabled = true
+            nama_mitra?.background =
+                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
 
-            ETtujuan.isEnabled = true
-            ETtujuan.background =
-                ContextCompat.getDrawable(ETtujuan.context, R.drawable.custom_profile_enable)
+            ETtujuan?.isEnabled = true
+            ETtujuan?.background =
+                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
 
-            no_Surat.isEnabled = true
-            no_Surat.background =
-                ContextCompat.getDrawable(no_Surat.context, R.drawable.custom_profile_enable)
+            no_surat?.isEnabled = true
+            no_surat?.background =
+                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
 
-            tgl_akhir.isEnabled = true
-            tgl_akhir.background =
-                ContextCompat.getDrawable(tgl_akhir.context, R.drawable.custom_profile_enable)
+            tgl_akhir?.isEnabled = true
+            tgl_akhir?.background =
+                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
 
-            tgl_mulai.isEnabled = true
-            tgl_mulai.background =
-                ContextCompat.getDrawable(tgl_mulai.context, R.drawable.custom_profile_enable)
+            tgl_mulai?.isEnabled = true
+            tgl_mulai?.background =
+                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
 
-            tgl_Surat.isEnabled = true
-            tgl_Surat.background =
-                ContextCompat.getDrawable(tgl_Surat.context, R.drawable.custom_profile_enable)
+            tgl_surat?.isEnabled = true
+            tgl_surat?.background =
+                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
 
-            prihal.isEnabled = true
-            prihal.background =
-                ContextCompat.getDrawable(prihal.context, R.drawable.custom_profile_enable)
+            prihal?.isEnabled = true
+            prihal?.background =
+                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
 
-            nilai_.isEnabled = true
-            nilai_.background =
-                ContextCompat.getDrawable(nilai_.context, R.drawable.custom_profile_enable)
+            nilai_?.isEnabled = true
+            nilai_?.background =
+                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
 
-            Objek.isEnabled = true
-            Objek.background =
-                ContextCompat.getDrawable(Objek.context, R.drawable.custom_profile_enable)
+            Objek?.isEnabled = true
+            Objek?.background =
+                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
 
-            skema.isEnabled = true
-            skema.background =
-                ContextCompat.getDrawable(skema.context, R.drawable.custom_profile_enable)
+            skema?.isEnabled = true
+            skema?.background =
+                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
         } else {
-            no_pengajuan.isEnabled = false
-            skema.isEnabled = false
-            nama_mitra.isEnabled = false
-            ETtujuan.isEnabled = false
-            no_Surat.isEnabled = false
-            tgl_akhir.isEnabled = false
-            tgl_mulai.isEnabled = false
-            tgl_Surat.isEnabled = false
-            prihal.isEnabled = false
-            nilai_.isEnabled = false
-            Objek.isEnabled = false
+            no_pengajuan?.isEnabled = false
+            skema?.isEnabled = false
+            nama_mitra?.isEnabled = false
+            ETtujuan?.isEnabled = false
+            no_surat?.isEnabled = false
+            tgl_akhir?.isEnabled = false
+            tgl_mulai?.isEnabled = false
+            tgl_surat?.isEnabled = false
+            prihal?.isEnabled = false
+            nilai_?.isEnabled = false
+            Objek?.isEnabled = false
         }
 
+        if (!idPkscheck.equals("")){
+            getPengajuanDetail(idPkscheck)
+        }
 
         close_detail_btn.setOnClickListener {
             startActivity(
@@ -118,56 +139,14 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         next_detail_btn.setOnClickListener {
             val i = Intent(
                 this@PengajuanKerjasamaDetailActivity,
-                PengajuanKerjasamaDetailActivity2::class.java
+                DataAsetdikerjasamakanActivity::class.java
             )
             i.putExtra("hideTelaah", true)
             startActivity(i)
         }
 
-        val nomerPengajuan = findViewById<TextView>(R.id.no_pengajuan)
-        val namaMitra = findViewById<TextView>(R.id.nama_mitra)
-        val skemaPemanfaatan = findViewById<TextView>(R.id.skema_pemanfaatan)
-        val tujuan = findViewById<TextView>(R.id.tujuan)
-        val noSurat = findViewById<TextView>(R.id.no_surat)
-        val tglSurat = findViewById<TextView>(R.id.tgl_surat)
-        val objek = findViewById<TextView>(R.id.objek)
-        val nilai = findViewById<TextView>(R.id.nilai)
-        val tglMulai = findViewById<TextView>(R.id.tgl_mulai)
-        val tglAkhir = findViewById<TextView>(R.id.tgl_akhir)
-        val perihal = findViewById<TextView>(R.id.perihal)
-
-        val PengajuanKerjasamaDetail = listOf<PengajuanKerjasamaDetailModel>(
-            PengajuanKerjasamaDetailModel(
-                kodeLokasi = "0089879000",
-                namaLokasi = "Metro Jaya",
-                kodeBarang = "0009-0989-0087",
-                namaBarang = "Rumah",
-                alamat = "JL. Kundur Jaya",
-                Luas = "2000m2",
-                LuasManfaat = "1500m2"
-            )
-        )
-
-
-
-        data = intent.getParcelableExtra("PengajuanKerjasama")
-//        samain sama i.putExtra!
-
-
-        nomerPengajuan.text = data?.noPengajuan
-        nilai.text = data?.nilai
-        namaMitra.text = data?.nama_mitra
-        skemaPemanfaatan.text = data?.skemaPemanfaatan
-        tujuan.text = data?.tujuan
-        noSurat.text = data?.noSurat
-        tglSurat.text = data?.tglSurat
-        tglAkhir.text = data?.tglAkhir
-        tglMulai.text = data?.tglAkhir
-        objek.text = data?.objek
-        perihal.text = data?.perihal
-
         setList()
-        getPengajuanDetail()
+
     }
 
     fun setList() {
@@ -175,10 +154,10 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = PengajuanKerjasamaDetailAdapter(
+        recyclerview?.adapter = DataAsetdiKerjasamakanAdapter(
             this,
             pengajuanKerjasamaDetail,
-            object : PengajuanKerjasamaDetailAdapter.onItemClickListener {
+            object : DataAsetdiKerjasamakanAdapter.onItemClickListener {
                 override fun onItemClick(position: Int) {
                     TODO("Not yet implemented")
                 }
@@ -189,40 +168,40 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
     }
 
-    fun getPengajuanDetail() {
-        isLoading = true
+    fun getPengajuanDetail(idPks: String) {
+        com.example.digidok.isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getBerita("0", "5", object : DataSource.BeritaDataCallback {
-            override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
-                isLoading = false
-                if (data.success) {
-                    pengajuanKerjasamaDetail.clear()
-                    data.rows?.forEach {
-                        pengajuanKerjasamaDetail?.add(
-                            PengajuanKerjasamaDetailModel(
-                                kodeLokasi = "0089879000",
-                                namaLokasi = "Metro Jaya",
-                                kodeBarang = "0009-0989-0087",
-                                namaBarang = "Rumah",
-                                alamat = "JL. Kundur Jaya",
-                                Luas = "2000m2",
-                                LuasManfaat = "1500m2"
-                            )
-                        )
+        mRepository.getDaftarPengajuanKerjasamaDetail(
+            token = Preferences.isToken(context = this@PengajuanKerjasamaDetailActivity),
+            id = idPks,
+            object : DataSource.daftarPengajuanDetailCallback {
+                override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>) {
+                    com.example.digidok.isLoading = false
+                    if (data.isSuccess) {
+                        no_pengajuan?.setText(data.data?.noPengajuan)
+                        nama_mitra?.setText(data.data?.mitra)
+                        skema?.setText(data.data?.skemaPemanfaatan)
+                        ETtujuan?.setText(data.data?.tujuan)
+                        no_surat?.setText(data.data?.nomorSurat)
+                        tgl_surat?.setText(data.data?.tanggalSurat)
+                        Objek?.setText(data.data?.objek)
+                        nilai_?.setText("Rp." + data.data?.nilai.toString())
+                        tgl_mulai?.setText(data.data?.tanggalMulai)
+                        tgl_akhir?.setText(data.data?.tanggalAkhir)
+                        prihal?.setText(data.data?.perihal)
+
                     }
-                    setList()
                 }
-            }
 
-            override fun onError(message: String) {
-                isLoading = false
-            }
+                override fun onError(message: String) {
+                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, "Data gagal dimuat", Toast.LENGTH_LONG).show()
+                }
 
-            override fun onFinish() {
-                isLoading = false
-            }
+                override fun onFinish() {
+//                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, "Data selesai dimuat", Toast.LENGTH_LONG).show()
+                }
 
-        })
+            })
     }
 
 }

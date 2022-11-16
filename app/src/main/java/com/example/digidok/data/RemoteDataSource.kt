@@ -127,6 +127,44 @@ object RemoteDataSource : DataSource {
             })
     }
 
+    override fun getDaftarPengajuanKerjasamaDetail(token: String, id: String, callback: DataSource.daftarPengajuanDetailCallback) {
+        mApiServiceDev.daftarPengajuanDetail(token = "Bearer $token", id = id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<daftarPengajuanKerjasamaDetailModel?>>() {
+                override fun onSuccess(model: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+    override fun getDaftarPengajuanKerjasama(token: String, start:Int,row:Int,order:String,sortColumn:String,callback: DataSource.daftarPengajuanCallback) {
+        mApiServiceDev.daftarPengajuan(token = "Bearer $token", start = start, row = row, order = order, sortColumn = sortColumn)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<daftarPengajuanKerjasamaModel?>>() {
+                override fun onSuccess(model: BaseApiModel<daftarPengajuanKerjasamaModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
     override fun getBerita(start: String, limit: String, callback: DataSource.BeritaDataCallback) {
         mApiService.berita("android", "android", "sampleToken", start, limit)
             .subscribeOn(Schedulers.io())

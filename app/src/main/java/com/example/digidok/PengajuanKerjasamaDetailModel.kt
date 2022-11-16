@@ -2,6 +2,7 @@ package com.example.digidok
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 
 data class PengajuanKerjasamaDetailModel(
 
@@ -11,15 +12,51 @@ data class PengajuanKerjasamaDetailModel(
     val namaBarang:String,
     val alamat:String,
     val Luas:String,
-    val LuasManfaat:String
+    val tglMulai:String,
+    val tglAkhir :String,
+    val perihal : String,
+    val noPengajuan : String,
+    val skemaPemanfaatan: String,
+    val tujuan : String,
+    val noSurat : String,
+    val tglSurat :String,
+    val objek : String,
+    val kodeDokumen: String,
+    val jenisDokumen: String,
+    val amount: Int,
+    val tanggal: String = "",
+    val keteranganSurat: String,
+    val noreg: Int,
+    val keteranganAset: String,
+    val luas: Int,
+    val satuan: String,
+    val luasManfaat: String,
 
-):Parcelable {
+): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readInt(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readInt(),
+        parcel.readString().toString(),
+        parcel.readInt(),
         parcel.readString().toString(),
         parcel.readString().toString()
     ) {
@@ -32,7 +69,25 @@ data class PengajuanKerjasamaDetailModel(
         parcel.writeString(namaBarang)
         parcel.writeString(alamat)
         parcel.writeString(Luas)
-        parcel.writeString(LuasManfaat)
+        parcel.writeString(tglMulai)
+        parcel.writeString(tglAkhir)
+        parcel.writeString(perihal)
+        parcel.writeString(noPengajuan)
+        parcel.writeString(skemaPemanfaatan)
+        parcel.writeString(tujuan)
+        parcel.writeString(noSurat)
+        parcel.writeString(tglSurat)
+        parcel.writeString(objek)
+        parcel.writeString(kodeDokumen)
+        parcel.writeString(jenisDokumen)
+        parcel.writeInt(amount)
+        parcel.writeString(tanggal)
+        parcel.writeString(keteranganSurat)
+        parcel.writeInt(noreg)
+        parcel.writeString(keteranganAset)
+        parcel.writeInt(luas)
+        parcel.writeString(satuan)
+        parcel.writeString(luasManfaat)
     }
 
     override fun describeContents(): Int {
@@ -48,5 +103,4 @@ data class PengajuanKerjasamaDetailModel(
             return arrayOfNulls(size)
         }
     }
-
 }

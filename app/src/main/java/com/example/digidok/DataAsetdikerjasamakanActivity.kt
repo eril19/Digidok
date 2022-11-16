@@ -4,21 +4,22 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
-import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.data.model.*
 import com.example.digidok.utils.Injection
-import org.w3c.dom.Text
+import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 
-class PengajuanKerjasamaDetailActivity2 : AppCompatActivity() {
+class DataAsetdikerjasamakanActivity : AppCompatActivity() {
+
     var isLoading : Boolean = false
-    var pengajuanKerjasamaDetail: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
-    var data : PengajuanKerjasamaModel ?= null
+    var dataAset: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
+    var idPksCheck : String = ""
     private var recyclerview: RecyclerView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,13 +29,13 @@ class PengajuanKerjasamaDetailActivity2 : AppCompatActivity() {
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaDetailActivity2, PengajuanKerjasamaActivity::class.java))
+            startActivity(Intent(this@DataAsetdikerjasamakanActivity, PengajuanKerjasamaActivity::class.java))
             finish()
         }
 
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
         next_detail_btn.setOnClickListener {
-            val i = Intent(this@PengajuanKerjasamaDetailActivity2, PengajuanKerjasamaDetailActivity3::class.java)
+            val i = Intent(this@DataAsetdikerjasamakanActivity, DaftarSuratLampiranActivity::class.java)
 //            i.putExtra("hideTelaah",true)
             startActivity(i)
         }
@@ -46,12 +47,12 @@ class PengajuanKerjasamaDetailActivity2 : AppCompatActivity() {
         }
 
 
+        idPksCheck = intent.getStringExtra("idPks") ?: ""
 
-        data = intent.getParcelableExtra("PengajuanKerjasama")
-//        samain sama i.putExtra!
+
 
         setList()
-        getPengajuanDetail()
+        getPengajuanKerjasamaDetail()
     }
 
     fun setList(){
@@ -59,9 +60,9 @@ class PengajuanKerjasamaDetailActivity2 : AppCompatActivity() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = PengajuanKerjasamaDetailAdapter(this, pengajuanKerjasamaDetail, object:PengajuanKerjasamaDetailAdapter.onItemClickListener{
+        recyclerview?.adapter = DataAsetdiKerjasamakanAdapter(this, dataAset, object:DataAsetdiKerjasamakanAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
-                TODO("Not yet implemented")
+//                TODO("Not yet implemented")
             }
 
         }){
@@ -70,29 +71,30 @@ class PengajuanKerjasamaDetailActivity2 : AppCompatActivity() {
 
     }
 
-    fun getPengajuanDetail() {
+    fun getPengajuanKerjasamaDetail(idPks:String) {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getBerita("0", "5",  object : DataSource.BeritaDataCallback {
-            override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
-                isLoading = false
-                if (data.success) {
-                    pengajuanKerjasamaDetail.clear()
-                    data.rows?.forEach {
-                        pengajuanKerjasamaDetail?.add(
-                            PengajuanKerjasamaDetailModel(
-                                kodeLokasi = "0089879000",
-                                namaLokasi  = "Metro Jaya",
-                                kodeBarang  = "0009-0989-0087",
-                                namaBarang  = "Rumah",
-                                alamat  = "JL. Kundur Jaya",
-                                Luas  = "2000m2",
-                                LuasManfaat  = "1500m2"
+        mRepository.getDaftarPengajuanKerjasamaDetail(
+            token = Preferences.isToken(context = this@DataAsetdikerjasamakanActivity),
+            id = idPks,
+            object : DataSource.daftarPengajuanDetailCallback {
+                override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        dataAset.clear()
+                        data.data?.dataAsetDikerjasamakan?.forEach {
+                            dataAset?.add(
+                                PengajuanKerjasamaDetailModel(
+                                    kodeLokasi = it?.kolok.safe(),
+                                    namaLokasi = it?.nalok.safe(),
+                                    kodeBarang = it?.kobar.safe(),
+                                    namaBarang = it?.nabar.safe(),
+                                    npwp_mitra = it?.npwp.safe(),
+                                )
                             )
-                        )
+                        }
+                        setList()
                     }
-                    setList()
-                }
             }
 
             override fun onError(message: String) {

@@ -58,6 +58,25 @@ open class Repository (private val remoteDataSource: DataSource) : DataSource {
         remoteDataSource.getKJPP(token,start, row, order, sortColumn, callback)
     }
 
+    override fun getDaftarPengajuanKerjasama(
+        token: String,
+        start: Int,
+        row: Int,
+        order: String,
+        sortColumn: String,
+        callback: DataSource.daftarPengajuanCallback
+    ) {
+        remoteDataSource.getDaftarPengajuanKerjasama(token,start, row, order, sortColumn, callback)
+    }
+
+    override fun getDaftarPengajuanKerjasamaDetail(
+        token: String,
+        id: String,
+        callback: DataSource.daftarPengajuanDetailCallback
+    ) {
+        remoteDataSource.getDaftarPengajuanKerjasamaDetail(token,id,callback)
+    }
+
     override fun onClearDisposables() {
         remoteDataSource.onClearDisposables()
     }

@@ -4,9 +4,7 @@ import android.content.Intent
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -15,12 +13,16 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
-class PengajuanKerjasamaDetailActivity3 : AppCompatActivity() {
+class DaftarSuratLampiranActivity : AppCompatActivity() {
 
     var hideTelaah : String = ""
     var data : PengajuanKerjasamaModel? = null
     var spinnerTelaah : Spinner? = null
+    var daftarSuratLampiran: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
+    private var recyclerview: RecyclerView? = null
     val listTelaah = arrayListOf("Disetujui", "Dikembalikan", "Ditolak")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +45,7 @@ class PengajuanKerjasamaDetailActivity3 : AppCompatActivity() {
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaDetailActivity3, PengajuanKerjasamaActivity::class.java))
+            startActivity(Intent(this@DaftarSuratLampiranActivity, PengajuanKerjasamaActivity::class.java))
             finish()
         }
 
@@ -55,6 +57,25 @@ class PengajuanKerjasamaDetailActivity3 : AppCompatActivity() {
 
         spinnerTelaah = findViewById<Spinner>(R.id.spinner_telaah)
         setSpinnerKategori()
+    }
+
+    fun setList() {
+        recyclerview = findViewById<RecyclerView>(R.id.rv_list_surat_lampiran)
+        recyclerview?.layoutManager = LinearLayoutManager(this)
+        recyclerview?.setHasFixedSize(true)
+
+        recyclerview?.adapter = DaftarSuratLampiranAdapter(
+            this,
+            daftarSuratLampiran,
+            object : DaftarSuratLampiranAdapter.onItemClickListener {
+                override fun onItemClick(position: Int) {
+                    TODO("Not yet implemented")
+                }
+
+            }) {
+
+        }
+
     }
 
     fun setSpinnerKategori() {

@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
 
-class PengajuanKerjasamaDetailAdapter(private val context: Context, private val PengajuanKerjaDetail: List<PengajuanKerjasamaDetailModel>,
-                                       private var mListener: onItemClickListener,  val listener: (PengajuanKerjasamaDetailModel) -> Unit):
-RecyclerView.Adapter<PengajuanKerjasamaDetailAdapter.PengajuanKerjasamaDetailViewHolder>(){
+class DataAsetdiKerjasamakanAdapter(private val context: Context, private val PengajuanKerjaDetail: List<PengajuanKerjasamaDetailModel>,
+                                    private var mListener: onItemClickListener, val listener: (PengajuanKerjasamaDetailModel) -> Unit):
+RecyclerView.Adapter<DataAsetdiKerjasamakanAdapter.PengajuanKerjasamaDetailViewHolder>(){
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
@@ -27,20 +25,19 @@ RecyclerView.Adapter<PengajuanKerjasamaDetailAdapter.PengajuanKerjasamaDetailVie
         val namaLokasi = view.findViewById<TextView>(R.id.nama_lokasi)
         val luasManfaat = view.findViewById<TextView>(R.id.luas_manfaat)
         val luas = view.findViewById<TextView>(R.id.luas_barang)
-
         val cardview = view.findViewById<CardView>(R.id.cardViewDaftarAset)
 
 
-        init{
-            cardview.setOnClickListener {
-                listener.onItemClick(adapterPosition)
-            }
-        }
+//        init{
+//            cardview.setOnClickListener {
+//                listener.onItemClick(adapterPosition)
+//            }
+//        }
 
         fun bindView(pengajuanKerjasamaDetailModel: PengajuanKerjasamaDetailModel, listener: (PengajuanKerjasamaDetailModel) -> Unit){
             alamat.text  = pengajuanKerjasamaDetailModel.alamat
             luas.text = pengajuanKerjasamaDetailModel.Luas
-            luasManfaat.text = pengajuanKerjasamaDetailModel.LuasManfaat
+            luasManfaat.text = pengajuanKerjasamaDetailModel.luasManfaat
             namaLokasi.text = pengajuanKerjasamaDetailModel.namaLokasi
             namaBarang.text  = pengajuanKerjasamaDetailModel.namaBarang
             kodeBarang.text = pengajuanKerjasamaDetailModel.kodeBarang

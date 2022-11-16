@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class BaseApiModel<T>(
     @SerializedName("status") val status: Int,
     @SerializedName("isSuccess") val isSuccess: Boolean,
+    @SerializedName("error") val error: String,
     @SerializedName("msg") val message: String,
     @SerializedName("code") val code: String,
     @SerializedName("message") val message1: String,

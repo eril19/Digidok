@@ -60,6 +60,22 @@ interface ApiService {
 
         ): Observable<BaseApiModel<daftarMitraModel?>>
 
+    @GET("formulir/dokumen/get-data")
+    fun daftarPengajuan(
+        @Header("Authorization") token: String,
+        @Query("start") start: Int,
+        @Query("row") row: Int,
+        @Query("order") order: String,
+        @Query("sortColumn") sortColumn: String,
+
+        ): Observable<BaseApiModel<daftarPengajuanKerjasamaModel?>>
+
+    @GET("formulir/dokumen/get-detail/:id")
+    fun daftarPengajuanDetail(
+        @Header("Authorization") token: String,
+        @Query("id") id: String,
+        ): Observable<BaseApiModel<daftarPengajuanKerjasamaDetailModel?>>
+
     @GET("setup/kjpp")
     fun daftarKJPP(
         @Header("Authorization") token: String,

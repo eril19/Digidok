@@ -7,19 +7,11 @@ import kotlinx.parcelize.Parcelize
 
 data class PengajuanKerjasamaModel(
     val header_color : String,
-    val id_pks : String,
+    val no_pks : String,
     val nama_mitra: String,
-    val jenis_mitra : String,
-    val noPengajuan : String,
-    val skemaPemanfaatan: String,
-    val tujuan : String,
-    val noSurat : String,
-    val tglSurat :String,
-    val objek : String,
-    val nilai:String,
-    val tglMulai:String,
-    val tglAkhir :String,
-    val perihal : String,
+//    val jenis_mitra : String,
+    val periodeAwal:String,
+    val periodeAkhir:String,
 
 ): Parcelable {
     constructor(parcel: Parcel) : this(
@@ -28,33 +20,17 @@ data class PengajuanKerjasamaModel(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.readString().toString()
+//        parcel.readString().toString(),
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(header_color)
-        parcel.writeString(id_pks)
+        parcel.writeString(no_pks)
         parcel.writeString(nama_mitra)
-        parcel.writeString(jenis_mitra)
-        parcel.writeString(noPengajuan)
-        parcel.writeString(skemaPemanfaatan)
-        parcel.writeString(tujuan)
-        parcel.writeString(noSurat)
-        parcel.writeString(tglSurat)
-        parcel.writeString(objek)
-        parcel.writeString(nilai)
-        parcel.writeString(tglMulai)
-        parcel.writeString(tglAkhir)
-        parcel.writeString(perihal)
+//        parcel.writeString(jenis_mitra)
+        parcel.writeString(periodeAwal)
+        parcel.writeString(periodeAkhir)
     }
 
     override fun describeContents(): Int {

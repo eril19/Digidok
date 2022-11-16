@@ -12,26 +12,7 @@ class DaftarMitraModel(
     val status : String,
     val status_mitra: String,
     val npwp : String,
-    val npwp_mitra : String
-//
-//    val alamat_mitra: String,
-//    val kelurahan_mitra: String,
-//    val kecamatan_mitra: String,
-//    val kota_mitra: String,
-//    val provinsi_mitra: String,
-//    val klasifikasi_mitra: String,
-//    val kpp_mitra: String,
-//    val kanwil_mitra: String,
-//    val telp_mitra: String,
-//    val fax_mitra: String,
-//    val email_mitra: String,
-//    val ttl_mitra: String,
-//    val tgl_daftar_mitra: String,
-//    val status_pkp_mitra: String,
-//    val tgl_pkp_mitra: String,
-//    val jeniw_pajak_mitra: String,
-//    val badan_hukum_mitra: String
-
+    val npwp_mitra : String,
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
@@ -42,24 +23,6 @@ class DaftarMitraModel(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString()
-//
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
     ) {
     }
 

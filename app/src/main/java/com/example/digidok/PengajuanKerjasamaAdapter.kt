@@ -1,18 +1,14 @@
 
 package com.example.digidok
 
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +21,8 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
+
+        fun onItemClickPopupMenu(position: Int, statusPengajuan:String, idPks:String, view : View)
     }
 
     fun setOnItemClickListener(listener: onItemClickListener){
@@ -36,35 +34,42 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
 
         val id_pks = view.findViewById<TextView>(R.id.id_pks)
         val nama_mitra = view.findViewById<TextView>(R.id.nama_mitra)
-        val jenis_mitra = view.findViewById<TextView>(R.id.jenis_mitra)
+//        val jenis_mitra = view.findViewById<TextView>(R.id.jenis_mitra)
         val header_color = view.findViewById<TextView>(R.id.header_color)
         val tglmulai = view.findViewById<TextView>(R.id.tglMulai)
         val tglakhir = view.findViewById<TextView>(R.id.tglAkhir)
         val cardView = view.findViewById<CardView>(R.id.cardViewDaftarPengajuan)
         val menu_popup = view.findViewById<ImageView>(R.id.menu_popup)
         var statusPengajuan = ""
+        var idPks =""
+
+        init {
+            menu_popup.setOnClickListener {
+                listener.onItemClickPopupMenu(adapterPosition, statusPengajuan, idPks,menu_popup)
+            }
+        }
+
 
         fun bindView(pengajuanKerjasamaModel: PengajuanKerjasamaModel, listener: (PengajuanKerjasamaModel) -> Unit){
-            id_pks.text = pengajuanKerjasamaModel.id_pks
+            id_pks.text = pengajuanKerjasamaModel.no_pks
             nama_mitra.text = pengajuanKerjasamaModel.nama_mitra
-            jenis_mitra.text = pengajuanKerjasamaModel.jenis_mitra
+//            jenis_mitra.text = pengajuanKerjasamaModel.jenis_mitra
             header_color.text = pengajuanKerjasamaModel.header_color
-            tglakhir.text = pengajuanKerjasamaModel.tglAkhir
-            tglmulai.text = pengajuanKerjasamaModel.tglMulai
+            tglakhir.text = pengajuanKerjasamaModel.periodeAkhir
+            tglmulai.text = pengajuanKerjasamaModel.periodeAwal
             statusPengajuan = pengajuanKerjasamaModel.header_color
+            idPks = pengajuanKerjasamaModel.no_pks
 
             if (pengajuanKerjasamaModel.header_color.equals("Draft", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     android.R.color.darker_gray
                 )
             }
-
             else if(pengajuanKerjasamaModel.header_color.equals("Dikirim", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     R.color.blue
                 )
             }
-
             else if(pengajuanKerjasamaModel.header_color.equals("Dikembalikan", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     android.R.color.holo_orange_dark
@@ -88,58 +93,6 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
 
     override fun onBindViewHolder(holder: PengajuanKerjasamaViewHolder, position: Int) {
         holder.bindView(PengajuanKerja[position], listener)
-        holder.menu_popup.setOnClickListener(View.OnClickListener {
-            val popup = PopupMenu(context, holder.menu_popup)
-            popup.inflate(R.menu.daftar_pengajuan_menu)
-
-            if (holder.statusPengajuan.equals("Dikirim",true)) {
-                popup.menu.findItem(R.id.menu_edit).isVisible = false
-                popup.menu.findItem(R.id.menu_hapus).isVisible = false
-
-            } else if(holder.statusPengajuan.equals("Disetujui",true)) {
-                popup.menu.findItem(R.id.menu_telaah).isVisible = false
-                popup.menu.findItem(R.id.menu_edit).isVisible = false
-                popup.menu.findItem(R.id.menu_hapus).isVisible = false
-            } else{
-                popup.menu.findItem(R.id.menu_telaah).isVisible = false
-            }
-
-            popup.setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.menu_view -> {
-                        val intent = Intent(context, PengajuanKerjasamaDetailActivity::class.java)
-                        intent.putExtra("status", "View")
-                        intent.putExtra("PengajuanKerjasama", PengajuanKerja[position])
-                        context.startActivity(intent)
-                        true
-                    }
-                    R.id.menu_edit -> {
-                        val intent = Intent(context, PengajuanKerjasamaDetailActivity::class.java)
-                        intent.putExtra("status", "Edit")
-                        intent.putExtra("PengajuanKerjasama", PengajuanKerja[position])
-                        context.startActivity(intent)
-                        true
-                    }
-                    R.id.menu_telaah -> {
-                        val intent = Intent(context, PengajuanKerjasamaDetailActivity3::class.java)
-                        intent.putExtra("status", "Telaah")
-                        intent.putExtra("PengajuanKerjasama", PengajuanKerja[position])
-                        context.startActivity(intent)
-                        true
-                    }
-                    R.id.menu_hapus -> {
-                        val intent = Intent(context, PengajuanKerjasamaDetailActivity3::class.java)
-                        intent.putExtra("status", "Hapus")
-                        context.startActivity(intent)
-                        true
-                    }
-                }
-                false
-            }
-
-            popup.show()
-        })
-
     }
 
     override fun getItemCount(): Int = PengajuanKerja.size

@@ -18,6 +18,10 @@ interface DataSource : BaseDataSource {
 
     fun getKJPP(token: String, start:Int,row:Int,order:String,sortColumn:String, callback: KJPPCallback)
 
+    fun getDaftarPengajuanKerjasama(token: String, start:Int,row:Int,order:String,sortColumn:String, callback: daftarPengajuanCallback)
+
+    fun getDaftarPengajuanKerjasamaDetail(token: String, id:String, callback: daftarPengajuanDetailCallback)
+
     interface LoginDataCallback {
         fun onSuccess(data: BaseApiModel<UserModel?>)
 
@@ -68,6 +72,22 @@ interface DataSource : BaseDataSource {
 
     interface KJPPCallback {
         fun onSuccess(data: BaseApiModel<daftarKJPPModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface daftarPengajuanCallback {
+        fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface daftarPengajuanDetailCallback {
+        fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>)
 
         fun onError(message: String)
 

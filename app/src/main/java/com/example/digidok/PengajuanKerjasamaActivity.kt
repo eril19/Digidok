@@ -17,14 +17,21 @@ import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.data.model.daftarMitraModel
+import com.example.digidok.data.model.daftarPengajuanKerjasamaModel
 import com.example.digidok.utils.Injection
+import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 
 class PengajuanKerjasamaActivity : AppCompatActivity() {
 
     var isLoading: Boolean = false
     var pengajuanKerjasama: ArrayList<PengajuanKerjasamaModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
-
+    var start: Int = 0
+    var row: Int = 0
+    var sortColumn: String = "idPks"
+    var order: String = "asc"
     var spinnerStatus: Spinner? = null
     val listStatus = arrayListOf("SEMUA", "DRAFT", "MENUNGGU VALIDASI", "DISETUJUI")
 
@@ -56,46 +63,6 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
             i.putExtra("status", "Tambah")
             startActivity(i)
         }
-
-        //val bg:TextView = findViewById(R.id.header_color)
-
-
-//        val PengajuanKerjasamaList = listOf<PengajuanKerjasamaModel>(
-//            PengajuanKerjasamaModel(
-//                header_color = "Draft",
-//                id_mitra = "MT-2000-0001",
-//                nama_mitra = "PT INDOCATER",
-//                jenis_mitra = "Perusahaan Swasta",
-//                noPengajuan = "002-0203-12120",
-//                skemaPemanfaatan = "BTO",
-//                tujuan = "Perubahan alamat aset",
-//                noSurat = "112-32323-34342",
-//                tglSurat = "11/02/2021",
-//                objek = "Tanah",
-//                nilai = "Rp. 123,030,340",
-//                tglMulai = "11/10/2020",
-//                tglAkhir = "12/12/2022",
-//                perihal = "perubahan",
-//            ),
-//            PengajuanKerjasamaModel(
-//                header_color = "Dikirim",
-//
-//                id_mitra = "MT-2011-0001",
-//                nama_mitra = "PT Wahana Nusantara",
-//                jenis_mitra = "Perusahaan Swasta",
-//                noPengajuan = "002-0203-12120",
-//
-//                skemaPemanfaatan = "BTO",
-//                tujuan = "Perubahan alamat aset",
-//                noSurat = "112-32323-34342",
-//                tglSurat = "11/02/2021",
-//                objek = "Tanah",
-//                nilai = "Rp. 123,030,340",
-//                tglMulai = "11/10/2020",
-//                tglAkhir = "12/12/2022",
-//                perihal = "perubahan",
-//            )
-//        )
 
         val recyclerView = findViewById<RecyclerView>(R.id.rv_list_pengajuan_kerjasama)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -157,8 +124,63 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                         PengajuanKerjasamaDetailActivity::class.java
                     )
                     i.putExtra("PengajuanKerjasama", pengajuanKerjasama[position])
-//                    i.putExtra("hideTelaah", true)
                     startActivity(i)
+                }
+
+                override fun onItemClickPopupMenu(
+                    position: Int,
+                    statusPengajuan: String,
+                    idPks: String,
+                    view: View
+                ) {
+                    val popupPencet = PopupMenu(this@PengajuanKerjasamaActivity, view)
+                    popupPencet.inflate(R.menu.daftar_pengajuan_menu)
+
+                    if (statusPengajuan.equals("Dikirim",true)) {
+                        popupPencet.menu.findItem(R.id.menu_edit).isVisible = false
+                        popupPencet.menu.findItem(R.id.menu_hapus).isVisible = false
+
+                    } else if(statusPengajuan.equals("Disetujui",true)) {
+                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
+                        popupPencet.menu.findItem(R.id.menu_edit).isVisible = false
+                        popupPencet.menu.findItem(R.id.menu_hapus).isVisible = false
+                    } else{
+                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
+                    }
+
+                    popupPencet.setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.menu_view -> {
+                                val intent = Intent(this@PengajuanKerjasamaActivity, PengajuanKerjasamaDetailActivity::class.java)
+                                intent.putExtra("status", "View")
+                                intent.putExtra("idPks",idPks)
+                                startActivity(intent)
+                                true
+                            }
+                            R.id.menu_edit -> {
+                                val intent = Intent(this@PengajuanKerjasamaActivity, PengajuanKerjasamaDetailActivity::class.java)
+                                intent.putExtra("idPks",idPks)
+                                intent.putExtra("status", "Edit")
+                                startActivity(intent)
+                                true
+                            }
+                            R.id.menu_telaah -> {
+                                val intent = Intent(this@PengajuanKerjasamaActivity, DaftarSuratLampiranActivity::class.java)
+                                intent.putExtra("idPks",idPks)
+                                intent.putExtra("status", "Telaah")
+                                startActivity(intent)
+                                true
+                            }
+                            R.id.menu_hapus -> {
+                                val intent = Intent(this@PengajuanKerjasamaActivity, DaftarSuratLampiranActivity::class.java)
+                                intent.putExtra("status", "Hapus")
+//                                startActivity(intent)
+                                true
+                            }
+                        }
+                        false
+                    }
+                    popupPencet.show()
                 }
             }) {
 
@@ -168,88 +190,48 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
     fun getPengajuanKerjasama() {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getBerita("0", "10", object : DataSource.BeritaDataCallback {
-            override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
-                isLoading = false
-                if (data.success) {
-                    pengajuanKerjasama.clear()
-                    data.rows?.forEach {
-                        pengajuanKerjasama?.add(
-                            PengajuanKerjasamaModel(
-                                header_color = "Dikirim",
-                                id_pks = "PKS-2022-00001",
-                                nama_mitra = "PT Wahana Nusantara",
-                                jenis_mitra = "Perusahaan Swasta",
-                                noPengajuan = "002-0203-12120",
-                                skemaPemanfaatan = "BTO",
-                                tujuan = "Perubahan alamat aset",
-                                noSurat = "112-32323-34342",
-                                tglSurat = "11/02/2021",
-                                objek = "Tanah",
-                                nilai = "Rp. 123,030,340",
-                                tglMulai = "11/10/2020",
-                                tglAkhir = "12/12/2022",
-                                perihal = "perubahan",
+        mRepository.getDaftarPengajuanKerjasama(
+            token = Preferences.isToken(context = this@PengajuanKerjasamaActivity),
+            start = start,
+            row = 10,
+            order = order,
+            sortColumn = sortColumn,
+            object : DataSource.daftarPengajuanCallback {
+                override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        pengajuanKerjasama.clear()
+                        data.data?.dataDokumen?.forEach {
+                            pengajuanKerjasama?.add(
+                                PengajuanKerjasamaModel(
+                                    header_color = if (it?.status == 0) {
+                                        "Dihapus"
+                                    } else if (it?.status == 1) {
+                                        "Draft"
+                                    }
+                                    else if (it?.status == 2) {
+                                        "Dikirim"
+                                    }
+                                    else if (it?.status == 3) {
+                                        "Disetujui"
+                                    }
+                                    else if (it?.status == -2) {
+                                        "Dikembalikan"
+                                    }
+                                    else {
+                                        ""
+                                    },
+                                    no_pks = it?.idPks.safe(),
+                                    nama_mitra = it?.nama.safe(),
+//                                    jenis_mitra = it?..safe(),
+//                                    status = "Status:",
+                                    periodeAwal = it?.periodeAwal.safe(),
+                                    periodeAkhir = it?.periodeAkhir.safe(),
+                                )
                             )
-                        )
-
-                        pengajuanKerjasama?.add(
-                            PengajuanKerjasamaModel(
-                                header_color = "Dikembalikan",
-                                id_pks = "PKS-2022-00001",
-                                nama_mitra = "PT Wahana Nusantara",
-                                jenis_mitra = "Perusahaan Swasta",
-                                noPengajuan = "002-0203-12120",
-                                skemaPemanfaatan = "BTO",
-                                tujuan = "Perubahan alamat aset",
-                                noSurat = "112-32323-34342",
-                                tglSurat = "11/02/2021",
-                                objek = "Tanah",
-                                nilai = "Rp. 123,030,340",
-                                tglMulai = "11/10/2020",
-                                tglAkhir = "12/12/2022",
-                                perihal = "perubahan",
-                            )
-                        )
-                        pengajuanKerjasama?.add(
-                            PengajuanKerjasamaModel(
-                                header_color = "Draft",
-                                id_pks = "PKS-2022-00001",
-                                nama_mitra = "PT Wahana Nusantara",
-                                jenis_mitra = "Perusahaan Swasta",
-                                noPengajuan = "002-0203-12120",
-                                skemaPemanfaatan = "BTO",
-                                tujuan = "Perubahan alamat aset",
-                                noSurat = "112-32323-34342",
-                                tglSurat = "11/02/2021",
-                                objek = "Tanah",
-                                nilai = "Rp. 123,030,340",
-                                tglMulai = "11/10/2020",
-                                tglAkhir = "12/12/2022",
-                                perihal = "perubahan",
-                            )
-                        )
-                        pengajuanKerjasama?.add(
-                            PengajuanKerjasamaModel(
-                                header_color = "Disetujui",
-                                id_pks = "PKS-2022-00001",
-                                nama_mitra = "PT Wahana Nusantara",
-                                jenis_mitra = "Perusahaan Swasta",
-                                noPengajuan = "002-0203-12120",
-                                skemaPemanfaatan = "BTO",
-                                tujuan = "Perubahan alamat aset",
-                                noSurat = "112-32323-34342",
-                                tglSurat = "11/02/2021",
-                                objek = "Tanah",
-                                nilai = "Rp. 123,030,340",
-                                tglMulai = "11/10/2020",
-                                tglAkhir = "12/12/2022",
-                                perihal = "perubahan",
-                            )
-                        )
+                        }
+                        setList()
                     }
-                    setList()
-                }
             }
 
             override fun onError(message: String) {
