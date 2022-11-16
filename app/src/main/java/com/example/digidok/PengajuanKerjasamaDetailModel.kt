@@ -32,7 +32,7 @@ data class PengajuanKerjasamaDetailModel(
     val satuan: String,
     val luasManfaat: String,
 
-): Parcelable {
+):Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
         parcel.readString().toString(),
@@ -47,16 +47,16 @@ data class PengajuanKerjasamaDetailModel(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readInt(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
+        parcel.readInt().toInt(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readInt(),
+        parcel.readInt().toInt(),
         parcel.readString().toString(),
-        parcel.readInt(),
+        parcel.readInt().toInt(),
         parcel.readString().toString(),
         parcel.readString().toString()
     ) {
@@ -103,4 +103,5 @@ data class PengajuanKerjasamaDetailModel(
             return arrayOfNulls(size)
         }
     }
+
 }

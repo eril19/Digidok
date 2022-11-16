@@ -89,7 +89,6 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
                                     namaLokasi = it?.nalok.safe(),
                                     kodeBarang = it?.kobar.safe(),
                                     namaBarang = it?.nabar.safe(),
-                                    npwp_mitra = it?.npwp.safe(),
                                 )
                             )
                         }

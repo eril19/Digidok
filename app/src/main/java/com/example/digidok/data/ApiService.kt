@@ -49,7 +49,7 @@ interface ApiService {
         @Field("isAktif") isAktif:Int,
     ): Observable<BaseApiModel<setAktifNonAktifModel?>>
 
-    @GET("setup/mitra")
+    @GET("setup/mitra/get-data")
     fun daftarMitra(
         @Header("Authorization") token: String,
         @Query("start") start: Int,
@@ -76,7 +76,7 @@ interface ApiService {
         @Query("id") id: String,
         ): Observable<BaseApiModel<daftarPengajuanKerjasamaDetailModel?>>
 
-    @GET("setup/kjpp")
+    @GET("setup/kjpp/get-data")
     fun daftarKJPP(
         @Header("Authorization") token: String,
         @Query("start") start: Int,
