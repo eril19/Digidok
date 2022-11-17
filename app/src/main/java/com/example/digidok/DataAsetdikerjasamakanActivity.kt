@@ -52,7 +52,7 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
 
 
         setList()
-        getPengajuanKerjasamaDetail()
+        getPengajuanKerjasamaDetail("set id pks disini")
     }
 
     fun setList(){
