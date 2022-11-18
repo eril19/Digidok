@@ -26,6 +26,7 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pengajuan_kerjasama_detail2)
 
         supportActionBar?.hide()
+        idPksCheck = intent.getStringExtra("idPks") ?: ""
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
@@ -36,23 +37,21 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
         next_detail_btn.setOnClickListener {
             val i = Intent(this@DataAsetdikerjasamakanActivity, DaftarSuratLampiranActivity::class.java)
-//            i.putExtra("hideTelaah",true)
+            intent.putExtra("idPks",idPksCheck)
             startActivity(i)
         }
 
         val prev_detail_btn = findViewById<Button>(R.id.prev_detail_btn)
         prev_detail_btn.setOnClickListener {
-//            startActivity(Intent(this@PengajuanKerjasamaDetailActivity2, PengajuanKerjasamaDetailActivity::class.java))
         onBackPressed()
         }
 
-
-        idPksCheck = intent.getStringExtra("idPks") ?: ""
-
+        if (!idPksCheck.equals("")){
+            getPengajuanKerjasamaDetail(idPksCheck)
+        }
 
 
         setList()
-        getPengajuanKerjasamaDetail("set id pks disini")
     }
 
     fun setList(){
@@ -89,6 +88,8 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
                                     namaLokasi = it?.nalok.safe(),
                                     kodeBarang = it?.kobar.safe(),
                                     namaBarang = it?.nabar.safe(),
+                                    luas = it?.luas as Int,
+                                    luasManfaat = it?.luasManfaat.safe(),
                                 )
                             )
                         }

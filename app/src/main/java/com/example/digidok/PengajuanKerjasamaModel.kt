@@ -3,6 +3,7 @@ package com.example.digidok
 import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import java.util.Date
 
 
 data class PengajuanKerjasamaModel(
@@ -10,17 +11,16 @@ data class PengajuanKerjasamaModel(
     val no_pks : String,
     val nama_mitra: String,
 //    val jenis_mitra : String,
-    val periodeAwal:String,
-    val periodeAkhir:String,
+    val periodeAwal:Date,
+    val periodeAkhir:Date,
 
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.readString().toString(),
-//        parcel.readString().toString(),
+        TODO("periodeAwal"),
+        TODO("periodeAkhir")
     ) {
     }
 
@@ -28,9 +28,6 @@ data class PengajuanKerjasamaModel(
         parcel.writeString(header_color)
         parcel.writeString(no_pks)
         parcel.writeString(nama_mitra)
-//        parcel.writeString(jenis_mitra)
-        parcel.writeString(periodeAwal)
-        parcel.writeString(periodeAkhir)
     }
 
     override fun describeContents(): Int {
@@ -46,5 +43,4 @@ data class PengajuanKerjasamaModel(
             return arrayOfNulls(size)
         }
     }
-
 }

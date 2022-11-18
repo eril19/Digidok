@@ -34,7 +34,7 @@ class daftarPengajuanKerjasamaDetailModel(
 ) {
     data class listDataLampiran(
         @SerializedName("kodeDokumen")
-        val kodeDokumen: Int,
+        val kodeDokumen: String,
         @SerializedName("jenisDokumen")
         val jenisDokumen: String,
         @SerializedName("amount")

@@ -15,11 +15,17 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.data.DataSource
+import com.example.digidok.data.Repository
+import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.daftarPengajuanKerjasamaDetailModel
+import com.example.digidok.utils.Injection
+import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 
 class DaftarSuratLampiranActivity : AppCompatActivity() {
-
+    var idPks : String = ""
     var hideTelaah : String = ""
-    var data : PengajuanKerjasamaModel? = null
     var spinnerTelaah : Spinner? = null
     var daftarSuratLampiran: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
@@ -31,7 +37,6 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        data = intent.getParcelableExtra("PengajuanKerjasama")
         hideTelaah = intent.getStringExtra("status")?:""
 
         var menuTelaah = findViewById<LinearLayout>(R.id.menu_telaah)
@@ -76,6 +81,43 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    fun getPengajuanKerjasamaDetail(idPks:String) {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getDaftarPengajuanKerjasamaDetail(
+            token = Preferences.isToken(context = this@DaftarSuratLampiranActivity),
+            id = idPks,
+            object : DataSource.daftarPengajuanDetailCallback {
+                override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        daftarSuratLampiran.clear()
+                        data.data?.dataLampiran?.forEach {
+                            daftarSuratLampiran?.add(
+                                PengajuanKerjasamaDetailModel(
+                                    kodeDokumen = it?.kodeDokumen.safe(),
+                                    jenisDokumen = it?.jenisDokumen.safe(),
+                                    noSurat = it?.noSurat.safe(),
+                                    tanggal = it?.tanggal.safe(),
+                                    keteranganSurat = it?.keterangan.safe()
+                                )
+                            )
+                        }
+                        setList()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading = false
+                }
+
+                override fun onFinish() {
+                    isLoading = false
+                }
+
+            })
     }
 
     fun setSpinnerKategori() {

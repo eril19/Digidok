@@ -142,6 +142,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 DataAsetdikerjasamakanActivity::class.java
             )
             i.putExtra("hideTelaah", true)
+            intent.putExtra("idPks",idPkscheck)
             startActivity(i)
         }
 

@@ -2,22 +2,22 @@
 package com.example.digidok
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
 
 class PengajuanKerjasamaAdapter(private val context: Context, private val PengajuanKerja: List<PengajuanKerjasamaModel>, private var mListener: onItemClickListener,
                          val listener: (PengajuanKerjasamaModel) -> Unit)
     : RecyclerView.Adapter<PengajuanKerjasamaAdapter.PengajuanKerjasamaViewHolder>(){
 
 //    private lateinit var mListener: onItemClickListener
+
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
@@ -31,7 +31,8 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
 
 
     class PengajuanKerjasamaViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
-
+        var pattern: String? = "dd/MM/yyyy"
+        var simpleDateFormat = SimpleDateFormat(pattern)
         val id_pks = view.findViewById<TextView>(R.id.id_pks)
         val nama_mitra = view.findViewById<TextView>(R.id.nama_mitra)
 //        val jenis_mitra = view.findViewById<TextView>(R.id.jenis_mitra)
@@ -55,8 +56,8 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
             nama_mitra.text = pengajuanKerjasamaModel.nama_mitra
 //            jenis_mitra.text = pengajuanKerjasamaModel.jenis_mitra
             header_color.text = pengajuanKerjasamaModel.header_color
-            tglakhir.text = pengajuanKerjasamaModel.periodeAkhir
-            tglmulai.text = pengajuanKerjasamaModel.periodeAwal
+            tglakhir.text = simpleDateFormat.format(pengajuanKerjasamaModel.periodeAkhir)
+            tglmulai.text = simpleDateFormat.format(pengajuanKerjasamaModel.periodeAwal)
             statusPengajuan = pengajuanKerjasamaModel.header_color
             idPks = pengajuanKerjasamaModel.no_pks
 

@@ -1,6 +1,7 @@
 package com.example.digidok.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.util.Date
 
 class daftarPengajuanKerjasamaModel(
     @SerializedName("dataDokumen")
@@ -20,8 +21,8 @@ class daftarPengajuanKerjasamaModel(
         @SerializedName("status")
         val status: Int,
         @SerializedName("periodeAwal")
-        val periodeAwal: String = "",
+        val periodeAwal: Date,
         @SerializedName("periodeAkhir")
-        val periodeAkhir: String = "",
+        val periodeAkhir: Date,
     )
 }

@@ -22,6 +22,8 @@ import com.example.digidok.data.model.daftarPengajuanKerjasamaModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
+import java.util.*
+import kotlin.collections.ArrayList
 
 class PengajuanKerjasamaActivity : AppCompatActivity() {
 
@@ -46,6 +48,22 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         spinnerStatus = findViewById<Spinner>(R.id.spinner_status)
+
+        spinnerStatus?.onItemSelectedListener = object:AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
+
+
+
+
         val header = findViewById<TextView>(R.id.header_title)
 
         header.setText("Daftar Pengajuan Kerjasama")
@@ -225,8 +243,8 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                                     nama_mitra = it?.nama.safe(),
 //                                    jenis_mitra = it?..safe(),
 //                                    status = "Status:",
-                                    periodeAwal = it?.periodeAwal.safe(),
-                                    periodeAkhir = it?.periodeAkhir.safe(),
+                                    periodeAwal = it?.periodeAwal as Date,
+                                    periodeAkhir = it?.periodeAkhir as Date,
                                 )
                             )
                         }
