@@ -70,7 +70,7 @@ interface ApiService {
 
         ): Observable<BaseApiModel<daftarPengajuanKerjasamaModel?>>
 
-    @GET("formulir/dokumen/get-detail/:id")
+    @GET("formulir/dokumen/get-detail/")
     fun daftarPengajuanDetail(
         @Header("Authorization") token: String,
         @Query("id") id: String,

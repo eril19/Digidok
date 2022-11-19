@@ -218,6 +218,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaModel?>) {
                     isLoading = false
                     if (data.isSuccess) {
+                        Toast.makeText(this@PengajuanKerjasamaActivity, "Mohon tunggu sebentar", Toast.LENGTH_LONG).show()
                         pengajuanKerjasama.clear()
                         data.data?.dataDokumen?.forEach {
                             pengajuanKerjasama?.add(

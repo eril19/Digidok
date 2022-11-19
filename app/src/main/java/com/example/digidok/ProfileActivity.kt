@@ -82,7 +82,7 @@ class ProfileActivity : AppCompatActivity() {
                 }
 
                 override fun onError(message: String) {
-                    Toast.makeText(this@ProfileActivity, "Data Gagal", Toast.LENGTH_LONG).show()
+
                 }
 
                 override fun onFinish() {
