@@ -21,8 +21,8 @@ class daftarPengajuanKerjasamaModel(
         @SerializedName("status")
         val status: Int,
         @SerializedName("periodeAwal")
-        val periodeAwal: Date,
+        val periodeAwal: String,
         @SerializedName("periodeAkhir")
-        val periodeAkhir: Date,
+        val periodeAkhir: String,
     )
 }

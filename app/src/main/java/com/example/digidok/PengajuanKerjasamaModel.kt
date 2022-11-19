@@ -11,16 +11,16 @@ data class PengajuanKerjasamaModel(
     val no_pks : String,
     val nama_mitra: String,
 //    val jenis_mitra : String,
-    val periodeAwal:Date,
-    val periodeAkhir:Date,
+    val periodeAwal:String,
+    val periodeAkhir:String,
 
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        TODO("periodeAwal"),
-        TODO("periodeAkhir")
+        parcel.readString().toString(),
+        parcel.readString().toString()
     ) {
     }
 
@@ -28,6 +28,8 @@ data class PengajuanKerjasamaModel(
         parcel.writeString(header_color)
         parcel.writeString(no_pks)
         parcel.writeString(nama_mitra)
+        parcel.writeString(periodeAwal)
+        parcel.writeString(periodeAkhir)
     }
 
     override fun describeContents(): Int {

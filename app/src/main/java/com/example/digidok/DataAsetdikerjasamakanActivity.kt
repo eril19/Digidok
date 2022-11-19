@@ -37,7 +37,7 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
         next_detail_btn.setOnClickListener {
             val i = Intent(this@DataAsetdikerjasamakanActivity, DaftarSuratLampiranActivity::class.java)
-            intent.putExtra("idPks",idPksCheck)
+            i.putExtra("idPks",idPksCheck)
             startActivity(i)
         }
 

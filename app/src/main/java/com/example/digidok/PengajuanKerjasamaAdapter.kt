@@ -56,8 +56,8 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
             nama_mitra.text = pengajuanKerjasamaModel.nama_mitra
 //            jenis_mitra.text = pengajuanKerjasamaModel.jenis_mitra
             header_color.text = pengajuanKerjasamaModel.header_color
-            tglakhir.text = simpleDateFormat.format(pengajuanKerjasamaModel.periodeAkhir)
-            tglmulai.text = simpleDateFormat.format(pengajuanKerjasamaModel.periodeAwal)
+            tglakhir.text = pengajuanKerjasamaModel.periodeAkhir
+            tglmulai.text = pengajuanKerjasamaModel.periodeAwal
             statusPengajuan = pengajuanKerjasamaModel.header_color
             idPks = pengajuanKerjasamaModel.no_pks
 

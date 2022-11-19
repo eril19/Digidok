@@ -244,8 +244,8 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                                     nama_mitra = it?.nama.safe(),
 //                                    jenis_mitra = it?..safe(),
 //                                    status = "Status:",
-                                    periodeAwal = it?.periodeAwal as Date,
-                                    periodeAkhir = it?.periodeAkhir as Date,
+                                    periodeAwal = it?.periodeAwal.safe(),
+                                    periodeAkhir = it?.periodeAkhir.safe(),
                                 )
                             )
                         }

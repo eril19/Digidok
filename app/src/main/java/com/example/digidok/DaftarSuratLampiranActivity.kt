@@ -24,7 +24,7 @@ import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
 class DaftarSuratLampiranActivity : AppCompatActivity() {
-    var idPks : String = ""
+    var idPksCheck : String = ""
     var hideTelaah : String = ""
     var spinnerTelaah : Spinner? = null
     var daftarSuratLampiran: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
@@ -38,6 +38,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         hideTelaah = intent.getStringExtra("status")?:""
+        idPksCheck = intent.getStringExtra("idPks") ?: ""
 
         var menuTelaah = findViewById<LinearLayout>(R.id.menu_telaah)
 
@@ -47,7 +48,10 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
             menuTelaah.visibility = View.GONE
         }
 
-
+        if (!idPksCheck.equals("")){
+            getPengajuanKerjasamaDetail(idPksCheck)
+        }
+        
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
             startActivity(Intent(this@DaftarSuratLampiranActivity, PengajuanKerjasamaActivity::class.java))
