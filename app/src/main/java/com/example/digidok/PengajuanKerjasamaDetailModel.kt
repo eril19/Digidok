@@ -23,14 +23,14 @@ data class PengajuanKerjasamaDetailModel(
     val objek : String = "",
     val kodeDokumen: String = "",
     val jenisDokumen: String = "",
-    val amount: Int = 0,
+    val amount: Long = 0,
     val tanggal: String = "",
     val keteranganSurat: String = "",
-    val noreg: Int = 0,
+    val noreg: Long = 0,
     val keteranganAset: String = "",
-    val luas: Int = 0,
+    val luas: Long = 0,
     val satuan: String = "",
-    val luasManfaat: String = "",
+    val luasManfaat: Long = 0,
 
 ):Parcelable{
     constructor(parcel: Parcel) : this(
@@ -51,14 +51,14 @@ data class PengajuanKerjasamaDetailModel(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readInt().toInt(),
+        parcel.readLong(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readInt().toInt(),
+        parcel.readLong(),
         parcel.readString().toString(),
-        parcel.readInt().toInt(),
+        parcel.readLong(),
         parcel.readString().toString(),
-        parcel.readString().toString()
+        parcel.readLong()
     ) {
     }
 
@@ -80,14 +80,14 @@ data class PengajuanKerjasamaDetailModel(
         parcel.writeString(objek)
         parcel.writeString(kodeDokumen)
         parcel.writeString(jenisDokumen)
-        parcel.writeInt(amount)
+        parcel.writeLong(amount)
         parcel.writeString(tanggal)
         parcel.writeString(keteranganSurat)
-        parcel.writeInt(noreg)
+        parcel.writeLong(noreg)
         parcel.writeString(keteranganAset)
-        parcel.writeInt(luas)
+        parcel.writeLong(luas)
         parcel.writeString(satuan)
-        parcel.writeString(luasManfaat)
+        parcel.writeLong(luasManfaat)
     }
 
     override fun describeContents(): Int {
