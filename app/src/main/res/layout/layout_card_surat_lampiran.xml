@@ -169,7 +169,7 @@
                         tools:visibility="visible" />
 
                     <TextView
-                        android:id="@+id/tgl_surat"
+                        android:id="@+id/tglDokumen"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20dp"
@@ -237,6 +237,14 @@
                         android:fontFamily="@font/roboto"
                         android:visibility="visible"
                         tools:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/buttonDokumenLampiran"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingRight="16dp"
+                        android:text="Cek Lampiran" />
                 </LinearLayout>
 
             </LinearLayout>

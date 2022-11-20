@@ -10,6 +10,8 @@ data class PengajuanKerjasamaDetailModel(
     val namaLokasi:String = "",
     val kodeBarang:String = "",
     val namaBarang:String = "",
+    val dokumenLink : String = "",
+    val lampiranLink : String = "",
     val alamat:String = "",
     val Luas:String = "",
     val tglMulai:String = "",
@@ -24,7 +26,7 @@ data class PengajuanKerjasamaDetailModel(
     val kodeDokumen: String = "",
     val jenisDokumen: String = "",
     val amount: Long = 0,
-    val tanggal: String = "",
+    val tanggalDokumen: String = "",
     val keteranganSurat: String = "",
     val noreg: Long = 0,
     val keteranganAset: String = "",
@@ -34,6 +36,7 @@ data class PengajuanKerjasamaDetailModel(
 
 ):Parcelable{
     constructor(parcel: Parcel) : this(
+        parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
@@ -68,6 +71,7 @@ data class PengajuanKerjasamaDetailModel(
         parcel.writeString(kodeBarang)
         parcel.writeString(namaBarang)
         parcel.writeString(alamat)
+        parcel.writeString(dokumenLink)
         parcel.writeString(Luas)
         parcel.writeString(tglMulai)
         parcel.writeString(tglAkhir)
@@ -81,7 +85,7 @@ data class PengajuanKerjasamaDetailModel(
         parcel.writeString(kodeDokumen)
         parcel.writeString(jenisDokumen)
         parcel.writeLong(amount)
-        parcel.writeString(tanggal)
+        parcel.writeString(tanggalDokumen)
         parcel.writeString(keteranganSurat)
         parcel.writeLong(noreg)
         parcel.writeString(keteranganAset)

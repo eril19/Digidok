@@ -2,6 +2,7 @@ package com.example.digidok
 
 import android.content.Intent
 import android.graphics.Typeface
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -60,7 +61,6 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
         val prev_detail_btn = findViewById<Button>(R.id.prev_detail_btn)
         prev_detail_btn.setOnClickListener {
-//            startActivity(Intent(this@PengajuanKerjasamaDetailActivity3, PengajuanKerjasamaDetailActivity2::class.java))
         onBackPressed()
         }
 
@@ -99,15 +99,22 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
                     if (data.isSuccess) {
                         daftarSuratLampiran.clear()
                         data.data?.dataLampiran?.forEach {
+                            var url = ""
                             daftarSuratLampiran?.add(
                                 PengajuanKerjasamaDetailModel(
                                     kodeDokumen = it?.kodeDokumen.safe(),
                                     jenisDokumen = it?.jenisDokumen.safe(),
                                     noSurat = it?.noSurat.safe(),
-                                    tanggal = it?.tanggal.safe(),
-                                    keteranganSurat = it?.keterangan.safe()
+                                    tanggalDokumen = it?.tanggal.safe(),
+                                    keteranganSurat = it?.keterangan.safe(),
+                                    lampiranLink = it?.file.safe()
                                 )
                             )
+                            val buttonDokumenLampiran = findViewById<Button>(R.id.buttonDokumenLampiran)
+                            buttonDokumenLampiran.setOnClickListener {
+                                val i = Intent(Intent.ACTION_VIEW)
+                                i.data = Uri.parse(url)
+                            }
                         }
                         setList()
                     }

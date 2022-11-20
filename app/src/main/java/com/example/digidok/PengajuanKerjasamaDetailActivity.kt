@@ -1,6 +1,7 @@
 package com.example.digidok
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -38,6 +39,8 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
     var tgl_mulai: EditText? = null
     var prihal: EditText? = null
     var skema: EditText? = null
+    var url = ""
+//    var buttonDokumen : Button ? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +64,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         tgl_akhir = findViewById<EditText>(R.id.tgl_akhir)
          prihal = findViewById<EditText>(R.id.perihal)
          skema = findViewById<EditText>(R.id.skema_pemanfaatan)
+        val buttonDokumen = findViewById<Button>(R.id.buttonDokumen)
 
         isStatusEdit = intent.getStringExtra("status") ?: ""
 
@@ -146,6 +150,12 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
             startActivity(i)
         }
 
+        buttonDokumen.setOnClickListener {
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
+        }
+
         setList()
 
     }
@@ -190,7 +200,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                         tgl_mulai?.setText(data.data?.tanggalMulai)
                         tgl_akhir?.setText(data.data?.tanggalAkhir)
                         prihal?.setText(data.data?.perihal)
-
+                        url = data.data?.dokumen.toString()
                     }
                 }
 

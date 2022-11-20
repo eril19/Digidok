@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.data.DataSource
@@ -88,8 +89,9 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
                                     namaLokasi = it?.nalok.safe(),
                                     kodeBarang = it?.kobar.safe(),
                                     namaBarang = it?.nabar.safe(),
-                                    luas = it?.luas as Int,
-                                    luasManfaat = it?.luasManfaat.safe(),
+                                    luas = it?.luas as Long,
+                                    luasManfaat = it?.luasManfaat as Long,
+                                    alamat = it?.keterangan.safe(),
                                 )
                             )
                         }
@@ -98,7 +100,8 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
             }
 
             override fun onError(message: String) {
-                isLoading = false
+//                isLoading = false
+                Toast.makeText(this@DataAsetdikerjasamakanActivity, "data gagal", Toast.LENGTH_LONG ).show()
             }
 
             override fun onFinish() {

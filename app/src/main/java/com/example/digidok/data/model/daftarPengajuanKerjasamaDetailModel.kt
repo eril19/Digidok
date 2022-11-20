@@ -45,6 +45,8 @@ class daftarPengajuanKerjasamaDetailModel(
         val tanggal: String = "",
         @SerializedName("keterangan")
         val keterangan: String,
+        @SerializedName("file")
+        val file: String,
     )
     data class listDataAsetDikerjasamakan(
         @SerializedName("kolok")

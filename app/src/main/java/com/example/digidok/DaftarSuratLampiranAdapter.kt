@@ -25,7 +25,7 @@ class DaftarSuratLampiranAdapter(private val context: Context, private val Penga
         val kodeDokumen = view.findViewById<TextView>(R.id.kode_dokumen)
         val jenisDokumen = view.findViewById<TextView>(R.id.nama_lokasi)
         val noSurat = view.findViewById<TextView>(R.id.no_surat)
-        val tglSurat = view.findViewById<TextView>(R.id.tgl_surat)
+        val tglDokumen = view.findViewById<TextView>(R.id.tglDokumen)
         val keteranganSurat = view.findViewById<TextView>(R.id.keterangan_surat)
 
 
@@ -34,7 +34,7 @@ class DaftarSuratLampiranAdapter(private val context: Context, private val Penga
             kodeDokumen.text = pengajuanKerjasamaDetailModel.kodeDokumen
             jenisDokumen.text = pengajuanKerjasamaDetailModel.jenisDokumen
             noSurat.text = pengajuanKerjasamaDetailModel.noSurat
-            tglSurat.text = pengajuanKerjasamaDetailModel.tglSurat
+            tglDokumen.text = pengajuanKerjasamaDetailModel.tanggalDokumen
             keteranganSurat.text = pengajuanKerjasamaDetailModel.keteranganSurat
 
 
