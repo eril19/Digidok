@@ -58,11 +58,11 @@ class daftarPengajuanKerjasamaDetailModel(
         @SerializedName("kobar")
         val kobar: String,
         @SerializedName("noreg")
-        val noreg: Int,
+        val noreg: String,
         @SerializedName("keterangan")
         val keterangan: String,
         @SerializedName("luas")
-        val luas: Long,
+        val luas: String,
         @SerializedName("satuan")
         val satuan: String,
         @SerializedName("luasManfaat")
