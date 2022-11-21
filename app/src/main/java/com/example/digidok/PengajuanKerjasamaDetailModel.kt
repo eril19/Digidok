@@ -5,7 +5,6 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class PengajuanKerjasamaDetailModel(
-
     val kodeLokasi:String = "",
     val namaLokasi:String = "",
     val kodeBarang:String = "",
@@ -13,7 +12,7 @@ data class PengajuanKerjasamaDetailModel(
     val dokumenLink : String = "",
     val lampiranLink : String = "",
     val alamat:String = "",
-    val Luas:String = "",
+    val luas:String = "",
     val tglMulai:String = "",
     val tglAkhir :String = "",
     val perihal : String = "",
@@ -28,11 +27,10 @@ data class PengajuanKerjasamaDetailModel(
     val amount: Long = 0,
     val tanggalDokumen: String = "",
     val keteranganSurat: String = "",
-    val noreg: Long = 0,
+    val noreg: String = "",
     val keteranganAset: String = "",
-    val luas: Long = 0,
     val satuan: String = "",
-    val luasManfaat: Long = 0,
+    val luasManfaat: String = "",
 
 ):Parcelable{
     constructor(parcel: Parcel) : this(
@@ -54,14 +52,14 @@ data class PengajuanKerjasamaDetailModel(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readLong(),
-        parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readLong(),
         parcel.readString().toString(),
-        parcel.readLong(),
         parcel.readString().toString(),
-        parcel.readLong()
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString()
     ) {
     }
 
@@ -72,7 +70,7 @@ data class PengajuanKerjasamaDetailModel(
         parcel.writeString(namaBarang)
         parcel.writeString(alamat)
         parcel.writeString(dokumenLink)
-        parcel.writeString(Luas)
+        parcel.writeString(luas)
         parcel.writeString(tglMulai)
         parcel.writeString(tglAkhir)
         parcel.writeString(perihal)
@@ -87,11 +85,10 @@ data class PengajuanKerjasamaDetailModel(
         parcel.writeLong(amount)
         parcel.writeString(tanggalDokumen)
         parcel.writeString(keteranganSurat)
-        parcel.writeLong(noreg)
+        parcel.writeString(noreg)
         parcel.writeString(keteranganAset)
-        parcel.writeLong(luas)
         parcel.writeString(satuan)
-        parcel.writeLong(luasManfaat)
+        parcel.writeString(luasManfaat)
     }
 
     override fun describeContents(): Int {

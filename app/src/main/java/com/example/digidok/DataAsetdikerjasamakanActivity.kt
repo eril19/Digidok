@@ -89,8 +89,8 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
                                     namaLokasi = it?.nalok.safe(),
                                     kodeBarang = it?.kobar.safe(),
                                     namaBarang = it?.nabar.safe(),
-                                    luas = it?.luas as Long,
-                                    luasManfaat = it?.luasManfaat as Long,
+                                    luas = it?.luas.safe(),
+                                    luasManfaat = it?.luasManfaat.safe(),
                                     alamat = it?.keterangan.safe(),
                                 )
                             )
