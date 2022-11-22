@@ -8,11 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -79,6 +75,17 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
             object : DaftarSuratLampiranAdapter.onItemClickListener {
                 override fun onItemClick(position: Int) {
                     TODO("Not yet implemented")
+                }
+
+                override fun onItemClickCekLampiran(position: Int, link: String) {
+                    try {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.setDataAndType(Uri.parse(link), "application/pdf");
+                        startActivity(intent)
+                    }catch (e : Exception){
+                        Toast.makeText(this@DaftarSuratLampiranActivity, "Tidak ada aplikasi untuk menampilkan file PDF", Toast.LENGTH_SHORT).show()
+                    }
                 }
 
             }) {
