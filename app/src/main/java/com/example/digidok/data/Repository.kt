@@ -64,10 +64,13 @@ open class Repository (private val remoteDataSource: DataSource) : DataSource {
         row: Int,
         order: String,
         sortColumn: String,
+        search:String,
+        statusFilter:String,
         callback: DataSource.daftarPengajuanCallback
     ) {
-        remoteDataSource.getDaftarPengajuanKerjasama(token,start, row, order, sortColumn, callback)
+        remoteDataSource.getDaftarPengajuanKerjasama(token,start, row, order, sortColumn, search, statusFilter, callback)
     }
+
 
     override fun getDaftarPengajuanKerjasamaDetail(
         token: String,

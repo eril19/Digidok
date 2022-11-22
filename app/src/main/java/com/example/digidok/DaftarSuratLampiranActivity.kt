@@ -110,11 +110,11 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
                                     lampiranLink = it?.file.safe()
                                 )
                             )
-                            val buttonDokumenLampiran = findViewById<Button>(R.id.buttonDokumenLampiran)
-                            buttonDokumenLampiran.setOnClickListener {
-                                val i = Intent(Intent.ACTION_VIEW)
-                                i.data = Uri.parse(url)
-                            }
+//                            val buttonDokumenLampiran = findViewById<Button>(R.id.buttonDokumenLampiran)
+//                            buttonDokumenLampiran.setOnClickListener {
+//                                val i = Intent(Intent.ACTION_VIEW)
+//                                i.data = Uri.parse(url)
+//                            }
                         }
                         setList()
                     }

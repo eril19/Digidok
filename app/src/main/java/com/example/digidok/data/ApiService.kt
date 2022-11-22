@@ -67,8 +67,36 @@ interface ApiService {
         @Query("row") row: Int,
         @Query("order") order: String,
         @Query("sortColumn") sortColumn: String,
+        @Query("search") search: String,
+        @Query("statusFilter") statusFilter: String,
 
         ): Observable<BaseApiModel<daftarPengajuanKerjasamaModel?>>
+
+    @GET("pelaporan/laporan-kerjasama/get-data")
+    fun laporanKerjasama(
+        @Header("Authorization") token: String,
+        @Query("start") start: Int,
+        @Query("row") row: Int,
+        @Query("order") order: String,
+        @Query("sortColumn") sortColumn: String,
+        @Query("search") search: String,
+        @Query("statusFilter") statusFilter: String,
+        @Query("tahunFilter") tahunFilter: Int,
+        @Query("kelurahanFilter") kelurahanFilter: String,
+        ): Observable<BaseApiModel<laporanKerjasamaModel?>>
+
+    @GET("pelaporan/laporan-kerjasama/get-data")
+    fun laporanAsetDikerjasamakan(
+        @Header("Authorization") token: String,
+        @Query("start") start: Int,
+        @Query("row") row: Int,
+        @Query("order") order: String,
+        @Query("sortColumn") sortColumn: String,
+        @Query("search") search: String,
+        @Query("statusFilter") statusFilter: String,
+        @Query("tahunFilter") tahunFilter: Int,
+        @Query("kelurahanFilter") kelurahanFilter: String,
+    ): Observable<BaseApiModel<laporanKerjasamaModel?>>
 
     @GET("formulir/dokumen/get-detail/")
     fun daftarPengajuanDetail(

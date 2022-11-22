@@ -66,12 +66,12 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
                     android.R.color.darker_gray
                 )
             }
-            else if(pengajuanKerjasamaModel.header_color.equals("Dikirim", true) ) {
+            else if(pengajuanKerjasamaModel.header_color.equals("Menunggu Validasi", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     R.color.blue
                 )
             }
-            else if(pengajuanKerjasamaModel.header_color.equals("Dikembalikan", true) ) {
+            else if(pengajuanKerjasamaModel.header_color.equals("Dihapus", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     android.R.color.holo_orange_dark
                 )

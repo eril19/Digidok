@@ -146,8 +146,8 @@ object RemoteDataSource : DataSource {
             })
     }
 
-    override fun getDaftarPengajuanKerjasama(token: String, start:Int,row:Int,order:String,sortColumn:String,callback: DataSource.daftarPengajuanCallback) {
-        mApiServiceDev.daftarPengajuan(token = "Bearer $token", start = start, row = row, order = order, sortColumn = sortColumn)
+    override fun getDaftarPengajuanKerjasama(token: String, start:Int,row:Int,order:String,sortColumn:String,search:String,statusFilter:String,callback: DataSource.daftarPengajuanCallback) {
+        mApiServiceDev.daftarPengajuan(token = "Bearer $token", start = start, row = row, order = order, sortColumn = sortColumn,search = search, statusFilter=statusFilter)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : ApiCallback<BaseApiModel<daftarPengajuanKerjasamaModel?>>() {

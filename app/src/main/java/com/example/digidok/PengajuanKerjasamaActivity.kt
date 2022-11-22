@@ -51,11 +51,23 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
 
         spinnerStatus?.onItemSelectedListener = object:AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
+                if (position != 0) {
+                    if (position-1 == 0){
+                    getPengajuanKerjasama("SEMUA")
+                    }
+                    else if(position-1 == 1){
+                        getPengajuanKerjasama("DRAFT")
+                    }
+                    else if(position-1 == 2){
+                        getPengajuanKerjasama("MENUNGGU VALIDASI")
+                    }
+                    else if(position-1 == 3){
+                        getPengajuanKerjasama("DISETUJUI")
+                    }
+                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
             }
 
         }
@@ -88,7 +100,8 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
 
         setSpinnerKategori()
         setList()
-        getPengajuanKerjasama()
+        getPengajuanKerjasama("SEMUA")
+
     }
 
     fun setSpinnerKategori() {
@@ -205,7 +218,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
         }
     }
 
-    fun getPengajuanKerjasama() {
+    fun getPengajuanKerjasama(status:String) {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
         mRepository.getDaftarPengajuanKerjasama(
@@ -214,6 +227,8 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
             row = 10,
             order = order,
             sortColumn = sortColumn,
+            search = "",
+            statusFilter = status,
             object : DataSource.daftarPengajuanCallback {
                 override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaModel?>) {
                     isLoading = false
@@ -225,17 +240,14 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                                 PengajuanKerjasamaModel(
                                     header_color = if (it?.status == 0) {
                                         "Dihapus"
-                                    } else if (it?.status == 1) {
+                                    } else if (it?.status == 1 || it?.status == -2 ) {
                                         "Draft"
                                     }
                                     else if (it?.status == 2) {
-                                        "Dikirim"
+                                        "Menunggu Validasi"
                                     }
                                     else if (it?.status == 3) {
                                         "Disetujui"
-                                    }
-                                    else if (it?.status == -2) {
-                                        "Dikembalikan"
                                     }
                                     else {
                                         ""

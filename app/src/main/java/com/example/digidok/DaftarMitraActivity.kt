@@ -52,7 +52,7 @@ class DaftarMitraActivity : AppCompatActivity() {
         spinnerStatus = findViewById<Spinner>(R.id.spinner_status)
         spinnerStatus?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
+                getDaftarMitra(2)
             }
 
             override fun onItemSelected(
@@ -87,7 +87,7 @@ class DaftarMitraActivity : AppCompatActivity() {
 
         setList()
         setSpinnerKategori()
-        getDaftarMitra(1)
+        getDaftarMitra(2)
 
     }
 

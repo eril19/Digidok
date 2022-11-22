@@ -18,7 +18,7 @@ interface DataSource : BaseDataSource {
 
     fun getKJPP(token: String, start:Int,row:Int,order:String,sortColumn:String, callback: KJPPCallback)
 
-    fun getDaftarPengajuanKerjasama(token: String, start:Int,row:Int,order:String,sortColumn:String, callback: daftarPengajuanCallback)
+    fun getDaftarPengajuanKerjasama(token: String, start:Int,row:Int,order:String,sortColumn:String, search:String, statusFilter:String,callback: daftarPengajuanCallback)
 
     fun getDaftarPengajuanKerjasamaDetail(token: String, id:String, callback: daftarPengajuanDetailCallback)
 
