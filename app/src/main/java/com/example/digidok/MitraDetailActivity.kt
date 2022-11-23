@@ -56,6 +56,12 @@ class MitraDetailActivity : AppCompatActivity() {
             finish()
         }
 
+        val backArrow = findViewById<ImageButton>(R.id.backArrowBtn)
+        backArrow.setOnClickListener {
+            onBackPressed()
+            finish()
+        }
+
 //        data = intent.getParcelableExtra("daftarMitra")
         NPWPcheck = intent.getStringExtra("npwp") ?: ""
         isEdit = intent.getStringExtra("menu") ?: ""

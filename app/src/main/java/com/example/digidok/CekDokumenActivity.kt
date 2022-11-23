@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,10 +49,17 @@ class CekDokumenActivity : AppCompatActivity() {
         jenis.setText(data?.jenis_kerjasama)
 
         val tutup = findViewById<TextView>(R.id.close_detail_btn)
+        val backArrow = findViewById<ImageButton>(R.id.backArrowBtn)
 
         tutup.setOnClickListener {
             onBackPressed()
         }
+
+        backArrow.setOnClickListener {
+            onBackPressed()
+        }
+
+
 
 
         setList()

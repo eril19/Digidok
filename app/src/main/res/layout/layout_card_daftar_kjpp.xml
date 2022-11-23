@@ -33,15 +33,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="23dp"
             android:baselineAligned="false"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical">
 
@@ -65,32 +66,35 @@
                     android:fontFamily="@font/roboto_medium"
                     android:textSize="14dp"
                     tools:text="@string/nama_kjpp" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent">
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_call_24"
-                        android:visibility="visible"
-                        tools:visibility="visible" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/telp_kjpp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="10dp"
-                        android:textColor="#616161"
-                        android:fontFamily="@font/roboto"
-                        android:textSize="14dp"
-                        tools:text="@string/telp_kjpp" />
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_call_24"
+                            android:visibility="visible"
+                            tools:visibility="visible" />
 
+                        <TextView
+                            android:id="@+id/telp_kjpp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="3dp"
+                            android:textColor="#616161"
+                            android:fontFamily="@font/roboto"
+                            android:textSize="12dp"
+                            tools:text="@string/telp_kjpp" />
+
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
@@ -103,95 +107,104 @@
                 android:background="#E5E5E5" />
 
             <LinearLayout
-                android:layout_width="10dp"
+                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="7dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.2"
+                        android:layout_height="match_parent"
                         android:layout_marginBottom="15dp"
-                        android:textColor="#616161"
                         android:fontFamily="@font/roboto"
-                        android:textSize="13sp"
-                        android:visibility="visible"
                         android:text="No."
-                        tools:visibility="visible" />
-
-                    <TextView
-                        android:id="@+id/tgl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
                         android:textColor="#616161"
-                        android:fontFamily="@font/roboto"
-                        android:textSize="13sp"
+                        android:textSize="12sp"
+                        android:gravity="left|center"
                         android:visibility="visible"
-                        android:text="Tanggal"
                         tools:visibility="visible" />
-
-                    <TextView
-                        android:id="@+id/klasifikasi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#616161"
-                        android:fontFamily="@font/roboto"
-                        android:textSize="13sp"
-                        android:visibility="visible"
-                        android:text="klasifikasi"
-                        tools:visibility="visible" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/no_perizinan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="match_parent"
                         android:layout_alignParentTop="true"
                         android:layout_marginLeft="11dp"
                         android:layout_marginBottom="12dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
-                        android:textSize="14dp"
+                        android:textSize="13sp"
                         tools:text="@string/no_perizinan" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tgl_perizinan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/tgl"                        android:layout_width="0dp"
+                        android:layout_weight="1.2"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp"
+                        android:textColor="#616161"
+                        android:fontFamily="@font/roboto"
+                        android:textSize="12sp"
+                        android:gravity="left|center"
+                        android:visibility="visible"
+                        android:text="Tanggal"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tgl_perizinan"                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="match_parent"
                         android:layout_alignParentTop="true"
                         android:layout_marginLeft="11dp"
                         android:layout_marginBottom="14dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
-                        android:textSize="14dp"
+                        android:textSize="13sp"
                         tools:text="@string/tgl_perizinan" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/klasifikasi_perizinan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/klasifikasi"                     android:layout_width="0dp"
+                        android:layout_weight="1.2"
+                        android:layout_height="match_parent"
+                        android:textColor="#616161"
+                        android:fontFamily="@font/roboto"
+                        android:textSize="12sp"
+                        android:visibility="visible"
+                        android:text="klasifikasi"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/klasifikasi_perizinan"                 android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
                         android:layout_marginLeft="11dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto"
                         android:textSize="13sp"
-                        tools:text="@string/klasifikasi_perizinan" />
-
+                        tools:text="@string/klasifikasi_perizinan"  />
                 </LinearLayout>
 
             </LinearLayout>

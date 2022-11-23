@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 
 class KjppDetailActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class KjppDetailActivity : AppCompatActivity() {
         data = intent.getParcelableExtra("daftarKJPP")
 
         val tutup = findViewById<Button>(R.id.close_detail_btn)
-
+        val backArrow = findViewById<ImageButton>(R.id.backArrowBtn)
 
         val nomer = findViewById<TextView>(R.id.no_indukdetail)
         val nama = findViewById<TextView>(R.id.namadetailkjpp)
@@ -30,6 +31,10 @@ class KjppDetailActivity : AppCompatActivity() {
 
 
         tutup.setOnClickListener {
+            onBackPressed()
+        }
+
+        backArrow.setOnClickListener {
             onBackPressed()
         }
 

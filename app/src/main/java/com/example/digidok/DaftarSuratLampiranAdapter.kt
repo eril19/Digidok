@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -35,7 +36,7 @@ class DaftarSuratLampiranAdapter(private val context: Context, private val Penga
         val noSurat = view.findViewById<TextView>(R.id.no_surat)
         val tglDokumen = view.findViewById<TextView>(R.id.tglDokumen)
         val keteranganSurat = view.findViewById<TextView>(R.id.keterangan_surat)
-        val buttonDokumenLampiran = view.findViewById<Button>(R.id.buttonDokumenLampiran)
+        val buttonDokumenLampiran = view.findViewById<ImageButton>(R.id.buttonDokumenLampiran)
         var lampiran = ""
 
         init {

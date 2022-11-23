@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -52,19 +53,20 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         idPkscheck = intent.getStringExtra("idPks") ?: ""
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
+        val backArrow = findViewById<ImageButton>(R.id.backArrowBtn)
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
-         no_pengajuan = findViewById<EditText>(R.id.no_pengajuan)
-         nama_mitra = findViewById<EditText>(R.id.nama_mitra)
-         ETtujuan = findViewById<EditText>(R.id.tujuan)
-         no_surat = findViewById<EditText>(R.id.no_surat)
-         tgl_surat = findViewById<EditText>(R.id.tgl_surat)
-         Objek = findViewById<EditText>(R.id.objek)
-         tgl_mulai = findViewById<EditText>(R.id.tgl_mulai)
-         nilai_ = findViewById<EditText>(R.id.nilai)
+        no_pengajuan = findViewById<EditText>(R.id.no_pengajuan)
+        nama_mitra = findViewById<EditText>(R.id.nama_mitra)
+        ETtujuan = findViewById<EditText>(R.id.tujuan)
+        no_surat = findViewById<EditText>(R.id.no_surat)
+        tgl_surat = findViewById<EditText>(R.id.tgl_surat)
+        Objek = findViewById<EditText>(R.id.objek)
+        tgl_mulai = findViewById<EditText>(R.id.tgl_mulai)
+        nilai_ = findViewById<EditText>(R.id.nilai)
         tgl_akhir = findViewById<EditText>(R.id.tgl_akhir)
-         prihal = findViewById<EditText>(R.id.perihal)
-         skema = findViewById<EditText>(R.id.skema_pemanfaatan)
-        val buttonDokumen = findViewById<Button>(R.id.buttonDokumen)
+        prihal = findViewById<EditText>(R.id.perihal)
+        skema = findViewById<EditText>(R.id.skema_pemanfaatan)
+        val buttonDokumen = findViewById<ImageButton>(R.id.buttonDokumen)
 
         isStatusEdit = intent.getStringExtra("status") ?: ""
 
@@ -131,6 +133,16 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         }
 
         close_detail_btn.setOnClickListener {
+            startActivity(
+                Intent(
+                    this@PengajuanKerjasamaDetailActivity,
+                    PengajuanKerjasamaActivity::class.java
+                )
+            )
+            finish()
+        }
+
+        backArrow.setOnClickListener {
             startActivity(
                 Intent(
                     this@PengajuanKerjasamaDetailActivity,

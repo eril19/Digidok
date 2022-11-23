@@ -2,6 +2,7 @@ package com.example.digidok
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,7 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
 
 
         val tutup = findViewById<TextView>(R.id.close_detail_btn)
+        val backArrow = findViewById<ImageButton>(R.id.backArrowBtn)
         val id_pks = findViewById<TextView>(R.id.nomerpks)
         val nama_mitra = findViewById<TextView>(R.id.namamitra)
         val nilai_pks = findViewById<TextView>(R.id.hargapks)
@@ -44,6 +46,9 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
         jenis_kerjasama.text = data?.jenis_kerjasama
 
         tutup.setOnClickListener {
+            onBackPressed()
+        }
+        backArrow.setOnClickListener {
             onBackPressed()
         }
 
