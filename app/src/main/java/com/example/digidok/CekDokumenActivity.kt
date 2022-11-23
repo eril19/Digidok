@@ -1,22 +1,32 @@
 package com.example.digidok
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.data.model.laporanAsetDikerjasamakanModel
+import com.example.digidok.data.model.repositoriDokumenModel
 import com.example.digidok.utils.Injection
+import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 
 class CekDokumenActivity : AppCompatActivity() {
     var isLoading : Boolean = false
     var cekDokumen: ArrayList<CekDokumenModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
     var data:RepositoriDokumenModel? = null
+    var start: Int = 0
+    var row: Int = 0
+    var sortColumn: String = "no"
+    var order: String = "asc"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,62 +48,7 @@ class CekDokumenActivity : AppCompatActivity() {
 
         val tutup = findViewById<TextView>(R.id.close_detail_btn)
 
-//        val CekDokumen = listOf<CekDokumenModel>(
-//            CekDokumenModel(
-//                header_color = "Disetujui",
-//                nama_dokumen = "01 - Dokumen PKS"
-//            ),
-//            CekDokumenModel(
-//                header_color = "Disetujui",
-//                nama_dokumen = "02 - Dokumen SK Gubernur / Sekretaris Daerah"
-//            ),
-//            CekDokumenModel(
-//                header_color = "Dikembalikan",
-//                nama_dokumen = "03 - Nota Dinas"
-//            ),
-//            CekDokumenModel(
-//                header_color = "Tidak ada dokumen",
-//                nama_dokumen = "04 - Surat Permohonan Mitra"
-//            ),
-//            CekDokumenModel(
-//                header_color = "Dikirim",
-//                nama_dokumen = "05 - Surat Penunjukan Kantor Jasa Penilai Publik (KJPP)"
-//            ),
-//            CekDokumenModel(
-//                header_color = "Draft",
-//                nama_dokumen = "06 - Surat Hasil Penilaian Kantor Jasa Penilai Publik (KJPP)"
-//            ),
-//            CekDokumenModel(
-//                header_color = "Disetujui",
-//                nama_dokumen = "07 - Notulen Rapat Dengan Mitra"
-//            ),
-//            CekDokumenModel(
-//                header_color = "Disetujui",
-//                nama_dokumen = "08 - Surat Tanda Setoran"
-//            ),
-//            CekDokumenModel(
-//                header_color = "Disetujui",
-//                nama_dokumen = "09 - Dokumen Pajak Bumi dan Bangunan (PBB)"
-//            ),
-//            CekDokumenModel(
-//                header_color = "Disetujui",
-//                nama_dokumen = "10 - Dokumen Asuransi"
-//            ),
-//            CekDokumenModel(
-//                header_color = "Disetujui",
-//                nama_dokumen = "11 - Dokumen Berita Acara Serah Terima (BAST)"
-//            ),
-//            CekDokumenModel(
-//                header_color = "Disetujui",
-//                nama_dokumen = "12 - Dokumen Pendukung Lainnya"
-//            )
-//        )
-
-
-
         tutup.setOnClickListener {
-//            val i = Intent(this@CekDokumenActivity, RepositoriDokumenActivity::class.java)
-//            startActivity(i)
             onBackPressed()
         }
 
@@ -107,7 +62,22 @@ class CekDokumenActivity : AppCompatActivity() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = CekDokumenAdapter(this,  cekDokumen){
+        recyclerview?.adapter = CekDokumenAdapter(this,  cekDokumen, object : CekDokumenAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onItemClickCekLampiran(position: Int, link: String) {
+                try {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.setDataAndType(Uri.parse(link), "application/pdf");
+                    startActivity(intent)
+                }catch (e : Exception){
+                    Toast.makeText(this@CekDokumenActivity, "Tidak ada aplikasi untuk menampilkan file PDF", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }){
 
         }
     }
@@ -115,32 +85,45 @@ class CekDokumenActivity : AppCompatActivity() {
     fun getCekDokumen() {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getBerita("0", "12",  object : DataSource.BeritaDataCallback {
-            override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
-                isLoading = false
-                if (data.success) {
-                    cekDokumen.clear()
-                    data.rows?.forEach {
-                        cekDokumen?.add(
-                            CekDokumenModel(
-                                header_color = "Disetujui",
-                                nama_dokumen = "12 - Dokumen Pendukung Lainnya"
-                            )
-                        )
+        mRepository.getRepositoriDokumen(
+            token = Preferences.isToken(context = this@CekDokumenActivity),
+            start = start,
+            row = 10,
+            order = order,
+            sortColumn = sortColumn,
+            search = "",
+            statusFilter = "SEMUA",
+            tahunFilter = 2017,
+            kelurahanFilter = "",
+            object : DataSource.repositoriDokumenCallback {
+                override fun onSuccess(data: BaseApiModel<repositoriDokumenModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        cekDokumen.clear()
+                        data.data?.dataDokumen?.forEach {
+                            it?.dataLampiran?.forEach{
+                                cekDokumen?.add(
+                                    CekDokumenModel(
+                                        header_color = "",
+                                        nama_dokumen = it?.label.safe(),
+                                        file = it?.file.safe()
+                                    )
+                                )
+                                setList()
+                            }
+                        }
                     }
-                    setList()
                 }
-            }
 
-            override fun onError(message: String) {
-                isLoading = false
-            }
+                override fun onError(message: String) {
+                    isLoading = false
+                }
 
-            override fun onFinish() {
-                isLoading = false
-            }
+                override fun onFinish() {
+                    isLoading = false
+                }
 
-        })
+            })
     }
 
 }

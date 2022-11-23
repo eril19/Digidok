@@ -4,23 +4,102 @@ import com.example.digidok.data.model.*
 
 interface DataSource : BaseDataSource {
 
-    fun login(user: String, password: String, deviceId: String, fid: String, callback: LoginDataCallback)
+    fun login(
+        user: String,
+        password: String,
+        deviceId: String,
+        fid: String,
+        callback: LoginDataCallback
+    )
 
     fun getBerita(start: String, limit: String, callback: BeritaDataCallback)
 
-    fun getProfile(token:String, callback: ProfileCallback)
+    fun getProfile(token: String, callback: ProfileCallback)
 
-    fun getDaftarMitra(token: String, start:Int,row:Int,order:String,sortColumn:String,statusFilter:Int, callback: daftarMitraCallback)
+    fun getDaftarMitra(
+        token: String,
+        start: Int,
+        row: Int,
+        order: String,
+        sortColumn: String,
+        statusFilter: Int,
+        callback: daftarMitraCallback
+    )
 
-    fun getSetAktifNonAktif(token: String,kodeMitra:String,isAktif:Int, callback: setAktifNonAktifCallback)
+    fun getSetAktifNonAktif(
+        token: String,
+        kodeMitra: String,
+        isAktif: Int,
+        callback: setAktifNonAktifCallback
+    )
 
-    fun getNPWP(token: String, noNpwp:String, callback: NPWPCallback)
+    fun getNPWP(token: String, noNpwp: String, callback: NPWPCallback)
 
-    fun getKJPP(token: String, start:Int,row:Int,order:String,sortColumn:String, callback: KJPPCallback)
+    fun getKJPP(
+        token: String,
+        start: Int,
+        row: Int,
+        order: String,
+        sortColumn: String,
+        callback: KJPPCallback
+    )
 
-    fun getDaftarPengajuanKerjasama(token: String, start:Int,row:Int,order:String,sortColumn:String, search:String, statusFilter:String,callback: daftarPengajuanCallback)
+    fun getDaftarPengajuanKerjasama(
+        token: String,
+        start: Int,
+        row: Int,
+        order: String,
+        sortColumn: String,
+        search: String,
+        statusFilter: String,
+        callback: daftarPengajuanCallback
+    )
 
-    fun getDaftarPengajuanKerjasamaDetail(token: String, id:String, callback: daftarPengajuanDetailCallback)
+    fun getDaftarPengajuanKerjasamaDetail(
+        token: String,
+        id: String,
+        callback: daftarPengajuanDetailCallback
+    )
+
+    fun getLaporanAsetDikerjasamakan(
+        token: String,
+        start: Int,
+        row: Int,
+        order: String,
+        sortColumn: String,
+        search: String,
+        statusFilter: String,
+        tahunFilter: Int,
+        kelurahanFilter: String,
+        callback: laporanAsetDikerjasamakanCallback
+    )
+
+    fun getLaporanKerjasama(
+        token: String,
+        start: Int,
+        row: Int,
+        order: String,
+        sortColumn: String,
+        search: String,
+        statusFilter: String,
+        tahunFilter: Int,
+        kelurahanFilter: String,
+        callback: laporanKerjasamaCallback
+    )
+
+    fun getRepositoriDokumen(
+        token: String,
+        start: Int,
+        row: Int,
+        order: String,
+        sortColumn: String,
+        search: String,
+        statusFilter: String,
+        tahunFilter: Int,
+        kelurahanFilter: String,
+        callback: repositoriDokumenCallback
+    )
+
 
     interface LoginDataCallback {
         fun onSuccess(data: BaseApiModel<UserModel?>)
@@ -88,6 +167,30 @@ interface DataSource : BaseDataSource {
 
     interface daftarPengajuanDetailCallback {
         fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface laporanAsetDikerjasamakanCallback {
+        fun onSuccess(data: BaseApiModel<laporanAsetDikerjasamakanModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface laporanKerjasamaCallback {
+        fun onSuccess(data: BaseApiModel<laporanKerjasamaModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface repositoriDokumenCallback {
+        fun onSuccess(data: BaseApiModel<repositoriDokumenModel?>)
 
         fun onError(message: String)
 

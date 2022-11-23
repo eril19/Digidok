@@ -39,10 +39,6 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
         var NPWP = ""
 
         init {
-//            cardView.setOnClickListener {
-//                listener.onItemClick(adapterPosition)
-//            }
-
             popup.setOnClickListener {
                 listener.onItemClickPopupMenu(adapterPosition, kodeMitra, statusMitra, NPWP, popup)
             }

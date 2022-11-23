@@ -30,8 +30,6 @@ class KjppDetailActivity : AppCompatActivity() {
 
 
         tutup.setOnClickListener {
-//            val i = Intent(this@KjppDetailActivity, DaftarKjppActivity::class.java)
-//            startActivity(i)
             onBackPressed()
         }
 

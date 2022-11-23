@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 class laporanKerjasamaModel(
     @SerializedName("dataDokumen")
-    val dataMitra: List<listLaporanPengajuan>,
+    val dataDokumen: List<listLaporanPengajuan>,
 ) {
     data class listLaporanPengajuan(
         @SerializedName("no")

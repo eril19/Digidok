@@ -19,15 +19,27 @@ import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.data.model.laporanAsetDikerjasamakanModel
 import com.example.digidok.utils.Injection
+import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 
 class RepositoriDokumenActivity : AppCompatActivity() {
     var isLoading : Boolean = false
     var repositoriDokumen: ArrayList<RepositoriDokumenModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
+    var start: Int = 0
+    var row: Int = 0
+    var sortColumn: String = "no"
+    var order: String = "asc"
+
+    var tahun = 2017
+    var wilayah = ""
+    var status = "SEMUA"
+    var kelurahan = ""
 
     var spinnerTahun : Spinner? = null
-    val listTahun = arrayListOf("2022", "2021", "2020")
+    val listTahun = arrayListOf("2022", "2021", "2020","2019", "2018", "2017","2016", "2015", "2014")
 
     var spinnerWilayah : Spinner? = null
     val listWilayah = arrayListOf("Wilayah 1", "Wilayah 2", "Wilayah 3")
@@ -36,7 +48,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
     val listKelurahan = arrayListOf("Kelurahan 1", "Kelurahan 2", "Kelurahan 3")
 
     var spinnerStatus : Spinner? = null
-    val listStatus = arrayListOf("Dikirim", "Draft", "Dikembalikan")
+    val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT", "DIKEMBALIKAN")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,56 +71,12 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         val back = findViewById<ImageView>(R.id.backbtn)
 
         back.setOnClickListener {
-//            val intent = Intent(this@RepositoriDokumenActivity, DashboardActivity::class.java)
-//            startActivity(intent)
             onBackPressed()
         }
 
-        //val bg:TextView = findViewById(R.id.header_color)
-
-
-//
-//        val RepositoriList = listOf<RepositoriDokumenModel>(
-//            RepositoriDokumenModel(
-//                header_color = "Dikirim",
-//                jenis_kerjasama = "SEWA",
-//                harga = "Rp. 4.000.000",
-//                no_surat = "21 Tahun 2017",
-//                nama_mitra = "TRANSPORTASI JAKARTA"
-//            ),
-//            RepositoriDokumenModel(
-//                header_color = "Dikirim",
-//                jenis_kerjasama = "SEWA",
-//                harga = "Rp. 4.000.000",
-//                no_surat = "15 Tahun 2015",
-//                nama_mitra = "KACEDIRA EXPRESS"
-//            ),
-//            RepositoriDokumenModel(
-//                header_color = "Dikembalikan",
-//                jenis_kerjasama = "SEWA",
-//                harga = "Rp. 4.000.000",
-//                no_surat = "12 Tahun 2012",
-//                nama_mitra = "TRANSPORTASI BIBIR SEXY"
-//            ),
-//            RepositoriDokumenModel(
-//                header_color = "Draft",
-//                jenis_kerjasama = "SEWA",
-//                harga = "Rp. 4.000.000",
-//                no_surat = "22 Tahun 2024",
-//                nama_mitra = "TRANSPORTASI BICEP PURNOMO"
-//            ),
-//            RepositoriDokumenModel(
-//                header_color = "Dikembalikan",
-//                jenis_kerjasama = "SEWA",
-//                harga = "Rp. 1.000.000",
-//                no_surat = "10 Tahun 2021",
-//                nama_mitra = "NAMA MITRA 3"
-//            )
-//        )
-
         setSpinnerKategori()
         setList()
-        getRepositoriDokumen()
+        getRepositoriDokumen(status,tahun,kelurahan)
     }
 
     fun setSpinnerKategori() {
@@ -201,8 +169,6 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         }
     }
 
-
-
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
 
@@ -212,10 +178,17 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         recyclerview?.setHasFixedSize(true)
 
         recyclerview?.adapter = RepositoriDokumemAdapter(this,  repositoriDokumen, object:RepositoriDokumemAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
+            override fun onItemClick(position: Int,                nama: String,
+                                     nilai: String,
+                                     jenisKerjasama: String,
+                                     pks: String) {
 
                 val i = Intent(this@RepositoriDokumenActivity, CekDokumenActivity::class.java)
                 i.putExtra("Cek Dokumen",repositoriDokumen[position])
+                i.putExtra("nama",nama)
+                i.putExtra("nilai",nilai)
+                i.putExtra("pks",pks)
+                i.putExtra("jenisKerjasama",jenisKerjasama)
                 startActivity(i)
             }
 
@@ -226,38 +199,55 @@ class RepositoriDokumenActivity : AppCompatActivity() {
 
     }
 
-    fun getRepositoriDokumen() {
+    fun getRepositoriDokumen(statusFitler:String,tahunFilter:Int,kelurahanFilter:String) {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getBerita("0", "5",  object : DataSource.BeritaDataCallback {
-            override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
-                isLoading = false
-                if (data.success) {
-                    repositoriDokumen.clear()
-                    data.rows?.forEach {
-                        repositoriDokumen?.add(
-                            RepositoriDokumenModel(
-                                header_color = "Dikembalikan",
-                                jenis_kerjasama = "SEWA",
-                                harga = "Rp. 1.000.000",
-                                no_surat = "10 Tahun 2021",
-                                nama_mitra = "NAMA MITRA 3"
+        mRepository.getLaporanAsetDikerjasamakan(
+            token = Preferences.isToken(context = this@RepositoriDokumenActivity),
+            start = start,
+            row = 10,
+            order = order,
+            sortColumn = sortColumn,
+            search = "",
+            statusFilter = statusFitler,
+            tahunFilter = tahunFilter,
+            kelurahanFilter = kelurahanFilter,
+            object : DataSource.laporanAsetDikerjasamakanCallback {
+                override fun onSuccess(data: BaseApiModel<laporanAsetDikerjasamakanModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        repositoriDokumen.clear()
+                        data.data?.dataDokumen?.forEach {
+                            repositoriDokumen?.add(
+                                RepositoriDokumenModel(
+                                    header_color = if (it?.status == 0) {
+                                        "Tidak Aktif"
+                                    } else if (it?.status == 1) {
+                                        "Aktif"
+                                    } else {
+                                        ""
+                                    },
+                                    nama_mitra = it?.namaMitra.safe(),
+                                    jenis_kerjasama = it?.kategoriPks.safe(),
+                                    no_surat = it?.idPks.safe(),
+                                    harga = "Rp. " + it?.nilaiPks.safe(),
+                                )
                             )
-                        )
+                        }
+                        setList()
                     }
-                    setList()
                 }
-            }
 
-            override fun onError(message: String) {
-                isLoading = false
-            }
+                override fun onError(message: String) {
+                    isLoading = false
+                }
 
-            override fun onFinish() {
-                isLoading = false
-            }
+                override fun onFinish() {
+                    isLoading = false
+                }
 
-        })
+            })
     }
+
 
 }

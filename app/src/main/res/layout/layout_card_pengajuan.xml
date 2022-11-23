@@ -133,11 +133,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
-                            android:layout_marginTop="3dp"
                             android:layout_gravity="end"
-                            android:textColor="#616161"
-                            android:textSize="14dp"
+                            android:layout_marginTop="3dp"
                             android:fontFamily="@font/roboto"
+                            android:textColor="#616161"
+                            android:textSize="10sp"
                             tools:text="@string/jenis_kerjasama" />
                     </LinearLayout>
 
@@ -198,29 +198,54 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/periode"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/textView9"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_gravity="end"
-                            android:textColor="@color/black"
-                            android:textSize="14dp"
-                            android:fontFamily="@font/roboto"
+                            android:text="Periode"
+                            android:textAlignment="viewEnd"
                             android:visibility="visible"
                             tools:text="Periode"
                             tools:visibility="visible" />
 
-                        <TextView
-                            android:id="@+id/jangka_periode"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="1dp"
-                            android:layout_alignParentTop="true"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="end"
-                            android:fontFamily="@font/roboto"
-                            android:textColor="#616161"
-                            android:textSize="12dp"
-                            tools:text="02/03/2020 - 01/03/2025" />
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="3dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tglMulai"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/roboto"
+                                android:text="dd/mm/yyyy"
+                                android:textAlignment="center"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/textView8"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.3"
+                                android:text="-"
+                                android:textAlignment="center"
+                                android:visibility="visible"
+                                tools:visibility="visible" />
+
+                            <TextView
+                                android:id="@+id/tglAkhir"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/roboto"
+                                android:text="dd/mm/yyyy"
+                                android:textAlignment="center"
+
+                                android:textSize="12sp" />
+                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>

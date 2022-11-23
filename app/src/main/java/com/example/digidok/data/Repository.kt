@@ -1,6 +1,6 @@
 package com.example.digidok.data
 
-open class Repository (private val remoteDataSource: DataSource) : DataSource {
+open class Repository(private val remoteDataSource: DataSource) : DataSource {
 
     override fun login(
         user: String,
@@ -17,7 +17,6 @@ open class Repository (private val remoteDataSource: DataSource) : DataSource {
     }
 
 
-
     override fun getProfile(token: String, callback: DataSource.ProfileCallback) {
         remoteDataSource.getProfile(token, callback)
     }
@@ -31,7 +30,15 @@ open class Repository (private val remoteDataSource: DataSource) : DataSource {
         statusFilter: Int,
         callback: DataSource.daftarMitraCallback
     ) {
-        remoteDataSource.getDaftarMitra(token,start, row, order, sortColumn, statusFilter, callback)
+        remoteDataSource.getDaftarMitra(
+            token,
+            start,
+            row,
+            order,
+            sortColumn,
+            statusFilter,
+            callback
+        )
     }
 
     override fun getSetAktifNonAktif(
@@ -55,7 +62,7 @@ open class Repository (private val remoteDataSource: DataSource) : DataSource {
         sortColumn: String,
         callback: DataSource.KJPPCallback
     ) {
-        remoteDataSource.getKJPP(token,start, row, order, sortColumn, callback)
+        remoteDataSource.getKJPP(token, start, row, order, sortColumn, callback)
     }
 
     override fun getDaftarPengajuanKerjasama(
@@ -64,11 +71,20 @@ open class Repository (private val remoteDataSource: DataSource) : DataSource {
         row: Int,
         order: String,
         sortColumn: String,
-        search:String,
-        statusFilter:String,
+        search: String,
+        statusFilter: String,
         callback: DataSource.daftarPengajuanCallback
     ) {
-        remoteDataSource.getDaftarPengajuanKerjasama(token,start, row, order, sortColumn, search, statusFilter, callback)
+        remoteDataSource.getDaftarPengajuanKerjasama(
+            token,
+            start,
+            row,
+            order,
+            sortColumn,
+            search,
+            statusFilter,
+            callback
+        )
     }
 
 
@@ -77,8 +93,87 @@ open class Repository (private val remoteDataSource: DataSource) : DataSource {
         id: String,
         callback: DataSource.daftarPengajuanDetailCallback
     ) {
-        remoteDataSource.getDaftarPengajuanKerjasamaDetail(token,id,callback)
+        remoteDataSource.getDaftarPengajuanKerjasamaDetail(token, id, callback)
     }
+
+    override fun getLaporanAsetDikerjasamakan(
+        token: String,
+        start: Int,
+        row: Int,
+        order: String,
+        sortColumn: String,
+        search: String,
+        statusFilter: String,
+        tahunFilter: Int,
+        kelurahanFilter: String,
+        callback: DataSource.laporanAsetDikerjasamakanCallback
+    ) {
+        remoteDataSource.getLaporanAsetDikerjasamakan(
+            token,
+            start,
+            row,
+            order,
+            sortColumn,
+            search,
+            statusFilter,
+            tahunFilter,
+            kelurahanFilter,
+            callback
+        )
+    }
+
+    override fun getLaporanKerjasama(
+        token: String,
+        start: Int,
+        row: Int,
+        order: String,
+        sortColumn: String,
+        search: String,
+        statusFilter: String,
+        tahunFilter: Int,
+        kelurahanFilter: String,
+        callback: DataSource.laporanKerjasamaCallback
+    ) {
+        remoteDataSource.getLaporanKerjasama(
+            token,
+            start,
+            row,
+            order,
+            sortColumn,
+            search,
+            statusFilter,
+            tahunFilter,
+            kelurahanFilter,
+            callback
+        )
+    }
+
+    override fun getRepositoriDokumen(
+        token: String,
+        start: Int,
+        row: Int,
+        order: String,
+        sortColumn: String,
+        search: String,
+        statusFilter: String,
+        tahunFilter: Int,
+        kelurahanFilter: String,
+        callback: DataSource.repositoriDokumenCallback
+    ) {
+        remoteDataSource.getRepositoriDokumen(
+            token,
+            start,
+            row,
+            order,
+            sortColumn,
+            search,
+            statusFilter,
+            tahunFilter,
+            kelurahanFilter,
+            callback
+        )
+    }
+
 
     override fun onClearDisposables() {
         remoteDataSource.onClearDisposables()

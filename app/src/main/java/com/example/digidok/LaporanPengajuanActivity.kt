@@ -3,16 +3,13 @@ package com.example.digidok
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
-import android.widget.ArrayAdapter
 import com.example.digidok.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,15 +17,29 @@ import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.data.model.laporanAsetDikerjasamakanModel
+import com.example.digidok.data.model.laporanKerjasamaModel
 import com.example.digidok.utils.Injection
+import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 
 class LaporanPengajuanActivity : AppCompatActivity() {
     var isLoading : Boolean = false
     var laporanPengajuan: ArrayList<LaporanPengajuanModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
 
+    var start: Int = 0
+    var row: Int = 0
+    var sortColumn: String = "no"
+    var order: String = "asc"
+
+    var tahun = 2017
+    var wilayah = ""
+    var status = "SEMUA"
+    var kelurahan = ""
+
     var spinnerTahun : Spinner? = null
-    val listTahun = arrayListOf("2022", "2021", "2020")
+    val listTahun = arrayListOf("2022", "2021", "2020","2019", "2018", "2017","2016", "2015", "2014")
 
     var spinnerWilayah : Spinner? = null
     val listWilayah = arrayListOf("Wilayah 1", "Wilayah 2", "Wilayah 3")
@@ -37,7 +48,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
     val listKelurahan = arrayListOf("Kelurahan 1", "Kelurahan 2", "Kelurahan 3")
 
     var spinnerStatus : Spinner? = null
-    val listStatus = arrayListOf("Dikirim", "Draft", "Dikembalikan")
+    val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT", "DIKEMBALIKAN")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +57,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         setContentView(R.layout.activity_laporan_pengajuan)
 
         val adapter = ArrayAdapter(applicationContext,R.layout.dd_text_status, listTahun)
+        val header = findViewById<TextView>(R.id.header_title)
 
         supportActionBar?.hide()
 
@@ -53,8 +65,96 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         spinnerWilayah = findViewById<Spinner>(R.id.spinner_wilayah)
         spinnerKelurahan = findViewById<Spinner>(R.id.spinner_kelurahan)
         spinnerStatus = findViewById<Spinner>(R.id.spinner_status)
-        val header = findViewById<TextView>(R.id.header_title)
 
+        spinnerTahun?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position-1 == 0){
+                    tahun= 2022
+                    getLaporanKerjasama("SEMUA",2022,"")
+                }
+                else if(position-1 == 1){
+                    tahun= 2021
+                    getLaporanKerjasama("SEMUA",2021,"")
+                }
+                else if(position-1 == 2){
+                    tahun= 2020
+                    getLaporanKerjasama("SEMUA",2020,"")
+                }
+                else if(position-1 == 3){
+                    tahun= 2019
+                    getLaporanKerjasama("SEMUA",2019,"")
+                }
+                else if(position-1 == 4){
+                    tahun= 2018
+                    getLaporanKerjasama("SEMUA",2018,"")
+                }
+                else if(position-1 == 5){
+                    tahun= 2017
+                    getLaporanKerjasama("SEMUA",2017,"")
+                }
+                else if(position-1 == 6){
+                    tahun= 2016
+                    getLaporanKerjasama("SEMUA",2016,"")
+                }
+                else if(position-1 == 7){
+                    tahun= 2015
+                    getLaporanKerjasama("SEMUA",2015,"")
+                }
+                else if(position-1 == 8){
+                    tahun= 2014
+                    getLaporanKerjasama("SEMUA",2014,"")
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
+//        spinnerKelurahan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//                TODO("Not yet implemented")
+//            }
+//        }
+//
+//        spinnerWilayah?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//                TODO("Not yet implemented")
+//            }
+//        }
+
+        spinnerStatus?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position-1 == 0){
+                    status = "SEMUA"
+                    getLaporanKerjasama("SEMUA",2022,"")
+                }
+                else if(position-1 == 1){
+                    status = "DIKIRIM"
+                    getLaporanKerjasama("DIKIRIM",2021,"")
+                }
+                else if(position-1 == 2){
+                    status = "DRAFT"
+                    getLaporanKerjasama("DRAFT",2020,"")
+                }
+                else if(position-1 == 3){
+                    status = "DIKEMBALIKAN"
+                    getLaporanKerjasama("DIKEMBALIKAN",2019,"")
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
 
         header.setText("Laporan Pengajuan Kerjasama")
         val back = findViewById<ImageView>(R.id.backbtn)
@@ -65,59 +165,10 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             finish()
         }
 
-        //val bg:TextView = findViewById(R.id.header_color)
-
-
-
-//        val laporanPengajuanList = listOf<LaporanPengajuanModel>(
-//            LaporanPengajuanModel(
-//                header_color = "Dikirim",
-//                id_mitra = "MT-2020-0001",
-//                nama_mitra = "TRANSPORTASI JAKARTA",
-//                no_mitra = "700481948005000",
-//                id_pks = "PKS-2022-000001",
-//                jenis_kerjasama = "SEWA",
-//                no_surat = "21 TAHUN 2017",
-//                jenis_bmd = "tanah",
-//                nilai_pks = "Rp. 17,687,975,000",
-//                detail_pks = "Pemanfaatan Barang Milik Daerah Pemerintah Provinsi DKI Jakarta Berupa Sebagian Tanah yang terletak di Jalan Perintis Kemerdekaan, Kawasan Terminal Kampung Rambutan dan Kawasan Terminal Rawa Buaya untuk Depo TransJakarta",
-//                periode = "Periode",
-//                jangka_periode ="02/03/2020 - 01/03/2025"
-//            ),
-//            LaporanPengajuanModel(
-//                header_color = "Draft",
-//                id_mitra = "MT-2020-0001",
-//                nama_mitra = "TRANSPORTASI JAKARTA",
-//                no_mitra = "02.623.519.2-061.000",
-//                id_pks = "PKS-2022-000001",
-//                jenis_kerjasama = "SEWA",
-//                no_surat = "21 TAHUN 2017",
-//                jenis_bmd = "tanah",
-//                nilai_pks = "Rp. 17,687,975,000",
-//                detail_pks = "Pemanfaatan Barang Milik Daerah Pemerintah Provinsi DKI Jakarta Berupa Sebagian Tanah yang terletak di Jalan Perintis Kemerdekaan, Kawasan Terminal Kampung Rambutan dan Kawasan Terminal Rawa Buaya untuk Depo TransJakarta",
-//                periode = "Periode",
-//                jangka_periode ="02/03/2020 - 01/03/2025"
-//            ),
-//            LaporanPengajuanModel(
-//                header_color = "Dikembalikan",
-//                id_mitra = "MT-2020-0001",
-//                nama_mitra = "TRANSPORTASI JAKARTA",
-//                no_mitra = "01.323.604.7-076.000",
-//                id_pks = "PKS-2022-000001",
-//                jenis_kerjasama = "SEWA",
-//                no_surat = "21 TAHUN 2017",
-//                jenis_bmd = "tanah",
-//                nilai_pks = "Rp. 17,687,975,000",
-//                detail_pks = "Pemanfaatan Barang Milik Daerah Pemerintah Provinsi DKI Jakarta Berupa Sebagian Tanah yang terletak di Jalan Perintis Kemerdekaan, Kawasan Terminal Kampung Rambutan dan Kawasan Terminal Rawa Buaya untuk Depo TransJakarta",
-//                periode = "Periode",
-//                jangka_periode ="02/03/2020 - 01/03/2025"
-//            )
-//        )
-
 
         setSpinnerKategori()
         setList()
-        getLaporanPengajuan()
+        getLaporanKerjasama(status, tahun, kelurahan)
     }
 
     fun setSpinnerKategori() {
@@ -223,45 +274,63 @@ class LaporanPengajuanActivity : AppCompatActivity() {
 
     }
 
-    fun getLaporanPengajuan() {
+    fun getLaporanKerjasama(statusFitler:String,tahunFilter:Int,kelurahanFilter:String) {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getBerita("0", "10",  object : DataSource.BeritaDataCallback {
-            override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
-                isLoading = false
-                if (data.success) {
-                    laporanPengajuan.clear()
-                    data.rows?.forEach {
-                        laporanPengajuan?.add(
-                            LaporanPengajuanModel(
-                                header_color = "Dikembalikan",
-                                id_mitra = "MT-2020-0001",
-                                nama_mitra = "TRANSPORTASI JAKARTA",
-                                no_mitra = "01.323.604.7-076.000",
-                                id_pks = "PKS-2022-000001",
-                                jenis_kerjasama = "SEWA",
-                                no_surat = "21 TAHUN 2017",
-                                jenis_bmd = "tanah",
-                                nilai_pks = "Rp. 17,687,975,000",
-                                detail_pks = "Pemanfaatan Barang Milik Daerah Pemerintah Provinsi DKI Jakarta Berupa Sebagian Tanah yang terletak di Jalan Perintis Kemerdekaan, Kawasan Terminal Kampung Rambutan dan Kawasan Terminal Rawa Buaya untuk Depo TransJakarta",
-                                periode = "Periode",
-                                jangka_periode ="02/03/2020 - 01/03/2025"
+        mRepository.getLaporanKerjasama(
+            token = Preferences.isToken(context = this@LaporanPengajuanActivity),
+            start = start,
+            row = 10,
+            order = order,
+            sortColumn = sortColumn,
+            search = "",
+            statusFilter = statusFitler,
+            tahunFilter = tahunFilter,
+            kelurahanFilter = kelurahanFilter,
+            object : DataSource.laporanKerjasamaCallback {
+                override fun onSuccess(data: BaseApiModel<laporanKerjasamaModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        laporanPengajuan.clear()
+                        data.data?.dataDokumen?.forEach {
+                            laporanPengajuan?.add(
+                                LaporanPengajuanModel(
+                                    header_color = if (it?.status == 0) {
+                                        "Tidak Aktif"
+                                    } else if (it?.status == 1) {
+                                        "Aktif"
+                                    } else {
+                                        ""
+                                    },
+                                    id_pks = it?.idPks.safe(),
+                                    jenis_kerjasama = it?.kategoriPks.safe(),
+                                    no_surat = it?.noPks.safe(),
+                                    jenis_bmd = it?.objekPks.safe(),
+                                    nilai_pks = "Rp. " + it?.nilaiPks.safe(),
+                                    nama_mitra = it?.namaMitra.safe(),
+                                    perihal = it?.perihalPks.safe(),
+                                    id_mitra = it?.idMitra.safe(),
+                                    alamatMitra = it?.alamatMitra.safe(),
+                                    periodeAkhir = it?.periodeAkhir.safe(),
+                                    periodeAwal = it?.periodeAwal.safe()
+
+
+                                )
                             )
-                        )
+                        }
+                        setList()
                     }
-                    setList()
                 }
-            }
 
-            override fun onError(message: String) {
-                isLoading = false
-            }
+                override fun onError(message: String) {
+                    isLoading = false
+                }
 
-            override fun onFinish() {
-                isLoading = false
-            }
+                override fun onFinish() {
+                    isLoading = false
+                }
 
-        })
+            })
     }
 
 }

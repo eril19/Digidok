@@ -17,7 +17,7 @@ class LaporanAsetAdapter(private val context: Context, private val LaporanAset: 
 //    private lateinit var mListener: onItemClickListener
 
     interface onItemClickListener{
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int, nama:String, nilai:String,jenisKerjasama:String,pks:String)
     }
 
     fun setOnItemClickListener(listener: onItemClickListener){
@@ -33,20 +33,30 @@ class LaporanAsetAdapter(private val context: Context, private val LaporanAset: 
         val jenis_kerjasama = view.findViewById<TextView>(R.id.jenis_kerjasama)
         val header_color = view.findViewById<TextView>(R.id.header_color)
         val tomboldetail = view.findViewById<Button>(R.id.cek_detail)
+        var nama = ""
+        var nilai = ""
+        var jenisKerjasama = ""
+        var pks = ""
 
         init {
             tomboldetail.setOnClickListener {
-                listener.onItemClick(adapterPosition)
-
+                listener.onItemClick(adapterPosition,nama,nilai, jenisKerjasama, pks)
             }
         }
 
         fun bindView(laporanAsetModel: LaporanAsetModel, listener: (LaporanAsetModel) -> Unit){
             id_pks.text = laporanAsetModel.id_pks
+            pks = laporanAsetModel.id_pks
             nama_mitra.text = laporanAsetModel.nama_mitra
-            nilai_pks.text = laporanAsetModel.nilai_pks
+            nama = laporanAsetModel.nama_mitra
+            nilai_pks.text = "Rp. " + laporanAsetModel.nilai_pks
+            nilai = laporanAsetModel.nilai_pks
             jenis_kerjasama.text = laporanAsetModel.jenis_kerjasama
+            jenisKerjasama = laporanAsetModel.jenis_kerjasama
             header_color.text = laporanAsetModel.header_color
+
+
+
             if (laporanAsetModel.header_color.equals("Dikirim", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     R.color.blue

@@ -16,7 +16,10 @@ class RepositoriDokumemAdapter(private val context: Context, private val Reposit
     : RecyclerView.Adapter<RepositoriDokumemAdapter.RepositoriDokumenViewHolder>(){
 
     interface onItemClickListener{
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int,                nama: String,
+                        nilai: String,
+                        jenisKerjasama: String,
+                        pks: String)
     }
 
     class RepositoriDokumenViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
@@ -24,14 +27,21 @@ class RepositoriDokumemAdapter(private val context: Context, private val Reposit
         val no_surat = view.findViewById<TextView>(R.id.no_surat)
         val nama_mitra = view.findViewById<TextView>(R.id.nama_mitra)
         val header_color = view.findViewById<TextView>(R.id.header_color)
-
         val cekdokumen = view.findViewById<Button>(R.id.cek_dokumen_btn)
+        var nama = ""
+        var nilai = ""
+        var jenisKerjasama = ""
+        var pks = ""
 
         fun bindView(repositorDashboardModel: RepositoriDokumenModel, listener: (RepositoriDokumenModel) -> Unit){
             jenis_kerjasama.text = repositorDashboardModel.jenis_kerjasama
             no_surat.text = repositorDashboardModel.no_surat
             nama_mitra.text = repositorDashboardModel.nama_mitra
             header_color.text = repositorDashboardModel.header_color
+            nama = repositorDashboardModel.nama_mitra
+            nilai = repositorDashboardModel.harga
+            jenisKerjasama = repositorDashboardModel.jenis_kerjasama
+            pks = repositorDashboardModel.no_surat
 
             if (repositorDashboardModel.header_color.equals("Dikirim", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
@@ -55,7 +65,7 @@ class RepositoriDokumemAdapter(private val context: Context, private val Reposit
 
         init {
             cekdokumen.setOnClickListener {
-                listener.onItemClick(adapterPosition)
+                listener.onItemClick(adapterPosition,nama,nilai, jenisKerjasama, pks)
             }
         }
 

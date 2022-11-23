@@ -23,8 +23,8 @@ class LaporanPengajuanAdapter(private val context: Context, private val LaporanP
         val jenis_bmd = view.findViewById<TextView>(R.id.jenis_bmd)
         val nilai_pks = view.findViewById<TextView>(R.id.nilai_pks)
         val detail_pks = view.findViewById<TextView>(R.id.detail_pks)
-        val periode = view.findViewById<TextView>(R.id.periode)
-        val jangka_periode = view.findViewById<TextView>(R.id.jangka_periode)
+        val periodeAwal= view.findViewById<TextView>(R.id.tglMulai)
+        val periodeAkhir = view.findViewById<TextView>(R.id.tglAkhir)
         val header_color = view.findViewById<TextView>(R.id.header_color)
 
         fun bindView(laporanPengajuanModel: LaporanPengajuanModel, listener: (LaporanPengajuanModel) -> Unit){
@@ -36,9 +36,9 @@ class LaporanPengajuanAdapter(private val context: Context, private val LaporanP
             no_surat.text = laporanPengajuanModel.no_surat
             jenis_bmd.text = laporanPengajuanModel.jenis_bmd
             nilai_pks.text = laporanPengajuanModel.nilai_pks
-            detail_pks.text = laporanPengajuanModel.detail_pks
-            periode.text = laporanPengajuanModel.periode
-            jangka_periode.text = laporanPengajuanModel.jangka_periode
+            detail_pks.text = laporanPengajuanModel.perihal
+            periodeAwal.text = laporanPengajuanModel.periodeAwal
+            periodeAkhir.text = laporanPengajuanModel.periodeAkhir
             header_color.text = laporanPengajuanModel.header_color
             if (laporanPengajuanModel.header_color.equals("Dikirim", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,

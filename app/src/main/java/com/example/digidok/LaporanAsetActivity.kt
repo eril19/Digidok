@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
@@ -20,15 +21,27 @@ import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.data.model.laporanAsetDikerjasamakanModel
 import com.example.digidok.utils.Injection
+import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 
 class LaporanAsetActivity : AppCompatActivity() {
     var isLoading : Boolean = false
     var daftarLaporanAset: ArrayList<LaporanAsetModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
+    var start: Int = 0
+    var row: Int = 0
+    var sortColumn: String = "no"
+    var order: String = "asc"
+
+    var tahun = 2017
+    var wilayah = ""
+    var status = "SEMUA"
+    var kelurahan = ""
 
     var spinnerTahun : Spinner? = null
-    val listTahun = arrayListOf("2022", "2021", "2020")
+    val listTahun = arrayListOf("2022", "2021", "2020","2019", "2018", "2017","2016", "2015", "2014")
 
     var spinnerWilayah : Spinner? = null
     val listWilayah = arrayListOf("Wilayah 1", "Wilayah 2", "Wilayah 3")
@@ -37,7 +50,7 @@ class LaporanAsetActivity : AppCompatActivity() {
     val listKelurahan = arrayListOf("Kelurahan 1", "Kelurahan 2", "Kelurahan 3")
 
     var spinnerStatus : Spinner? = null
-    val listStatus = arrayListOf("Dikirim", "Draft", "Dikembalikan")
+    val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT", "DIKEMBALIKAN")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +59,7 @@ class LaporanAsetActivity : AppCompatActivity() {
         setContentView(R.layout.activity_laporan_aset)
 
         val adapter = ArrayAdapter(applicationContext,R.layout.dd_text_status, listTahun)
+        val header = findViewById<TextView>(R.id.header_title)
 
         supportActionBar?.hide()
 
@@ -53,11 +67,99 @@ class LaporanAsetActivity : AppCompatActivity() {
         spinnerWilayah = findViewById<Spinner>(R.id.spinner_wilayah)
         spinnerKelurahan = findViewById<Spinner>(R.id.spinner_kelurahan)
         spinnerStatus = findViewById<Spinner>(R.id.spinner_status)
-        val header = findViewById<TextView>(R.id.header_title)
 
+        spinnerTahun?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position-1 == 0){
+                    tahun= 2022
+                    getLaporanAset("SEMUA",2022,"")
+                }
+                else if(position-1 == 1){
+                    tahun= 2021
+                    getLaporanAset("SEMUA",2021,"")
+                }
+                else if(position-1 == 2){
+                    tahun= 2020
+                    getLaporanAset("SEMUA",2020,"")
+                }
+                else if(position-1 == 3){
+                    tahun= 2019
+                    getLaporanAset("SEMUA",2019,"")
+                }
+                else if(position-1 == 4){
+                    tahun= 2018
+                    getLaporanAset("SEMUA",2018,"")
+                }
+                else if(position-1 == 5){
+                    tahun= 2017
+                    getLaporanAset("SEMUA",2017,"")
+                }
+                else if(position-1 == 6){
+                    tahun= 2016
+                    getLaporanAset("SEMUA",2016,"")
+                }
+                else if(position-1 == 7){
+                    tahun= 2015
+                    getLaporanAset("SEMUA",2015,"")
+                }
+                else if(position-1 == 8){
+                    tahun= 2014
+                    getLaporanAset("SEMUA",2014,"")
+                }
+            }
 
-        header.setText("Laporan Aset Dikerjasamakan")
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
+//        spinnerKelurahan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//                TODO("Not yet implemented")
+//            }
+//        }
+//
+//        spinnerWilayah?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//                TODO("Not yet implemented")
+//            }
+//        }
+
+        spinnerStatus?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position-1 == 0){
+                    status = "SEMUA"
+                    getLaporanAset("SEMUA",2022,"")
+                }
+                else if(position-1 == 1){
+                    status = "DIKIRIM"
+                    getLaporanAset("DIKIRIM",2021,"")
+                }
+                else if(position-1 == 2){
+                    status = "DRAFT"
+                    getLaporanAset("DRAFT",2020,"")
+                }
+                else if(position-1 == 3){
+                    status = "DIKEMBALIKAN"
+                    getLaporanAset("DIKEMBALIKAN",2019,"")
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
         val back = findViewById<ImageView>(R.id.backbtn)
+        header.setText("Laporan Aset Dikerjasamakan")
 
         back.setOnClickListener {
             val intent = Intent(this@LaporanAsetActivity, DashboardActivity::class.java)
@@ -65,66 +167,9 @@ class LaporanAsetActivity : AppCompatActivity() {
             finish()
         }
 
-        //val bg:TextView = findViewById(R.id.header_color)
-
-
-
-//        val LaporanAset = listOf<LaporanAsetModel>(
-//            LaporanAsetModel(
-//                header_color = "Dikirim",
-//                id_pks = "PKS-2022-000001",
-//                nama_mitra = "TRANSPORTASI JAKARTA",
-//                nilai_pks = "Rp. 17,687,975,000",
-//                jenis_kerjasama = "SEWA"
-//            ),
-//            LaporanAsetModel(
-//                header_color = "Dikirim",
-//                id_pks = "PKS-2022-000001",
-//                nama_mitra = "TRANSPORTASI JAKARTA",
-//                nilai_pks = "Rp. 17,687,975,000",
-//                jenis_kerjasama = "SEWA"
-//            ),
-//            LaporanAsetModel(
-//                header_color = "Dikembalikan",
-//                id_pks = "PKS-2022-000001",
-//                nama_mitra = "TRANSPORTASI JAKARTA",
-//                nilai_pks = "Rp. 17,687,975,000",
-//                jenis_kerjasama = "SEWA"
-//            ),
-//            LaporanAsetModel(
-//                header_color = "Dikembalikan",
-//                id_pks = "PKS-2022-000001",
-//                nama_mitra = "TRANSPORTASI JAKARTA",
-//                nilai_pks = "Rp. 17,687,975,000",
-//                jenis_kerjasama = "SEWA"
-//            ),
-//            LaporanAsetModel(
-//                header_color = "Draft",
-//                id_pks = "PKS-2022-000001",
-//                nama_mitra = "TRANSPORTASI JAKARTA",
-//                nilai_pks = "Rp. 17,687,975,000",
-//                jenis_kerjasama = "SEWA"
-//            ),
-//            LaporanAsetModel(
-//                header_color = "Draft",
-//                id_pks = "PKS-2022-000001",
-//                nama_mitra = "TRANSPORTASI JAKARTA",
-//                nilai_pks = "Rp. 17,687,975,000",
-//                jenis_kerjasama = "SEWA"
-//            ),
-//            LaporanAsetModel(
-//                header_color = "Dikirim",
-//                id_pks = "PKS-2022-000001",
-//                nama_mitra = "TRANSPORTASI JAKARTA",
-//                nilai_pks = "Rp. 17,687,975,000",
-//                jenis_kerjasama = "SEWA"
-//            )
-//        )
-
-
         setList()
         setSpinnerKategori()
-        getDaftarLaporanAset()
+        getLaporanAset(status,tahun,kelurahan)
     }
 
     fun setSpinnerKategori() {
@@ -225,7 +270,14 @@ class LaporanAsetActivity : AppCompatActivity() {
         recyclerview?.setHasFixedSize(true)
 
         recyclerview?.adapter = LaporanAsetAdapter(this, daftarLaporanAset,object : LaporanAsetAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
+
+            override fun onItemClick(
+                position: Int,
+                nama: String,
+                nilai: String,
+                jenisKerjasama: String,
+                pks: String
+            ) {
                 val i = Intent(this@LaporanAsetActivity, LaporanAsetDetailActivity::class.java)
                 i.putExtra("laporanAset", daftarLaporanAset[position])
                 startActivity(i)
@@ -237,38 +289,54 @@ class LaporanAsetActivity : AppCompatActivity() {
 
     }
 
-    fun getDaftarLaporanAset() {
+    fun getLaporanAset(statusFitler:String,tahunFilter:Int,kelurahanFilter:String) {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getBerita("0", "10",  object : DataSource.BeritaDataCallback {
-            override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
-                isLoading = false
-                if (data.success) {
-                    daftarLaporanAset.clear()
-                    data.rows?.forEach {
-                        daftarLaporanAset?.add(
-                            LaporanAsetModel(
-                                header_color = "Dikirim",
-                                id_pks = "PKS-2022-000001",
-                                nama_mitra = "TRANSPORTASI JAKARTA",
-                                nilai_pks = "Rp. 17,687,975,000",
-                                jenis_kerjasama = "SEWA"
+        mRepository.getLaporanAsetDikerjasamakan(
+            token = Preferences.isToken(context = this@LaporanAsetActivity),
+            start = start,
+            row = 10,
+            order = order,
+            sortColumn = sortColumn,
+            search = "",
+            statusFilter = statusFitler,
+            tahunFilter = tahunFilter,
+            kelurahanFilter = kelurahanFilter,
+            object : DataSource.laporanAsetDikerjasamakanCallback {
+                override fun onSuccess(data: BaseApiModel<laporanAsetDikerjasamakanModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        daftarLaporanAset.clear()
+                        data.data?.dataDokumen?.forEach {
+                            daftarLaporanAset?.add(
+                                LaporanAsetModel(
+                                    header_color = if (it?.status == 0) {
+                                        "Tidak Aktif"
+                                    } else if (it?.status == 1) {
+                                        "Aktif"
+                                    } else {
+                                        ""
+                                    },
+                                    id_pks = it?.idPks.safe(),
+                                    nama_mitra = it?.namaMitra.safe(),
+                                    jenis_kerjasama = it?.kategoriPks.safe(),
+                                    nilai_pks = it?.nilaiPks.safe(),
+                                )
                             )
-                        )
+                        }
+                        setList()
                     }
-                    setList()
                 }
-            }
 
-            override fun onError(message: String) {
-                isLoading = false
-            }
+                override fun onError(message: String) {
+                    isLoading = false
+                }
 
-            override fun onFinish() {
-                isLoading = false
-            }
+                override fun onFinish() {
+                    isLoading = false
+                }
 
-        })
+            })
     }
 
 }

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 class repositoriDokumenModel(
     @SerializedName("dataDokumen")
-    val dataMitra: List<listRepositoriDokumen>,
+    val dataDokumen: List<listRepositoriDokumen>,
 ) {
     data class listRepositoriDokumen(
         @SerializedName("no")

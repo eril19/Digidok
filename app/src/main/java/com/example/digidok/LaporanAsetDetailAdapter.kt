@@ -12,7 +12,7 @@ class LaporanAsetDetailAdapter(private val context: Context, private val Laporan
     : RecyclerView.Adapter<LaporanAsetDetailAdapter.LaporanAsetDetailViewHolder>(){
 
     class LaporanAsetDetailViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val num_laporan = view.findViewById<TextView>(R.id.num_laporan)
+//        val num_laporan = view.findViewById<TextView>(R.id.num_laporan)
         val nama_lokasi = view.findViewById<TextView>(R.id.nama_lokasi)
         val nama_bmd = view.findViewById<TextView>(R.id.nama_bmd)
         val kode_lokasi = view.findViewById<TextView>(R.id.kode_lokasi)
@@ -21,12 +21,12 @@ class LaporanAsetDetailAdapter(private val context: Context, private val Laporan
         val keterangan_bmd = view.findViewById<TextView>(R.id.keterangan_bmd)
 
         fun bindView(laporanAsetDetailModel: LaporanAsetDetailModel, listener: (LaporanAsetDetailModel) -> Unit){
-            num_laporan.text = laporanAsetDetailModel.num_laporan
+//            num_laporan.text = laporanAsetDetailModel.num_laporan
             nama_lokasi.text = laporanAsetDetailModel.nama_lokasi
             nama_bmd.text = laporanAsetDetailModel.nama_bmd
             kode_lokasi.text = laporanAsetDetailModel.kode_lokasi
             kode_barang.text = laporanAsetDetailModel.kode_barang
-            luas_bmd.text = laporanAsetDetailModel.luas_bmd
+            luas_bmd.text = laporanAsetDetailModel.luas_bmd + laporanAsetDetailModel.satuan
             keterangan_bmd.text = laporanAsetDetailModel.keterangan_bmd
         }
     }

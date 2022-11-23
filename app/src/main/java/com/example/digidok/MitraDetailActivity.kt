@@ -52,8 +52,6 @@ class MitraDetailActivity : AppCompatActivity() {
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
-//            startActivity(Intent(this@MitraDetailActivity, DaftarMitraActivity::class.java))
-//            finish()
             onBackPressed()
             finish()
         }
