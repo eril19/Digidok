@@ -34,6 +34,9 @@ interface DataSource : BaseDataSource {
     )
 
     fun getNPWP(token: String, noNpwp: String, callback: NPWPCallback)
+    fun getTahun(token: String, callback: tahunCallback)
+    fun getKota(token: String, callback: kotaCallback)
+    fun getKelurahan(token: String, idKota: String, callback: kelurahanCallback)
 
     fun getKJPP(
         token: String,
@@ -191,6 +194,30 @@ interface DataSource : BaseDataSource {
 
     interface repositoriDokumenCallback {
         fun onSuccess(data: BaseApiModel<repositoriDokumenModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface kelurahanCallback {
+        fun onSuccess(data: BaseApiModel<kelurahanModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface kotaCallback {
+        fun onSuccess(data: BaseApiModel<kotaModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface tahunCallback {
+        fun onSuccess(data: BaseApiModel<tahunModel?>)
 
         fun onError(message: String)
 

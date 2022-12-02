@@ -67,6 +67,11 @@ class LaporanAsetAdapter(private val context: Context, private val LaporanAset: 
                     android.R.color.holo_orange_dark
                 )
             }
+            else if(laporanAsetModel.header_color.equals("Disetujui", true) ) {
+                header_color.background = ContextCompat.getDrawable(header_color.context,
+                    android.R.color.holo_green_light
+                )
+            }
             else if(laporanAsetModel.header_color.equals("Draft", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     android.R.color.darker_gray

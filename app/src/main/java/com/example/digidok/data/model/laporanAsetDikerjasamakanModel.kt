@@ -24,6 +24,8 @@ class laporanAsetDikerjasamakanModel(
         val periodeAkhir: String = "",
         @SerializedName("status")
         val status: Int,
+        @SerializedName("statusLabel")
+        val statusLabel: String = "",
         @SerializedName("dataDetail")
         val dataDetail: List<listDetail>,
     ){

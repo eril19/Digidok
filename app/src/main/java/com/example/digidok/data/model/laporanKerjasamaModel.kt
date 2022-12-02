@@ -33,5 +33,7 @@ class laporanKerjasamaModel(
         val periodeAkhir: String = "",
         @SerializedName("status")
         val status: Int,
+        @SerializedName("statusLabel")
+        val statusLabel: String = "",
     )
 }

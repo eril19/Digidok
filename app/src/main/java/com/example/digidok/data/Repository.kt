@@ -54,6 +54,18 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         remoteDataSource.getNPWP(token, noNpwp, callback)
     }
 
+    override fun getTahun(token: String, callback: DataSource.tahunCallback) {
+        remoteDataSource.getTahun(token, callback)
+    }
+
+    override fun getKota(token: String, callback: DataSource.kotaCallback) {
+        remoteDataSource.getKota(token, callback)
+    }
+
+    override fun getKelurahan(token: String, idKota: String, callback: DataSource.kelurahanCallback) {
+       remoteDataSource.getKelurahan(token, idKota, callback)
+    }
+
     override fun getKJPP(
         token: String,
         start: Int,

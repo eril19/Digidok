@@ -104,14 +104,8 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     fun setListData() {
-//        val sizeofData : TextView = v.findViewById(R.id.dataSize)
-
-
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
-
-//        val showData = DashboardList.size
-//        sizeofData.setText(showData)
         recyclerview?.adapter = DashboardAdapter(this, dashboardList) {
         }
     }
@@ -122,6 +116,11 @@ class DashboardActivity : AppCompatActivity() {
         mRepository.getBerita("0", "5",  object : DataSource.BeritaDataCallback {
             override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
                 isLoading = false
+
+//                if(data.code == 401){
+//                    intent ke login activity
+//                }
+
                 if (data.success) {
                     dashboardList.clear()
                     data.rows?.forEach {
@@ -129,6 +128,7 @@ class DashboardActivity : AppCompatActivity() {
                     }
                     setListData()
                 }
+
             }
 
             override fun onError(message: String) {

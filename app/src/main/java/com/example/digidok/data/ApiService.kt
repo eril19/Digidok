@@ -132,6 +132,24 @@ interface ApiService {
         @Query("noNpwp") noNpwp: String,
         ): Observable<BaseApiModel<NPWPModel?>>
 
+    @GET("master/get-tahun-dokumen")
+    fun Tahun(
+        @Header("Authorization") token: String,
+    ): Observable<BaseApiModel<tahunModel?>>
+
+
+    @GET("master/get-kota")
+    fun Kota(
+        @Header("Authorization") token: String,
+    ): Observable<BaseApiModel<kotaModel?>>
+
+
+    @GET("master/get-kelurahan")
+    fun Kelurahan(
+        @Header("Authorization") token: String,
+        @Query("idKota") idKota: String,
+    ): Observable<BaseApiModel<kelurahanModel?>>
+
     @FormUrlEncoded
     @POST("cms/berita")
     fun berita(

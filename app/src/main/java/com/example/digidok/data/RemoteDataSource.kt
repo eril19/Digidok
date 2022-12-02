@@ -172,6 +172,64 @@ object RemoteDataSource : DataSource {
             })
     }
 
+    override fun getKelurahan(token: String, idKota: String, callback: DataSource.kelurahanCallback) {
+        mApiServiceDev.Kelurahan(token = "Bearer $token", idKota = idKota)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<kelurahanModel?>>() {
+                override fun onSuccess(model: BaseApiModel<kelurahanModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+    override fun getKota(token: String,callback: DataSource.kotaCallback) {
+        mApiServiceDev.Kota(token = "Bearer $token")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<kotaModel?>>() {
+                override fun onSuccess(model: BaseApiModel<kotaModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+    override fun getTahun(token: String,callback: DataSource.tahunCallback) {
+        mApiServiceDev.Tahun(token = "Bearer $token")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<tahunModel?>>() {
+                override fun onSuccess(model: BaseApiModel<tahunModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+
     override fun getDaftarPengajuanKerjasamaDetail(
         token: String,
         id: String,
