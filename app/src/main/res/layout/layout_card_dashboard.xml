@@ -11,7 +11,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewkjpp"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="107dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:clickable="true"
@@ -37,6 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -45,17 +46,17 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:fontFamily="@font/roboto_medium"
-                        android:textSize="14dp"
+                        android:textSize="12.5sp"
                         tools:text="@string/nama_mitra" />
 
                     <TextView
                         android:id="@+id/jenis_mitra"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
+                        android:layout_marginTop="5dp"
                         android:fontFamily="@font/roboto"
                         android:textColor="#616161"
-                        android:textSize="13sp"
+                        android:textSize="12sp"
                         tools:text="@string/jenis_mitra" />
                 </LinearLayout>
 
@@ -75,7 +76,7 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="6"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
@@ -84,58 +85,60 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Jumlah Kerjasama"
-                            android:textColor="#616161"
-                            android:textSize="11dp"
+                            android:text="Nilai Total :"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
                             android:visibility="visible"
-                            android:fontFamily="@font/roboto"
+                            android:fontFamily="@font/roboto_medium"
                             tools:text="Jumlah Kerjasama"
                             tools:visibility="visible" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="10dp">
+
+                            <TextView
+                                android:id="@+id/jumlahKerjasama"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="0"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"
+                                android:layout_marginTop="3dp"
+                                android:layout_marginLeft="5dp"/>
+                        </LinearLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:fontFamily="@font/roboto"
+                            android:layout_marginTop="7dp"
+                            android:fontFamily="@font/roboto_medium"
                             android:gravity="center"
-                            android:text="Total Nilai"
-                            android:textColor="#616161"
-                            android:textSize="11dp"
+                            android:text="Jumlah Kerjasama :"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
                             android:visibility="visible"
                             tools:visibility="visible" />
-                    </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="10dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/jumlahKerjasama"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="0"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
+                            android:layout_marginRight="10dp">
 
-                        <TextView
-                            android:id="@+id/totalNilai"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="3dp"
-                            android:gravity="center"
-                            android:text="0"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
+                            <TextView
+                                android:id="@+id/totalNilai"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="0"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"
+                                android:layout_marginTop="3dp"
+                                android:layout_marginLeft="5dp"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-
             </LinearLayout>
-
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
