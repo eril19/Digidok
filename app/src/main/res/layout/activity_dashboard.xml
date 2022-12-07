@@ -243,21 +243,24 @@
                             android:id="@+id/jumlah_nilai_kerjasama"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
                             android:layout_marginStart="25dp"
-                            android:text="Rp. 0.000"
+                            android:layout_marginTop="14dp"
                             android:fontFamily="@font/roboto"
+                            android:text="Rp. 0.000"
                             android:textColor="@color/white"
-                            android:textSize="50dp" />
+                            android:textSize="34sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="19dp"
+                            android:layout_alignStart="@+id/jumlah_nilai_kerjasama"
+                            android:layout_marginStart="0dp"
                             android:layout_marginTop="63dp"
                             android:layout_marginEnd="23dp"
                             android:layout_marginBottom="6dp"
-                            android:text="Jumlah Nilai Kerjasama"
                             android:fontFamily="@font/roboto"
+                            android:text="Jumlah Nilai Kerjasama"
                             android:textColor="@color/white"
                             android:textSize="14dp" />
                     </RelativeLayout>

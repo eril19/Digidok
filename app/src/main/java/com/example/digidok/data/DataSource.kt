@@ -37,6 +37,7 @@ interface DataSource : BaseDataSource {
     fun getTahun(token: String, callback: tahunCallback)
     fun getKota(token: String, callback: kotaCallback)
     fun getKelurahan(token: String, idKota: String, callback: kelurahanCallback)
+    fun getDashboard(token: String, callback: dashboardCallback)
 
     fun getKJPP(
         token: String,
@@ -218,6 +219,14 @@ interface DataSource : BaseDataSource {
 
     interface tahunCallback {
         fun onSuccess(data: BaseApiModel<tahunModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface dashboardCallback {
+        fun onSuccess(data: BaseApiModel<dashboardModel?>)
 
         fun onError(message: String)
 

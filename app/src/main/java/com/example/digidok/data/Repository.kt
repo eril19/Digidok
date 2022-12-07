@@ -66,6 +66,10 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
        remoteDataSource.getKelurahan(token, idKota, callback)
     }
 
+    override fun getDashboard(token: String, callback: DataSource.dashboardCallback) {
+        remoteDataSource.getDashboard(token, callback)
+    }
+
     override fun getKJPP(
         token: String,
         start: Int,

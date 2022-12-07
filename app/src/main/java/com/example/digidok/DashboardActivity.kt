@@ -3,8 +3,10 @@ package com.example.digidok
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +14,11 @@ import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.BeritaModel
+import com.example.digidok.data.model.dashboardModel
+import com.example.digidok.data.model.laporanAsetDikerjasamakanModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 import org.w3c.dom.Text
 import java.text.DateFormat
 import java.util.*
@@ -23,10 +28,15 @@ class DashboardActivity : AppCompatActivity() {
     var isLoading : Boolean = false
     var dashboardList: ArrayList<DashboardModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
+    var jml : TextView? = null
+    var jmlMitra :TextView? = null
+    var jmlNilai :TextView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+
 
         val calendar: Calendar = Calendar.getInstance()
         val currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
@@ -36,12 +46,15 @@ class DashboardActivity : AppCompatActivity() {
 
         val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
 
+
+      jml = findViewById<TextView>(R.id.jumlah_kerjasama)
+        jmlMitra = findViewById<TextView>(R.id.jumlah_mitra)
+    jmlNilai = findViewById<TextView>(R.id.jumlah_nilai_kerjasama)
         val namaRole = findViewById<TextView>(R.id.namaRole)
         val namaUser = findViewById<TextView>(R.id.namaUser)
         val notifBtn:ImageView = findViewById(R.id.notificationbtn)
         val dropdown_profile: ImageView = findViewById(R.id.profileArrow)
         val dokumenBtn : ImageButton = findViewById(R.id.repositoriDokumenBtn)
-
 
         namaUser.text = Preferences.isUser(this@DashboardActivity)
         namaRole.text = Preferences.Role(this@DashboardActivity)
@@ -90,8 +103,8 @@ class DashboardActivity : AppCompatActivity() {
 
         dateText.setText(currentDate)
 
-        setListData()
-        getBerita()
+        setList()
+        getDashboard()
 
         dropdown_profile.setOnClickListener {
             startActivity(Intent(this@DashboardActivity, ProfileActivity::class.java))
@@ -103,45 +116,55 @@ class DashboardActivity : AppCompatActivity() {
 
     }
 
-    fun setListData() {
+    fun setList() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
         recyclerview?.adapter = DashboardAdapter(this, dashboardList) {
         }
     }
 
-    fun getBerita() {
+    fun getDashboard() {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getBerita("0", "5",  object : DataSource.BeritaDataCallback {
-            override fun onSuccess(data: BaseApiModel<BeritaModel?>) {
-                isLoading = false
+        mRepository.getDashboard(
+            token = Preferences.isToken(context = this@DashboardActivity),
+            object : DataSource.dashboardCallback {
+                override fun onSuccess(data: BaseApiModel<dashboardModel?>) {
+                    isLoading = false
 
-//                if(data.code == 401){
-//                    intent ke login activity
-//                }
+//                    if(data.code == 401){
+//                        logout
+//                    }
 
-                if (data.success) {
-                    dashboardList.clear()
-                    data.rows?.forEach {
-                        dashboardList?.add(DashboardModel(it?.editor.toString(), it?.tanggal.toString()))
+                    if (data.isSuccess) {
+                        dashboardList.clear()
+                        jml?.text = data.data?.jumlahKerjasama.safe()
+                        jmlMitra?.text = data.data?.jumlahMitra.safe()
+                        jmlNilai?.text = "Rp. " + data.data?.jumlahNilaiKerjasama.safe()
+                        data.data?.dataMitra?.forEach {
+                            dashboardList?.add(
+                                DashboardModel(
+                                    nama_mitra = it?.namaMitra.safe(),
+                                    jumlah_kerjasama = it?.jumlahKederjasama.safe(),
+                                    total_nilai = it?.totalNilai.safe(),
+                                    jenis_mitra = it?.idMitra.safe()
+                                )
+                            )
+                        }
+                        setList()
                     }
-                    setListData()
                 }
 
-            }
+                override fun onError(message: String) {
+                    isLoading = false
+                }
 
-            override fun onError(message: String) {
-                isLoading = false
-            }
+                override fun onFinish() {
+                    isLoading = false
+                }
 
-            override fun onFinish() {
-                isLoading = false
-            }
-
-        })
+            })
     }
-
 
     companion object {
         /**

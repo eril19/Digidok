@@ -229,6 +229,24 @@ object RemoteDataSource : DataSource {
             })
     }
 
+    override fun getDashboard(token: String,callback: DataSource.dashboardCallback) {
+        mApiServiceDev.Dashboard(token = "Bearer $token")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<dashboardModel?>>() {
+                override fun onSuccess(model: BaseApiModel<dashboardModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
 
     override fun getDaftarPengajuanKerjasamaDetail(
         token: String,
