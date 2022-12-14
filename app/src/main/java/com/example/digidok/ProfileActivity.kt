@@ -23,6 +23,8 @@ class ProfileActivity : AppCompatActivity() {
     var NIP : EditText?=null
     var Telepon : EditText?=null
     var Email : EditText?=null
+    var PasswordA : String = ""
+    var PasswordB :String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

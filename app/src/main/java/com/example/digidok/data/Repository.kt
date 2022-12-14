@@ -12,6 +12,36 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         remoteDataSource.login(user, password, deviceId, fid, callback)
     }
 
+    override fun InsertMitra(
+        token: String,
+        npwp: String,
+        nama: String,
+        alamat: String,
+        kelurahan: String,
+        kecamatan: String,
+        kotaKabupaten: String,
+        provinsi: String,
+        klasifikasi: String,
+        namaKpp: String,
+        kanwil: String,
+        nomorTelepon: String,
+        nomorFax: String,
+        email: String,
+        ttl: String,
+        tanggalDaftar: String,
+        statusPkp: String,
+        tanggalPengukuhanPkp: String,
+        jenisWajibPajak: String,
+        badanHukum: String,
+        tahunGabung: String,
+        jenisMitra: String,
+        statusMitra: String,
+        companyProfile: String,
+        callback: DataSource.InsertMitraCallback
+    ) {
+        remoteDataSource.InsertMitra(token, npwp, nama, alamat, kelurahan, kecamatan, kotaKabupaten, provinsi, klasifikasi, namaKpp, kanwil, nomorTelepon, nomorFax, email, ttl, tanggalDaftar, statusPkp, tanggalPengukuhanPkp, jenisWajibPajak, badanHukum, tahunGabung, jenisMitra, statusMitra, companyProfile, callback)
+    }
+
     override fun getBerita(start: String, limit: String, callback: DataSource.BeritaDataCallback) {
         remoteDataSource.getBerita(start, limit, callback)
     }

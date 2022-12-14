@@ -1,6 +1,8 @@
 package com.example.digidok.data
 
 import com.example.digidok.data.model.*
+import retrofit2.http.Field
+import retrofit2.http.Header
 
 interface DataSource : BaseDataSource {
 
@@ -10,6 +12,34 @@ interface DataSource : BaseDataSource {
         deviceId: String,
         fid: String,
         callback: LoginDataCallback
+    )
+
+    fun InsertMitra(
+        token: String,
+        npwp: String,
+        nama: String,
+        alamat: String,
+        kelurahan: String,
+        kecamatan: String,
+        kotaKabupaten: String,
+        provinsi: String,
+        klasifikasi: String,
+        namaKpp: String,
+        kanwil: String,
+        nomorTelepon: String,
+        nomorFax: String,
+        email: String,
+        ttl: String,
+        tanggalDaftar: String,
+        statusPkp: String,
+        tanggalPengukuhanPkp: String,
+        jenisWajibPajak: String,
+        badanHukum: String,
+        tahunGabung: String,
+        jenisMitra: String,
+        statusMitra: String,
+        companyProfile: String,
+        callback: InsertMitraCallback
     )
 
     fun getBerita(start: String, limit: String, callback: BeritaDataCallback)
@@ -106,6 +136,14 @@ interface DataSource : BaseDataSource {
 
 
     interface LoginDataCallback {
+        fun onSuccess(data: BaseApiModel<UserModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface InsertMitraCallback {
         fun onSuccess(data: BaseApiModel<UserModel?>)
 
         fun onError(message: String)

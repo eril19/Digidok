@@ -39,8 +39,6 @@ class DaftarKjppActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        val binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
         setContentView(R.layout.activity_daftar_kjpp)
 
         supportActionBar?.hide()

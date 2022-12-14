@@ -20,9 +20,30 @@ class MitraDetailActivity : AppCompatActivity() {
 
 //    var data: DaftarMitraModel? = null
     var hideButton: Boolean = false
+    var npwpData = "-"
+    var namaData = ""
+    var alamatData = ""
+    var kelurahanData = ""
+    var kotaData = ""
+    var kecamatanData = ""
+    var provinsiData = ""
+    var klasifikasiData = ""
+    var kppData = "-"
+    var kanwilData = ""
+    var telpData = ""
+    var faxData = ""
+    var emailData = ""
+    var ttlData = ""
+    var tglDaftarData = ""
+    var statusPKPData = ""
+    var tglPKPData = ""
+    var jenisPajakData = ""
+    var badanHukumData = ""
+
+
     var isEdit: String = ""
     var NPWPcheck = ""
-
+    var DataMitra: ArrayList<MitraDetailModel> = ArrayList()
     var npwp: EditText? = null
     var nama: EditText? = null
     var alamat: EditText? = null
@@ -67,33 +88,55 @@ class MitraDetailActivity : AppCompatActivity() {
         isEdit = intent.getStringExtra("menu") ?: ""
 
 
-        npwp = findViewById<EditText>(R.id.npwp)
-        nama = findViewById<EditText>(R.id.namadetailkjpp)
-        alamat = findViewById<EditText>(R.id.alamatdetail)
-        kelurahan = findViewById<EditText>(R.id.kelurahan)
-        kecamatan = findViewById<EditText>(R.id.kecamatan)
-        kota = findViewById<EditText>(R.id.kota)
-        provinsi = findViewById<EditText>(R.id.provinsi)
-        klasifikasi = findViewById<EditText>(R.id.klu)
-        kpp = findViewById<EditText>(R.id.kpp)
-        kanwil = findViewById<EditText>(R.id.kanwil)
-        telp = findViewById<EditText>(R.id.telp_mitra)
-        fax = findViewById<EditText>(R.id.fax_mitra)
-        email = findViewById<EditText>(R.id.email_mitra)
-        ttl = findViewById<EditText>(R.id.ttl_mitra)
-        tgl_daftar = findViewById<EditText>(R.id.tgl_daftar_mitra)
-        status_pkp = findViewById<EditText>(R.id.status_pkp_mitra)
-        tgl_pkp = findViewById<EditText>(R.id.tgl_pkp_mitra)
-        jenis_pajak = findViewById<EditText>(R.id.jenis_pajak_mitra)
-        badan_hukum = findViewById<EditText>(R.id.badan_hukum_mitra)
-
         val switch = findViewById<Switch>(R.id.NPWPSwitch)
         val refresh = findViewById<ImageView>(R.id.refreshButton)
 
         if (!NPWPcheck.equals("")){
             getNpwp(NPWPcheck)
             npwp?.setText(NPWPcheck)
+            npwpData = NPWPcheck
         }
+
+
+        npwp = findViewById<EditText>(R.id.npwp)
+        npwpData = npwp?.text.toString()
+        nama = findViewById<EditText>(R.id.namadetailkjpp)
+        namaData = nama?.text.toString()
+        alamat = findViewById<EditText>(R.id.alamatdetail)
+        alamatData = alamat?.text.toString()
+        kelurahan = findViewById<EditText>(R.id.kelurahan)
+        kelurahanData = kelurahan?.text.toString()
+        kecamatan = findViewById<EditText>(R.id.kecamatan)
+        kecamatanData = kecamatan?.text.toString()
+        kota = findViewById<EditText>(R.id.kota)
+        kotaData = kota?.text.toString()
+        provinsi = findViewById<EditText>(R.id.provinsi)
+        provinsiData = provinsi?.text.toString()
+        klasifikasi = findViewById<EditText>(R.id.klu)
+        klasifikasiData = klasifikasi?.text.toString()
+        kpp = findViewById<EditText>(R.id.kpp)
+        kppData = kpp?.text.toString()
+        kanwil = findViewById<EditText>(R.id.kanwil)
+        kanwilData = kanwil?.text.toString()
+        telp = findViewById<EditText>(R.id.telp_mitra)
+        telpData = telp?.text.toString()
+        fax = findViewById<EditText>(R.id.fax_mitra)
+        faxData = fax?.text.toString()
+        email = findViewById<EditText>(R.id.email_mitra)
+        emailData = email?.text.toString()
+        ttl = findViewById<EditText>(R.id.ttl_mitra)
+        ttlData = ttl?.text.toString()
+        tgl_daftar = findViewById<EditText>(R.id.tgl_daftar_mitra)
+        tglDaftarData = tgl_daftar?.text.toString()
+        status_pkp = findViewById<EditText>(R.id.status_pkp_mitra)
+        statusPKPData = status_pkp?.text.toString()
+        tgl_pkp = findViewById<EditText>(R.id.tgl_pkp_mitra)
+        tglPKPData = tgl_pkp?.text.toString()
+        jenis_pajak = findViewById<EditText>(R.id.jenis_pajak_mitra)
+        jenisPajakData = jenis_pajak?.text.toString()
+        badan_hukum = findViewById<EditText>(R.id.badan_hukum_mitra)
+        badanHukumData = badan_hukum?.text.toString()
+
 
         if (isEdit.equals("Edit", true) || isEdit.equals("Tambah", true)) {
 
@@ -245,7 +288,8 @@ class MitraDetailActivity : AppCompatActivity() {
                 }
             }
 
-        } else {
+        }
+        else {
             refresh.visibility = View.GONE
             switch.visibility = View.GONE
             npwp?.isEnabled = false
@@ -352,6 +396,31 @@ class MitraDetailActivity : AppCompatActivity() {
                         tgl_pkp?.setText(data.data?.tanggalPengukuhanPkp)
                         jenis_pajak?.setText(data.data?.jenisWajibPajak)
                         badan_hukum?.setText(data.data?.badanHukum)
+
+                        DataMitra.clear()
+                        DataMitra?.add(
+                            MitraDetailModel(
+                                npwp = npwpData,
+                                nama = namaData,
+                                alamat = alamatData,
+                                namaKpp = kppData,
+                                kotaKabupaten = kotaData,
+                                kecamatan = kecamatanData,
+                                kelurahan = kelurahanData,
+                                statusPkp = statusPKPData,
+                                badanHukum = badanHukumData,
+                                email = emailData,
+                                kanwil = kanwilData,
+                                provinsi = provinsiData,
+                                klasifikasi = klasifikasiData,
+                                jenisWajibPajak = jenisPajakData,
+                                nomorTelepon = telpData,
+                                nomorFax = faxData,
+                                ttl = ttlData,
+                                tanggalDaftar = tglDaftarData,
+                                tanggalPengukuhanPkp = tglPKPData
+                            )
+                        )
                     }
                 }
 

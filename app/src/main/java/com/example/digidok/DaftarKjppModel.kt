@@ -6,45 +6,34 @@ import kotlinx.parcelize.Parcelize
 import java.util.*
 
 class DaftarKjppModel(
-    val no_kjpp : String,
-    val nama_kjpp : String,
-    val telp_kjpp : String,
-//    val no : String,
-    val no_perizinan: String,
-//    val tgl : String,
-    val tgl_perizinan : String,
-//    val klasifikasi : String,
-    val klasifikasi_perizinan : String,
-    val alamat:String,
-): Parcelable  {
-
-    constructor(parcel: Parcel) :this(
-
+    val no_kjpp: String = "",
+    val nama_kjpp: String = "",
+    val telp_kjpp: String = "",
+    val no_perizinan: String = "",
+    val tgl_perizinan: String = "",
+    val klasifikasi_perizinan: String = "",
+    val alamat: String = "",
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
-//        parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString()
-
-    ){
-
+    ) {
     }
-        override fun writeToParcel(parcel: Parcel, flags: Int) {
-            parcel.writeString(no_kjpp)
-            parcel.writeString(nama_kjpp)
-//            parcel.writeString(tgl)
-            parcel.writeString(no_perizinan)
-            parcel.writeString(tgl_perizinan)
-//            parcel.writeString(klasifikasi)
-            parcel.writeString(klasifikasi_perizinan)
-            parcel.writeString(alamat)
-            parcel.writeString(telp_kjpp)
-        }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(no_kjpp)
+        parcel.writeString(nama_kjpp)
+        parcel.writeString(telp_kjpp)
+        parcel.writeString(no_perizinan)
+        parcel.writeString(tgl_perizinan)
+        parcel.writeString(klasifikasi_perizinan)
+        parcel.writeString(alamat)
+    }
 
     override fun describeContents(): Int {
         return 0
@@ -59,6 +48,4 @@ class DaftarKjppModel(
             return arrayOfNulls(size)
         }
     }
-
-
 }
