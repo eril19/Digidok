@@ -43,7 +43,7 @@ class MitraDetailActivity : AppCompatActivity() {
 
     var isEdit: String = ""
     var NPWPcheck = ""
-    var DataMitra: ArrayList<MitraDetailModel> = ArrayList()
+    var DataMitra: MitraDetailModel? = null
     var npwp: EditText? = null
     var nama: EditText? = null
     var alamat: EditText? = null
@@ -353,9 +353,33 @@ class MitraDetailActivity : AppCompatActivity() {
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
         next_detail_btn.setOnClickListener {
             val i = Intent(this@MitraDetailActivity, MitraDetailActivity2::class.java)
+
+            DataMitra = MitraDetailModel(
+                    npwp = npwp?.text.toString(),
+                    nama = nama?.text.toString(),
+                    alamat = alamat?.text.toString(),
+//                                    namaKpp = data.data?.nam.toString()
+                    kotaKabupaten = kota?.text.toString(),
+                    kecamatan = kecamatan?.text.toString(),
+                    kelurahan = kelurahan?.text.toString(),
+                    statusPkp = status_pkp?.text.toString(),
+                    badanHukum = badan_hukum?.text.toString(),
+                    email = email?.text.toString(),
+                    kanwil = kanwil?.text.toString(),
+                    provinsi = provinsi?.text.toString(),
+                    klasifikasi = klasifikasi?.text.toString(),
+                    jenisWajibPajak = jenis_pajak?.text.toString(),
+                    nomorTelepon = telp?.text.toString(),
+                    nomorFax = fax?.text.toString(),
+                    ttl = ttl?.text.toString(),
+                    tanggalDaftar = tgl_daftar?.text.toString(),
+                    tanggalPengukuhanPkp = tgl_pkp?.text.toString()
+            )
             if (isEdit.equals("Edit", true) || isEdit.equals("Tambah", true)) {
+                i.putExtra("dataDetail", DataMitra)
                 i.putExtra("menu2", "Edit")
             } else {
+                i.putExtra("dataDetail", DataMitra)
                 i.putExtra("menu2", "View")
             }
             startActivity(i)
@@ -396,31 +420,6 @@ class MitraDetailActivity : AppCompatActivity() {
                         tgl_pkp?.setText(data.data?.tanggalPengukuhanPkp)
                         jenis_pajak?.setText(data.data?.jenisWajibPajak)
                         badan_hukum?.setText(data.data?.badanHukum)
-
-                        DataMitra.clear()
-                        DataMitra?.add(
-                            MitraDetailModel(
-                                npwp = npwpData,
-                                nama = namaData,
-                                alamat = alamatData,
-                                namaKpp = kppData,
-                                kotaKabupaten = kotaData,
-                                kecamatan = kecamatanData,
-                                kelurahan = kelurahanData,
-                                statusPkp = statusPKPData,
-                                badanHukum = badanHukumData,
-                                email = emailData,
-                                kanwil = kanwilData,
-                                provinsi = provinsiData,
-                                klasifikasi = klasifikasiData,
-                                jenisWajibPajak = jenisPajakData,
-                                nomorTelepon = telpData,
-                                nomorFax = faxData,
-                                ttl = ttlData,
-                                tanggalDaftar = tglDaftarData,
-                                tanggalPengukuhanPkp = tglPKPData
-                            )
-                        )
                     }
                 }
 

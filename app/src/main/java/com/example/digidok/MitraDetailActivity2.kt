@@ -45,7 +45,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
     var jenisMitra = ""
     var statusMitra = ""
     var companyProfile = ""
-    var tahungabung : EditText ?= null
+    var tahungabung: EditText? = null
     var spinner_jenis_mitra: Spinner? = null
     val listJenisMitra =
         arrayListOf("Perorangan", "BUMD", "BUMN", "Perusahaan Swasta", "Yayasan / Foundation")
@@ -60,7 +60,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
 
         supportActionBar?.hide()
         isEdit = intent.getStringExtra("menu2") ?: ""
-        data = intent.getParcelableExtra("menu2")
+        data = intent.getParcelableExtra("dataDetail")
         spinner_jenis_mitra = findViewById<Spinner>(R.id.spinner_jenis_mitra)
         spinner_jenis_mitra?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
