@@ -13,6 +13,7 @@ import com.example.digidok.data.model.laporanAsetDikerjasamakanModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
+import java.text.DecimalFormat
 
 class LaporanAsetDetailActivity : AppCompatActivity() {
     var isLoading : Boolean = false
@@ -39,11 +40,12 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
         val nama_mitra = findViewById<TextView>(R.id.namamitra)
         val nilai_pks = findViewById<TextView>(R.id.hargapks)
         val jenis_kerjasama = findViewById<TextView>(R.id.jeniskerjasama)
+        var formatter : DecimalFormat = DecimalFormat("#,###")
 
         nama_mitra.text = data?.nama_mitra
         id_pks.text = data?.id_pks
-        nilai_pks.text = "Rp. " + data?.nilai_pks
-        jenis_kerjasama.text = data?.jenis_kerjasama
+        nilai_pks.text = "Rp. " + formatter.format(data?.nilai_pks?.toLong())
+        jenis_kerjasama.text =  data?.jenis_kerjasama
 
         tutup.setOnClickListener {
             onBackPressed()
@@ -93,7 +95,7 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
                                     nama_bmd = it?.nabar.safe(),
                                     kode_lokasi = it?.kolok.safe(),
                                     nama_lokasi = it?.nalok.safe(),
-                                    luas_bmd = it?.luas.safe(),
+                                    luas_bmd = it?.luas.safe() + it?.satuan.safe(),
                                     keterangan_bmd = it?.keterangan.safe(),
                                 )
                             )

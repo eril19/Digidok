@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import java.text.DecimalFormat
 
 class LaporanAsetAdapter(private val context: Context, private val LaporanAset: List<LaporanAsetModel>, private var mListener: onItemClickListener,
                          val listener: (LaporanAsetModel) -> Unit)
@@ -37,7 +38,7 @@ class LaporanAsetAdapter(private val context: Context, private val LaporanAset: 
         var nilai = ""
         var jenisKerjasama = ""
         var pks = ""
-
+        var formatter : DecimalFormat = DecimalFormat("#,###")
         init {
             tomboldetail.setOnClickListener {
                 listener.onItemClick(adapterPosition,nama,nilai, jenisKerjasama, pks)
@@ -49,7 +50,7 @@ class LaporanAsetAdapter(private val context: Context, private val LaporanAset: 
             pks = laporanAsetModel.id_pks
             nama_mitra.text = laporanAsetModel.nama_mitra
             nama = laporanAsetModel.nama_mitra
-            nilai_pks.text = "Rp. " + laporanAsetModel.nilai_pks
+            nilai_pks.text = "Rp. " +  formatter.format(laporanAsetModel.nilai_pks.toLong())
             nilai = laporanAsetModel.nilai_pks
             jenis_kerjasama.text = laporanAsetModel.jenis_kerjasama
             jenisKerjasama = laporanAsetModel.jenis_kerjasama

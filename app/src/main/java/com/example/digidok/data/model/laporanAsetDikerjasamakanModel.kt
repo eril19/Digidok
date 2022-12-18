@@ -15,7 +15,7 @@ class laporanAsetDikerjasamakanModel(
         @SerializedName("namaMitra")
         val namaMitra: String = "",
         @SerializedName("nilaiPks")
-        val nilaiPks: String = "",
+        val nilaiPks: Long = 0,
         @SerializedName("kategoriPks")
         val kategoriPks: String = "",
         @SerializedName("periodeAwal")

@@ -301,7 +301,7 @@ class LaporanAsetActivity : AppCompatActivity() {
                                     id_pks = it?.idPks.safe(),
                                     nama_mitra = it?.namaMitra.safe(),
                                     jenis_kerjasama = it?.kategoriPks.safe(),
-                                    nilai_pks = it?.nilaiPks.safe(),
+                                    nilai_pks = it?.nilaiPks.toString().safe(),
                                 )
                             )
                         }
