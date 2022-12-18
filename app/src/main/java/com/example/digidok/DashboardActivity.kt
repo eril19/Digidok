@@ -3,26 +3,20 @@ package com.example.digidok
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.BeritaModel
 import com.example.digidok.data.model.dashboardModel
-import com.example.digidok.data.model.laporanAsetDikerjasamakanModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
-import org.w3c.dom.Text
 import java.text.DateFormat
 import java.text.DecimalFormat
-import java.text.NumberFormat
 import java.util.*
 
 class DashboardActivity : AppCompatActivity() {

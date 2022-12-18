@@ -7,9 +7,9 @@ import android.os.Parcelable
 //@Parcelize
 data class DashboardModel(
     var nama_mitra: String = "",
-    var jenis_mitra : String = "",
-    var jumlah_kerjasama : String = "",
-    var total_nilai :String = "",
+    var jenis_mitra: String = "",
+    var jumlah_kerjasama: String = "",
+    var total_nilai: String = "",
 ):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),

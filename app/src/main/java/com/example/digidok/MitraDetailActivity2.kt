@@ -175,7 +175,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 tglPKP,
                 jenisPajak,
                 badanHukum,
-                tahunGabung = if(!tahungabung?.text.isNullorEmpty){tahungabung?.text.toString().toInt()?:0},
+                tahunGabung = 2022,
                 jenisMitra,
                 statusMitra,
                 companyProfile
