@@ -16,7 +16,7 @@ class laporanKerjasamaModel(
         @SerializedName("noPks")
         val noPks: String = "",
         @SerializedName("nilaiPks")
-        val nilaiPks: String = "",
+        val nilaiPks: Long = 0,
         @SerializedName("objekPks")
         val objekPks: String = "",
         @SerializedName("namaMitra")

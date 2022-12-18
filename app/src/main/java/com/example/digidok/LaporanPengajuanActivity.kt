@@ -284,7 +284,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                                     jenis_kerjasama = it?.kategoriPks.safe(),
                                     no_surat = it?.noPks.safe(),
                                     jenis_bmd = it?.objekPks.safe(),
-                                    nilai_pks = "Rp. " + it?.nilaiPks.safe(),
+                                    nilai_pks = it?.nilaiPks.toString().safe(),
                                     nama_mitra = it?.namaMitra.safe(),
                                     perihal = it?.perihalPks.safe(),
                                     id_mitra = it?.idMitra.safe(),

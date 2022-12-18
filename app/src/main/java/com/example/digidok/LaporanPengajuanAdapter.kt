@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.LaporanPengajuanModel
 import com.example.digidok.R
+import java.text.DecimalFormat
 
 class LaporanPengajuanAdapter(private val context: Context, private val LaporanPengajuan: List<LaporanPengajuanModel>, val listener: (LaporanPengajuanModel) -> Unit)
     : RecyclerView.Adapter<LaporanPengajuanAdapter.LaporanPengajuanViewHolder>(){
@@ -26,6 +27,7 @@ class LaporanPengajuanAdapter(private val context: Context, private val LaporanP
         val periodeAwal= view.findViewById<TextView>(R.id.tglMulai)
         val periodeAkhir = view.findViewById<TextView>(R.id.tglAkhir)
         val header_color = view.findViewById<TextView>(R.id.header_color)
+        var formatter : DecimalFormat = DecimalFormat("#,###")
 
         fun bindView(laporanPengajuanModel: LaporanPengajuanModel, listener: (LaporanPengajuanModel) -> Unit){
             id_mitra.text = laporanPengajuanModel.id_mitra
@@ -35,7 +37,7 @@ class LaporanPengajuanAdapter(private val context: Context, private val LaporanP
             jenis_kerjasama.text = laporanPengajuanModel.jenis_kerjasama
             no_surat.text = laporanPengajuanModel.no_surat
             jenis_bmd.text = laporanPengajuanModel.jenis_bmd
-            nilai_pks.text = laporanPengajuanModel.nilai_pks
+            nilai_pks.text = "Rp. " +  formatter.format(laporanPengajuanModel.nilai_pks.toLong())
             detail_pks.text = laporanPengajuanModel.perihal
             periodeAwal.text = laporanPengajuanModel.periodeAwal
             periodeAkhir.text = laporanPengajuanModel.periodeAkhir
