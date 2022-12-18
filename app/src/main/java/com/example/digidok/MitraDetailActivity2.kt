@@ -153,8 +153,11 @@ class MitraDetailActivity2 : AppCompatActivity() {
 
 //        tahun = Integer.parseInt(tahungabung?.text.toString())
 
-        val simpan = findViewById<Button>(R.id.save_detail_mitra_btn)
-        simpan.setOnClickListener {
+        val etTahunGabung = findViewById<EditText>(R.id.tahun_gabung)
+        val etJenisMitra = findViewById<Spinner>(R.id.spinner_jenis_mitra)
+        val etStatusMitra = findViewById<Spinner>(R.id.spinner_status_mitra)
+        val etSimpan = findViewById<Button>(R.id.save_detail_mitra_btn)
+        etSimpan.setOnClickListener {
             InsertData(
                 npwp,
                 nama,
@@ -175,7 +178,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 tglPKP,
                 jenisPajak,
                 badanHukum,
-                tahunGabung = 2022,
+                tahunGabung = etTahunGabung.text.toString().toInt(),
                 jenisMitra,
                 statusMitra,
                 companyProfile
@@ -183,23 +186,19 @@ class MitraDetailActivity2 : AppCompatActivity() {
             startActivity(Intent(this@MitraDetailActivity2, DaftarMitraActivity::class.java))
         }
 
-        val tahunGabung = findViewById<EditText>(R.id.tahun_gabung)
-        val jenisMitra = findViewById<Spinner>(R.id.spinner_jenis_mitra)
-        val statusMitra = findViewById<Spinner>(R.id.spinner_status_mitra)
-
         if (isEdit.equals("View", true)) {
-            simpan.visibility = View.GONE
-            tahunGabung.isEnabled = false
-            tahunGabung.background =
-                ContextCompat.getDrawable(tahunGabung.context, R.drawable.custom_profile)
-            jenisMitra.isClickable = false
-            jenisMitra.isEnabled = false
-            jenisMitra.background =
-                ContextCompat.getDrawable(jenisMitra.context, R.drawable.custom_profile)
-            statusMitra.isClickable = false
-            statusMitra.isEnabled = false
-            statusMitra.background =
-                ContextCompat.getDrawable(statusMitra.context, R.drawable.custom_profile)
+            etSimpan.visibility = View.GONE
+            etTahunGabung.isEnabled = false
+            etTahunGabung.background =
+                ContextCompat.getDrawable(etTahunGabung.context, R.drawable.custom_profile)
+            etJenisMitra.isClickable = false
+            etJenisMitra.isEnabled = false
+            etJenisMitra.background =
+                ContextCompat.getDrawable(etJenisMitra.context, R.drawable.custom_profile)
+            etStatusMitra.isClickable = false
+            etStatusMitra.isEnabled = false
+            etStatusMitra.background =
+                ContextCompat.getDrawable(etStatusMitra.context, R.drawable.custom_profile)
         }
 
         setSpinnerKategori()
