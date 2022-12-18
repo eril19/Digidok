@@ -95,7 +95,7 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
                                     nama_bmd = it?.nabar.safe(),
                                     kode_lokasi = it?.kolok.safe(),
                                     nama_lokasi = it?.nalok.safe(),
-                                    luas_bmd = it?.luas.safe() + it?.satuan.safe(),
+                                    luas_bmd = it?.luas.safe() + " "+ it?.satuan.safe(),
                                     keterangan_bmd = it?.keterangan.safe(),
                                 )
                             )
