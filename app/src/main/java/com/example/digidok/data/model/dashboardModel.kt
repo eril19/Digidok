@@ -6,7 +6,7 @@ class dashboardModel(
     @SerializedName("jumlahKerjasama")
     val jumlahKerjasama: String = "",
     @SerializedName("jumlahNilaiKerjasama")
-    val jumlahNilaiKerjasama: String = "",
+    val jumlahNilaiKerjasama: Long = 0,
     @SerializedName("jumlahMitra")
     val jumlahMitra: String = "",
     @SerializedName("dataMitra")
@@ -14,7 +14,7 @@ class dashboardModel(
 ) {
     data class listDataMitra(
         @SerializedName("totalNilai")
-        val totalNilai: String = "",
+        val totalNilai: Long = 0,
         @SerializedName("namaMitra")
         val namaMitra: String = "",
         @SerializedName("idMitra")

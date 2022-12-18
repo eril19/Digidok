@@ -401,7 +401,7 @@ class MitraDetailActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<NPWPModel?>) {
                     isLoading = false
                     if (data.isSuccess) {
-
+                        npwp?.setText(noNpwp)
                         nama?.setText(data.data?.nama)
                         alamat?.setText(data.data?.alamat)
                         kelurahan?.setText(data.data?.kelurahan)

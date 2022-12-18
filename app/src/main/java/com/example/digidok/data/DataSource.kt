@@ -35,7 +35,7 @@ interface DataSource : BaseDataSource {
         tanggalPengukuhanPkp: String,
         jenisWajibPajak: String,
         badanHukum: String,
-        tahunGabung: String,
+        tahunGabung: Int,
         jenisMitra: String,
         statusMitra: String,
         companyProfile: String,

@@ -20,6 +20,7 @@ import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.UserModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 
 class MitraDetailActivity2 : AppCompatActivity() {
 
@@ -46,6 +47,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
     var statusMitra = ""
     var companyProfile = ""
     var tahungabung: EditText? = null
+    var tahun = 0
     var spinner_jenis_mitra: Spinner? = null
     val listJenisMitra =
         arrayListOf("Perorangan", "BUMD", "BUMN", "Perusahaan Swasta", "Yayasan / Foundation")
@@ -71,15 +73,15 @@ class MitraDetailActivity2 : AppCompatActivity() {
             ) {
                 if (position != 0) {
                     if (position - 1 == 0) {
-                        jenisMitra = "1"
+                        jenisMitra = "001"
                     } else if (position - 1 == 1) {
-                        jenisMitra = "2"
+                        jenisMitra = "002"
                     } else if (position - 1 == 2) {
-                        jenisMitra = "3"
+                        jenisMitra = "003"
                     } else if (position - 1 == 3) {
-                        jenisMitra = "4"
+                        jenisMitra = "004"
                     } else if (position - 1 == 4) {
-                        jenisMitra = "5"
+                        jenisMitra = "005"
                     }
                 }
             }
@@ -100,11 +102,11 @@ class MitraDetailActivity2 : AppCompatActivity() {
             ) {
                 if (position != 0) {
                     if (position - 1 == 0) {
-                        statusMitra = "1"
+                        statusMitra = "001"
                     } else if (position - 1 == 1) {
-                        statusMitra = "2"
+                        statusMitra = "002"
                     } else if (position - 1 == 2) {
-                        statusMitra = "3"
+                        statusMitra = "003"
                     }
 
                 }
@@ -149,6 +151,8 @@ class MitraDetailActivity2 : AppCompatActivity() {
         badanHukum = data?.badanHukum.toString()
 
 
+//        tahun = Integer.parseInt(tahungabung?.text.toString())
+
         val simpan = findViewById<Button>(R.id.save_detail_mitra_btn)
         simpan.setOnClickListener {
             InsertData(
@@ -171,7 +175,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 tglPKP,
                 jenisPajak,
                 badanHukum,
-                tahunGabung = tahungabung?.text.toString(),
+                tahunGabung = if(!tahungabung?.text.isNullorEmpty){tahungabung?.text.toString().toInt()?:0},
                 jenisMitra,
                 statusMitra,
                 companyProfile
@@ -222,7 +226,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
         tanggalPengukuhanPkp: String,
         jenisWajibPajak: String,
         badanHukum: String,
-        tahunGabung: String,
+        tahunGabung: Int,
         jenisMitra: String,
         statusMitra: String,
         companyProfile: String

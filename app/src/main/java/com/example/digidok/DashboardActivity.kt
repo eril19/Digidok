@@ -21,6 +21,8 @@ import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 import org.w3c.dom.Text
 import java.text.DateFormat
+import java.text.DecimalFormat
+import java.text.NumberFormat
 import java.util.*
 
 class DashboardActivity : AppCompatActivity() {
@@ -137,16 +139,19 @@ class DashboardActivity : AppCompatActivity() {
 //                    }
 
                     if (data.isSuccess) {
+//                        var value: Long = 0
                         dashboardList.clear()
+//                        value = Integer.parseInt(data.data?.jumlahNilaiKerjasama.safe()).toLong()
+                        var formatter :  DecimalFormat = DecimalFormat("#,###")
                         jml?.text = data.data?.jumlahKerjasama.safe()
                         jmlMitra?.text = data.data?.jumlahMitra.safe()
-                        jmlNilai?.text = "Rp. " + data.data?.jumlahNilaiKerjasama.safe()
+                        jmlNilai?.text = "Rp. " + formatter.format(data.data?.jumlahNilaiKerjasama)
                         data.data?.dataMitra?.forEach {
                             dashboardList?.add(
                                 DashboardModel(
                                     nama_mitra = it?.namaMitra.safe(),
                                     jumlah_kerjasama = it?.jumlahKederjasama.safe(),
-                                    total_nilai = it?.totalNilai.safe(),
+                                    total_nilai = it?.totalNilai.toString().safe(),
                                     jenis_mitra = it?.idMitra.safe()
                                 )
                             )
