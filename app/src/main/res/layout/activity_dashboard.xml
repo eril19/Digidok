@@ -107,7 +107,7 @@
                     android:layout_height="14dp"
                     android:layout_marginTop="40dp"
                     android:layout_marginStart="7dp"
-                    android:src="@drawable/ic_edit_pen"
+                    android:src="@drawable/ic_edit_pen_2"
                     android:scaleType="fitCenter"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.1"
