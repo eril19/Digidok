@@ -187,7 +187,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -210,11 +210,11 @@
                         android:layout_gravity="center">
 
                         <ImageButton
-                            android:layout_width="27dp"
-                            android:layout_height="27dp"
-                            android:src="@drawable/ic_upload"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:src="@drawable/ic_pdf"
                             android:scaleType="fitCenter"
-                            android:padding="5dp"
+                            android:padding="1dp"
                             android:backgroundTint="@android:color/transparent"/>
 
                         <TextView
@@ -225,7 +225,6 @@
                             android:textColor="#616161"
                             android:textSize="14dp"
                             android:layout_gravity="center"/>
-
                     </LinearLayout>
 
                 </LinearLayout>
