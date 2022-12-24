@@ -21,8 +21,6 @@ class NotificationActivity : AppCompatActivity() {
         header.setText("Notification")
         val back = findViewById<ImageView>(R.id.backbtn)
 
-
-
         back.setOnClickListener {
             val intent = Intent(this@NotificationActivity, DashboardActivity::class.java)
             startActivity(intent)

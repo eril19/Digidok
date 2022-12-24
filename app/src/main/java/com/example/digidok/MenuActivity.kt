@@ -21,12 +21,12 @@ class MenuActivity : AppCompatActivity() {
 //        supportFragmentManager.beginTransaction().add(){
 ////            replace(R.id.)
 //        }
-
-        val notif:ImageView = findViewById(R.id.notificationbtn)
-
-        notif.setOnClickListener {
-            startActivity(Intent(this@MenuActivity , NotificationActivity::class.java))
-        }
+//
+//        val notif:ImageView = findViewById(R.id.notificationbtn)
+//
+//        notif.setOnClickListener {
+//            startActivity(Intent(this@MenuActivity , NotificationActivity::class.java))
+//        }
 
         supportActionBar?.hide()
 

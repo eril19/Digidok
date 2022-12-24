@@ -36,7 +36,7 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
 
 
         val tutup = findViewById<TextView>(R.id.close_detail_btn)
-        val backArrow = findViewById<ImageButton>(R.id.backArrowBtn)
+        val backArrow = findViewById<ImageButton>(R.id.backbtn)
         val id_pks = findViewById<TextView>(R.id.nomerpks)
         val nama_mitra = findViewById<TextView>(R.id.namamitra)
         val nilai_pks = findViewById<TextView>(R.id.hargapks)
@@ -54,6 +54,9 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
         backArrow.setOnClickListener {
             onBackPressed()
         }
+
+        val header = findViewById<TextView>(R.id.header_title)
+        header.setText("Detail Laporan Aset Dikerjasamakan")
 
         val homeBtn : ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {

@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,6 +47,34 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
         val prev_detail_btn = findViewById<Button>(R.id.prev_detail_btn)
         prev_detail_btn.setOnClickListener {
         onBackPressed()
+        }
+
+        val header = findViewById<TextView>(R.id.header_title)
+        header.setText("Detail Pengajuan Kerjasama")
+
+        val backArrow = findViewById<ImageButton>(R.id.backbtn)
+        backArrow.setOnClickListener {
+            onBackPressed()
+        }
+
+        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        homeBtn.setOnClickListener {
+            startActivity(Intent(this@DataAsetdikerjasamakanActivity, DashboardActivity::class.java))
+        }
+
+        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        homeBtn2.setOnClickListener {
+            startActivity(Intent(this@DataAsetdikerjasamakanActivity, DashboardActivity::class.java))
+        }
+
+        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        profileBtn.setOnClickListener {
+            startActivity(Intent(this@DataAsetdikerjasamakanActivity, ProfileActivity::class.java))
+        }
+
+        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        notificationBtn.setOnClickListener {
+            startActivity(Intent(this@DataAsetdikerjasamakanActivity, NotificationActivity::class.java))
         }
 
         if (!idPksCheck.equals("")){

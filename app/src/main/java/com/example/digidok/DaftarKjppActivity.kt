@@ -41,7 +41,6 @@ class DaftarKjppActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val header = findViewById<TextView>(R.id.header_title)
-
         header.setText("Daftar Kantor Jasa Penilaian Publik")
         header.setTextSize(16F)
 

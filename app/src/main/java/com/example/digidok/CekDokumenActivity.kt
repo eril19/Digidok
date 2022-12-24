@@ -49,7 +49,7 @@ class CekDokumenActivity : AppCompatActivity() {
         jenis.setText(data?.jenis_kerjasama)
 
         val tutup = findViewById<TextView>(R.id.close_detail_btn)
-        val backArrow = findViewById<ImageButton>(R.id.backArrowBtn)
+        val backArrow = findViewById<ImageButton>(R.id.backbtn)
 
         tutup.setOnClickListener {
             onBackPressed()
@@ -59,8 +59,28 @@ class CekDokumenActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        val header = findViewById<TextView>(R.id.header_title)
+        header.setText("Cek Dokumen")
 
+        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        homeBtn.setOnClickListener {
+            startActivity(Intent(this@CekDokumenActivity, DashboardActivity::class.java))
+        }
 
+        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        homeBtn2.setOnClickListener {
+            startActivity(Intent(this@CekDokumenActivity, DashboardActivity::class.java))
+        }
+
+        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        profileBtn.setOnClickListener {
+            startActivity(Intent(this@CekDokumenActivity, ProfileActivity::class.java))
+        }
+
+        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        notificationBtn.setOnClickListener {
+            startActivity(Intent(this@CekDokumenActivity, NotificationActivity::class.java))
+        }
 
         setList()
         getCekDokumen()

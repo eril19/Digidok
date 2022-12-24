@@ -60,6 +60,28 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         onBackPressed()
         }
 
+        val header = findViewById<TextView>(R.id.header_title)
+        header.setText("Detail Pengajuan Kerjasama")
+
+        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        homeBtn.setOnClickListener {
+            startActivity(Intent(this@DaftarSuratLampiranActivity, DashboardActivity::class.java))
+        }
+
+        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        homeBtn2.setOnClickListener {
+            startActivity(Intent(this@DaftarSuratLampiranActivity, DashboardActivity::class.java))
+        }
+
+        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        profileBtn.setOnClickListener {
+            startActivity(Intent(this@DaftarSuratLampiranActivity, ProfileActivity::class.java))
+        }
+
+        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        notificationBtn.setOnClickListener {
+            startActivity(Intent(this@DaftarSuratLampiranActivity, NotificationActivity::class.java))
+        }
 
         spinnerTelaah = findViewById<Spinner>(R.id.spinner_telaah)
         setSpinnerKategori()

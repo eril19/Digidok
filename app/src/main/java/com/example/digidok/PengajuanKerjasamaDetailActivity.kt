@@ -53,7 +53,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         idPkscheck = intent.getStringExtra("idPks") ?: ""
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
-        val backArrow = findViewById<ImageButton>(R.id.backArrowBtn)
+        val backArrow = findViewById<ImageButton>(R.id.backbtn)
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
         no_pengajuan = findViewById<EditText>(R.id.no_pengajuan)
         nama_mitra = findViewById<EditText>(R.id.nama_mitra)
@@ -150,6 +150,29 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 )
             )
             finish()
+        }
+
+        val header = findViewById<TextView>(R.id.header_title)
+        header.setText("Detail Pengajuan Kerjasama")
+
+        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        homeBtn.setOnClickListener {
+            startActivity(Intent(this@PengajuanKerjasamaDetailActivity, DashboardActivity::class.java))
+        }
+
+        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        homeBtn2.setOnClickListener {
+            startActivity(Intent(this@PengajuanKerjasamaDetailActivity, DashboardActivity::class.java))
+        }
+
+        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        profileBtn.setOnClickListener {
+            startActivity(Intent(this@PengajuanKerjasamaDetailActivity, ProfileActivity::class.java))
+        }
+
+        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        notificationBtn.setOnClickListener {
+            startActivity(Intent(this@PengajuanKerjasamaDetailActivity, NotificationActivity::class.java))
         }
 
         next_detail_btn.setOnClickListener {

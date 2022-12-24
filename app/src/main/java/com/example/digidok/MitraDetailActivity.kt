@@ -77,11 +77,35 @@ class MitraDetailActivity : AppCompatActivity() {
             finish()
         }
 
-        val backArrow = findViewById<ImageButton>(R.id.backArrowBtn)
+        val backArrow = findViewById<ImageButton>(R.id.backbtn)
         backArrow.setOnClickListener {
             onBackPressed()
             finish()
         }
+
+        val header = findViewById<TextView>(R.id.header_title)
+        header.setText("Detail Mitra")
+
+        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        homeBtn.setOnClickListener {
+            startActivity(Intent(this@MitraDetailActivity, DashboardActivity::class.java))
+        }
+
+        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        homeBtn2.setOnClickListener {
+            startActivity(Intent(this@MitraDetailActivity, DashboardActivity::class.java))
+        }
+
+        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        profileBtn.setOnClickListener {
+            startActivity(Intent(this@MitraDetailActivity, ProfileActivity::class.java))
+        }
+
+        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        notificationBtn.setOnClickListener {
+            startActivity(Intent(this@MitraDetailActivity, NotificationActivity::class.java))
+        }
+
 
 //        data = intent.getParcelableExtra("daftarMitra")
         NPWPcheck = intent.getStringExtra("npwp") ?: ""

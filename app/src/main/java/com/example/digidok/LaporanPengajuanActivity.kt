@@ -138,16 +138,13 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         }
 
         header.setText("Laporan Pengajuan Kerjasama")
-        val back = findViewById<ImageView>(R.id.backbtn)
 
+        val back = findViewById<ImageButton>(R.id.backbtn)
         back.setOnClickListener {
             val intent = Intent(this@LaporanPengajuanActivity, DashboardActivity::class.java)
             startActivity(intent)
             finish()
         }
-
-        setList()
-        getLaporanKerjasama(status, tahun, kelurahan)
 
         val homeBtn : ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
@@ -168,6 +165,9 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         notificationBtn.setOnClickListener {
             startActivity(Intent(this@LaporanPengajuanActivity, NotificationActivity::class.java))
         }
+
+        setList()
+        getLaporanKerjasama(status, tahun, kelurahan)
     }
 
     fun setSpinnerKategori() {

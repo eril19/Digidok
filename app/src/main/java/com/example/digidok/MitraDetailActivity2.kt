@@ -7,12 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
@@ -128,6 +123,34 @@ class MitraDetailActivity2 : AppCompatActivity() {
         close_detail_btn.setOnClickListener {
             startActivity(Intent(this@MitraDetailActivity2, DaftarMitraActivity::class.java))
             finish()
+        }
+
+        val backArrow = findViewById<ImageButton>(R.id.backbtn)
+        backArrow.setOnClickListener {
+            onBackPressed()
+        }
+
+        val header = findViewById<TextView>(R.id.header_title)
+        header.setText("Detail Mitra")
+
+        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        homeBtn.setOnClickListener {
+            startActivity(Intent(this@MitraDetailActivity2, DashboardActivity::class.java))
+        }
+
+        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        homeBtn2.setOnClickListener {
+            startActivity(Intent(this@MitraDetailActivity2, DashboardActivity::class.java))
+        }
+
+        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        profileBtn.setOnClickListener {
+            startActivity(Intent(this@MitraDetailActivity2, ProfileActivity::class.java))
+        }
+
+        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        notificationBtn.setOnClickListener {
+            startActivity(Intent(this@MitraDetailActivity2, NotificationActivity::class.java))
         }
 
         npwp = data?.npwp.toString()

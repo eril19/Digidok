@@ -19,8 +19,7 @@ class KjppDetailActivity : AppCompatActivity() {
         data = intent.getParcelableExtra("daftarKJPP")
 
         val tutup = findViewById<Button>(R.id.close_detail_btn)
-        val backArrow = findViewById<ImageButton>(R.id.backArrowBtn)
-
+        val backArrow = findViewById<ImageButton>(R.id.backbtn)
         val nomer = findViewById<TextView>(R.id.no_indukdetail)
         val nama = findViewById<TextView>(R.id.namadetailkjpp)
         val noperizinan = findViewById<TextView>(R.id.no_perizinandetail)
@@ -37,6 +36,9 @@ class KjppDetailActivity : AppCompatActivity() {
         backArrow.setOnClickListener {
             onBackPressed()
         }
+
+        val header = findViewById<TextView>(R.id.header_title)
+        header.setText("Detail KJPP")
 
         val homeBtn : ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
