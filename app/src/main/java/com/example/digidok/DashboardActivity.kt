@@ -42,14 +42,11 @@ class DashboardActivity : AppCompatActivity() {
 
         val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
 
-
-      jml = findViewById<TextView>(R.id.jumlah_kerjasama)
+        jml = findViewById<TextView>(R.id.jumlah_kerjasama)
         jmlMitra = findViewById<TextView>(R.id.jumlah_mitra)
-    jmlNilai = findViewById<TextView>(R.id.jumlah_nilai_kerjasama)
+        jmlNilai = findViewById<TextView>(R.id.jumlah_nilai_kerjasama)
         val namaRole = findViewById<TextView>(R.id.namaRole)
         val namaUser = findViewById<TextView>(R.id.namaUser)
-        val notifBtn:ImageView = findViewById(R.id.notificationbtn)
-        val dropdown_profile: ImageView = findViewById(R.id.profileArrow)
         val dokumenBtn : ImageButton = findViewById(R.id.repositoriDokumenBtn)
 
         namaUser.text = Preferences.isUser(this@DashboardActivity)
@@ -61,35 +58,30 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         val kerjasamaBtn : ImageButton = findViewById(R.id.kerjasamaBtn)
-
         kerjasamaBtn.setOnClickListener {
             val i : Intent = Intent(this@DashboardActivity, LaporanPengajuanActivity::class.java)
             startActivity(i)
         }
 
         val laporanAsetBtn : ImageButton = findViewById(R.id.laporanAsetBtn)
-
         laporanAsetBtn.setOnClickListener {
             val i : Intent = Intent(this@DashboardActivity, LaporanAsetActivity::class.java)
             startActivity(i)
         }
 
         val daftarmitrabtn : ImageButton = findViewById(R.id.mitraBtn)
-
         daftarmitrabtn.setOnClickListener {
             val i : Intent = Intent(this@DashboardActivity, DaftarMitraActivity::class.java)
             startActivity(i)
         }
 
         val pengajuanKerjasamaabtn : ImageButton = findViewById(R.id.pengajuanBtn)
-
         pengajuanKerjasamaabtn.setOnClickListener {
             val i : Intent = Intent(this@DashboardActivity, PengajuanKerjasamaActivity::class.java)
             startActivity(i)
         }
 
         val daftarKjppbtn : ImageButton = findViewById(R.id.kjppBtn)
-
         daftarKjppbtn.setOnClickListener {
             val i : Intent = Intent(this@DashboardActivity, DaftarKjppActivity::class.java)
             startActivity(i)
@@ -102,12 +94,14 @@ class DashboardActivity : AppCompatActivity() {
         setList()
         getDashboard()
 
-        dropdown_profile.setOnClickListener {
+        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        profileBtn.setOnClickListener {
             startActivity(Intent(this@DashboardActivity, ProfileActivity::class.java))
         }
 
-        notifBtn.setOnClickListener {
-            startActivity(Intent(this@DashboardActivity,NotificationActivity::class.java))
+        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        notificationBtn.setOnClickListener {
+            startActivity(Intent(this@DashboardActivity, NotificationActivity::class.java))
         }
 
     }

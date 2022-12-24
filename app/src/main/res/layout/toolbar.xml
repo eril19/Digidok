@@ -1,34 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_shadow_toolbar_main">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:padding="15dp"
-        android:background="@drawable/bg_shadow_toolbar_main">
+        android:layout_height="105dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="13dp">
+
+        <ImageButton
+            android:id="@+id/logo_1"
+            android:layout_width="50dp"
+            android:layout_height="39dp"
+            android:src="@drawable/logo_img"
+            android:layout_gravity="center"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"/>
+
+        <ImageButton
+            android:id="@+id/logo_2"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/logo_1"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/logo_digidok_img"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"/>
+
+        <ImageButton
+            android:id="@+id/notificationbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_notifications_24"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"/>
+
+        <ImageButton
+            android:id="@+id/profileBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_user"
+            android:layout_marginEnd="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"/>
 
         <ImageView
             android:id="@+id/backbtn"
-            android:layout_width="30dp"
+            android:layout_width="23dp"
             android:layout_height="39dp"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="5dp"
+            android:layout_below="@+id/logo_1"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
             android:src="@drawable/ic_baseline_arrow_back_ios_24" />
 
         <TextView
             android:id="@+id/header_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto_bold"
             android:text="Header"
             android:textColor="@color/black"
             android:textSize="18dp"
-            android:textStyle="bold" />
-
+            android:textStyle="bold"
+            />
 
     </RelativeLayout>
-
 </RelativeLayout>

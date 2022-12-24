@@ -3,6 +3,7 @@ package com.example.digidok
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +28,27 @@ class NotificationActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        homeBtn.setOnClickListener {
+            startActivity(Intent(this@NotificationActivity, DashboardActivity::class.java))
+        }
+
+        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        homeBtn2.setOnClickListener {
+            startActivity(Intent(this@NotificationActivity, DashboardActivity::class.java))
+        }
+
+        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        profileBtn.setOnClickListener {
+            startActivity(Intent(this@NotificationActivity, ProfileActivity::class.java))
+        }
+
+        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        notificationBtn.setOnClickListener {
+            startActivity(Intent(this@NotificationActivity, NotificationActivity::class.java))
+        }
+
         val notificationList = listOf<NotificationModel>(
             NotificationModel(
                 NotificationTitle = "PKS-2022-000021 - Tanah",

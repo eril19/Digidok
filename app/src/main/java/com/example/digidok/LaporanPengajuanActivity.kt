@@ -146,10 +146,28 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             finish()
         }
 
-
-
         setList()
         getLaporanKerjasama(status, tahun, kelurahan)
+
+        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        homeBtn.setOnClickListener {
+            startActivity(Intent(this@LaporanPengajuanActivity, DashboardActivity::class.java))
+        }
+
+        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        homeBtn2.setOnClickListener {
+            startActivity(Intent(this@LaporanPengajuanActivity, DashboardActivity::class.java))
+        }
+
+        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        profileBtn.setOnClickListener {
+            startActivity(Intent(this@LaporanPengajuanActivity, ProfileActivity::class.java))
+        }
+
+        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        notificationBtn.setOnClickListener {
+            startActivity(Intent(this@LaporanPengajuanActivity, NotificationActivity::class.java))
+        }
     }
 
     fun setSpinnerKategori() {

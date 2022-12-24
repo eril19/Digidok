@@ -38,6 +38,26 @@ class KjppDetailActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        homeBtn.setOnClickListener {
+            startActivity(Intent(this@KjppDetailActivity, DashboardActivity::class.java))
+        }
+
+        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        homeBtn2.setOnClickListener {
+            startActivity(Intent(this@KjppDetailActivity, DashboardActivity::class.java))
+        }
+
+        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        profileBtn.setOnClickListener {
+            startActivity(Intent(this@KjppDetailActivity, ProfileActivity::class.java))
+        }
+
+        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        notificationBtn.setOnClickListener {
+            startActivity(Intent(this@KjppDetailActivity, NotificationActivity::class.java))
+        }
+
         nomer.text = data?.no_kjpp
         nama.text = data?.nama_kjpp
         noperizinan.text = data?.no_perizinan

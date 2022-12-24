@@ -60,6 +60,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         onBackPressed()
         }
 
+
         spinnerTelaah = findViewById<Spinner>(R.id.spinner_telaah)
         setSpinnerKategori()
     }

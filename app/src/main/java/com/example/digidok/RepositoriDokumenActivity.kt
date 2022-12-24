@@ -2,16 +2,13 @@ package com.example.digidok
 
 import android.content.Intent
 import android.graphics.Typeface
-import android.widget.ArrayAdapter
 import com.example.digidok.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -72,6 +69,26 @@ class RepositoriDokumenActivity : AppCompatActivity() {
 
         back.setOnClickListener {
             onBackPressed()
+        }
+
+        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        homeBtn.setOnClickListener {
+            startActivity(Intent(this@RepositoriDokumenActivity, DashboardActivity::class.java))
+        }
+
+        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        homeBtn2.setOnClickListener {
+            startActivity(Intent(this@RepositoriDokumenActivity, DashboardActivity::class.java))
+        }
+
+        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        profileBtn.setOnClickListener {
+            startActivity(Intent(this@RepositoriDokumenActivity, ProfileActivity::class.java))
+        }
+
+        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        notificationBtn.setOnClickListener {
+            startActivity(Intent(this@RepositoriDokumenActivity, NotificationActivity::class.java))
         }
 
         setSpinnerKategori()

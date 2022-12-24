@@ -1,84 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:layout_editor_absoluteX="1dp"
-    tools:layout_editor_absoluteY="1dp"
-    android:fillViewport="true">
+    android:layout_height="match_parent"
+    tools:context=".KjppDetailActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
+        android:id="@+id/include3"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+    </include>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/include3">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:context=".KjppDetailActivity">
-
-            <LinearLayout
-                android:id="@+id/title_detail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="25dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/backArrowBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_baseline_arrow_back_ios_24"
-                    android:background="@android:color/transparent" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="40dp"
-                        android:text="Detail KJPP"
-                        android:fontFamily="@font/roboto_bold"
-                        android:gravity="left|center"
-                        android:textSize="15.5dp"
-                        android:textColor="@color/black"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <View
-                        android:id="@+id/view"
-                        android:layout_width="83dp"
-                        android:layout_height="1dp"
-                        android:background="@color/black"
-                        android:layout_marginTop="3dp"
-                        app:layout_constraintTop_toBottomOf="@+id/txt" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="125dp"
                 android:layout_marginEnd="25dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_detail">
+                app:layout_constraintStart_toStartOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -90,29 +45,29 @@
                         android:id="@+id/title_no_induk"
                         android:layout_width="135dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto"
                         android:text="No Induk"
                         android:textColor="#627E97"
-                        android:textSize="14dp"
-                        android:fontFamily="@font/roboto"
-                        android:layout_gravity="center"/>
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/no_indukdetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="7dp"
-                        android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text="@string/no_kjpp"
-                        android:gravity="center|left|left"
-                          android:textColor="@color/black"
+                        android:background="@drawable/custom_profile"
                         android:fontFamily="@font/roboto"
-                        android:textSize="14dp"  />
+                        android:gravity="center|left|left"
+                        android:padding="7dp"
+                        android:text="@string/no_kjpp"
+                        android:textColor="@color/black"
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="1dp"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="10dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -125,24 +80,24 @@
                         android:id="@+id/title_nama"
                         android:layout_width="135dp"
                         android:layout_height="wrap_content"
-                        android:text="Nama"
- android:textColor="#627E97"
-                        android:textSize="14dp"
+                        android:layout_gravity="center"
                         android:fontFamily="@font/roboto"
-                        android:layout_gravity="center"/>
+                        android:text="Nama"
+                        android:textColor="#627E97"
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/namadetailkjpp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="7dp"
-                        android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text="@string/nama_kjpp"
-                        android:gravity="center|left|left"
-                          android:textColor="@color/black"
+                        android:background="@drawable/custom_profile"
                         android:fontFamily="@font/roboto"
-                        android:textSize="14dp"  />
+                        android:gravity="center|left|left"
+                        android:padding="7dp"
+                        android:text="@string/nama_kjpp"
+                        android:textColor="@color/black"
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -153,11 +108,10 @@
                 <TextView
                     android:layout_width="135dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:text="Perizinan"
                     android:textColor="#627E97"
-                    android:textSize="14dp"
-                    android:fontFamily="@font/roboto"
-                    />
+                    android:textSize="14dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -169,25 +123,25 @@
                         android:id="@+id/title_no_perizinan"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="55dp"
+                        android:fontFamily="@font/roboto"
                         android:text="No."
                         android:textColor="#627E97"
-                        android:textSize="14dp"
-                        android:fontFamily="@font/roboto"
-                        android:layout_gravity="center"/>
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/no_perizinandetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="7dp"
-                        android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text="@string/no_perizinan"
-                        android:gravity="center|left|left"
-                          android:textColor="@color/black"
+                        android:background="@drawable/custom_profile"
                         android:fontFamily="@font/roboto"
-                        android:textSize="14dp"  />
+                        android:gravity="center|left|left"
+                        android:padding="7dp"
+                        android:text="@string/no_perizinan"
+                        android:textColor="@color/black"
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -205,24 +159,25 @@
                         android:id="@+id/title_tgl_perizinan"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="55dp"
+                        android:fontFamily="@font/roboto"
                         android:text="Tanggal"
                         android:textColor="#627E97"
-                        android:textSize="14dp"
-                        android:fontFamily="@font/roboto"
-                        android:layout_gravity="center"/>
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/tgl_perizinandetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="7dp"
-                        android:gravity="center|left|left"                        android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text="@string/tgl_perizinan"
-                          android:textColor="@color/black"
+                        android:background="@drawable/custom_profile"
                         android:fontFamily="@font/roboto"
-                        android:textSize="14dp"  />
+                        android:gravity="center|left|left"
+                        android:padding="7dp"
+                        android:text="@string/tgl_perizinan"
+                        android:textColor="@color/black"
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -240,24 +195,25 @@
                         android:id="@+id/title_klasifikasi_perizinan"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="55dp"
+                        android:fontFamily="@font/roboto"
                         android:text="Klasifikasi"
                         android:textColor="#627E97"
-                        android:textSize="14dp"
-                        android:fontFamily="@font/roboto"
-                        android:layout_gravity="center"/>
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/klasifikasi_perizinandetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="7dp"
-                        android:gravity="center|left|left"                        android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text="@string/klasifikasi_perizinan"
-                          android:textColor="@color/black"
+                        android:background="@drawable/custom_profile"
                         android:fontFamily="@font/roboto"
-                        android:textSize="14dp"  />
+                        android:gravity="center|left|left"
+                        android:padding="7dp"
+                        android:text="@string/klasifikasi_perizinan"
+                        android:textColor="@color/black"
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -275,23 +231,24 @@
                         android:id="@+id/title_alamat"
                         android:layout_width="135dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto"
                         android:text="Alamat"
                         android:textColor="#627E97"
-                        android:textSize="14dp"
-                        android:fontFamily="@font/roboto"
-                        android:layout_gravity="center"/>
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/alamatdetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="7dp"
-                        android:gravity="center|left|left"                        android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text="@string/alamat_kjpp"
-                          android:textColor="@color/black"
+                        android:background="@drawable/custom_profile"
                         android:fontFamily="@font/roboto"
-                        android:textSize="14dp"  />
+                        android:gravity="center|left|left"
+                        android:padding="7dp"
+                        android:text="@string/alamat_kjpp"
+                        android:textColor="@color/black"
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -309,23 +266,23 @@
                         android:id="@+id/title_telp"
                         android:layout_width="135dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto"
                         android:text="No. Telepon"
                         android:textColor="#627E97"
-                        android:textSize="14dp"
-                        android:fontFamily="@font/roboto"
-                        android:layout_gravity="center"/>
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/telpdetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="7dp"
-                        android:background="@drawable/custom_profile"
                         android:layout_marginLeft="10dp"
-                        android:text="@string/telp_kjpp"
-                          android:textColor="@color/black"
+                        android:background="@drawable/custom_profile"
                         android:fontFamily="@font/roboto"
-                        android:textSize="14dp"  />
+                        android:padding="7dp"
+                        android:text="@string/telp_kjpp"
+                        android:textColor="@color/black"
+                        android:textSize="14dp" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -336,10 +293,10 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="150dp"
-                    android:layout_marginBottom="20dp"
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="center"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="horizontal">
 
                     <Button
@@ -352,12 +309,10 @@
                         android:textAllCaps="false"
                         android:textSize="14dp" />
                 </LinearLayout>
-
             </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-
-</ScrollView>
