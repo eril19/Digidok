@@ -284,6 +284,82 @@ object RemoteDataSource : DataSource {
             })
     }
 
+    override fun getKategoriPKS(token: String, callback: DataSource.kategoriPKSCallback) {
+        mApiServiceDev.KategoriPKS(token = "Bearer $token")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<kategoriPKSmodel?>>() {
+                override fun onSuccess(model: BaseApiModel<kategoriPKSmodel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+    override fun getTujuanPKS(token: String, callback: DataSource.tujuanPKSCallback) {
+        mApiServiceDev.TujuanPKS(token = "Bearer $token")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<tujuanPKSmodel?>>() {
+                override fun onSuccess(model: BaseApiModel<tujuanPKSmodel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+    override fun getJenisMitra(token: String, callback: DataSource.jenisMitraCallback) {
+        mApiServiceDev.JenisMitra(token = "Bearer $token")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<jenisMitramodel?>>() {
+                override fun onSuccess(model: BaseApiModel<jenisMitramodel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+    override fun getStatusMitra(token: String, callback: DataSource.statusMitraCallback) {
+        mApiServiceDev.StatusMitra(token = "Bearer $token")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<statusMitramodel?>>() {
+                override fun onSuccess(model: BaseApiModel<statusMitramodel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
     override fun getTahun(token: String, callback: DataSource.tahunCallback) {
         mApiServiceDev.Tahun(token = "Bearer $token")
             .subscribeOn(Schedulers.io())

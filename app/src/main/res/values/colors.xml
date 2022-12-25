@@ -13,6 +13,7 @@
     <color name="green">#50A554</color>
     <color name="white">#FFFFFF</color>
     <color name="tusk">#CAC9C9</color>
+    <color name="dark_Grey">#606060</color>
     <color name="lighttusk">#EDEDED</color>
 
 </resources>

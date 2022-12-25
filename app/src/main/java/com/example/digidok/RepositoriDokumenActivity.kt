@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
-import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.BeritaModel
-import com.example.digidok.data.model.laporanAsetDikerjasamakanModel
+import com.example.digidok.data.model.*
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
@@ -31,18 +29,18 @@ class RepositoriDokumenActivity : AppCompatActivity() {
     var order: String = "asc"
 
     var tahun = 2017
-    var wilayah = ""
-    var status = "SEMUA"
+    var kota = ""
+    var status = ""
     var kelurahan = ""
 
     var spinnerTahun : Spinner? = null
-    val listTahun = arrayListOf("2022", "2021", "2020","2019", "2018", "2017","2016", "2015", "2014")
+    val listTahun : ArrayList<TahunModel> = ArrayList()
 
-    var spinnerWilayah : Spinner? = null
-    val listWilayah = arrayListOf("Wilayah 1", "Wilayah 2", "Wilayah 3")
+    var spinnerKota : Spinner? = null
+    val listKota : ArrayList<KotaModel> = ArrayList()
 
     var spinnerKelurahan : Spinner? = null
-    val listKelurahan = arrayListOf("Kelurahan 1", "Kelurahan 2", "Kelurahan 3")
+    val listKelurahan : ArrayList<KelurahanModel> = ArrayList()
 
     var spinnerStatus : Spinner? = null
     val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT", "DIKEMBALIKAN")
@@ -55,14 +53,58 @@ class RepositoriDokumenActivity : AppCompatActivity() {
 
         val adapter = ArrayAdapter(applicationContext,R.layout.dd_text_status, listTahun)
 
+        getTahun()
+        getKota()
+
         supportActionBar?.hide()
 
         spinnerTahun = findViewById<Spinner>(R.id.spinner_tahun)
-        spinnerWilayah = findViewById<Spinner>(R.id.spinner_wilayah)
+        spinnerKota = findViewById<Spinner>(R.id.spinner_wilayah)
         spinnerKelurahan = findViewById<Spinner>(R.id.spinner_kelurahan)
         spinnerStatus = findViewById<Spinner>(R.id.spinner_status)
         val header = findViewById<TextView>(R.id.header_title)
 
+        spinnerTahun?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(position!=0){
+                    tahun = listTahun.get(position-1).value.safe().toInt()
+                    getRepositoriDokumen(status,tahun,kelurahan)
+//                    minta  filter kota
+                }
+
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
+        spinnerKota?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(position!=0){
+                    kota = listKota.get(position-1).value.safe()
+                    getKelurahan(kota)
+                    getRepositoriDokumen(status,tahun,kota)
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
+        spinnerKelurahan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(position!=0){
+                    kelurahan = listKelurahan.get(position-1).value.safe()
+                    getRepositoriDokumen(status,tahun,kelurahan)
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
 
         header.setText("Repositori Dokumen")
         val back = findViewById<ImageView>(R.id.backbtn)
@@ -91,14 +133,16 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             startActivity(Intent(this@RepositoriDokumenActivity, NotificationActivity::class.java))
         }
 
-        setSpinnerKategori()
+//        setSpinnerKategori()
         setList()
         getRepositoriDokumen(status,tahun,kelurahan)
     }
 
     fun setSpinnerKategori() {
         val arrayStringTahun = arrayListOf("Pilih Tahun")
-        arrayStringTahun.addAll(listTahun)
+        arrayStringTahun.addAll(listTahun.map {
+            it.label
+        })
         spinnerTahun?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringTahun) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
@@ -120,8 +164,10 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         }
 
         val arrayStringWilayah = arrayListOf("Pilih Wilayah")
-        arrayStringWilayah.addAll(listWilayah)
-        spinnerWilayah?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringWilayah) {
+        arrayStringWilayah.addAll(listKota.map {
+            it.label
+        })
+        spinnerKota?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringWilayah) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
@@ -142,7 +188,9 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         }
 
         val arrayStringKelurahan = arrayListOf("Pilih Kelurahan")
-        arrayStringKelurahan.addAll(listKelurahan)
+        arrayStringKelurahan.addAll(listKelurahan.map {
+            it.label
+        })
         spinnerKelurahan?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringKelurahan) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
@@ -237,13 +285,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                         data.data?.dataDokumen?.forEach {
                             repositoriDokumen?.add(
                                 RepositoriDokumenModel(
-                                    header_color = if (it?.status == 0) {
-                                        "Tidak Aktif"
-                                    } else if (it?.status == 1) {
-                                        "Aktif"
-                                    } else {
-                                        ""
-                                    },
+                                    header_color = it?.statusLabel.safe(),
                                     nama_mitra = it?.namaMitra.safe(),
                                     jenis_kerjasama = it?.kategoriPks.safe(),
                                     no_surat = it?.idPks.safe(),
@@ -266,5 +308,107 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             })
     }
 
+    fun getTahun() {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getTahun(
+            token = Preferences.isToken(context = this@RepositoriDokumenActivity),
+            object : DataSource.tahunCallback {
+                override fun onSuccess(data: BaseApiModel<tahunModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        listTahun.clear()
+                        data.data?.dataTahun?.forEach {
+                            listTahun?.add(
+                                TahunModel(
+                                    value = it?.value.safe(),
+                                    label  =it?.label.safe()
+                                )
+                            )
+                        }
+                        setList()
+                        setSpinnerKategori()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading = false
+                }
+
+                override fun onFinish() {
+                    isLoading = false
+                }
+
+            })
+    }
+
+    fun getKelurahan(idKota:String) {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getKelurahan(
+            token = Preferences.isToken(context = this@RepositoriDokumenActivity),
+            idKota = idKota,
+            object : DataSource.kelurahanCallback {
+                override fun onSuccess(data: BaseApiModel<kelurahanModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        listKota.clear()
+                        data.data?.dataKelurahan?.forEach {
+                            listKelurahan?.add(
+                                KelurahanModel(
+                                    value = it?.value.safe(),
+                                    label  =it?.label.safe()
+                                )
+                            )
+                        }
+                        setList()
+                        setSpinnerKategori()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading = false
+                }
+
+                override fun onFinish() {
+                    isLoading = false
+                }
+
+            })
+    }
+
+    fun getKota() {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getKota(
+            token = Preferences.isToken(context = this@RepositoriDokumenActivity),
+            object : DataSource.kotaCallback {
+                override fun onSuccess(data: BaseApiModel<kotaModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        listKota.clear()
+                        data.data?.dataKota?.forEach {
+                            listKota?.add(
+                                KotaModel(
+                                    value = it?.value.safe(),
+                                    label  =it?.label.safe()
+                                )
+                            )
+                        }
+                        setList()
+                        setSpinnerKategori()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading = false
+                }
+
+                override fun onFinish() {
+                    isLoading = false
+                }
+
+            })
+    }
 
 }

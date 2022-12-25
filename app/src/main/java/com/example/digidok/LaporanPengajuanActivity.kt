@@ -71,6 +71,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                 if(position!=0){
                     tahun = listTahun.get(position-1).value.safe().toInt()
                     getLaporanKerjasama(status,tahun,kelurahan)
+//                    minta  filter kota
                 }
 
             }

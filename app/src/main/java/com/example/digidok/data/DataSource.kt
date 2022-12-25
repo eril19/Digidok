@@ -65,6 +65,10 @@ interface DataSource : BaseDataSource {
 
     fun getNPWP(token: String, noNpwp: String, callback: NPWPCallback)
     fun getTahun(token: String, callback: tahunCallback)
+    fun getStatusMitra(token: String, callback: statusMitraCallback)
+    fun getTujuanPKS(token: String, callback: tujuanPKSCallback)
+    fun getJenisMitra(token: String, callback: jenisMitraCallback)
+    fun getKategoriPKS(token: String, callback: kategoriPKSCallback)
     fun getKota(token: String, callback: kotaCallback)
     fun getKelurahan(token: String, idKota: String, callback: kelurahanCallback)
     fun getDashboard(token: String, callback: dashboardCallback)
@@ -257,6 +261,38 @@ interface DataSource : BaseDataSource {
 
     interface tahunCallback {
         fun onSuccess(data: BaseApiModel<tahunModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface statusMitraCallback {
+        fun onSuccess(data: BaseApiModel<statusMitramodel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface jenisMitraCallback {
+        fun onSuccess(data: BaseApiModel<jenisMitramodel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface tujuanPKSCallback {
+        fun onSuccess(data: BaseApiModel<tujuanPKSmodel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface kategoriPKSCallback {
+        fun onSuccess(data: BaseApiModel<kategoriPKSmodel?>)
 
         fun onError(message: String)
 

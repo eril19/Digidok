@@ -61,6 +61,11 @@ class CekDokumenAdapter(private val context: Context, private val CekDokumen: Li
                     R.color.red2
                 )
             }
+            else{
+                header_color.background = ContextCompat.getDrawable(header_color.context,
+                    R.color.dark_Grey
+                )
+            }
         }
     }
 

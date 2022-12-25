@@ -133,7 +133,7 @@ class CekDokumenActivity : AppCompatActivity() {
                             it?.dataLampiran?.forEach{
                                 cekDokumen?.add(
                                     CekDokumenModel(
-                                        header_color = "",
+                                        header_color = "Dokumen",
                                         nama_dokumen = it?.label.safe(),
                                         file = it?.file.safe()
                                     )

@@ -88,6 +88,22 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         remoteDataSource.getTahun(token, callback)
     }
 
+    override fun getStatusMitra(token: String, callback: DataSource.statusMitraCallback) {
+        remoteDataSource.getStatusMitra(token, callback)
+    }
+
+    override fun getTujuanPKS(token: String, callback: DataSource.tujuanPKSCallback) {
+        remoteDataSource.getTujuanPKS(token, callback)
+    }
+
+    override fun getJenisMitra(token: String, callback: DataSource.jenisMitraCallback) {
+        remoteDataSource.getJenisMitra(token, callback)
+    }
+
+    override fun getKategoriPKS(token: String, callback: DataSource.kategoriPKSCallback) {
+        remoteDataSource.getKategoriPKS(token, callback)
+    }
+
     override fun getKota(token: String, callback: DataSource.kotaCallback) {
         remoteDataSource.getKota(token, callback)
     }

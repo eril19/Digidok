@@ -173,6 +173,30 @@ interface ApiService {
     ): Observable<BaseApiModel<kotaModel?>>
 
 
+    @GET("master/get-kategori-pks")
+    fun KategoriPKS(
+        @Header("Authorization") token: String,
+    ): Observable<BaseApiModel<kategoriPKSmodel?>>
+
+
+    @GET("master/get-tujuan-pks")
+    fun TujuanPKS(
+        @Header("Authorization") token: String,
+    ): Observable<BaseApiModel<tujuanPKSmodel?>>
+
+
+    @GET("master/get-status-mitra")
+    fun StatusMitra(
+        @Header("Authorization") token: String,
+    ): Observable<BaseApiModel<statusMitramodel?>>
+
+
+    @GET("master/get-jenis-mitra")
+    fun JenisMitra(
+        @Header("Authorization") token: String,
+    ): Observable<BaseApiModel<jenisMitramodel?>>
+
+
     @GET("dashboard")
     fun Dashboard(
         @Header("Authorization") token: String,
