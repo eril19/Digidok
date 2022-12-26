@@ -156,6 +156,11 @@ class LaporanAsetActivity : AppCompatActivity() {
             startActivity(Intent(this@LaporanAsetActivity, DashboardActivity::class.java))
         }
 
+        val homeBtn3 : ImageButton = findViewById(R.id.homeBtn)
+        homeBtn3.setOnClickListener {
+            startActivity(Intent(this@LaporanAsetActivity, DashboardActivity::class.java))
+        }
+
         val profileBtn : ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
             startActivity(Intent(this@LaporanAsetActivity, ProfileActivity::class.java))

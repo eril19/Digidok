@@ -123,6 +123,11 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             startActivity(Intent(this@RepositoriDokumenActivity, DashboardActivity::class.java))
         }
 
+        val homeBtn3 : ImageButton = findViewById(R.id.homeBtn)
+        homeBtn3.setOnClickListener {
+            startActivity(Intent(this@RepositoriDokumenActivity, DashboardActivity::class.java))
+        }
+
         val profileBtn : ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
             startActivity(Intent(this@RepositoriDokumenActivity, ProfileActivity::class.java))

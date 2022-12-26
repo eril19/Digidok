@@ -64,6 +64,11 @@ class DaftarKjppActivity : AppCompatActivity() {
             startActivity(Intent(this@DaftarKjppActivity, DashboardActivity::class.java))
         }
 
+        val homeBtn3 : ImageButton = findViewById(R.id.homeBtn)
+        homeBtn3.setOnClickListener {
+            startActivity(Intent(this@DaftarKjppActivity, DashboardActivity::class.java))
+        }
+
         val profileBtn : ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
             startActivity(Intent(this@DaftarKjppActivity, ProfileActivity::class.java))

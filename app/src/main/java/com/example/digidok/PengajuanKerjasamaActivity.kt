@@ -108,6 +108,11 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
             startActivity(Intent(this@PengajuanKerjasamaActivity, DashboardActivity::class.java))
         }
 
+        val homeBtn3 : ImageButton = findViewById(R.id.homeBtn)
+        homeBtn3.setOnClickListener {
+            startActivity(Intent(this@PengajuanKerjasamaActivity, DashboardActivity::class.java))
+        }
+
         val profileBtn : ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
             startActivity(Intent(this@PengajuanKerjasamaActivity, ProfileActivity::class.java))
