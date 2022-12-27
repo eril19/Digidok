@@ -12,6 +12,37 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         remoteDataSource.login(user, password, deviceId, fid, callback)
     }
 
+    override fun updateProfile(
+        token: String,
+        nama: String,
+        nip: String,
+        telepon: String,
+        email: String,
+        keterangan: String,
+        password: String,
+        callback: DataSource.updateProfileCallback
+    ) {
+        remoteDataSource.updateProfile(token,nama, nip, telepon, email, keterangan, password, callback)
+    }
+
+    override fun InsertPengajuan(
+        token: String,
+        idMitra: String,
+        idKategoriPks: String,
+        idTujuanPks: String,
+        nomorSurat: String,
+        tanggalSurat: String,
+        objek: String,
+        nilai: Long,
+        tanggalMulai: String,
+        tanggalAkhir: String,
+        perihal: String,
+        dokumen: String,
+        callback: DataSource.InsertPengajuanCallback
+    ) {
+        remoteDataSource.InsertPengajuan(token, idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, dokumen, callback)
+    }
+
     override fun InsertMitra(
         token: String,
         npwp: String,
@@ -37,9 +68,10 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         jenisMitra: String,
         statusMitra: String,
         companyProfile: String,
+        legalWp:Long,
         callback: DataSource.InsertMitraCallback
     ) {
-        remoteDataSource.InsertMitra(token, npwp, nama, alamat, kelurahan, kecamatan, kotaKabupaten, provinsi, klasifikasi, namaKpp, kanwil, nomorTelepon, nomorFax, email, ttl, tanggalDaftar, statusPkp, tanggalPengukuhanPkp, jenisWajibPajak, badanHukum, tahunGabung, jenisMitra, statusMitra, companyProfile, callback)
+        remoteDataSource.InsertMitra(token, npwp, nama, alamat, kelurahan, kecamatan, kotaKabupaten, provinsi, klasifikasi, namaKpp, kanwil, nomorTelepon, nomorFax, email, ttl, tanggalDaftar, statusPkp, tanggalPengukuhanPkp, jenisWajibPajak, badanHukum, tahunGabung, jenisMitra, statusMitra, companyProfile, legalWp,callback)
     }
 
     override fun getBerita(start: String, limit: String, callback: DataSource.BeritaDataCallback) {
@@ -156,6 +188,14 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         callback: DataSource.daftarPengajuanDetailCallback
     ) {
         remoteDataSource.getDaftarPengajuanKerjasamaDetail(token, id, callback)
+    }
+
+    override fun getDetailMitra(
+        token: String,
+        id: String,
+        callback: DataSource.detailMitraCallback
+    ) {
+        remoteDataSource.getDetailMitra(token, id, callback)
     }
 
     override fun getLaporanAsetDikerjasamakan(

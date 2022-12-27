@@ -86,7 +86,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                 if(position!=0){
                     kota = listKota.get(position-1).value.safe()
                     getKelurahan(kota)
-                    getLaporanKerjasama(status,tahun,kota)
+//                    getLaporanKerjasama(status,tahun,kota)
                 }
             }
 

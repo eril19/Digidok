@@ -14,6 +14,34 @@ interface DataSource : BaseDataSource {
         callback: LoginDataCallback
     )
 
+    fun updateProfile(
+        token: String,
+        nama: String,
+        nip: String,
+        telepon: String,
+        email: String,
+        keterangan: String,
+        password: String,
+        callback: updateProfileCallback
+    )
+
+
+    fun InsertPengajuan(
+        token: String,
+        idMitra: String,
+        idKategoriPks: String,
+        idTujuanPks: String,
+        nomorSurat: String,
+        tanggalSurat: String,
+        objek: String,
+        nilai: Long,
+        tanggalMulai: String,
+        tanggalAkhir: String,
+        perihal: String,
+        dokumen: String,
+        callback: InsertPengajuanCallback
+    )
+
     fun InsertMitra(
         token: String,
         npwp: String,
@@ -39,6 +67,7 @@ interface DataSource : BaseDataSource {
         jenisMitra: String,
         statusMitra: String,
         companyProfile: String,
+        legalWp:Long,
         callback: InsertMitraCallback
     )
 
@@ -97,6 +126,12 @@ interface DataSource : BaseDataSource {
         token: String,
         id: String,
         callback: daftarPengajuanDetailCallback
+    )
+
+    fun getDetailMitra(
+        token: String,
+        id: String,
+        callback: detailMitraCallback
     )
 
     fun getLaporanAsetDikerjasamakan(
@@ -301,6 +336,30 @@ interface DataSource : BaseDataSource {
 
     interface dashboardCallback {
         fun onSuccess(data: BaseApiModel<dashboardModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface detailMitraCallback {
+        fun onSuccess(data: BaseApiModel<detailMitramodel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface updateProfileCallback {
+        fun onSuccess(data: BaseApiModel<UserModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface InsertPengajuanCallback {
+        fun onSuccess(data: BaseApiModel<UserModel?>)
 
         fun onError(message: String)
 

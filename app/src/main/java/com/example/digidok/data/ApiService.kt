@@ -35,6 +35,18 @@ interface ApiService {
     ): Observable<BaseApiModel<UserModel?>>
 
     @FormUrlEncoded
+    @POST("profil/ubah")
+    fun updateProfile(
+        @Header("Authorization") token: String,
+        @Field("nama") nama: String,
+        @Field("nip") nip: String,
+        @Field("telepon") telepon: String,
+        @Field("email") email: String,
+        @Field("keterangan") keterangan: String,
+        @Field("password") password: String,
+    ): Observable<BaseApiModel<UserModel?>>
+
+    @FormUrlEncoded
     @POST("setup/mitra/submit/tambah")
     fun insertMitra(
         @Header("Authorization") token: String,
@@ -61,6 +73,24 @@ interface ApiService {
         @Field("jenisMitra") jenisMitra: String,
         @Field("statusMitra") statusMitra: String,
         @Field("companyProfile") companyProfile: String,
+        @Field("legalWp") legalWp: Long,
+        ): Observable<BaseApiModel<UserModel?>>
+
+    @FormUrlEncoded
+    @POST("formulir/dokumen/submit/tambah")
+    fun insertPengajuan(
+        @Header("Authorization") token: String,
+        @Field("idMitra") idMitra: String,
+        @Field("idKategoriPks") idKategoriPks: String,
+        @Field("idTujuanPks") idTujuanPks: String,
+        @Field("nomorSurat") nomorSurat: String,
+        @Field("tanggalSurat") tanggalSurat: String,
+        @Field("objek") objek: String,
+        @Field("nilai") nilai: Long,
+        @Field("tanggalMulai") tanggalMulai: String,
+        @Field("tanggalAkhir") tanggalAkhir: String,
+        @Field("perihal") perihal: String,
+        @Field("dokumen") dokumen: String,
     ): Observable<BaseApiModel<UserModel?>>
 
     @FormUrlEncoded
@@ -160,6 +190,12 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("noNpwp") noNpwp: String,
         ): Observable<BaseApiModel<NPWPModel?>>
+
+    @GET("setup/mitra/detail")
+    fun MitraDetail(
+        @Header("Authorization") token: String,
+        @Query("id") id: String,
+    ): Observable<BaseApiModel<detailMitramodel?>>
 
     @GET("master/get-tahun-dokumen")
     fun Tahun(

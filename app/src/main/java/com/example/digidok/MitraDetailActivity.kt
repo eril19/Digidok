@@ -11,6 +11,7 @@ import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.NPWPModel
 import com.example.digidok.data.model.daftarMitraModel
+import com.example.digidok.data.model.detailMitramodel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
@@ -42,9 +43,14 @@ class MitraDetailActivity : AppCompatActivity() {
 
 
     var isEdit: String = ""
-    var NPWPcheck = ""
+    var legalWp:Long  = 0
+    var tahunGabung = ""
+    var jenisMitra = ""
+    var statusMitra = ""
+    var idMitraCheck = ""
     var DataMitra: MitraDetailModel? = null
     var npwp: EditText? = null
+    var namaKpp :EditText?=null
     var nama: EditText? = null
     var alamat: EditText? = null
     var kelurahan: EditText? = null
@@ -113,17 +119,18 @@ class MitraDetailActivity : AppCompatActivity() {
 
 
 //        data = intent.getParcelableExtra("daftarMitra")
-        NPWPcheck = intent.getStringExtra("npwp") ?: ""
+        idMitraCheck = intent.getStringExtra("id") ?: ""
         isEdit = intent.getStringExtra("menu") ?: ""
 
 
         val switch = findViewById<Switch>(R.id.NPWPSwitch)
         val refresh = findViewById<ImageView>(R.id.refreshButton)
 
-        if (!NPWPcheck.equals("")){
-            getNpwp(NPWPcheck)
-            npwp?.setText(NPWPcheck)
-            npwpData = NPWPcheck
+        if (!idMitraCheck.equals("")){
+            getDetailMitra(idMitraCheck)
+//            npwp?.setText(NPWPcheck)
+//            npwpData = NPWPcheck
+            legalWp = 0
         }
 
 
@@ -229,7 +236,8 @@ class MitraDetailActivity : AppCompatActivity() {
                         ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
                     badan_hukum?.background =
                         ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
-                } else {
+                }
+                else {
 
                     npwp?.isEnabled = false
                     npwp?.background =
@@ -387,7 +395,7 @@ class MitraDetailActivity : AppCompatActivity() {
                     npwp = npwp?.text.toString(),
                     nama = nama?.text.toString(),
                     alamat = alamat?.text.toString(),
-//                                    namaKpp = data.data?.nam.toString()
+                    namaKpp = namaKpp?.text.toString(),
                     kotaKabupaten = kota?.text.toString(),
                     kecamatan = kecamatan?.text.toString(),
                     kelurahan = kelurahan?.text.toString(),
@@ -401,6 +409,10 @@ class MitraDetailActivity : AppCompatActivity() {
                     nomorTelepon = telp?.text.toString(),
                     nomorFax = fax?.text.toString(),
                     ttl = ttl?.text.toString(),
+                    legalWp = legalWp,
+                    statusMitra = statusMitra,
+                    jenisMitra = jenisMitra,
+                    tahunGabung = tahunGabung,
                     tanggalDaftar = tgl_daftar?.text.toString(),
                     tanggalPengukuhanPkp = tgl_pkp?.text.toString()
             )
@@ -416,8 +428,56 @@ class MitraDetailActivity : AppCompatActivity() {
 
         refresh.setOnClickListener {
             getNpwp(npwp?.text.toString())
+            legalWp = 1
         }
 
+    }
+
+    fun getDetailMitra(id:String){
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getDetailMitra(
+            token = Preferences.isToken(context = this@MitraDetailActivity),
+            id = id,
+            object : DataSource.detailMitraCallback {
+                override fun onSuccess(data: BaseApiModel<detailMitramodel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        npwp?.setText(data.data?.npwp)
+                        nama?.setText(data.data?.nama)
+                        alamat?.setText(data.data?.alamat)
+                        kelurahan?.setText(data.data?.kelurahan)
+                        kecamatan?.setText(data.data?.kecamatan)
+                        kota?.setText(data.data?.kotaKabupaten)
+                        provinsi?.setText(data.data?.provinsi)
+                        klasifikasi?.setText(data.data?.klasifikasi)
+                        kpp?.setText(data.data?.namaKpp)
+                        kanwil?.setText(data.data?.kanwil)
+                        telp?.setText(data.data?.nomorTelepon)
+                        fax?.setText(data.data?.nomorFax)
+                        email?.setText(data.data?.email)
+                        ttl?.setText(data.data?.ttl)
+                        tgl_daftar?.setText(data.data?.tanggalDaftar)
+                        status_pkp?.setText(data.data?.statusPkp)
+                        tgl_pkp?.setText(data.data?.tanggalPengukuhanPkp)
+                        jenis_pajak?.setText(data.data?.jenisWajibPajak)
+                        badan_hukum?.setText(data.data?.badanHukum)
+                        legalWp = data.data?.legalWp ?: 0
+                        statusMitra = data.data?.statusMitra.safe()
+                        jenisMitra = data.data?.jenisMitra.safe()
+                        tahunGabung = data.data?.tahunGabung.toString().safe()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    Toast.makeText(this@MitraDetailActivity, "Data gagal dimuat", Toast.LENGTH_LONG).show()
+                }
+
+                override fun onFinish() {
+                    Toast.makeText(this@MitraDetailActivity, "Data selesai dimuat", Toast.LENGTH_LONG).show()
+                }
+
+            })
     }
 
     fun getNpwp(noNpwp: String) {
@@ -462,4 +522,5 @@ class MitraDetailActivity : AppCompatActivity() {
 
             })
     }
+
 }

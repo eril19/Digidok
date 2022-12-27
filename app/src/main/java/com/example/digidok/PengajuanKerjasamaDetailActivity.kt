@@ -1,9 +1,11 @@
 package com.example.digidok
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -55,6 +57,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         val backArrow = findViewById<ImageButton>(R.id.backbtn)
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
+        val prev = findViewById<Button>(R.id.prev_detail_btn)
         no_pengajuan = findViewById<EditText>(R.id.no_pengajuan)
         nama_mitra = findViewById<EditText>(R.id.nama_mitra)
         ETtujuan = findViewById<EditText>(R.id.tujuan)
@@ -71,9 +74,10 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         isStatusEdit = intent.getStringExtra("status") ?: ""
 
         if (isStatusEdit.equals("Edit", true) || isStatusEdit.equals("Tambah",true)) {
-            no_pengajuan?.isEnabled = true
-            no_pengajuan?.background =
-                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
+            no_pengajuan?.isEnabled = false
+            no_pengajuan?.setText("(Auto)")
+//            no_pengajuan?.background =
+//                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
 
             nama_mitra?.isEnabled = true
             nama_mitra?.background =
@@ -114,8 +118,26 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
             skema?.isEnabled = true
             skema?.background =
                 ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
-        } else {
+
+            next_detail_btn.visibility = View.GONE
+            prev.visibility = View.GONE
+
+            close_detail_btn.text = "Simpan"
+            close_detail_btn.setBackgroundColor(ContextCompat.getColor(this,R.color.green))
+
+            close_detail_btn.setOnClickListener {
+                if (isStatusEdit.equals("Edit", true)){
+//                    update
+                }
+                else if(isStatusEdit.equals("Tambah",true)){
+
+                }
+            }
+
+        }
+        else {
             no_pengajuan?.isEnabled = false
+            no_pengajuan?.setText("(Auto)")
             skema?.isEnabled = false
             nama_mitra?.isEnabled = false
             ETtujuan?.isEnabled = false
@@ -253,6 +275,12 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 }
 
             })
+    }
+
+    fun insertPengajuan(
+
+    ){
+
     }
 
 }

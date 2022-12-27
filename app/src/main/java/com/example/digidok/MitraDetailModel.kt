@@ -26,6 +26,7 @@ class MitraDetailModel(
     var tahunGabung: String= "",
     var jenisMitra: String= "",
     var statusMitra: String= "",
+    var legalWp: Long = 0,
     var companyProfile: String= "",
 ):Parcelable{
     constructor(parcel: Parcel) : this(
@@ -51,6 +52,7 @@ class MitraDetailModel(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
+        parcel.readLong(),
         parcel.readString().toString()
     ) {
     }

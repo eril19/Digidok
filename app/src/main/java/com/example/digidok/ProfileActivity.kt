@@ -113,4 +113,8 @@ class ProfileActivity : AppCompatActivity() {
 
             })
     }
+
+    fun updateProfile(){
+
+    }
 }

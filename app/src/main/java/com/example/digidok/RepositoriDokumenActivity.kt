@@ -84,7 +84,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                 if(position!=0){
                     kota = listKota.get(position-1).value.safe()
                     getKelurahan(kota)
-                    getRepositoriDokumen(status,tahun,kota)
+//                    getRepositoriDokumen(status,tahun,kota)
                 }
             }
 

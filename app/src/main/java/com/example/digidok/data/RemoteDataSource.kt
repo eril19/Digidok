@@ -4,6 +4,7 @@ import com.example.digidok.BuildConfig.VERSION_NAME
 import com.example.digidok.data.model.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlin.math.tan
 
 object RemoteDataSource : DataSource {
 
@@ -20,6 +21,83 @@ object RemoteDataSource : DataSource {
         mApiServiceDev.login(
             "android", "Android", "login",
             VERSION_NAME, "0", user, password, "android", fId
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<UserModel?>>() {
+                override fun onSuccess(model: BaseApiModel<UserModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+    override fun updateProfile(
+        token: String,
+        nama: String,
+        nip: String,
+        telepon: String,
+        email: String,
+        keterangan: String,
+        password: String,
+        callback: DataSource.updateProfileCallback
+    ) {
+        mApiServiceDev.updateProfile(
+            token = "Bearer $token",
+            nama = nama, nip = nip, telepon = telepon, email=email, keterangan=keterangan, password=password
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<UserModel?>>() {
+                override fun onSuccess(model: BaseApiModel<UserModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+    override fun InsertPengajuan(
+        token: String,
+        idMitra: String,
+        idKategoriPks: String,
+        idTujuanPks: String,
+        nomorSurat: String,
+        tanggalSurat: String,
+        objek: String,
+        nilai: Long,
+        tanggalMulai: String,
+        tanggalAkhir: String,
+        perihal: String,
+        dokumen: String,
+        callback: DataSource.InsertPengajuanCallback
+    ) {
+        mApiServiceDev.insertPengajuan(
+            token = "Bearer $token",
+            idMitra = idMitra,
+            idKategoriPks = idKategoriPks,
+            idTujuanPks = idTujuanPks,
+            nomorSurat = nomorSurat,
+            tanggalSurat = tanggalSurat,
+            objek = objek,
+            nilai = nilai,
+            tanggalMulai = tanggalMulai,
+            tanggalAkhir = tanggalAkhir,
+            perihal = perihal,
+            dokumen = dokumen,
         )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -63,18 +141,19 @@ object RemoteDataSource : DataSource {
         jenisMitra: String,
         statusMitra: String,
         companyProfile: String,
+        legalWp: Long,
         callback: DataSource.InsertMitraCallback
     ) {
         mApiServiceDev.insertMitra(
             token = "Bearer $token",
-            npwp = npwp,
-            nama = nama,
-            alamat = alamat,
-            kelurahan = kelurahan,
-            kecamatan = kecamatan,
-            kotaKabupaten = kotaKabupaten,
-            provinsi = provinsi,
-            klasifikasi = klasifikasi,
+            npwp=npwp,
+            nama=nama,
+            alamat=alamat,
+            kelurahan=kelurahan,
+            kecamatan=kecamatan,
+            kotaKabupaten=kotaKabupaten,
+            provinsi=provinsi,
+            klasifikasi=klasifikasi,
             namaKpp = namaKpp,
             kanwil = kanwil,
             nomorTelepon = nomorTelepon,
@@ -90,8 +169,8 @@ object RemoteDataSource : DataSource {
             jenisMitra = jenisMitra,
             statusMitra = statusMitra,
             companyProfile = companyProfile,
-        )
-            .subscribeOn(Schedulers.io())
+            legalWp = legalWp,
+        ).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : ApiCallback<BaseApiModel<UserModel?>>() {
                 override fun onSuccess(model: BaseApiModel<UserModel?>) {
@@ -408,6 +487,29 @@ object RemoteDataSource : DataSource {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : ApiCallback<BaseApiModel<daftarPengajuanKerjasamaDetailModel?>>() {
                 override fun onSuccess(model: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+    override fun getDetailMitra(
+        token: String,
+        id: String,
+        callback: DataSource.detailMitraCallback
+    ) {
+        mApiServiceDev.MitraDetail(token = "Bearer $token", id = id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<detailMitramodel?>>() {
+                override fun onSuccess(model: BaseApiModel<detailMitramodel?>) {
                     model?.let { callback.onSuccess(it) }
                 }
 

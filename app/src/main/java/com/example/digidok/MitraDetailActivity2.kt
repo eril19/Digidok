@@ -11,8 +11,7 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
-import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.UserModel
+import com.example.digidok.data.model.*
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
@@ -42,13 +41,14 @@ class MitraDetailActivity2 : AppCompatActivity() {
     var statusMitra = ""
     var companyProfile = ""
     var tahungabung: EditText? = null
+    var tahunGabungValue = ""
+    var legalWp:Long = 0
     var tahun = 0
     var spinner_jenis_mitra: Spinner? = null
-    val listJenisMitra =
-        arrayListOf("Perorangan", "BUMD", "BUMN", "Perusahaan Swasta", "Yayasan / Foundation")
+    val listJenisMitra : ArrayList<JenisMitraModel> = ArrayList()
     var isEdit: String = ""
     var spinner_status_mitra: Spinner? = null
-    val listStatusMitra = arrayListOf("Whitelist", "Redlist", "Blacklist")
+    val listStatusMitra : ArrayList<StatusMitraModel> = ArrayList()
     var data: MitraDetailModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +58,10 @@ class MitraDetailActivity2 : AppCompatActivity() {
         supportActionBar?.hide()
         isEdit = intent.getStringExtra("menu2") ?: ""
         data = intent.getParcelableExtra("dataDetail")
+
+        getJenisMitra()
+        getStatusMitra()
+
         spinner_jenis_mitra = findViewById<Spinner>(R.id.spinner_jenis_mitra)
         spinner_jenis_mitra?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -67,17 +71,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 id: Long
             ) {
                 if (position != 0) {
-                    if (position - 1 == 0) {
-                        jenisMitra = "001"
-                    } else if (position - 1 == 1) {
-                        jenisMitra = "002"
-                    } else if (position - 1 == 2) {
-                        jenisMitra = "003"
-                    } else if (position - 1 == 3) {
-                        jenisMitra = "004"
-                    } else if (position - 1 == 4) {
-                        jenisMitra = "005"
-                    }
+                    jenisMitra = listJenisMitra.get(position-1).value.safe()
                 }
             }
 
@@ -96,14 +90,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 id: Long
             ) {
                 if (position != 0) {
-                    if (position - 1 == 0) {
-                        statusMitra = "001"
-                    } else if (position - 1 == 1) {
-                        statusMitra = "002"
-                    } else if (position - 1 == 2) {
-                        statusMitra = "003"
-                    }
-
+                    statusMitra = listStatusMitra.get(position-1).value.safe()
                 }
 
             }
@@ -177,6 +164,9 @@ class MitraDetailActivity2 : AppCompatActivity() {
         tglPKP = data?.tanggalPengukuhanPkp.toString()
         jenisPajak = data?.jenisWajibPajak.toString()
         badanHukum = data?.badanHukum.toString()
+        legalWp = data?.legalWp?:0
+        tahunGabungValue = data?.tahunGabung.toString()
+
 
 
 //        tahun = Integer.parseInt(tahungabung?.text.toString())
@@ -206,9 +196,10 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 tglPKP,
                 jenisPajak,
                 badanHukum,
-                tahunGabung = etTahunGabung.text.toString().toInt(),
+                tahunGabungValue.toInt(),
                 jenisMitra,
                 statusMitra,
+                legalWp,
                 companyProfile
             )
             startActivity(Intent(this@MitraDetailActivity2, DaftarMitraActivity::class.java))
@@ -227,6 +218,9 @@ class MitraDetailActivity2 : AppCompatActivity() {
             etStatusMitra.isEnabled = false
             etStatusMitra.background =
                 ContextCompat.getDrawable(etStatusMitra.context, R.drawable.custom_profile)
+
+
+//            spinner_status_mitra.setSelection(getIndex(spinner_status_mitra, statusMitra))
         }
 
         setSpinnerKategori()
@@ -256,6 +250,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
         tahunGabung: Int,
         jenisMitra: String,
         statusMitra: String,
+        legalWp:Long,
         companyProfile: String
     ) {
         isLoading = true
@@ -285,6 +280,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
             jenisMitra = jenisMitra,
             statusMitra = statusMitra,
             companyProfile = companyProfile,
+            legalWp = legalWp,
             object : DataSource.InsertMitraCallback {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     isLoading = false
@@ -306,7 +302,9 @@ class MitraDetailActivity2 : AppCompatActivity() {
 
     fun setSpinnerKategori() {
         val arrayStringTahun = arrayListOf("Pilih Jenis Mitra")
-        arrayStringTahun.addAll(listJenisMitra)
+        arrayStringTahun.addAll(listJenisMitra.map {
+            it.label
+        })
         spinner_jenis_mitra?.adapter =
             object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringTahun) {
                 override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -337,7 +335,9 @@ class MitraDetailActivity2 : AppCompatActivity() {
             }
 
         val arrayStringWilayah = arrayListOf("Pilih Status")
-        arrayStringWilayah.addAll(listStatusMitra)
+        arrayStringWilayah.addAll(listStatusMitra.map {
+            it.label
+        })
         spinner_status_mitra?.adapter =
             object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringWilayah) {
                 override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -367,6 +367,87 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 }
             }
 
+    }
+
+    fun getJenisMitra(){
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getJenisMitra(
+            token = Preferences.isToken(context = this@MitraDetailActivity2),
+            object : DataSource.jenisMitraCallback {
+                override fun onSuccess(data: BaseApiModel<jenisMitramodel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        listJenisMitra.clear()
+                        data.data?.dataJenisMitra?.forEach {
+                            listJenisMitra?.add(
+                                JenisMitraModel(
+                                    value = it?.value.safe(),
+                                    label  =it?.label.safe()
+                                )
+                            )
+                        }
+//                        setList()
+                        setSpinnerKategori()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading = false
+                }
+
+                override fun onFinish() {
+                    isLoading = false
+                }
+
+            })
+    }
+
+    fun getStatusMitra(){
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getStatusMitra(
+            token = Preferences.isToken(context = this@MitraDetailActivity2),
+            object : DataSource.statusMitraCallback {
+                override fun onSuccess(data: BaseApiModel<statusMitramodel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        listJenisMitra.clear()
+                        data.data?.dataStatusMitra?.forEach {
+                            listStatusMitra?.add(
+                                StatusMitraModel(
+                                    value = it?.value.safe(),
+                                    label  =it?.label.safe()
+                                )
+                            )
+                        }
+//                        setList()
+                        setSpinnerKategori()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading = false
+                }
+
+                override fun onFinish() {
+                    isLoading = false
+                }
+
+            })
+    }
+
+    fun getIndex(spinner: Spinner,  myString : String): Int {
+
+        var index = 0
+        var i = 0
+        for ( i in 0..spinner.getCount()){
+            if (spinner.getItemAtPosition(i).equals(myString)){
+                index = i;
+            }
+        }
+
+        return index
     }
 
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
