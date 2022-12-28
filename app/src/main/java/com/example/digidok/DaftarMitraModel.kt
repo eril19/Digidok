@@ -5,6 +5,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 class DaftarMitraModel(
+    val no:String = "",
     val header_color : String,
     val id_mitra : String,
     val nama_mitra: String,
@@ -22,11 +23,13 @@ class DaftarMitraModel(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
+        parcel.readString().toString(),
         parcel.readString().toString()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(no)
         parcel.writeString(header_color)
         parcel.writeString(id_mitra)
         parcel.writeString(nama_mitra)

@@ -220,7 +220,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 ContextCompat.getDrawable(etStatusMitra.context, R.drawable.custom_profile)
 
 
-//            spinner_status_mitra.setSelection(getIndex(spinner_status_mitra, statusMitra))
+            spinner_status_mitra?.setSelection(statusMitra.toInt())
         }
 
         setSpinnerKategori()

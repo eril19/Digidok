@@ -16,20 +16,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
-import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.BeritaModel
-import com.example.digidok.data.model.NPWPModel
-import com.example.digidok.data.model.daftarPengajuanKerjasamaDetailModel
+import com.example.digidok.data.model.*
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 
 class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
+
+    var daftarMitra: ArrayList<DaftarMitraModel> = ArrayList()
 
     var isStatusEdit: String = ""
     var isLoading: Boolean = false
     var pengajuanKerjasamaDetail: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
-
+    var start: Int = 0
+    var row: Int = 0
+    var sortColumn: String = "no"
+    var order: String = "asc"
+    var statusFilter = "1"
     var idPkscheck = ""
     var no_pengajuan: EditText? = null
     var nama_mitra: EditText? = null
@@ -241,6 +245,58 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
     }
 
+    fun getDaftarMitra(status: Int) {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getDaftarMitra(
+            token = Preferences.isToken(context = this@PengajuanKerjasamaDetailActivity),
+            start = start,
+            row = 10,
+            order = order,
+            sortColumn = sortColumn,
+            statusFilter = status,
+            object : DataSource.daftarMitraCallback {
+                override fun onSuccess(data: BaseApiModel<daftarMitraModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        daftarMitra.clear()
+                        data.data?.dataMitra?.forEach {
+                            daftarMitra?.add(
+                                DaftarMitraModel(
+                                    no = it?.no.toString().safe(),
+                                    header_color = if (it?.status == 0) {
+                                        "Tidak Aktif"
+                                    } else if (it?.status == 1) {
+                                        "Aktif"
+                                    } else {
+                                        ""
+                                    },
+                                    id_mitra = it?.kodeMitra.safe(),
+                                    nama_mitra = it?.namaMitra.safe(),
+                                    jenis_mitra = it?.jenisMitra.safe(),
+                                    status = "Status:",
+                                    status_mitra = it?.statusMitra.safe(),
+                                    npwp = "NPWP",
+                                    npwp_mitra = it?.npwp.safe(),
+                                )
+                            )
+                        }
+                        setList()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading = false
+                }
+
+                override fun onFinish() {
+                    isLoading = false
+                }
+
+            })
+    }
+
+
     fun getPengajuanDetail(idPks: String) {
         com.example.digidok.isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
@@ -278,9 +334,51 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
     }
 
     fun insertPengajuan(
-
+        idMitra: String,
+        idKategoriPks: String,
+        idTujuanPks: String,
+        nomorSurat: String,
+        tanggalSurat: String,
+        objek: String,
+        nilai: Long,
+        tanggalMulai: String,
+        tanggalAkhir: String,
+        perihal: String,
+        dokumen: String,
     ){
+        com.example.digidok.isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.InsertPengajuan(
+            token = Preferences.isToken(context = this@PengajuanKerjasamaDetailActivity),
+            idMitra = idMitra,
+            idKategoriPks = idKategoriPks,
+            idTujuanPks = idTujuanPks,
+            nomorSurat = nomorSurat,
+            tanggalSurat = tanggalSurat,
+            objek = objek,
+            nilai = nilai,
+            tanggalMulai = tanggalMulai,
+            tanggalAkhir = tanggalAkhir,
+            perihal = perihal,
+            dokumen = dokumen,
+            object : DataSource.InsertPengajuanCallback {
+                override fun onSuccess(data: BaseApiModel<UserModel?>) {
+                    com.example.digidok.isLoading = false
+                    if (data.isSuccess) {
 
+                    }
+                }
+
+                override fun onError(message: String) {
+                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, "Ada yang salah", Toast.LENGTH_LONG).show()
+                    com.example.digidok.isLoading = false
+                }
+
+                override fun onFinish() {
+                    com.example.digidok.isLoading = false
+                }
+
+            })
     }
 
 }
