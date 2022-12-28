@@ -43,6 +43,7 @@ class ProfileActivity : AppCompatActivity() {
         val simpan = findViewById<Button>(R.id.simpanBtn)
 
         uName = findViewById<TextView>(R.id.username)
+        
         Nama = findViewById<EditText>(R.id.name)
          nama = Nama?.text.toString()
 
