@@ -219,8 +219,16 @@ class MitraDetailActivity2 : AppCompatActivity() {
             etStatusMitra.background =
                 ContextCompat.getDrawable(etStatusMitra.context, R.drawable.custom_profile)
 
+            spinner_jenis_mitra?.isEnabled = false
+            spinner_jenis_mitra?.background = ContextCompat.getDrawable(this,R.drawable.custom_profile)
 
-            spinner_status_mitra?.setSelection(statusMitra.toInt())
+            spinner_status_mitra?.isEnabled= false
+            spinner_status_mitra?.background = ContextCompat.getDrawable(this,R.drawable.custom_profile)
+
+
+
+//            spinner_jenis_mitra?.setSelection(jenisMitra.toInt())
+//            spinner_status_mitra?.setSelection(statusMitra.toInt())
         }
 
         setSpinnerKategori()

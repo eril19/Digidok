@@ -62,26 +62,69 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 //    var buttonDokumen : Button ? = null
 
     var spinnerMitra : Spinner? = null
-    val listMitra = arrayListOf("Mitra 1","Mitra 2", "Mitra 3")
+    val listMitra :ArrayList<DaftarMitraModel> = ArrayList()
+
 
     var spinnerSkemaPemanfaatan : Spinner? = null
-    val listSkemaPemanfaatan = arrayListOf("Skema 1","Skema 2", "Skema 3")
+    val listSkemaPemanfaatan :ArrayList<KategoriPKSModel> = ArrayList()
 
     var spinnerTujuan : Spinner? = null
-    val listTujuan = arrayListOf("Tujuan 1","Tujuan 2", "Tujuan 3")
+    val listTujuan :ArrayList<TujuanPKSModel> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pengajuan_kerjasama_detail)
 
+        getDaftarMitra(2)
+        getKategoriPKS()
+        getTujuanPKS()
+
         supportActionBar?.hide()
 
         idPkscheck = intent.getStringExtra("idPks") ?: ""
 
         spinnerMitra = findViewById<Spinner>(R.id.spinner_mitra)
+        spinnerMitra?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(position!=0){
+                    idMitra = listMitra.get(position-1).nama_mitra.safe()
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
         spinnerSkemaPemanfaatan = findViewById<Spinner>(R.id.spinner_skema_pemanfaatan)
+        spinnerSkemaPemanfaatan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(position!=0){
+                    idKategoriPks = listSkemaPemanfaatan.get(position-1).value.safe()
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
         spinnerTujuan = findViewById<Spinner>(R.id.spinner_tujuan)
+        spinnerTujuan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(position!=0){
+                    idTujuanPks = listTujuan.get(position-1).value.safe()
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
 
         setSpinnerKategori()
 
@@ -158,9 +201,9 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
             close_detail_btn.setOnClickListener {
 
-                idMitra = nama_mitra?.text.toString()
-                idKategoriPks = skema?.text.toString()
-                idTujuanPks = ETtujuan?.text.toString()
+//                idMitra = nama_mitra?.text.toString()
+//                idKategoriPks = skema?.text.toString()
+//                idTujuanPks = ETtujuan?.text.toString()
                 nomorSurat = no_surat?.text.toString()
                 tanggalSurat = tgl_surat?.text.toString()
                 objek = Objek?.text.toString()
@@ -183,6 +226,12 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         else {
             no_pengajuan?.isEnabled = false
             no_pengajuan?.setText("(Auto)")
+            spinnerTujuan?.isEnabled = false
+            spinnerTujuan?.background = ContextCompat.getDrawable(this,R.drawable.custom_profile)
+            spinnerMitra?.isEnabled = false
+            spinnerMitra?.background = ContextCompat.getDrawable(this,R.drawable.custom_profile)
+            spinnerSkemaPemanfaatan?.isEnabled = false
+            spinnerSkemaPemanfaatan?.background = ContextCompat.getDrawable(this,R.drawable.custom_profile)
             skema?.isEnabled = false
             nama_mitra?.isEnabled = false
             ETtujuan?.isEnabled = false
@@ -322,7 +371,76 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                                 )
                             )
                         }
+                        setSpinnerKategori()
                         setList()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading = false
+                }
+
+                override fun onFinish() {
+                    isLoading = false
+                }
+
+            })
+    }
+
+    fun getKategoriPKS() {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getKategoriPKS(
+            token = Preferences.isToken(context = this@PengajuanKerjasamaDetailActivity),
+            object : DataSource.kategoriPKSCallback {
+                override fun onSuccess(data: BaseApiModel<kategoriPKSmodel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        listSkemaPemanfaatan.clear()
+                        data.data?.dataKategoriPks?.forEach {
+                            listSkemaPemanfaatan?.add(
+                                KategoriPKSModel(
+                                    value = it?.value.safe(),
+                                    label  =it?.label.safe()
+                                )
+                            )
+                        }
+                        setList()
+                        setSpinnerKategori()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading = false
+                }
+
+                override fun onFinish() {
+                    isLoading = false
+                }
+
+            })
+    }
+
+    fun getTujuanPKS() {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.getTujuanPKS(
+            token = Preferences.isToken(context = this@PengajuanKerjasamaDetailActivity),
+            object : DataSource.tujuanPKSCallback {
+                override fun onSuccess(data: BaseApiModel<tujuanPKSmodel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+                        listTujuan.clear()
+                        data.data?.dataTujuanPks?.forEach {
+                            listTujuan?.add(
+                                TujuanPKSModel(
+                                    value = it?.value.safe(),
+                                    label  =it?.label.safe()
+                                )
+                            )
+                        }
+                        setList()
+                        setSpinnerKategori()
                     }
                 }
 
@@ -423,7 +541,9 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
     fun setSpinnerKategori() {
         val arrayStringMitra = arrayListOf("Pilih Mitra")
-        arrayStringMitra.addAll(listMitra)
+        arrayStringMitra.addAll(listMitra.map {
+            it.nama_mitra
+        })
         spinnerMitra?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringMitra) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
@@ -444,7 +564,9 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
             }
         }
         val arrayStringSkema = arrayListOf("Pilih Skema Pemanfaatan")
-        arrayStringSkema.addAll(listSkemaPemanfaatan)
+        arrayStringSkema.addAll(listSkemaPemanfaatan.map {
+            it.label
+        })
         spinnerSkemaPemanfaatan?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringSkema) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
@@ -465,7 +587,9 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
             }
         }
         val arrayStringTujuan = arrayListOf("Pilih Tujuan")
-        arrayStringTujuan.addAll(listTujuan)
+        arrayStringTujuan.addAll(listTujuan.map {
+            it.label
+        })
         spinnerTujuan?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringTujuan) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
@@ -487,5 +611,6 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         }
     }
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
+
 
 }
