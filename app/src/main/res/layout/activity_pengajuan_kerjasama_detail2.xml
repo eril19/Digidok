@@ -112,6 +112,36 @@
                         app:layout_constraintVertical_bias="0.0"
                         tools:listitem="@layout/layout_card_daftar_aset" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="13dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="7dp"
+                        android:layout_height="7dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/ic_circle_pagination">
+                    </ImageView>
+
+                    <ImageView
+                        android:layout_width="7dp"
+                        android:layout_height="7dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/ic_circle_pagination"
+                        app:tint="#787878">
+                    </ImageView>
+
+                    <ImageView
+                        android:layout_width="7dp"
+                        android:layout_height="7dp"
+                        android:src="@drawable/ic_circle_pagination">
+                    </ImageView>
+                </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
