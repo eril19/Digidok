@@ -2,15 +2,14 @@ package com.example.digidok
 
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.Typeface
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
+import android.view.ViewGroup
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -62,6 +61,15 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
 //    var buttonDokumen : Button ? = null
 
+    var spinnerMitra : Spinner? = null
+    val listMitra = arrayListOf("Mitra 1","Mitra 2", "Mitra 3")
+
+    var spinnerSkemaPemanfaatan : Spinner? = null
+    val listSkemaPemanfaatan = arrayListOf("Skema 1","Skema 2", "Skema 3")
+
+    var spinnerTujuan : Spinner? = null
+    val listTujuan = arrayListOf("Tujuan 1","Tujuan 2", "Tujuan 3")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,13 +79,19 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         idPkscheck = intent.getStringExtra("idPks") ?: ""
 
+        spinnerMitra = findViewById<Spinner>(R.id.spinner_mitra)
+        spinnerSkemaPemanfaatan = findViewById<Spinner>(R.id.spinner_skema_pemanfaatan)
+        spinnerTujuan = findViewById<Spinner>(R.id.spinner_tujuan)
+
+        setSpinnerKategori()
+
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         val backArrow = findViewById<ImageButton>(R.id.backbtn)
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
         val prev = findViewById<Button>(R.id.prev_detail_btn)
         no_pengajuan = findViewById<EditText>(R.id.no_pengajuan)
         nama_mitra = findViewById<EditText>(R.id.nama_mitra)
-        ETtujuan = findViewById<EditText>(R.id.tujuan)
+       // ETtujuan = findViewById<EditText>(R.id.tujuan)
         no_surat = findViewById<EditText>(R.id.no_surat)
         tgl_surat = findViewById<EditText>(R.id.tgl_surat)
         Objek = findViewById<EditText>(R.id.objek)
@@ -85,7 +99,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         nilai_ = findViewById<EditText>(R.id.nilai)
         tgl_akhir = findViewById<EditText>(R.id.tgl_akhir)
         prihal = findViewById<EditText>(R.id.perihal)
-        skema = findViewById<EditText>(R.id.skema_pemanfaatan)
+      //  skema = findViewById<EditText>(R.id.skema_pemanfaatan)
         val buttonDokumen = findViewById<ImageButton>(R.id.buttonDokumen)
 
         isStatusEdit = intent.getStringExtra("status") ?: ""
@@ -406,5 +420,72 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
             })
     }
+
+    fun setSpinnerKategori() {
+        val arrayStringMitra = arrayListOf("Pilih Mitra")
+        arrayStringMitra.addAll(listMitra)
+        spinnerMitra?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringMitra) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return if (convertView != null) {
+                    if (convertView is TextView) {
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        try {
+                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                        } catch (e: Exception) {
+                            showErrorInflateFont()
+                        }
+                        convertView
+                    } else {
+                        convertView
+                    }
+                } else {
+                    super.getView(position, convertView, parent)
+                }
+            }
+        }
+        val arrayStringSkema = arrayListOf("Pilih Skema Pemanfaatan")
+        arrayStringSkema.addAll(listSkemaPemanfaatan)
+        spinnerSkemaPemanfaatan?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringSkema) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return if (convertView != null) {
+                    if (convertView is TextView) {
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        try {
+                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                        } catch (e: Exception) {
+                            showErrorInflateFont()
+                        }
+                        convertView
+                    } else {
+                        convertView
+                    }
+                } else {
+                    super.getView(position, convertView, parent)
+                }
+            }
+        }
+        val arrayStringTujuan = arrayListOf("Pilih Tujuan")
+        arrayStringTujuan.addAll(listTujuan)
+        spinnerTujuan?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringTujuan) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return if (convertView != null) {
+                    if (convertView is TextView) {
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        try {
+                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                        } catch (e: Exception) {
+                            showErrorInflateFont()
+                        }
+                        convertView
+                    } else {
+                        convertView
+                    }
+                } else {
+                    super.getView(position, convertView, parent)
+                }
+            }
+        }
+    }
+    private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
 }
