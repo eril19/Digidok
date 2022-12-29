@@ -47,6 +47,19 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
     var prihal: EditText? = null
     var skema: EditText? = null
     var url = ""
+
+    var idMitra = ""
+    var idKategoriPks= ""
+    var idTujuanPks= ""
+    var nomorSurat= ""
+    var tanggalSurat= ""
+    var objek= ""
+    var nilai: Long = 0
+    var tanggalMulai= ""
+    var tanggalAkhir= ""
+    var perihal= ""
+    var dokumen= ""
+
 //    var buttonDokumen : Button ? = null
 
 
@@ -130,11 +143,25 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
             close_detail_btn.setBackgroundColor(ContextCompat.getColor(this,R.color.green))
 
             close_detail_btn.setOnClickListener {
+
+                idMitra = nama_mitra?.text.toString()
+                idKategoriPks = skema?.text.toString()
+                idTujuanPks = ETtujuan?.text.toString()
+                nomorSurat = no_surat?.text.toString()
+                tanggalSurat = tgl_surat?.text.toString()
+                objek = Objek?.text.toString()
+                nilai = nilai_?.text.toString().toLong()
+                tanggalMulai = tgl_mulai?.text.toString()
+                tanggalAkhir = tgl_akhir?.text.toString()
+                perihal = prihal?.text.toString()
+                dokumen = ""
+
+
                 if (isStatusEdit.equals("Edit", true)){
 //                    update
                 }
                 else if(isStatusEdit.equals("Tambah",true)){
-
+                    insertPengajuan(idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, dokumen)
                 }
             }
 
@@ -295,7 +322,6 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
             })
     }
-
 
     fun getPengajuanDetail(idPks: String) {
         com.example.digidok.isLoading = true

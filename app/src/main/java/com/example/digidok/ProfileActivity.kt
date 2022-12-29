@@ -43,24 +43,18 @@ class ProfileActivity : AppCompatActivity() {
         val simpan = findViewById<Button>(R.id.simpanBtn)
 
         uName = findViewById<TextView>(R.id.username)
-        
+
         Nama = findViewById<EditText>(R.id.name)
-         nama = Nama?.text.toString()
 
         Keterangan = findViewById<EditText>(R.id.keterangan)
-         keterangan = Keterangan?.text.toString()
 
         NIP = findViewById<EditText>(R.id.nip)
-         nip = NIP?.text.toString()
 
         Telepon = findViewById<EditText>(R.id.telepon)
-         telepon = Telepon?.text.toString()
 
         Email = findViewById<EditText>(R.id.email)
-         email = Email?.text.toString()
 
         Password = findViewById(R.id.old_password)
-         password = Password?.text.toString()
 
         logoout.setOnClickListener {
             Preferences.saveLogin(this@ProfileActivity, false)
@@ -78,6 +72,12 @@ class ProfileActivity : AppCompatActivity() {
         header.setText("Profile")
 
         simpan.setOnClickListener {
+            email = Email?.text.toString()
+            telepon = Telepon?.text.toString()
+            nip = NIP?.text.toString()
+            keterangan = Keterangan?.text.toString()
+            nama = Nama?.text.toString()
+            password = Password?.text.toString()
 
             if(Nama?.text.isNullOrEmpty() || NIP?.text.isNullOrEmpty() || Keterangan?.text.isNullOrEmpty() || Telepon?.text.isNullOrEmpty() || Email?.text.isNullOrEmpty() || Password?.text.isNullOrEmpty()){
                 Toast.makeText(this@ProfileActivity, "Tidak boleh ada kolom yang kosong", Toast.LENGTH_LONG).show()
