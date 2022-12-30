@@ -120,6 +120,10 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         remoteDataSource.getTahun(token, callback)
     }
 
+    override fun getListMitra(token: String, callback: DataSource.listMitraCallback) {
+        remoteDataSource.getListMitra(token, callback)
+    }
+
     override fun getStatusMitra(token: String, callback: DataSource.statusMitraCallback) {
         remoteDataSource.getStatusMitra(token, callback)
     }

@@ -251,9 +251,9 @@ class DaftarMitraActivity : AppCompatActivity() {
                             daftarMitra?.add(
                                 DaftarMitraModel(
                                     header_color = if (it?.status == 0) {
-                                        "Tidak Aktif"
+                                        "TIDAK AKTIF"
                                     } else if (it?.status == 1) {
-                                        "Aktif"
+                                        "AKTIF"
                                     } else {
                                         ""
                                     },

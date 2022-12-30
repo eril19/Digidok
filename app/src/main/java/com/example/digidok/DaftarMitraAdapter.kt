@@ -58,12 +58,12 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
             NPWP = daftarMitraModel.npwp_mitra
 
 
-            if (daftarMitraModel.header_color.equals("Tidak Aktif", true) ) {
+            if (daftarMitraModel.header_color.equals("TIDAK AKTIF", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     R.color.red2
                 )
             }
-            else if(daftarMitraModel.header_color.equals("Aktif", true) ) {
+            else if(daftarMitraModel.header_color.equals("AKTIF", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     R.color.green
                 )
