@@ -172,7 +172,6 @@ class MitraDetailActivity2 : AppCompatActivity() {
         statusMitra = data?.statusMitra.safe()
 
 
-
 //        tahun = Integer.parseInt(tahungabung?.text.toString())
 
         val etTahunGabung = findViewById<EditText>(R.id.tahun_gabung)
@@ -209,6 +208,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
             startActivity(Intent(this@MitraDetailActivity2, DaftarMitraActivity::class.java))
         }
 
+        etTahunGabung.setText(tahunGabungValue)
         if (isEdit.equals("View", true)) {
             etSimpan.visibility = View.GONE
             etTahunGabung.isEnabled = false
