@@ -59,9 +59,6 @@ class MitraDetailActivity2 : AppCompatActivity() {
         isEdit = intent.getStringExtra("menu2") ?: ""
         data = intent.getParcelableExtra("dataDetail")
 
-        getJenisMitra()
-        getStatusMitra()
-
         spinner_jenis_mitra = findViewById<Spinner>(R.id.spinner_jenis_mitra)
         spinner_jenis_mitra?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -70,8 +67,10 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                if (position != 0) {
-                    jenisMitra = listJenisMitra.get(position-1).value.safe()
+                if(listJenisMitra.size != 0){
+                    if (position != 0) {
+                        jenisMitra = listJenisMitra[position-1].value.safe()
+                    }
                 }
             }
 
@@ -89,10 +88,11 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                if (position != 0) {
-                    statusMitra = listStatusMitra.get(position-1).value.safe()
+                if(listStatusMitra.size != 0){
+                    if (position != 0) {
+                        statusMitra = listStatusMitra[position-1].value.safe()
+                    }
                 }
-
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -101,6 +101,8 @@ class MitraDetailActivity2 : AppCompatActivity() {
 
         }
 
+        getJenisMitra()
+        getStatusMitra()
         val prev_detail_btn = findViewById<Button>(R.id.prev_detail_btn)
         prev_detail_btn.setOnClickListener {
             onBackPressed()
@@ -166,6 +168,8 @@ class MitraDetailActivity2 : AppCompatActivity() {
         badanHukum = data?.badanHukum.toString()
         legalWp = data?.legalWp?:0
         tahunGabungValue = data?.tahunGabung.toString()
+        jenisMitra = data?.jenisMitra.safe()
+        statusMitra = data?.statusMitra.safe()
 
 
 
@@ -227,13 +231,9 @@ class MitraDetailActivity2 : AppCompatActivity() {
             spinner_status_mitra?.isEnabled= false
             spinner_status_mitra?.background = ContextCompat.getDrawable(this,R.drawable.custom_profile)
 
-
-
-//            spinner_jenis_mitra?.setSelection(jenisMitra.toInt())
-//            spinner_status_mitra?.setSelection(statusMitra.toInt())
         }
 
-        setSpinnerKategori()
+//        setSpinnerKategori()
     }
 
 
@@ -310,7 +310,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
             })
     }
 
-    fun setSpinnerKategori() {
+    fun setSpinnerjenisMitra(){
         val arrayStringTahun = arrayListOf("Pilih Jenis Mitra")
         arrayStringTahun.addAll(listJenisMitra.map {
             it.label
@@ -344,6 +344,22 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 }
             }
 
+        var positionJenisMitra = 0
+        var position = 0
+        listJenisMitra.forEach {
+            position += 1
+            if(jenisMitra.equals(it.value)){
+                positionJenisMitra = position
+            }
+        }
+
+        if(!jenisMitra.isNullOrEmpty()){
+            spinner_jenis_mitra?.setSelection(positionJenisMitra)
+        }
+
+    }
+
+    fun setSpinnerStatusMitra() {
         val arrayStringWilayah = arrayListOf("Pilih Status")
         arrayStringWilayah.addAll(listStatusMitra.map {
             it.label
@@ -377,6 +393,20 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 }
             }
 
+        var positionStatusMitra = 0
+        var position = 0
+        listStatusMitra.forEach {
+            position += 1
+            if(statusMitra.equals(it.value)){
+                positionStatusMitra = position
+            }
+        }
+
+        if(!statusMitra.isNullOrEmpty()){
+            spinner_status_mitra?.setSelection(positionStatusMitra)
+        }
+
+
     }
 
     fun getJenisMitra(){
@@ -398,7 +428,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
                             )
                         }
 //                        setList()
-                        setSpinnerKategori()
+                        setSpinnerjenisMitra()
                     }
                 }
 
@@ -432,7 +462,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
                             )
                         }
 //                        setList()
-                        setSpinnerKategori()
+                        setSpinnerStatusMitra()
                     }
                 }
 
