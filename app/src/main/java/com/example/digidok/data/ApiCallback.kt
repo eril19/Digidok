@@ -61,7 +61,7 @@ abstract class ApiCallback<M> : Observer<M> {
                         msg = baseDao?.message ?: "Error Connect or Resource Not Found"
                     }
                     400 -> {
-                        msg = baseDao?.message ?: "Bad Request"
+                        msg = baseDao?.error ?: "Bad Request"
                     }
                     401, 103 -> {
                         msg = baseDao?.message ?: "Bad Request"

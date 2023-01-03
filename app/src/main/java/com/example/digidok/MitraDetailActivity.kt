@@ -463,12 +463,9 @@ class MitraDetailActivity : AppCompatActivity() {
                         jenis_pajak?.setText(data.data?.jenisWajibPajak)
                         badan_hukum?.setText(data.data?.badanHukum)
                         legalWp = data.data?.legalWp ?: 0
-                        DataMitra
-                        MitraDetailModel(
-                        statusMitra = data.data?.statusMitra.safe(),
-                        jenisMitra = data.data?.jenisMitra.safe(),
+                        statusMitra = data.data?.statusMitra.safe()
+                        jenisMitra = data.data?.jenisMitra.safe()
                         tahunGabung = data.data?.tahunGabung.toString().safe()
-                        )
                     }
                 }
 
