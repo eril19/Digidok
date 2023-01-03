@@ -1,7 +1,6 @@
 package com.example.digidok
 
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -21,8 +20,6 @@ import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
 class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
-
-    var daftarMitra: ArrayList<DaftarMitraModel> = ArrayList()
 
     var isStatusEdit: String = ""
     var isLoading: Boolean = false
@@ -125,8 +122,6 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
             }
 
         }
-
-        setSpinnerKategori()
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         val backArrow = findViewById<ImageButton>(R.id.backbtn)
@@ -353,8 +348,8 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                                 )
                             )
                         }
-                        setList()
-                        setSpinnerKategori()
+//                        setList()
+                        setSpinnerMitra()
                     }
                 }
 
@@ -368,7 +363,6 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
             })
     }
-
 
     fun getKategoriPKS() {
         isLoading = true
@@ -388,8 +382,8 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                                 )
                             )
                         }
-                        setList()
-                        setSpinnerKategori()
+//                        setList()
+                        setSpinnerKategoriPKS()
                     }
                 }
 
@@ -422,8 +416,8 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                                 )
                             )
                         }
-                        setList()
-                        setSpinnerKategori()
+//                        setList()
+                        setSpinnerTujuanPKS()
                     }
                 }
 
@@ -460,6 +454,9 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                         tgl_akhir?.setText(data.data?.tanggalAkhir)
                         prihal?.setText(data.data?.perihal)
                         url = data.data?.dokumen.toString()
+                        idMitra = data.data?.mitra.toString()
+                        idTujuanPks = data.data?.tujuan.toString()
+                        idKategoriPks = data.data?.skemaPemanfaatan.toString()
                     }
                 }
 
@@ -522,7 +519,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
             })
     }
 
-    fun setSpinnerKategori() {
+    fun setSpinnerMitra(){
         val arrayStringMitra = arrayListOf("Pilih Mitra")
         arrayStringMitra.addAll(listMitra.map {
             it.label
@@ -546,29 +543,23 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 }
             }
         }
-        val arrayStringSkema = arrayListOf("Pilih Skema Pemanfaatan")
-        arrayStringSkema.addAll(listSkemaPemanfaatan.map {
-            it.label
-        })
-        spinnerSkemaPemanfaatan?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringSkema) {
-            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                return if (convertView != null) {
-                    if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
-                        try {
-                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
-                        } catch (e: Exception) {
-                            showErrorInflateFont()
-                        }
-                        convertView
-                    } else {
-                        convertView
-                    }
-                } else {
-                    super.getView(position, convertView, parent)
-                }
+
+        var positionJenisMitra = 0
+        var position = 0
+        listMitra.forEach {
+            position += 1
+            if(idMitra.equals(it.value)){
+                positionJenisMitra = position
             }
         }
+
+        if(!idMitra.isNullOrEmpty()){
+            spinnerMitra?.setSelection(positionJenisMitra)
+        }
+    }
+
+    fun setSpinnerTujuanPKS(){
+
         val arrayStringTujuan = arrayListOf("Pilih Tujuan")
         arrayStringTujuan.addAll(listTujuan.map {
             it.label
@@ -592,7 +583,60 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 }
             }
         }
+
+        var positionJenisMitra = 0
+        var position = 0
+        listTujuan.forEach {
+            position += 1
+            if(idTujuanPks.equals(it.value)){
+                positionJenisMitra = position
+            }
+        }
+
+        if(!idTujuanPks.isNullOrEmpty()){
+            spinnerTujuan?.setSelection(positionJenisMitra)
+        }
     }
+
+    fun setSpinnerKategoriPKS() {
+        val arrayStringSkema = arrayListOf("Pilih Skema Pemanfaatan")
+        arrayStringSkema.addAll(listSkemaPemanfaatan.map {
+            it.label
+        })
+        spinnerSkemaPemanfaatan?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringSkema) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return if (convertView != null) {
+                    if (convertView is TextView) {
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        try {
+                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                        } catch (e: Exception) {
+                            showErrorInflateFont()
+                        }
+                        convertView
+                    } else {
+                        convertView
+                    }
+                } else {
+                    super.getView(position, convertView, parent)
+                }
+            }
+        }
+
+        var positionJenisMitra = 0
+        var position = 0
+        listSkemaPemanfaatan.forEach {
+            position += 1
+            if(idKategoriPks.equals(it.value)){
+                positionJenisMitra = position
+            }
+        }
+
+        if(!idKategoriPks.isNullOrEmpty()){
+            spinnerSkemaPemanfaatan?.setSelection(positionJenisMitra)
+        }
+    }
+
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
 
