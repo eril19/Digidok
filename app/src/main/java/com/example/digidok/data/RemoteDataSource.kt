@@ -137,7 +137,7 @@ object RemoteDataSource : DataSource {
         tanggalPengukuhanPkp: String,
         jenisWajibPajak: String,
         badanHukum: String,
-        tahunGabung: Int,
+        tahunGabung: String,
         jenisMitra: String,
         statusMitra: String,
         companyProfile: String,

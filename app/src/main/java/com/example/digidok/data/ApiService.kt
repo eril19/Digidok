@@ -69,7 +69,7 @@ interface ApiService {
         @Field("tanggalPengukuhanPkp") tanggalPengukuhanPkp: String,
         @Field("jenisWajibPajak") jenisWajibPajak: String,
         @Field("badanHukum") badanHukum: String,
-        @Field("tahunGabung") tahunGabung: Int,
+        @Field("tahunGabung") tahunGabung: String,
         @Field("jenisMitra") jenisMitra: String,
         @Field("statusMitra") statusMitra: String,
         @Field("companyProfile") companyProfile: String,
