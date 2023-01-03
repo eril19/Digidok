@@ -301,4 +301,8 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        getPengajuanKerjasama("SEMUA")
+    }
 }

@@ -209,6 +209,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
         }
 
         etTahunGabung.setText(tahunGabungValue)
+        
         if (isEdit.equals("View", true)) {
             etSimpan.visibility = View.GONE
             etTahunGabung.isEnabled = false
