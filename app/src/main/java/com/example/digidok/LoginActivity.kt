@@ -69,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     statusLogin(false)
+                    Toast.makeText(this@LoginActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {
