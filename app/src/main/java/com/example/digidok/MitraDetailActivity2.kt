@@ -67,11 +67,11 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                if(listJenisMitra.size != 0){
+//                if(listJenisMitra.size != 0){
                     if (position != 0) {
                         jenisMitra = listJenisMitra[position-1].value.safe()
                     }
-                }
+//                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -168,6 +168,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
         badanHukum = data?.badanHukum.toString()
         legalWp = data?.legalWp?:0
         tahunGabungValue = data?.tahunGabung.toString()
+
         jenisMitra = data?.jenisMitra.safe()
         statusMitra = data?.statusMitra.safe()
 
@@ -178,7 +179,11 @@ class MitraDetailActivity2 : AppCompatActivity() {
         val etJenisMitra = findViewById<Spinner>(R.id.spinner_jenis_mitra)
         val etStatusMitra = findViewById<Spinner>(R.id.spinner_status_mitra)
         val etSimpan = findViewById<Button>(R.id.save_detail_mitra_btn)
+
         etSimpan.setOnClickListener {
+
+            tahunGabungValue = etTahunGabung.text.toString()
+
             InsertData(
                 npwp,
                 nama,

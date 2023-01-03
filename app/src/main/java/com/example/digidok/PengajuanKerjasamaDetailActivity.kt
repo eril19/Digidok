@@ -50,7 +50,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
     var nomorSurat= ""
     var tanggalSurat= ""
     var objek= ""
-    var nilai: Long = 0
+    var nilai = ""
     var tanggalMulai= ""
     var tanggalAkhir= ""
     var perihal= ""
@@ -202,7 +202,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 nomorSurat = no_surat?.text.toString()
                 tanggalSurat = tgl_surat?.text.toString()
                 objek = Objek?.text.toString()
-                nilai = nilai_?.text.toString().toLong()
+                nilai = nilai_?.text.toString()
                 tanggalMulai = tgl_mulai?.text.toString()
                 tanggalAkhir = tgl_akhir?.text.toString()
                 perihal = prihal?.text.toString()
