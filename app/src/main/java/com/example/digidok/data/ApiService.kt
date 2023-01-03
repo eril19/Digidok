@@ -119,6 +119,8 @@ interface ApiService {
 
         ): Observable<BaseApiModel<daftarMitraModel?>>
 
+
+
     @GET("formulir/dokumen/get-data")
     fun daftarPengajuan(
         @Header("Authorization") token: String,
@@ -226,6 +228,11 @@ interface ApiService {
         @Header("Authorization") token: String,
     ): Observable<BaseApiModel<statusMitramodel?>>
 
+
+    @GET("master/get-mitra")
+    fun ListMitra(
+        @Header("Authorization") token: String,
+    ): Observable<BaseApiModel<listMitra?>>
 
     @GET("master/get-jenis-mitra")
     fun JenisMitra(

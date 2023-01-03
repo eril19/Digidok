@@ -458,6 +458,25 @@ object RemoteDataSource : DataSource {
             })
     }
 
+    override fun getListMitra(token: String, callback: DataSource.listMitraCallback) {
+        mApiServiceDev.ListMitra(token = "Bearer $token")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<listMitra?>>() {
+                override fun onSuccess(model: BaseApiModel<listMitra?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
     override fun getDashboard(token: String, callback: DataSource.dashboardCallback) {
         mApiServiceDev.Dashboard(token = "Bearer $token")
             .subscribeOn(Schedulers.io())

@@ -66,7 +66,7 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
                     android.R.color.darker_gray
                 )
             }
-            else if(pengajuanKerjasamaModel.header_color.equals("Menunggu Validasi", true) ) {
+            else if(pengajuanKerjasamaModel.header_color.equals("DIKIRIM", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     R.color.blue
                 )

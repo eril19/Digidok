@@ -94,6 +94,7 @@ interface DataSource : BaseDataSource {
 
     fun getNPWP(token: String, noNpwp: String, callback: NPWPCallback)
     fun getTahun(token: String, callback: tahunCallback)
+    fun getListMitra(token: String, callback: listMitraCallback)
     fun getStatusMitra(token: String, callback: statusMitraCallback)
     fun getTujuanPKS(token: String, callback: tujuanPKSCallback)
     fun getJenisMitra(token: String, callback: jenisMitraCallback)
@@ -360,6 +361,14 @@ interface DataSource : BaseDataSource {
 
     interface InsertPengajuanCallback {
         fun onSuccess(data: BaseApiModel<UserModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface listMitraCallback {
+        fun onSuccess(data: BaseApiModel<listMitra?>)
 
         fun onError(message: String)
 

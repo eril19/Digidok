@@ -62,7 +62,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 //    var buttonDokumen : Button ? = null
 
     var spinnerMitra : Spinner? = null
-    val listMitra :ArrayList<DaftarMitraModel> = ArrayList()
+    val listMitra :ArrayList<ListMitraModel> = ArrayList()
 
 
     var spinnerSkemaPemanfaatan : Spinner? = null
@@ -76,7 +76,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pengajuan_kerjasama_detail)
 
-        getDaftarMitra(2)
+        getListMitra()
         getKategoriPKS()
         getTujuanPKS()
 
@@ -88,7 +88,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         spinnerMitra?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
-                    idMitra = listMitra.get(position-1).nama_mitra.safe()
+                    idMitra = listMitra.get(position-1).value.safe()
                 }
             }
 
@@ -335,44 +335,26 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
     }
 
-    fun getDaftarMitra(status: Int) {
+    fun getListMitra() {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getDaftarMitra(
+        mRepository.getListMitra(
             token = Preferences.isToken(context = this@PengajuanKerjasamaDetailActivity),
-            start = start,
-            row = 10,
-            order = order,
-            sortColumn = sortColumn,
-            statusFilter = status,
-            object : DataSource.daftarMitraCallback {
-                override fun onSuccess(data: BaseApiModel<daftarMitraModel?>) {
+            object : DataSource.listMitraCallback {
+                override fun onSuccess(data: BaseApiModel<listMitra?>) {
                     isLoading = false
                     if (data.isSuccess) {
-                        daftarMitra.clear()
+                        listMitra.clear()
                         data.data?.dataMitra?.forEach {
-                            daftarMitra?.add(
-                                DaftarMitraModel(
-                                    no = it?.no.toString().safe(),
-                                    header_color = if (it?.status == 0) {
-                                        "Tidak Aktif"
-                                    } else if (it?.status == 1) {
-                                        "Aktif"
-                                    } else {
-                                        ""
-                                    },
-                                    id_mitra = it?.kodeMitra.safe(),
-                                    nama_mitra = it?.namaMitra.safe(),
-                                    jenis_mitra = it?.jenisMitra.safe(),
-                                    status = "Status:",
-                                    status_mitra = it?.statusMitra.safe(),
-                                    npwp = "NPWP",
-                                    npwp_mitra = it?.npwp.safe(),
+                            listMitra?.add(
+                                ListMitraModel(
+                                    value = it?.value.safe(),
+                                    label  =it?.label.safe()
                                 )
                             )
                         }
-                        setSpinnerKategori()
                         setList()
+                        setSpinnerKategori()
                     }
                 }
 
@@ -386,6 +368,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
             })
     }
+
 
     fun getKategoriPKS() {
         isLoading = true
@@ -542,7 +525,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
     fun setSpinnerKategori() {
         val arrayStringMitra = arrayListOf("Pilih Mitra")
         arrayStringMitra.addAll(listMitra.map {
-            it.nama_mitra
+            it.label
         })
         spinnerMitra?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringMitra) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {

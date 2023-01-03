@@ -264,15 +264,15 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                             pengajuanKerjasama?.add(
                                 PengajuanKerjasamaModel(
                                     header_color = if (it?.status == 0) {
-                                        "Dihapus"
+                                        "DIHAPUS"
                                     } else if (it?.status == 1 || it?.status == -2 ) {
-                                        "Draft"
+                                        "DRAFT"
                                     }
                                     else if (it?.status == 2) {
-                                        "Menunggu Validasi"
+                                        "DIKIRIM"
                                     }
                                     else if (it?.status == 3) {
-                                        "Disetujui"
+                                        "DISETUJUI"
                                     }
                                     else {
                                         ""

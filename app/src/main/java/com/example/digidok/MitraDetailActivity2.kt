@@ -223,6 +223,8 @@ class MitraDetailActivity2 : AppCompatActivity() {
             etStatusMitra.background =
                 ContextCompat.getDrawable(etStatusMitra.context, R.drawable.custom_profile)
 
+            tahungabung?.setText(tahunGabungValue)
+
             spinner_jenis_mitra?.isEnabled = false
             spinner_jenis_mitra?.background = ContextCompat.getDrawable(this,R.drawable.custom_profile)
 

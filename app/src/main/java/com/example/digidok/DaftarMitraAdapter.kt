@@ -18,7 +18,6 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
-
         fun onItemClickPopupMenu(position: Int, kodeMitra:String, statusMitra:String , NPWP:String, view : View)
     }
 
@@ -58,12 +57,12 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
             NPWP = daftarMitraModel.npwp_mitra
 
 
-            if (daftarMitraModel.header_color.equals("Tidak Aktif", true) ) {
+            if (daftarMitraModel.header_color.equals("TIDAK AKTIF", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     R.color.red2
                 )
             }
-            else if(daftarMitraModel.header_color.equals("Aktif", true) ) {
+            else if(daftarMitraModel.header_color.equals("AKTIF", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     R.color.green
                 )
@@ -74,17 +73,12 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DaftarMitraViewHolder {
-
         val itemView = LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_mitra, parent, false)
-
         return DaftarMitraViewHolder(itemView, mListener)
-
-
     }
 
     override fun onBindViewHolder(holder: DaftarMitraViewHolder, position: Int) {
         holder.bindView(DaftarMitra[position], listener)
-
 //        holder.popup.setOnClickListener(View.OnClickListener{
 //            val popupPencet = PopupMenu(context, holder.popup)
 //            popupPencet.inflate(R.menu.daftar_mitra_menu)
@@ -101,7 +95,5 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
     }
 
     override fun getItemCount(): Int = DaftarMitra.size
-
-
 
 }
