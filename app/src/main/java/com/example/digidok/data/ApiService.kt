@@ -77,6 +77,37 @@ interface ApiService {
         ): Observable<BaseApiModel<UserModel?>>
 
     @FormUrlEncoded
+    @POST("setup/mitra/submit/ubah")
+    fun updateMitra(
+        @Header("Authorization") token: String,
+        @Field("npwp") npwp: String,
+        @Field("nama") nama: String,
+        @Field("alamat") alamat: String,
+        @Field("kelurahan") kelurahan: String,
+        @Field("kecamatan") kecamatan: String,
+        @Field("kotaKabupaten") kotaKabupaten: String,
+        @Field("provinsi") provinsi: String,
+        @Field("klasifikasi") klasifikasi: String,
+        @Field("namaKpp") namaKpp: String,
+        @Field("kanwil") kanwil: String,
+        @Field("nomorTelepon") nomorTelepon: String,
+        @Field("nomorFax") nomorFax: String,
+        @Field("email") email: String,
+        @Field("ttl") ttl: String,
+        @Field("tanggalDaftar") tanggalDaftar: String,
+        @Field("statusPkp") statusPkp: String,
+        @Field("tanggalPengukuhanPkp") tanggalPengukuhanPkp: String,
+        @Field("jenisWajibPajak") jenisWajibPajak: String,
+        @Field("badanHukum") badanHukum: String,
+        @Field("tahunGabung") tahunGabung: String,
+        @Field("jenisMitra") jenisMitra: String,
+        @Field("statusMitra") statusMitra: String,
+        @Field("companyProfile") companyProfile: String,
+        @Field("legalWp") legalWp: Long,
+        @Field("id") id: String,
+    ): Observable<BaseApiModel<UserModel?>>
+
+    @FormUrlEncoded
     @POST("formulir/dokumen/submit/tambah")
     fun insertPengajuan(
         @Header("Authorization") token: String,
@@ -91,6 +122,14 @@ interface ApiService {
         @Field("tanggalAkhir") tanggalAkhir: String,
         @Field("perihal") perihal: String,
         @Field("dokumen") dokumen: String,
+    ): Observable<BaseApiModel<UserModel?>>
+
+    @FormUrlEncoded
+    @POST("formulir/dokumen/telaah")
+    fun Telaah(
+        @Header("Authorization") token: String,
+        @Field("hasilTelaah") hasilTelaah: String,
+        @Field("catatan") catatan: String,
     ): Observable<BaseApiModel<UserModel?>>
 
     @FormUrlEncoded

@@ -71,6 +71,36 @@ interface DataSource : BaseDataSource {
         callback: InsertMitraCallback
     )
 
+    fun updateMitra(
+        token: String,
+        npwp: String,
+        nama: String,
+        alamat: String,
+        kelurahan: String,
+        kecamatan: String,
+        kotaKabupaten: String,
+        provinsi: String,
+        klasifikasi: String,
+        namaKpp: String,
+        kanwil: String,
+        nomorTelepon: String,
+        nomorFax: String,
+        email: String,
+        ttl: String,
+        tanggalDaftar: String,
+        statusPkp: String,
+        tanggalPengukuhanPkp: String,
+        jenisWajibPajak: String,
+        badanHukum: String,
+        tahunGabung: String,
+        jenisMitra: String,
+        statusMitra: String,
+        companyProfile: String,
+        legalWp:Long,
+        id:String,
+        callback: updateMitraCallback
+    )
+
     fun getBerita(start: String, limit: String, callback: BeritaDataCallback)
 
     fun getProfile(token: String, callback: ProfileCallback)
@@ -90,6 +120,13 @@ interface DataSource : BaseDataSource {
         kodeMitra: String,
         isAktif: Int,
         callback: setAktifNonAktifCallback
+    )
+
+    fun Telaah(
+        token: String,
+        hasilTelaah: String,
+        catatan: String,
+        callback: TelaahCallback
     )
 
     fun getNPWP(token: String, noNpwp: String, callback: NPWPCallback)
@@ -369,6 +406,22 @@ interface DataSource : BaseDataSource {
 
     interface listMitraCallback {
         fun onSuccess(data: BaseApiModel<listMitra?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface updateMitraCallback {
+        fun onSuccess(data: BaseApiModel<UserModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface TelaahCallback {
+        fun onSuccess(data: BaseApiModel<UserModel?>)
 
         fun onError(message: String)
 

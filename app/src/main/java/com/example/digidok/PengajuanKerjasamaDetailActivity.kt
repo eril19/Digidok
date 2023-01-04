@@ -73,9 +73,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pengajuan_kerjasama_detail)
 
-        getListMitra()
-        getKategoriPKS()
-        getTujuanPKS()
+
 
         supportActionBar?.hide()
 
@@ -84,8 +82,10 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         spinnerMitra = findViewById<Spinner>(R.id.spinner_mitra)
         spinnerMitra?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (listMitra.size!=0){
                 if(position!=0){
-                    idMitra = listMitra.get(position-1).value.safe()
+                    idMitra = listMitra[position-1].value.safe()
+                }
                 }
             }
 
@@ -98,9 +98,11 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         spinnerSkemaPemanfaatan = findViewById<Spinner>(R.id.spinner_skema_pemanfaatan)
         spinnerSkemaPemanfaatan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+               if (listSkemaPemanfaatan.size!=0){
                 if(position!=0){
-                    idKategoriPks = listSkemaPemanfaatan.get(position-1).value.safe()
+                    idKategoriPks = listSkemaPemanfaatan[position-1].value.safe()
                 }
+               }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -112,8 +114,10 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         spinnerTujuan = findViewById<Spinner>(R.id.spinner_tujuan)
         spinnerTujuan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (listTujuan.size != 0){
                 if(position!=0){
-                    idTujuanPks = listTujuan.get(position-1).value.safe()
+                    idTujuanPks = listTujuan[position-1].value.safe()
+                }
                 }
             }
 
@@ -140,6 +144,10 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         prihal = findViewById<EditText>(R.id.perihal)
       //  skema = findViewById<EditText>(R.id.skema_pemanfaatan)
         val buttonDokumen = findViewById<ImageButton>(R.id.buttonDokumen)
+
+        getListMitra()
+        getKategoriPKS()
+        getTujuanPKS()
 
         isStatusEdit = intent.getStringExtra("status") ?: ""
 
@@ -457,9 +465,9 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                         tgl_akhir?.setText(data.data?.tanggalAkhir)
                         prihal?.setText(data.data?.perihal)
                         url = data.data?.dokumen.toString()
-                        idMitra = data.data?.mitra.toString()
-                        idTujuanPks = data.data?.tujuan.toString()
-                        idKategoriPks = data.data?.skemaPemanfaatan.toString()
+                        idMitra = data.data?.idMitra.toString()
+                        idTujuanPks = data.data?.idTujuan.toString()
+                        idKategoriPks = data.data?.idSkemaPemanfaatan.toString()
                     }
                 }
 

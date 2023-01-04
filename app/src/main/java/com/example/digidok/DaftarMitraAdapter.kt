@@ -52,7 +52,7 @@ class DaftarMitraAdapter(private val context: Context, private val DaftarMitra: 
             npwp.text = daftarMitraModel.npwp
             npwp_mitra.text = daftarMitraModel.npwp_mitra
             header_color.text = daftarMitraModel.header_color
-            statusMitra = daftarMitraModel.header_color
+            statusMitra = daftarMitraModel.statusAktifNonAktf
             kodeMitra = daftarMitraModel.id_mitra
             NPWP = daftarMitraModel.npwp_mitra
 

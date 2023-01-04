@@ -144,7 +144,7 @@ class DaftarMitraActivity : AppCompatActivity() {
                     val popupPencet = PopupMenu(this@DaftarMitraActivity, view)
                     popupPencet.inflate(R.menu.daftar_mitra_menu)
 
-                    if ( statusMitra.equals("Aktif")) {
+                    if ( statusMitra.equals("1")) {
                         popupPencet.menu.findItem(R.id.setAktif).isVisible = false
 
                     } else {
@@ -169,7 +169,7 @@ class DaftarMitraActivity : AppCompatActivity() {
                                     MitraDetailActivity::class.java
                                 )
                                 i.putExtra("menu", "Edit")
-                                i.putExtra("npwp",idMitra)
+                                i.putExtra("id",idMitra)
                                 startActivity(i)
                                 true
                             }
@@ -261,6 +261,7 @@ class DaftarMitraActivity : AppCompatActivity() {
                                     nama_mitra = it?.namaMitra.safe(),
                                     jenis_mitra = it?.jenisMitra.safe(),
                                     status = "Status:",
+                                    statusAktifNonAktf = it?.status.toString(),
                                     status_mitra = it?.statusMitra.safe(),
                                     npwp = "NPWP",
                                     npwp_mitra = it?.npwp.safe(),
@@ -281,7 +282,6 @@ class DaftarMitraActivity : AppCompatActivity() {
 
             })
     }
-
 
     fun setSpinnerKategori() {
         val arrayString = arrayListOf("Pilih Status")

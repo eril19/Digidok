@@ -74,6 +74,38 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         remoteDataSource.InsertMitra(token, npwp, nama, alamat, kelurahan, kecamatan, kotaKabupaten, provinsi, klasifikasi, namaKpp, kanwil, nomorTelepon, nomorFax, email, ttl, tanggalDaftar, statusPkp, tanggalPengukuhanPkp, jenisWajibPajak, badanHukum, tahunGabung, jenisMitra, statusMitra, companyProfile, legalWp,callback)
     }
 
+    override fun updateMitra(
+        token: String,
+        npwp: String,
+        nama: String,
+        alamat: String,
+        kelurahan: String,
+        kecamatan: String,
+        kotaKabupaten: String,
+        provinsi: String,
+        klasifikasi: String,
+        namaKpp: String,
+        kanwil: String,
+        nomorTelepon: String,
+        nomorFax: String,
+        email: String,
+        ttl: String,
+        tanggalDaftar: String,
+        statusPkp: String,
+        tanggalPengukuhanPkp: String,
+        jenisWajibPajak: String,
+        badanHukum: String,
+        tahunGabung: String,
+        jenisMitra: String,
+        statusMitra: String,
+        companyProfile: String,
+        legalWp: Long,
+        id: String,
+        callback: DataSource.updateMitraCallback
+    ) {
+        remoteDataSource.updateMitra(token, npwp, nama, alamat, kelurahan, kecamatan, kotaKabupaten, provinsi, klasifikasi, namaKpp, kanwil, nomorTelepon, nomorFax, email, ttl, tanggalDaftar, statusPkp, tanggalPengukuhanPkp, jenisWajibPajak, badanHukum, tahunGabung, jenisMitra, statusMitra, companyProfile, legalWp, id, callback)
+    }
+
     override fun getBerita(start: String, limit: String, callback: DataSource.BeritaDataCallback) {
         remoteDataSource.getBerita(start, limit, callback)
     }
@@ -110,6 +142,15 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         callback: DataSource.setAktifNonAktifCallback
     ) {
         remoteDataSource.getSetAktifNonAktif(token, kodeMitra, isAktif, callback)
+    }
+
+    override fun Telaah(
+        token: String,
+        hasilTelaah: String,
+        catatan: String,
+        callback: DataSource.TelaahCallback
+    ) {
+        remoteDataSource.Telaah(token, hasilTelaah, catatan, callback)
     }
 
     override fun getNPWP(token: String, noNpwp: String, callback: DataSource.NPWPCallback) {

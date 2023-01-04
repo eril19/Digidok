@@ -47,6 +47,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
     var spinner_jenis_mitra: Spinner? = null
     val listJenisMitra : ArrayList<JenisMitraModel> = ArrayList()
     var isEdit: String = ""
+    var idMitraCheck : String = ""
     var spinner_status_mitra: Spinner? = null
     val listStatusMitra : ArrayList<StatusMitraModel> = ArrayList()
     var data: MitraDetailModel? = null
@@ -58,6 +59,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
         supportActionBar?.hide()
         isEdit = intent.getStringExtra("menu2") ?: ""
         data = intent.getParcelableExtra("dataDetail")
+        idMitraCheck = intent.getStringExtra("id") ?: ""
 
         spinner_jenis_mitra = findViewById<Spinner>(R.id.spinner_jenis_mitra)
         spinner_jenis_mitra?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -67,11 +69,11 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-//                if(listJenisMitra.size != 0){
+                if(listJenisMitra.size != 0){
                     if (position != 0) {
                         jenisMitra = listJenisMitra[position-1].value.safe()
                     }
-//                }
+                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -180,38 +182,77 @@ class MitraDetailActivity2 : AppCompatActivity() {
         val etStatusMitra = findViewById<Spinner>(R.id.spinner_status_mitra)
         val etSimpan = findViewById<Button>(R.id.save_detail_mitra_btn)
 
-        etSimpan.setOnClickListener {
+        if (isEdit.equals("Edit")){
+            etSimpan.setOnClickListener {
 
-            tahunGabungValue = etTahunGabung.text.toString()
+                tahunGabungValue = etTahunGabung.text.toString()
 
-            InsertData(
-                npwp,
-                nama,
-                alamat,
-                kelurahan,
-                kecamatan,
-                kota,
-                provinsi,
-                klasifikasi,
-                kpp,
-                kanwil,
-                telp,
-                fax,
-                email,
-                ttl,
-                tglDaftar,
-                statusPKP,
-                tglPKP,
-                jenisPajak,
-                badanHukum,
-                tahunGabungValue,
-                jenisMitra,
-                statusMitra,
-                legalWp,
-                companyProfile
-            )
-            startActivity(Intent(this@MitraDetailActivity2, DaftarMitraActivity::class.java))
+                UpdateData(
+                    npwp,
+                    nama,
+                    alamat,
+                    kelurahan,
+                    kecamatan,
+                    kota,
+                    provinsi,
+                    klasifikasi,
+                    kpp,
+                    kanwil,
+                    telp,
+                    fax,
+                    email,
+                    ttl,
+                    tglDaftar,
+                    statusPKP,
+                    tglPKP,
+                    jenisPajak,
+                    badanHukum,
+                    tahunGabungValue,
+                    jenisMitra,
+                    statusMitra,
+                    legalWp,
+                    companyProfile,
+                    idMitraCheck
+                )
+                startActivity(Intent(this@MitraDetailActivity2, DaftarMitraActivity::class.java))
+            }
+
         }
+        else{
+            etSimpan.setOnClickListener {
+
+                tahunGabungValue = etTahunGabung.text.toString()
+
+                InsertData(
+                    npwp,
+                    nama,
+                    alamat,
+                    kelurahan,
+                    kecamatan,
+                    kota,
+                    provinsi,
+                    klasifikasi,
+                    kpp,
+                    kanwil,
+                    telp,
+                    fax,
+                    email,
+                    ttl,
+                    tglDaftar,
+                    statusPKP,
+                    tglPKP,
+                    jenisPajak,
+                    badanHukum,
+                    tahunGabungValue,
+                    jenisMitra,
+                    statusMitra,
+                    legalWp,
+                    companyProfile
+                )
+                startActivity(Intent(this@MitraDetailActivity2, DaftarMitraActivity::class.java))
+            }
+        }
+
 
         etTahunGabung.setText(tahunGabungValue)
         
@@ -298,6 +339,81 @@ class MitraDetailActivity2 : AppCompatActivity() {
             companyProfile = companyProfile,
             legalWp = legalWp,
             object : DataSource.InsertMitraCallback {
+                override fun onSuccess(data: BaseApiModel<UserModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading = false
+                }
+
+                override fun onFinish() {
+                    isLoading = false
+                }
+
+            })
+    }
+
+    fun UpdateData(
+        npwp: String,
+        nama: String,
+        alamat: String,
+        kelurahan: String,
+        kecamatan: String,
+        kotaKabupaten: String,
+        provinsi: String,
+        klasifikasi: String,
+        namaKpp: String,
+        kanwil: String,
+        nomorTelepon: String,
+        nomorFax: String,
+        email: String,
+        ttl: String,
+        tanggalDaftar: String,
+        statusPkp: String,
+        tanggalPengukuhanPkp: String,
+        jenisWajibPajak: String,
+        badanHukum: String,
+        tahunGabung: String,
+        jenisMitra: String,
+        statusMitra: String,
+        legalWp:Long,
+        companyProfile: String,
+        id:String
+    ) {
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.updateMitra(
+            token = Preferences.isToken(context = this@MitraDetailActivity2),
+            npwp = npwp,
+            nama = nama,
+            alamat = alamat,
+            kelurahan = kelurahan,
+            kecamatan = kecamatan,
+            kotaKabupaten = kotaKabupaten,
+            provinsi = provinsi,
+            klasifikasi = klasifikasi,
+            namaKpp = namaKpp,
+            kanwil = kanwil,
+            nomorTelepon = nomorTelepon,
+            nomorFax = nomorFax,
+            email = email,
+            ttl = ttl,
+            tanggalDaftar = tanggalDaftar,
+            statusPkp = statusPkp,
+            tanggalPengukuhanPkp = tanggalPengukuhanPkp,
+            jenisWajibPajak = jenisWajibPajak,
+            badanHukum = badanHukum,
+            tahunGabung = tahunGabung,
+            jenisMitra = jenisMitra,
+            statusMitra = statusMitra,
+            companyProfile = companyProfile,
+            legalWp = legalWp,
+            id = id,
+            object : DataSource.updateMitraCallback {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     isLoading = false
                     if (data.isSuccess) {

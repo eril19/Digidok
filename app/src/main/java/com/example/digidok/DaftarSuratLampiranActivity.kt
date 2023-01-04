@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.UserModel
 import com.example.digidok.data.model.daftarPengajuanKerjasamaDetailModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
@@ -24,6 +25,9 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
     var idPksCheck : String = ""
     var hideTelaah : String = ""
     var spinnerTelaah : Spinner? = null
+    var catatan = ""
+    var hasilTelaah = ""
+    var catatanPenelaahan : EditText ? = null
     var daftarSuratLampiran: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
     val listTelaah = arrayListOf("Disetujui", "Dikembalikan", "Ditolak")
@@ -33,9 +37,12 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pengajuan_kerjasama_detail3)
 
         supportActionBar?.hide()
+        var simpan = findViewById<Button>(R.id.simpanBtn)
 
         hideTelaah = intent.getStringExtra("status")?:""
         idPksCheck = intent.getStringExtra("idPks") ?: ""
+
+        catatanPenelaahan = findViewById(R.id.catatan_penelaahan)
 
         var menuTelaah = findViewById<LinearLayout>(R.id.menu_telaah)
 
@@ -89,7 +96,61 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         }
 
         spinnerTelaah = findViewById<Spinner>(R.id.spinner_telaah)
+        spinnerTelaah?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(position-1 == 0){
+                    hasilTelaah = "3"
+                }
+                else if (position-1 == 1){
+                    hasilTelaah = "-2"
+                }
+                else if (position-1 == 2){
+                    hasilTelaah = "-1"
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
         setSpinnerKategori()
+
+        val catatanTelaah = findViewById<EditText>(R.id.catatan_penelaahan)
+
+        simpan.setOnClickListener {
+            catatan = catatanTelaah.text.toString()
+            Telaah(hasilTelaah, catatan)
+        }
+
+    }
+
+    fun Telaah(hasilTelaah:String, catatan : String){
+
+        isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.Telaah(
+            token = Preferences.isToken(context = this@DaftarSuratLampiranActivity),
+            hasilTelaah = hasilTelaah,
+            catatan = catatan,
+            object : DataSource.TelaahCallback {
+                override fun onSuccess(data: BaseApiModel<UserModel?>) {
+                    isLoading = false
+                    if (data.isSuccess) {
+
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading = false
+                }
+
+                override fun onFinish() {
+                    isLoading = false
+                }
+
+            })
+
     }
 
     fun setList() {
@@ -184,5 +245,6 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 }

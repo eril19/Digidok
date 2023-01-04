@@ -416,10 +416,17 @@ class MitraDetailActivity : AppCompatActivity() {
                     tanggalDaftar = tgl_daftar?.text.toString(),
                     tanggalPengukuhanPkp = tgl_pkp?.text.toString()
             )
-            if (isEdit.equals("Edit", true) || isEdit.equals("Tambah", true)) {
+            if (isEdit.equals("Edit", true)) {
                 i.putExtra("dataDetail", DataMitra)
                 i.putExtra("menu2", "Edit")
-            } else {
+                i.putExtra("id",idMitraCheck)
+
+            }
+            else if (isEdit.equals("Tambah", true)){
+                i.putExtra("dataDetail", DataMitra)
+                i.putExtra("menu2", "Tambah")
+            }
+            else {
                 i.putExtra("dataDetail", DataMitra)
                 i.putExtra("menu2", "View")
             }

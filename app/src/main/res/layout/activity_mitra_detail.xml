@@ -586,6 +586,7 @@
                         android:background="@drawable/custom_profile_enable"
                         android:enabled="true"
                         android:fontFamily="@font/roboto"
+                        android:hint="DD/MM/YYYY"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
@@ -650,6 +651,7 @@
                         android:background="@drawable/custom_profile_enable"
                         android:enabled="true"
                         android:fontFamily="@font/roboto"
+                        android:hint="DD/MM/YYYY"
                         android:padding="6dp"
                         android:textColor="@color/black"
                         android:textSize="14dp" />

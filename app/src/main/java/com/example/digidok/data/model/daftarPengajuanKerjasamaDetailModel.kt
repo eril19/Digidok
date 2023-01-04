@@ -7,6 +7,12 @@ class daftarPengajuanKerjasamaDetailModel(
     val noPengajuan: String,
     @SerializedName("mitra")
     val mitra: String,
+    @SerializedName("idMitra")
+    val idMitra: String,
+    @SerializedName("idSkemaPemanfaatan")
+    val idSkemaPemanfaatan: String,
+    @SerializedName("idTujuan")
+    val idTujuan: String,
     @SerializedName("skemaPemanfaatan")
     val skemaPemanfaatan: String,
     @SerializedName("tujuan")
