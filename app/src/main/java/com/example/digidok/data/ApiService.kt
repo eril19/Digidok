@@ -86,7 +86,7 @@ interface ApiService {
         @Field("nomorSurat") nomorSurat: String,
         @Field("tanggalSurat") tanggalSurat: String,
         @Field("objek") objek: String,
-        @Field("nilai") nilai: Long,
+        @Field("nilai") nilai: String,
         @Field("tanggalMulai") tanggalMulai: String,
         @Field("tanggalAkhir") tanggalAkhir: String,
         @Field("perihal") perihal: String,
