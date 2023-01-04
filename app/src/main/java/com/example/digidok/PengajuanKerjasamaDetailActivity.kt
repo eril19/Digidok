@@ -123,6 +123,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         }
 
+        val simpan = findViewById<Button>(R.id.simpan_pengajuan_btn)
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         val backArrow = findViewById<ImageButton>(R.id.backbtn)
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
@@ -191,10 +192,9 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
             next_detail_btn.visibility = View.GONE
             prev.visibility = View.GONE
 
-            close_detail_btn.text = "Simpan"
-            close_detail_btn.setBackgroundColor(ContextCompat.getColor(this,R.color.green))
+            close_detail_btn.visibility = View.GONE
 
-            close_detail_btn.setOnClickListener {
+            simpan.setOnClickListener {
 
 //                idMitra = nama_mitra?.text.toString()
 //                idKategoriPks = skema?.text.toString()
@@ -221,6 +221,9 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         else {
             no_pengajuan?.isEnabled = false
             no_pengajuan?.setText("(Auto)")
+
+            simpan.visibility = View.GONE
+
             spinnerTujuan?.isEnabled = false
             spinnerTujuan?.background = ContextCompat.getDrawable(this,R.drawable.custom_profile)
             spinnerMitra?.isEnabled = false
