@@ -478,7 +478,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         nomorSurat: String,
         tanggalSurat: String,
         objek: String,
-        nilai: Long,
+        nilai: String,
         tanggalMulai: String,
         tanggalAkhir: String,
         perihal: String,
