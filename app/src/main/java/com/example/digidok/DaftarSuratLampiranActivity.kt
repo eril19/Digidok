@@ -121,6 +121,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         simpan.setOnClickListener {
             catatan = catatanTelaah.text.toString()
             Telaah(hasilTelaah, catatan)
+            startActivity(Intent(this@DaftarSuratLampiranActivity, PengajuanKerjasamaActivity::class.java))
         }
 
     }

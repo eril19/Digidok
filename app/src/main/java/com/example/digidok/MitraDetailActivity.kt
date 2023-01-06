@@ -477,10 +477,14 @@ class MitraDetailActivity : AppCompatActivity() {
                 }
 
                 override fun onError(message: String) {
+                    isLoading = false
+
                     Toast.makeText(this@MitraDetailActivity, "Data gagal dimuat", Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {
+                    isLoading = false
+
                     Toast.makeText(this@MitraDetailActivity, "Data selesai dimuat", Toast.LENGTH_LONG).show()
                 }
 

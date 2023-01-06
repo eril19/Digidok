@@ -159,7 +159,6 @@
                         android:paddingStart="10dp"
                         android:paddingTop="8dp"
                         android:paddingBottom="8dp"
-                        android:textColor="#7c7c7c7c"
                         android:textSize="14dp" />
 
                     <Button

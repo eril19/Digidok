@@ -292,6 +292,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
 
             override fun onError(message: String) {
                 isLoading = false
+                Toast.makeText(this@PengajuanKerjasamaActivity, message, Toast.LENGTH_LONG).show()
             }
 
             override fun onFinish() {

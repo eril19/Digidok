@@ -145,6 +145,10 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
       //  skema = findViewById<EditText>(R.id.skema_pemanfaatan)
         val buttonDokumen = findViewById<ImageButton>(R.id.buttonDokumen)
 
+        if (!idPkscheck.equals("")){
+            getPengajuanDetail(idPkscheck)
+        }
+
         getListMitra()
         getKategoriPKS()
         getTujuanPKS()
@@ -250,9 +254,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
             Objek?.isEnabled = false
         }
 
-        if (!idPkscheck.equals("")){
-            getPengajuanDetail(idPkscheck)
-        }
+
 
         close_detail_btn.setOnClickListener {
             startActivity(
@@ -434,6 +436,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {
@@ -472,10 +475,12 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 }
 
                 override fun onError(message: String) {
-                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, "Data gagal dimuat", Toast.LENGTH_LONG).show()
+                    isLoading = false
+                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {
+                    isLoading = false
 //                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, "Data selesai dimuat", Toast.LENGTH_LONG).show()
                 }
 
