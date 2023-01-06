@@ -144,6 +144,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@DaftarSuratLampiranActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {
@@ -214,6 +215,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@DaftarSuratLampiranActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {

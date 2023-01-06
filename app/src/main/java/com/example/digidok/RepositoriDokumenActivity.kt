@@ -248,7 +248,8 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         recyclerview?.setHasFixedSize(true)
 
         recyclerview?.adapter = RepositoriDokumemAdapter(this,  repositoriDokumen, object:RepositoriDokumemAdapter.onItemClickListener{
-            override fun onItemClick(position: Int,                nama: String,
+            override fun onItemClick(position: Int,
+                                     nama: String,
                                      nilai: String,
                                      jenisKerjasama: String,
                                      pks: String) {

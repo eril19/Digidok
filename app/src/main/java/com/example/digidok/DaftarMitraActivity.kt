@@ -274,6 +274,7 @@ class DaftarMitraActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@DaftarMitraActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {

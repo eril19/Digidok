@@ -133,6 +133,7 @@ class ProfileActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@ProfileActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {

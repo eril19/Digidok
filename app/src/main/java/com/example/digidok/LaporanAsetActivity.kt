@@ -332,6 +332,7 @@ class LaporanAsetActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@LaporanAsetActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {
@@ -366,6 +367,7 @@ class LaporanAsetActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@LaporanAsetActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {
@@ -401,6 +403,7 @@ class LaporanAsetActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@LaporanAsetActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {
@@ -435,6 +438,7 @@ class LaporanAsetActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@LaporanAsetActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {

@@ -348,6 +348,9 @@ class MitraDetailActivity2 : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@MitraDetailActivity2, message, Toast.LENGTH_LONG).show()
+
+
                 }
 
                 override fun onFinish() {
@@ -423,6 +426,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@MitraDetailActivity2, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {

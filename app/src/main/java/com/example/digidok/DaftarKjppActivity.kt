@@ -136,6 +136,7 @@ class DaftarKjppActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@DaftarKjppActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {

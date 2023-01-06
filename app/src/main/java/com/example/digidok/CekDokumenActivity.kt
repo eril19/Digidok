@@ -151,6 +151,7 @@ class CekDokumenActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@CekDokumenActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {
