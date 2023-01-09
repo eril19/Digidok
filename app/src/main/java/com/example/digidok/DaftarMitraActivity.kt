@@ -159,7 +159,7 @@ class DaftarMitraActivity : AppCompatActivity() {
                                     MitraDetailActivity::class.java
                                 )
                                 i.putExtra("menu", "View")
-                                i.putExtra("id",idMitra)
+                                i.putExtra("id",kodeMitra)
                                 startActivity(i)
                                 true
                             }
@@ -169,7 +169,7 @@ class DaftarMitraActivity : AppCompatActivity() {
                                     MitraDetailActivity::class.java
                                 )
                                 i.putExtra("menu", "Edit")
-                                i.putExtra("id",idMitra)
+                                i.putExtra("id",kodeMitra)
                                 startActivity(i)
                                 true
                             }

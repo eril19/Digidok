@@ -137,6 +137,10 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         }
+        setSpinnerStatus()
+        setSpinnerTahun()
+        setSpinnerWilayah()
+        setSpinnerKelurahan()
 
         header.setText("Laporan Pengajuan Kerjasama")
 
@@ -176,7 +180,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         getLaporanKerjasama(status, tahun, kelurahan)
     }
 
-    fun setSpinnerKategori() {
+    fun setSpinnerTahun() {
         val arrayStringTahun = arrayListOf("Pilih Tahun")
         arrayStringTahun.addAll(listTahun.map {
             it.label
@@ -200,11 +204,14 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                 }
             }
         }
+    }
 
+    fun setSpinnerWilayah() {
         val arrayStringWilayah = arrayListOf("Pilih Wilayah")
         arrayStringWilayah.addAll(listKota.map {
             it.label
         })
+
         spinnerKota?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringWilayah) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
@@ -224,11 +231,14 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                 }
             }
         }
+    }
 
+    fun setSpinnerKelurahan() {
         val arrayStringKelurahan = arrayListOf("Pilih Kelurahan")
         arrayStringKelurahan.addAll(listKelurahan.map {
             it.label
         })
+
         spinnerKelurahan?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringKelurahan) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
@@ -248,7 +258,9 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                 }
             }
         }
+    }
 
+    fun setSpinnerStatus() {
         val arrayStringStatus = arrayListOf("Pilih Status")
         arrayStringStatus.addAll(listStatus)
         spinnerStatus?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringStatus) {
@@ -352,7 +364,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                             )
                         }
                         setList()
-                        setSpinnerKategori()
+                        setSpinnerTahun()
                     }
                 }
 
@@ -377,7 +389,6 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<kelurahanModel?>) {
                     isLoading = false
                     if (data.isSuccess) {
-                        listKota.clear()
                         data.data?.dataKelurahan?.forEach {
                             listKelurahan?.add(
                                 KelurahanModel(
@@ -387,7 +398,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                             )
                         }
                         setList()
-                        setSpinnerKategori()
+                        setSpinnerKelurahan()
                     }
                 }
 
@@ -421,7 +432,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                             )
                         }
                         setList()
-                        setSpinnerKategori()
+                        setSpinnerWilayah()
                     }
                 }
 
