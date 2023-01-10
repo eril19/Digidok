@@ -277,7 +277,13 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         }
 
         val header = findViewById<TextView>(R.id.header_title)
+
+        if(isStatusEdit.equals("Tambah",true)){
+            header.setText("Tambah Pengajuan Kerjasama")
+        }
+        else{
         header.setText("Detail Pengajuan Kerjasama")
+        }
 
         val homeBtn : ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
