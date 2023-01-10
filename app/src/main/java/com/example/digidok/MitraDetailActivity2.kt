@@ -47,6 +47,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
     var spinner_jenis_mitra: Spinner? = null
     val listJenisMitra : ArrayList<JenisMitraModel> = ArrayList()
     var isEdit: String = ""
+    var isTambah = ""
     var idMitraCheck : String = ""
     var spinner_status_mitra: Spinner? = null
     val listStatusMitra : ArrayList<StatusMitraModel> = ArrayList()
@@ -122,7 +123,18 @@ class MitraDetailActivity2 : AppCompatActivity() {
         }
 
         val header = findViewById<TextView>(R.id.header_title)
-        header.setText("Detail Mitra")
+
+        isTambah = intent.getStringExtra("menu") ?: ""
+
+        if(isTambah.equals("Tambah",true)){
+            header.setText("Tambah Mitra")
+        }
+        else if(isTambah.equals("Edit",true)){
+            header.setText("Edit Mitra")
+        }
+        else{
+            header.setText("Detail Mitra")
+        }
 
         val homeBtn : ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {

@@ -41,7 +41,6 @@ class MitraDetailActivity : AppCompatActivity() {
     var jenisPajakData = ""
     var badanHukumData = ""
 
-
     var isEdit: String = ""
     var legalWp:Long  = 0
     var tahunGabung = ""

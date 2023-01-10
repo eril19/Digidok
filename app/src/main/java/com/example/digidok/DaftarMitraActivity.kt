@@ -227,6 +227,7 @@ class DaftarMitraActivity : AppCompatActivity() {
 
                 override fun onFinish() {
                     isLoading = false
+                    Toast.makeText(this@DaftarMitraActivity, "Status Mitra Berhasil Diubah", Toast.LENGTH_LONG).show()
                 }
 
             })
