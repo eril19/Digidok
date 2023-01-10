@@ -48,6 +48,7 @@ class MitraDetailActivity : AppCompatActivity() {
     var jenisMitra = ""
     var statusMitra = ""
     var idMitraCheck = ""
+    var isTambah = ""
     var DataMitra: MitraDetailModel? = null
     var npwp: EditText? = null
     var namaKpp :EditText?=null
@@ -90,7 +91,15 @@ class MitraDetailActivity : AppCompatActivity() {
         }
 
         val header = findViewById<TextView>(R.id.header_title)
+
+        isTambah = intent.getStringExtra("menu") ?: ""
+
+        if(isTambah.equals("Tambah",true)){
+            header.setText("Tambah Mitra")
+        }
+        else{
         header.setText("Detail Mitra")
+        }
 
         val homeBtn : ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
