@@ -19,6 +19,7 @@ import com.example.digidok.data.model.repositoriDokumenModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
+import java.text.DecimalFormat
 
 class CekDokumenActivity : AppCompatActivity() {
     var isLoading : Boolean = false
@@ -29,6 +30,7 @@ class CekDokumenActivity : AppCompatActivity() {
     var row: Int = 0
     var sortColumn: String = "no"
     var order: String = "asc"
+    var formatter : DecimalFormat = DecimalFormat("#,###")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +43,11 @@ class CekDokumenActivity : AppCompatActivity() {
         val nomer = findViewById<TextView>(R.id.nomerpksdokumen)
         val jenis = findViewById<TextView>(R.id.jeniskerjadokumen)
         val harga = findViewById<TextView>(R.id.hargadokumen)
-
+        val nilai = "Rp. " +  formatter.format(data?.harga?.toLong())
 
         nama.setText(data?.nama_mitra)
         nomer.setText(data?.no_surat)
-        harga.setText(data?.harga)
+        harga.setText(nilai)
         jenis.setText(data?.jenis_kerjasama)
 
         val tutup = findViewById<TextView>(R.id.close_detail_btn)

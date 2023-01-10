@@ -295,7 +295,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                                     nama_mitra = it?.namaMitra.safe(),
                                     jenis_kerjasama = it?.kategoriPks.safe(),
                                     no_surat = it?.idPks.safe(),
-                                    harga = "Rp. " + it?.nilaiPks.toString().safe(),
+                                    harga = it?.nilaiPks.toString().safe(),
                                 )
                             )
                         }
