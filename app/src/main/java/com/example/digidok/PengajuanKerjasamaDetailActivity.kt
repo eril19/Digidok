@@ -281,6 +281,9 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         if(isStatusEdit.equals("Tambah",true)){
             header.setText("Tambah Pengajuan Kerjasama")
         }
+        else if(isStatusEdit.equals("Edit",true)){
+            header.setText("Edit Pengajuan Kerjasama")
+        }
         else{
         header.setText("Detail Pengajuan Kerjasama")
         }

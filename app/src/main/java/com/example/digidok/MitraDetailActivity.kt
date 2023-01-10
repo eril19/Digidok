@@ -97,6 +97,9 @@ class MitraDetailActivity : AppCompatActivity() {
         if(isTambah.equals("Tambah",true)){
             header.setText("Tambah Mitra")
         }
+        else if(isTambah.equals("Edit",true)){
+            header.setText("Edit Mitra")
+        }
         else{
         header.setText("Detail Mitra")
         }
