@@ -6,11 +6,8 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.data.DataSource
+import androidx.lifecycle.ViewModelProvider
 import com.example.digidok.data.Repository
-import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.UserModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
@@ -26,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
     private var tvLogin: TextView? = null
     private var progressLogin: ProgressBar? = null
     var messageError = ""
+    lateinit var mLoginViewModel: LoginViewModel
 
 //    var sharedPref =  getSharedPreferences("myPref", MODE_PRIVATE)
 //    var editor = sharedPref.edit()
@@ -34,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
+        mLoginViewModel = ViewModelProvider(this@LoginActivity).get(LoginViewModel::class.java)
         loginbtn = findViewById<CardView>(R.id.loginBtn)
         username = findViewById<EditText>(R.id.editTextusername)
         password = findViewById<EditText>(R.id.editTextTextPassword)
@@ -44,48 +42,36 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         loginbtn?.setOnClickListener {
-            login()
+            mLoginViewModel.username.value = username?.text.toString()
+            mLoginViewModel.password.value = password?.text.toString()
+            mLoginViewModel.login()
+        }
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        mLoginViewModel.responseSucces.observe(this){
+            if(it){
+                Preferences.saveUser(this@LoginActivity, mLoginViewModel.user.value.safe())
+                Preferences.saveRole(this@LoginActivity, mLoginViewModel.role.value.safe())
+                Preferences.saveToken(this@LoginActivity, mLoginViewModel.token.value.safe())
+                Preferences.saveLogin(this@LoginActivity, true)
+                startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                Toast.makeText(this@LoginActivity, mLoginViewModel.mMessageResponse.value.toString(), Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this@LoginActivity, mLoginViewModel.mMessageResponse.value.toString(), Toast.LENGTH_LONG).show()
+            }
+        }
+
+        mLoginViewModel.progressLogin.observe(this){
+            if(it){
+                tvLogin?.visibility = View.GONE
+                progressLogin?.visibility = View.VISIBLE
+            } else {
+                tvLogin?.visibility = View.VISIBLE
+                progressLogin?.visibility = View.GONE
+            }
         }
     }
 
-    fun login() {
-        statusLogin(true)
-        mRepository.login(username?.text.toString(), password?.text.toString(), "androidTes", "fIdTes",
-            object : DataSource.LoginDataCallback {
-                override fun onSuccess(data: BaseApiModel<UserModel?>) {
-                    statusLogin(false)
-                    if (data.isSuccess) {
-                        val userName = findViewById<EditText>(R.id.editTextusername).text.toString()
-                        Preferences.saveUser(this@LoginActivity, data.data?.namaUser.safe())
-                        Preferences.saveRole(this@LoginActivity,data.data?.namaRole.safe())
-                        Preferences.saveToken(this@LoginActivity, data.data?.token.safe())
-                        Preferences.saveLogin(this@LoginActivity, true)
-                        startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
-                    } else {
-                        messageError = data.message
-                        Toast.makeText(this@LoginActivity, messageError, Toast.LENGTH_LONG).show()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    statusLogin(false)
-                    Toast.makeText(this@LoginActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    statusLogin(false)
-                }
-
-            })
-    }
-
-    fun statusLogin(status: Boolean){
-        if (status){
-            tvLogin?.visibility = View.GONE
-            progressLogin?.visibility = View.VISIBLE
-        } else {
-            tvLogin?.visibility = View.VISIBLE
-            progressLogin?.visibility = View.GONE
-        }
-    }
 }
