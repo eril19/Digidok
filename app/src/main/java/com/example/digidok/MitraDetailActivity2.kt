@@ -124,7 +124,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
 
         val header = findViewById<TextView>(R.id.header_title)
 
-        isTambah = intent.getStringExtra("menu") ?: ""
+        isTambah = intent.getStringExtra("menu2") ?: ""
 
         if(isTambah.equals("Tambah",true)){
             header.setText("Tambah Mitra")
