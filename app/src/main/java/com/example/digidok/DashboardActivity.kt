@@ -105,6 +105,11 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(Intent(this@DashboardActivity, NotificationActivity::class.java))
         }
 
+        val viewAllBtn : TextView = findViewById(R.id.view_all)
+        viewAllBtn.setOnClickListener {
+            startActivity(Intent(this@DashboardActivity, DaftarTerbaruKerjasamaActivity::class.java))
+        }
+
     }
 
     fun setList() {
