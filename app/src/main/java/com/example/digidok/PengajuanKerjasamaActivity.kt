@@ -162,6 +162,8 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
             }
     }
 
+
+
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
     fun setList() {
@@ -258,7 +260,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaModel?>) {
                     isLoading = false
                     if (data.isSuccess) {
-                        Toast.makeText(this@PengajuanKerjasamaActivity, "Mohon tunggu sebentar", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@PengajuanKerjasamaActivity, "Mohon tunggu sebentar", Toast.LENGTH_SHORT).show()
                         pengajuanKerjasama.clear()
                         data.data?.dataDokumen?.forEach {
                             pengajuanKerjasama?.add(

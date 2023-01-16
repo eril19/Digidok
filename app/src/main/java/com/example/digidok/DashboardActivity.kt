@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.ProfileModel
 import com.example.digidok.data.model.dashboardModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
@@ -23,12 +24,14 @@ import java.util.*
 class DashboardActivity : AppCompatActivity() {
     private lateinit var adapter: DashboardAdapter
     var isLoading : Boolean = false
+    var namaUser : TextView ?= null
     var dashboardList: ArrayList<DashboardModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
     var jml : TextView? = null
     var jmlMitra :TextView? = null
     var jmlNilai :TextView? = null
 
+    val mRepository: Repository = Injection.provideRepository(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,10 +50,11 @@ class DashboardActivity : AppCompatActivity() {
         jmlMitra = findViewById<TextView>(R.id.jumlah_mitra)
         jmlNilai = findViewById<TextView>(R.id.jumlah_nilai_kerjasama)
         val namaRole = findViewById<TextView>(R.id.namaRole)
-        val namaUser = findViewById<TextView>(R.id.namaUser)
+        namaUser = findViewById<TextView>(R.id.namaUser)
         val dokumenBtn : ImageButton = findViewById(R.id.repositoriDokumenBtn)
 
-        namaUser.text = Preferences.isUser(this@DashboardActivity)
+
+        namaUser = findViewById(R.id.namaUser)
         namaRole.text = Preferences.Role(this@DashboardActivity)
 
         dokumenBtn.setOnClickListener {
@@ -94,6 +98,7 @@ class DashboardActivity : AppCompatActivity() {
 
         setList()
         getDashboard()
+        getProfileData()
 
         val profileBtn : ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
@@ -118,6 +123,33 @@ class DashboardActivity : AppCompatActivity() {
         recyclerview?.adapter = DashboardAdapter(this, dashboardList) {
         }
     }
+
+    fun getProfileData() {
+        mRepository.getProfile(token = Preferences.isToken(this@DashboardActivity),
+            object : DataSource.ProfileCallback {
+                override fun onSuccess(data: BaseApiModel<ProfileModel?>) {
+
+                    if (data.isSuccess) {
+                        namaUser?.text = data.data?.nama
+                    } else {
+//                        messageError = data.message
+                        Toast.makeText(this@DashboardActivity, "Data Gagal", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    com.example.digidok.isLoading = false
+                    Toast.makeText(this@DashboardActivity, message, Toast.LENGTH_LONG).show()
+                }
+
+                override fun onFinish() {
+//                    Toast.makeText(this@ProfileActivity, "Data Selesai", Toast.LENGTH_LONG).show()
+                    com.example.digidok.isLoading = false
+                }
+
+            })
+    }
+
 
     fun getDashboard() {
         isLoading = true

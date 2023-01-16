@@ -80,7 +80,7 @@ class ProfileActivity : AppCompatActivity() {
             password = Password?.text.toString()
 
             if(Nama?.text.isNullOrEmpty() || NIP?.text.isNullOrEmpty() || Keterangan?.text.isNullOrEmpty() || Telepon?.text.isNullOrEmpty() || Email?.text.isNullOrEmpty() || Password?.text.isNullOrEmpty()){
-                Toast.makeText(this@ProfileActivity, "Tidak boleh ada kolom yang kosong", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@ProfileActivity, "Tidak boleh ada kolom yang kosong", Toast.LENGTH_SHORT).show()
             }
             else{
                 updateProfile(nama, nip, telepon, email, keterangan, password)
@@ -95,6 +95,11 @@ class ProfileActivity : AppCompatActivity() {
 
         val homeBtn2: ImageButton = findViewById(R.id.logo_2)
         homeBtn2.setOnClickListener {
+            startActivity(Intent(this@ProfileActivity, DashboardActivity::class.java))
+        }
+
+        val homeBtn3 : ImageButton = findViewById(R.id.homeBtn)
+        homeBtn3.setOnClickListener {
             startActivity(Intent(this@ProfileActivity, DashboardActivity::class.java))
         }
 
@@ -133,7 +138,7 @@ class ProfileActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
-                    Toast.makeText(this@ProfileActivity, message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@ProfileActivity, message, Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onFinish() {
@@ -166,7 +171,7 @@ class ProfileActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     isLoading = false
                     if (data.isSuccess) {
-
+                        Toast.makeText(this@ProfileActivity, "Ubah data pada profil berhasil!", Toast.LENGTH_SHORT).show()
                     }
                 }
 

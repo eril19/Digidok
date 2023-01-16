@@ -354,7 +354,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     isLoading = false
                     if (data.isSuccess) {
-
+                        Toast.makeText(this@MitraDetailActivity2, "Data baru mitra berhasil ditambahkan!", Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -432,7 +432,7 @@ class MitraDetailActivity2 : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     isLoading = false
                     if (data.isSuccess) {
-
+                        Toast.makeText(this@MitraDetailActivity2, "Data mitra berhasil diubah!", Toast.LENGTH_SHORT).show()
                     }
                 }
 

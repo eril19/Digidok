@@ -84,7 +84,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                 if(position!=0){
                     kota = listKota.get(position-1).value.safe()
                     getKelurahan(kota)
-//                    getRepositoriDokumen(status,tahun,kota)
+                    getRepositoriDokumen(status,tahun,kelurahan)
                 }
             }
 
@@ -105,6 +105,37 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         }
+
+        spinnerStatus?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position-1 == 0){
+                    status = "SEMUA"
+                    getRepositoriDokumen("SEMUA",tahun,kelurahan)
+                }
+                else if(position-1 == 1){
+                    status = "DIKIRIM"
+                    getRepositoriDokumen("DIKIRIM",tahun,kelurahan)
+                }
+                else if(position-1 == 2){
+                    status = "DRAFT"
+                    getRepositoriDokumen("DRAFT",tahun,kelurahan)
+                }
+                else if(position-1 == 3){
+                    status = "DIKEMBALIKAN"
+                    getRepositoriDokumen("DIKEMBALIKAN",tahun,kelurahan)
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
+
+        setSpinnerStatus()
+        setSpinnerTahun()
+        setSpinnerWilayah()
+        setSpinnerKelurahan()
 
         header.setText("Repositori Dokumen")
         val back = findViewById<ImageView>(R.id.backbtn)
@@ -239,6 +270,110 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         }
     }
 
+    fun setSpinnerTahun() {
+        val arrayStringTahun = arrayListOf("Pilih Tahun")
+        arrayStringTahun.addAll(listTahun.map {
+            it.label
+        })
+        spinnerTahun?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringTahun) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return if (convertView != null) {
+                    if (convertView is TextView) {
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        try {
+                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                        } catch (e: Exception) {
+                            showErrorInflateFont()
+                        }
+                        convertView
+                    } else {
+                        convertView
+                    }
+                } else {
+                    super.getView(position, convertView, parent)
+                }
+            }
+        }
+    }
+
+    fun setSpinnerWilayah() {
+        val arrayStringWilayah = arrayListOf("Pilih Wilayah")
+        arrayStringWilayah.addAll(listKota.map {
+            it.label
+        })
+
+        spinnerKota?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringWilayah) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return if (convertView != null) {
+                    if (convertView is TextView) {
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        try {
+                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                        } catch (e: Exception) {
+                            showErrorInflateFont()
+                        }
+                        convertView
+                    } else {
+                        convertView
+                    }
+                } else {
+                    super.getView(position, convertView, parent)
+                }
+            }
+        }
+    }
+
+    fun setSpinnerKelurahan() {
+        val arrayStringKelurahan = arrayListOf("Pilih Kelurahan")
+        arrayStringKelurahan.addAll(listKelurahan.map {
+            it.label
+        })
+
+        spinnerKelurahan?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringKelurahan) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return if (convertView != null) {
+                    if (convertView is TextView) {
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        try {
+                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                        } catch (e: Exception) {
+                            showErrorInflateFont()
+                        }
+                        convertView
+                    } else {
+                        convertView
+                    }
+                } else {
+                    super.getView(position, convertView, parent)
+                }
+            }
+        }
+    }
+
+    fun setSpinnerStatus() {
+        val arrayStringStatus = arrayListOf("Pilih Status")
+        arrayStringStatus.addAll(listStatus)
+        spinnerStatus?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringStatus) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return if (convertView != null) {
+                    if (convertView is TextView) {
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        try {
+                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                        } catch (e: Exception) {
+                            showErrorInflateFont()
+                        }
+                        convertView
+                    } else {
+                        convertView
+                    }
+                } else {
+                    super.getView(position, convertView, parent)
+                }
+            }
+        }
+    }
+
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
 
@@ -333,7 +468,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                             )
                         }
                         setList()
-                        setSpinnerKategori()
+                        setSpinnerTahun()
                     }
                 }
 
@@ -368,7 +503,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                             )
                         }
                         setList()
-                        setSpinnerKategori()
+                        setSpinnerKelurahan()
                     }
                 }
 
@@ -402,7 +537,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                             )
                         }
                         setList()
-                        setSpinnerKategori()
+                        setSpinnerWilayah()
                     }
                 }
 

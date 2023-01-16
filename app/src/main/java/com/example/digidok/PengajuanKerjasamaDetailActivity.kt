@@ -528,12 +528,12 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     com.example.digidok.isLoading = false
                     if (data.isSuccess) {
-
+                        Toast.makeText(this@PengajuanKerjasamaDetailActivity, "Data pengajuan berhasil ditambah!", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onError(message: String) {
-                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, "Ada yang salah", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
                     com.example.digidok.isLoading = false
                 }
 
