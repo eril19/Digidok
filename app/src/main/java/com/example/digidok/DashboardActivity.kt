@@ -3,10 +3,12 @@ package com.example.digidok
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.data.DataSource
@@ -30,6 +32,7 @@ class DashboardActivity : AppCompatActivity() {
     var jml : TextView? = null
     var jmlMitra :TextView? = null
     var jmlNilai :TextView? = null
+    lateinit var mDashboardViewModel: DashboardViewModel
 
     val mRepository: Repository = Injection.provideRepository(this)
 
@@ -37,6 +40,8 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
+        mDashboardViewModel = ViewModelProvider(this@DashboardActivity).get(DashboardViewModel::class.java)
+        mDashboardViewModel.token.value = Preferences.isToken(this@DashboardActivity)
 
         val calendar: Calendar = Calendar.getInstance()
         val currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
@@ -97,8 +102,9 @@ class DashboardActivity : AppCompatActivity() {
         dateText.setText(currentDate)
 
         setList()
-        getDashboard()
-        getProfileData()
+        mDashboardViewModel.getDashboard()
+        mDashboardViewModel.getProfileData()
+        observeViewModel()
 
         val profileBtn : ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
@@ -124,79 +130,15 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
-    fun getProfileData() {
-        mRepository.getProfile(token = Preferences.isToken(this@DashboardActivity),
-            object : DataSource.ProfileCallback {
-                override fun onSuccess(data: BaseApiModel<ProfileModel?>) {
-
-                    if (data.isSuccess) {
-                        namaUser?.text = data.data?.nama
-                    } else {
-//                        messageError = data.message
-                        Toast.makeText(this@DashboardActivity, "Data Gagal", Toast.LENGTH_LONG).show()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    com.example.digidok.isLoading = false
-                    Toast.makeText(this@DashboardActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-//                    Toast.makeText(this@ProfileActivity, "Data Selesai", Toast.LENGTH_LONG).show()
-                    com.example.digidok.isLoading = false
-                }
-
-            })
+    private fun observeViewModel() {
+        mDashboardViewModel.mMessageResponse.observe(this){
+            Toast.makeText(this@DashboardActivity, it, Toast.LENGTH_LONG).show()
+        }
+        mDashboardViewModel.username.observe(this){
+            namaUser?.text = it
+        }
     }
 
-
-    fun getDashboard() {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getDashboard(
-            token = Preferences.isToken(context = this@DashboardActivity),
-            object : DataSource.dashboardCallback {
-                override fun onSuccess(data: BaseApiModel<dashboardModel?>) {
-                    isLoading = false
-
-//                    if(data.code == 401){
-//                        logout
-//                    }
-
-                    if (data.isSuccess) {
-//                        var value: Long = 0
-                        dashboardList.clear()
-//                        value = Integer.parseInt(data.data?.jumlahNilaiKerjasama.safe()).toLong()
-                        var formatter :  DecimalFormat = DecimalFormat("#,###")
-                        jml?.text = data.data?.jumlahKerjasama.safe()
-                        jmlMitra?.text = data.data?.jumlahMitra.safe()
-                        jmlNilai?.text = "Rp. " + formatter.format(data.data?.jumlahNilaiKerjasama)
-                        data.data?.dataMitra?.forEach {
-                            dashboardList?.add(
-                                DashboardModel(
-                                    nama_mitra = it?.namaMitra.safe(),
-                                    jumlah_kerjasama = it?.jumlahKederjasama.safe(),
-                                    total_nilai = it?.totalNilai.toString().safe(),
-                                    jenis_mitra = it?.idMitra.safe()
-                                )
-                            )
-                        }
-                        setList()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@DashboardActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
-    }
 
     companion object {
         /**

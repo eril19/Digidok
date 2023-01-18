@@ -73,9 +73,6 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
         }
 
 
-
-
-
         val header = findViewById<TextView>(R.id.header_title)
 
         header.setText("Daftar Pengajuan Kerjasama")
