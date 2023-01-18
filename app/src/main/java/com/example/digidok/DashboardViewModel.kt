@@ -1,23 +1,19 @@
 package com.example.digidok
 
 import android.app.Application
-import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.ProfileModel
 import com.example.digidok.data.model.dashboardModel
 import com.example.digidok.utils.Injection
-import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
+import io.reactivex.internal.operators.observable.ObservableFromArray
 import java.text.DecimalFormat
 
 class DashboardViewModel(context: Application): AndroidViewModel(context) {
-
     val username = MutableLiveData<String>()
     var isLoading = MutableLiveData<Boolean>()
     val password = MutableLiveData<String>()
@@ -29,7 +25,11 @@ class DashboardViewModel(context: Application): AndroidViewModel(context) {
     val mMessageResponse = MutableLiveData<String>()
     val mRepository: Repository = Injection.provideRepository(context)
 
-    val mData = MutableList<DashboardModel>() = null
+    val jml = MutableLiveData<String>()
+    val jmlMitra = MutableLiveData<String>()
+    val jmlNilai = MutableLiveData<String>()
+
+    val mData : MutableList<DashboardModel> = mutableListOf()
 
     fun getProfileData() {
         mRepository.getProfile(token = token.value.safe(),
@@ -62,18 +62,16 @@ class DashboardViewModel(context: Application): AndroidViewModel(context) {
             object : DataSource.dashboardCallback {
                 override fun onSuccess(data: BaseApiModel<dashboardModel?>) {
                     isLoading.value = false
-
-
                     if (data.isSuccess) {
 //                        var value: Long = 0
                         dashboardList.clear()
 //                        value = Integer.parseInt(data.data?.jumlahNilaiKerjasama.safe()).toLong()
                         var formatter : DecimalFormat = DecimalFormat("#,###")
-                        jml?.text = data.data?.jumlahKerjasama.safe()
-                        jmlMitra?.text = data.data?.jumlahMitra.safe()
-                        jmlNilai?.text = "Rp. " + formatter.format(data.data?.jumlahNilaiKerjasama)
+                        jmlMitra.value = data.data?.jumlahMitra.safe()
+                        jmlNilai.value = "Rp. " + formatter.format(data.data?.jumlahNilaiKerjasama)
+                        jml.value = data.data?.jumlahKerjasama.safe()
                         data.data?.dataMitra?.forEach {
-                            dashboardList?.add(
+                            mData?.add(
                                 DashboardModel(
                                     nama_mitra = it?.namaMitra.safe(),
                                     jumlah_kerjasama = it?.jumlahKederjasama.safe(),
@@ -82,7 +80,7 @@ class DashboardViewModel(context: Application): AndroidViewModel(context) {
                                 )
                             )
                         }
-                        setList()
+//                        setList()
                     }
                 }
 

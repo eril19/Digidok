@@ -69,8 +69,8 @@ class DaftarTerbaruKerjasamaActivity : AppCompatActivity() {
     fun setList() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
-        recyclerview?.adapter = DashboardAdapter(this, dashboardList) {
-        }
+//        recyclerview?.adapter = DashboardAdapter(this, dashboardList) {
+//        }
     }
 
     fun getDashboard() {

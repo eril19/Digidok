@@ -12,8 +12,10 @@ import com.example.digidok.R
 import org.w3c.dom.Text
 import java.text.DecimalFormat
 
-class DashboardAdapter(private val context: Context, private val Dashboard: List<DashboardModel>, val listener: (DashboardModel) -> Unit)
+class DashboardAdapter(private val context: Context, val dashboardViewModel: DashboardViewModel, val listener: (DashboardModel) -> Unit)
     : RecyclerView.Adapter<DashboardAdapter.DashboardViewHolder>(){
+
+    private var Dashboard: List<DashboardModel> = dashboardViewModel.mData
 
     class DashboardViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val nama_mitra = view.findViewById<TextView>(R.id.nama_mitra)

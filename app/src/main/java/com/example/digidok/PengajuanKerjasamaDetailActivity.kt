@@ -149,9 +149,9 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
             getPengajuanDetail(idPkscheck)
         }
 
-        getListMitra()
-        getKategoriPKS()
-        getTujuanPKS()
+//        getListMitra()
+//        getKategoriPKS()
+//        getTujuanPKS()
 
         isStatusEdit = intent.getStringExtra("status") ?: ""
 
@@ -481,6 +481,10 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                         idTujuanPks = data.data?.idTujuan.toString()
                         idKategoriPks = data.data?.idSkemaPemanfaatan.toString()
                     }
+
+                    getListMitra()
+                    getKategoriPKS()
+                    getTujuanPKS()
                 }
 
                 override fun onError(message: String) {
