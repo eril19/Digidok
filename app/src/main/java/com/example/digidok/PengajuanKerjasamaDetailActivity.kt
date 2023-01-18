@@ -220,12 +220,31 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 perihal = prihal?.text.toString()
                 dokumen = ""
 
+                val back = findViewById<ImageView>(R.id.backbtn)
+
+                back.setOnClickListener {
+                    val intent = Intent(this@PengajuanKerjasamaDetailActivity, PengajuanKerjasamaActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
 
                 if (isStatusEdit.equals("Edit", true)){
 //                    update
+                    startActivity(
+                        Intent(
+                            this@PengajuanKerjasamaDetailActivity,
+                            PengajuanKerjasamaActivity::class.java
+                        )
+                    )
                 }
                 else if(isStatusEdit.equals("Tambah",true)){
                     insertPengajuan(idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, dokumen)
+                    startActivity(
+                        Intent(
+                            this@PengajuanKerjasamaDetailActivity,
+                            PengajuanKerjasamaActivity::class.java
+                        )
+                    )
                 }
             }
 

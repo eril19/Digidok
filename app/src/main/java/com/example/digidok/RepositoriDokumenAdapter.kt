@@ -60,6 +60,11 @@ class RepositoriDokumemAdapter(private val context: Context, private val Reposit
                     android.R.color.darker_gray
                 )
             }
+            else if(repositorDashboardModel.header_color.equals("DISETUJUI", true) ) {
+                header_color.background = ContextCompat.getDrawable(header_color.context,
+                    R.color.green
+                )
+            }
 
         }
 

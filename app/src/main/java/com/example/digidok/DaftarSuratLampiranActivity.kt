@@ -127,7 +127,6 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
     }
 
     fun Telaah(hasilTelaah:String, catatan : String){
-
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
         mRepository.Telaah(
@@ -138,7 +137,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     isLoading = false
                     if (data.isSuccess) {
-
+                        Toast.makeText(this@DaftarSuratLampiranActivity, "Berhasil!", Toast.LENGTH_SHORT).show()
                     }
                 }
 

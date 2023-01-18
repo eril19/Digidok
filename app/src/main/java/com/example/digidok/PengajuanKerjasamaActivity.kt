@@ -257,29 +257,13 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaModel?>) {
                     isLoading = false
                     if (data.isSuccess) {
-                        Toast.makeText(this@PengajuanKerjasamaActivity, "Mohon tunggu sebentar", Toast.LENGTH_SHORT).show()
                         pengajuanKerjasama.clear()
                         data.data?.dataDokumen?.forEach {
                             pengajuanKerjasama?.add(
                                 PengajuanKerjasamaModel(
-                                    header_color = if (it?.status == 0) {
-                                        "DIHAPUS"
-                                    } else if (it?.status == 1 || it?.status == -2 ) {
-                                        "DRAFT"
-                                    }
-                                    else if (it?.status == 2) {
-                                        "DIKIRIM"
-                                    }
-                                    else if (it?.status == 3) {
-                                        "DISETUJUI"
-                                    }
-                                    else {
-                                        ""
-                                    },
+                                    header_color = it?.statusLabel.safe(),
                                     no_pks = it?.idPks.safe(),
                                     nama_mitra = it?.nama.safe(),
-//                                    jenis_mitra = it?..safe(),
-//                                    status = "Status:",
                                     periodeAwal = it?.periodeAwal.safe(),
                                     periodeAkhir = it?.periodeAkhir.safe(),
                                 )
@@ -291,7 +275,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
 
             override fun onError(message: String) {
                 isLoading = false
-                Toast.makeText(this@PengajuanKerjasamaActivity, message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@PengajuanKerjasamaActivity, message, Toast.LENGTH_SHORT).show()
             }
 
             override fun onFinish() {

@@ -61,7 +61,7 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
             statusPengajuan = pengajuanKerjasamaModel.header_color
             idPks = pengajuanKerjasamaModel.no_pks
 
-            if (pengajuanKerjasamaModel.header_color.equals("Draft", true) ) {
+            if (pengajuanKerjasamaModel.header_color.equals("DRAFT", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     android.R.color.darker_gray
                 )
@@ -71,14 +71,24 @@ class PengajuanKerjasamaAdapter(private val context: Context, private val Pengaj
                     R.color.blue
                 )
             }
-            else if(pengajuanKerjasamaModel.header_color.equals("Dihapus", true) ) {
+            else if(pengajuanKerjasamaModel.header_color.equals("DIKEMBALIKAN", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     android.R.color.holo_orange_dark
                 )
             }
-            else if(pengajuanKerjasamaModel.header_color.equals("Disetujui", true) ) {
+            else if(pengajuanKerjasamaModel.header_color.equals("DITOLAK", true) ) {
+                header_color.background = ContextCompat.getDrawable(header_color.context,
+                    android.R.color.holo_red_light
+                )
+            }
+            else if(pengajuanKerjasamaModel.header_color.equals("DISETUJUI", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     R.color.green
+                )
+            }
+            else if(pengajuanKerjasamaModel.header_color.equals("DIHAPUS", true) ) {
+                header_color.background = ContextCompat.getDrawable(header_color.context,
+                    android.R.color.black
                 )
             }
         }

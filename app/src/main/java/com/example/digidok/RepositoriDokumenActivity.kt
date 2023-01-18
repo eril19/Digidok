@@ -43,7 +43,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
     val listKelurahan : ArrayList<KelurahanModel> = ArrayList()
 
     var spinnerStatus : Spinner? = null
-    val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT", "DIKEMBALIKAN")
+    val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT", "DIKEMBALIKAN","DISETUJUI")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -110,19 +110,23 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position-1 == 0){
                     status = "SEMUA"
-                    getRepositoriDokumen("SEMUA",tahun,kelurahan)
+                    getRepositoriDokumen(status,tahun,kelurahan)
                 }
                 else if(position-1 == 1){
                     status = "DIKIRIM"
-                    getRepositoriDokumen("DIKIRIM",tahun,kelurahan)
+                    getRepositoriDokumen(status,tahun,kelurahan)
                 }
                 else if(position-1 == 2){
                     status = "DRAFT"
-                    getRepositoriDokumen("DRAFT",tahun,kelurahan)
+                    getRepositoriDokumen(status,tahun,kelurahan)
                 }
                 else if(position-1 == 3){
                     status = "DIKEMBALIKAN"
-                    getRepositoriDokumen("DIKEMBALIKAN",tahun,kelurahan)
+                    getRepositoriDokumen(status,tahun,kelurahan)
+                }
+                else if(position-1 == 3){
+                    status = "DISETUJUI"
+                    getRepositoriDokumen(status,tahun,kelurahan)
                 }
             }
 

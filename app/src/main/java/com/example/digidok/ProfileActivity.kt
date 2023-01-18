@@ -24,7 +24,7 @@ class ProfileActivity : AppCompatActivity() {
     var Telepon: EditText? = null
     var Email: EditText? = null
     var Password: EditText ? = null
-
+    var titleProfile : TextView?= null
     var nama = ""
     var keterangan = ""
     var nip = ""
@@ -55,6 +55,8 @@ class ProfileActivity : AppCompatActivity() {
         Email = findViewById<EditText>(R.id.email)
 
         Password = findViewById(R.id.old_password)
+
+        titleProfile = findViewById(R.id.change_profile)
 
         logoout.setOnClickListener {
             Preferences.saveLogin(this@ProfileActivity, false)
@@ -124,6 +126,7 @@ class ProfileActivity : AppCompatActivity() {
 
                     if (data.isSuccess) {
                         uName?.text = data.data?.userId
+                        titleProfile?.text = data.data?.nama
                         Nama?.setText(data.data?.nama)
                         Keterangan?.setText(data.data?.description)
                         NIP?.setText(data.data?.nip)

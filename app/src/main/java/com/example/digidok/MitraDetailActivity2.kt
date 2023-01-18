@@ -53,6 +53,10 @@ class MitraDetailActivity2 : AppCompatActivity() {
     val listStatusMitra : ArrayList<StatusMitraModel> = ArrayList()
     var data: MitraDetailModel? = null
 
+    var profilPT : TextView ?= null
+    var pdfPic : ImageView ? = null
+    var tnc : TextView?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mitra_detail2)
@@ -131,6 +135,13 @@ class MitraDetailActivity2 : AppCompatActivity() {
         }
         else if(isTambah.equals("Edit",true)){
             header.setText("Edit Mitra")
+            profilPT = findViewById(R.id.title_profil_perusahaan)
+            pdfPic = findViewById(R.id.gambarpdf)
+            tnc = findViewById(R.id.pdfcapt)
+
+            profilPT?.visibility = View.GONE
+            pdfPic?.visibility = View.GONE
+            tnc?.visibility = View.GONE
         }
         else{
             header.setText("Detail Mitra")

@@ -218,16 +218,17 @@ class DaftarMitraActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<setAktifNonAktifModel?>) {
                     isLoading = false
                     if (data.isSuccess) {
+                        Toast.makeText(this@DaftarMitraActivity, "Status Mitra Berhasil Diubah", Toast.LENGTH_LONG).show()
                     }
                 }
 
                 override fun onError(message: String) {
                     isLoading = false
+                    Toast.makeText(this@DaftarMitraActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {
                     isLoading = false
-                    Toast.makeText(this@DaftarMitraActivity, "Status Mitra Berhasil Diubah", Toast.LENGTH_LONG).show()
                 }
 
             })
@@ -275,7 +276,7 @@ class DaftarMitraActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
-                    Toast.makeText(this@DaftarMitraActivity, message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@DaftarMitraActivity, message, Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onFinish() {
