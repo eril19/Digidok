@@ -80,7 +80,6 @@ class DashboardViewModel(context: Application): AndroidViewModel(context) {
                                 )
                             )
                         }
-//                        setList()
                     }
                 }
 

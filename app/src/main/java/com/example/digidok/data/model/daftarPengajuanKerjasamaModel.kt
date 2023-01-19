@@ -18,6 +18,8 @@ class daftarPengajuanKerjasamaModel(
         val email: String,
         @SerializedName("telp")
         val telp: String = "",
+        @SerializedName("statusLabel")
+        val statusLabel: String = "",
         @SerializedName("status")
         val status: Int,
         @SerializedName("periodeAwal")

@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +28,7 @@ class DaftarKjppAdapter(private val context: Context, private val DaftarKJPP: Li
         val klasifikasi_perizinan = view.findViewById<TextView>(R.id.klasifikasi_perizinan)
 
 
-        val cardView = view.findViewById<CardView>(R.id.cardViewkjpp)
+        val dropdown = view.findViewById<ImageView>(R.id.kjppDropdown)
 
         fun bindView(daftarKjppModel: DaftarKjppModel, listener: (DaftarKjppModel) -> Unit){
             no_kjpp.text = daftarKjppModel.no_kjpp
@@ -40,7 +41,7 @@ class DaftarKjppAdapter(private val context: Context, private val DaftarKJPP: Li
         }
 
         init {
-            cardView.setOnClickListener {
+            dropdown.setOnClickListener {
                 listener.onItemClick(adapterPosition)
             }
         }

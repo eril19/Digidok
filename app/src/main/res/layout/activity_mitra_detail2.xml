@@ -217,21 +217,23 @@
                         android:layout_gravity="center">
 
                         <ImageButton
+                            android:id="@+id/gambarpdf"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
-                            android:src="@drawable/ic_pdf"
-                            android:scaleType="fitCenter"
+                            android:backgroundTint="@android:color/transparent"
                             android:padding="1dp"
-                            android:backgroundTint="@android:color/transparent"/>
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_pdf" />
 
                         <TextView
+                            android:id="@+id/pdfcapt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="*file pdf dan maksimal 10mb"
+                            android:layout_gravity="center"
                             android:layout_marginLeft="8dp"
+                            android:text="*file pdf dan maksimal 10mb"
                             android:textColor="#616161"
-                            android:textSize="14dp"
-                            android:layout_gravity="center"/>
+                            android:textSize="14dp" />
                     </LinearLayout>
                 </LinearLayout>
 
