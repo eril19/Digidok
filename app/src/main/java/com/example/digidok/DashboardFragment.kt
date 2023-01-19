@@ -105,8 +105,8 @@ class DashboardFragment : Fragment() {
 
 //        val showData = DashboardList.size
 //        sizeofData.setText(showData)
-        recyclerview?.adapter = DashboardAdapter(this.requireContext(), dashboardList) {
-            }
+//        recyclerview?.adapter = DashboardAdapter(this.requireContext(), dashboardList) {
+//            }
     }
 
     fun getBerita() {

@@ -126,7 +126,7 @@ class DashboardActivity : AppCompatActivity() {
     fun setList() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
-        recyclerview?.adapter = DashboardAdapter(this, dashboardList) {
+        recyclerview?.adapter = DashboardAdapter(this, mDashboardViewModel) {
         }
     }
 
@@ -134,8 +134,16 @@ class DashboardActivity : AppCompatActivity() {
         mDashboardViewModel.mMessageResponse.observe(this){
             Toast.makeText(this@DashboardActivity, it, Toast.LENGTH_LONG).show()
         }
+
         mDashboardViewModel.username.observe(this){
             namaUser?.text = it
+        }
+
+        mDashboardViewModel.jml.observe(this){
+            jml?.text = mDashboardViewModel.jml.value
+            jmlMitra?.text = mDashboardViewModel.jmlMitra.value
+            jmlNilai?.text = mDashboardViewModel.jmlNilai.value
+            setList()
         }
     }
 
