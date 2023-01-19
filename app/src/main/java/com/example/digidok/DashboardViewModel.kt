@@ -14,17 +14,13 @@ import io.reactivex.internal.operators.observable.ObservableFromArray
 import java.text.DecimalFormat
 
 class DashboardViewModel(context: Application): AndroidViewModel(context) {
-    val username = MutableLiveData<String>()
     var isLoading = MutableLiveData<Boolean>()
-    val password = MutableLiveData<String>()
-    val userName = MutableLiveData<String>()
-    val role = MutableLiveData<String>()
     val token = MutableLiveData<String>()
     val responseSucces = MutableLiveData<Boolean>()
-    val progressLogin = MutableLiveData<Boolean>()
     val mMessageResponse = MutableLiveData<String>()
     val mRepository: Repository = Injection.provideRepository(context)
 
+    val username = MutableLiveData<String>()
     val jml = MutableLiveData<String>()
     val jmlMitra = MutableLiveData<String>()
     val jmlNilai = MutableLiveData<String>()
@@ -63,9 +59,7 @@ class DashboardViewModel(context: Application): AndroidViewModel(context) {
                 override fun onSuccess(data: BaseApiModel<dashboardModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
-//                        var value: Long = 0
                         dashboardList.clear()
-//                        value = Integer.parseInt(data.data?.jumlahNilaiKerjasama.safe()).toLong()
                         var formatter : DecimalFormat = DecimalFormat("#,###")
                         jmlMitra.value = data.data?.jumlahMitra.safe()
                         jmlNilai.value = "Rp. " + formatter.format(data.data?.jumlahNilaiKerjasama)

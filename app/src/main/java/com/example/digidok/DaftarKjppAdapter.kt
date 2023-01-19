@@ -9,8 +9,10 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class DaftarKjppAdapter(private val context: Context, private val DaftarKJPP: List<DaftarKjppModel>, private var mListener:onItemClickListener,val listener: (DaftarKjppModel) -> Unit)
+class DaftarKjppAdapter(private val context: Context, val daftarKjppViewModel: DaftarKjppViewModel, private var mListener:onItemClickListener,val listener: (DaftarKjppModel) -> Unit)
     : RecyclerView.Adapter<DaftarKjppAdapter.DaftarKJPPViewHolder>(){
+
+    private var DaftarKJPP: List<DaftarKjppModel> = daftarKjppViewModel.mData
 
     interface onItemClickListener{
         fun onItemClick(position: Int)

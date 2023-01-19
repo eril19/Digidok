@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.data.DataSource
@@ -25,20 +26,26 @@ import com.example.digidok.utils.Preferences.safe
 
 class DaftarKjppActivity : AppCompatActivity() {
 
-    var start: Int = 0
-    var row: Int = 0
-    var sortColumn: String = "no"
-    var order: String = "asc"
-    var statusFilter = "1"
-    var isLoading : Boolean = false
     var daftarKJPP: ArrayList<DaftarKjppModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
+
+    lateinit var mDaftarKjppViewModel: DaftarKjppViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daftar_kjpp)
 
         supportActionBar?.hide()
+
+        mDaftarKjppViewModel = ViewModelProvider(this@DaftarKjppActivity).get(DaftarKjppViewModel::class.java)
+        mDaftarKjppViewModel.token.value = Preferences.isToken(this@DaftarKjppActivity)
+        mDaftarKjppViewModel.row.value = "10"
+        mDaftarKjppViewModel.order.value = "asc"
+        mDaftarKjppViewModel.start.value = "0"
+        mDaftarKjppViewModel.sortColumn.value = "no"
+
+
 
         val header = findViewById<TextView>(R.id.header_title)
         header.setText("Daftar Kantor Jasa Penilaian Publik")
@@ -52,7 +59,8 @@ class DaftarKjppActivity : AppCompatActivity() {
         }
 
         setList()
-        getKJPP()
+        mDaftarKjppViewModel.getKJPP()
+        observeViewModel()
 
         val homeBtn : ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
@@ -88,7 +96,7 @@ class DaftarKjppActivity : AppCompatActivity() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = DaftarKjppAdapter(this, daftarKJPP,object:DaftarKjppAdapter.onItemClickListener{
+        recyclerview?.adapter = DaftarKjppAdapter(this, mDaftarKjppViewModel,object:DaftarKjppAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
                 val i = Intent(this@DaftarKjppActivity, KjppDetailActivity::class.java)
                 i.putExtra("daftarKJPP", daftarKJPP[position])
@@ -101,49 +109,11 @@ class DaftarKjppActivity : AppCompatActivity() {
 
     }
 
-
-    fun getKJPP() {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getKJPP(
-            token = Preferences.isToken(context = this@DaftarKjppActivity),
-            start = start,
-            row = 10,
-            order = order,
-            sortColumn = sortColumn,
-            object : DataSource.KJPPCallback {
-                override fun onSuccess(data: BaseApiModel<daftarKJPPModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        daftarKJPP.clear()
-                        data.data?.dataKjpp?.forEach {
-                            daftarKJPP?.add(
-                                DaftarKjppModel(
-                                    no_kjpp = it?.noInduk.safe(),
-                                    no_perizinan = it?.noIzin.safe(),
-                                    nama_kjpp = it?.nama.safe(),
-                                    tgl_perizinan = it?.tglIzin.safe(),
-                                    alamat = it?.alamat.safe(),
-                                    telp_kjpp = it?.phone.safe(),
-                                    klasifikasi_perizinan = it?.klasifikasiIzin.safe(),
-
-                                )
-                            )
-                        }
-                        setList()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@DaftarKjppActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
+    private fun observeViewModel() {
+        mDaftarKjppViewModel.mMessageResponse.observe(this){
+            Toast.makeText(this@DaftarKjppActivity, it, Toast.LENGTH_LONG).show()
+        }
     }
+
 
 }

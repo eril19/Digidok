@@ -102,7 +102,7 @@ class DashboardActivity : AppCompatActivity() {
         dateText.setText(currentDate)
 
         setList()
-//        mDashboardViewModel.getDashboard()
+        mDashboardViewModel.getDashboard()
         mDashboardViewModel.getProfileData()
         observeViewModel()
 
