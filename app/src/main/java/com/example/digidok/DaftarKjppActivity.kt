@@ -99,7 +99,7 @@ class DaftarKjppActivity : AppCompatActivity() {
         recyclerview?.adapter = DaftarKjppAdapter(this, mDaftarKjppViewModel,object:DaftarKjppAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
                 val i = Intent(this@DaftarKjppActivity, KjppDetailActivity::class.java)
-                i.putExtra("daftarKJPP", daftarKJPP[position])
+                i.putExtra("daftarKJPP", mDaftarKjppViewModel.mData[position])
                 startActivity(i)
             }
 
