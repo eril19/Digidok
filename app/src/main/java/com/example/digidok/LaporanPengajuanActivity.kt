@@ -1,7 +1,6 @@
 package com.example.digidok
 
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Typeface
 import com.example.digidok.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +12,12 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.Dashboard.DashboardActivity
+import com.example.digidok.Notification.NotificationActivity
+import com.example.digidok.Profile.ProfileActivity
+import com.example.digidok.SpinnerModel.KelurahanModel
+import com.example.digidok.SpinnerModel.KotaModel
+import com.example.digidok.SpinnerModel.TahunModel
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.*

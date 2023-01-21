@@ -44,7 +44,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DashboardActivity"
+            android:name=".Dashboard.DashboardActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -54,7 +54,7 @@
             android:name=".PengajuanKerjasamaDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".CekDokumenActivity"
+            android:name=".CekDokumen.CekDokumenActivity"
             android:exported="false" />
         <activity
             android:name=".LaporanAsetDetailActivity"
@@ -66,40 +66,40 @@
             android:name=".LaporanPengajuanActivity"
             android:exported="false" />
         <activity
-            android:name=".KjppDetailActivity"
+            android:name=".DaftarKJPP.KjppDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".MitraDetailActivity2"
+            android:name=".DaftarMitra.DaftarMitraDetailActivity2"
             android:exported="false" />
         <activity
-            android:name=".MitraDetailActivity"
+            android:name=".DaftarMitra.MitraDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".RepositoriDokumenActivity"
+            android:name=".RepositoriDokumen.RepositoriDokumenActivity"
             android:exported="false" />
         <activity
-            android:name=".DaftarKjppActivity"
+            android:name=".DaftarKJPP.DaftarKjppActivity"
             android:exported="false" />
         <activity
             android:name=".PengajuanKerjasamaActivity"
             android:exported="false" />
         <activity
-            android:name=".DaftarMitraActivity"
+            android:name=".DaftarMitra.DaftarMitraActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".Profile.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileOptionActivity"
+            android:name=".Profile.ProfileOptionActivity"
             android:exported="false" />
         <activity
-            android:name=".NotificationActivity"
+            android:name=".Notification.NotificationActivity"
             android:exported="false" />
         <activity
             android:name=".MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

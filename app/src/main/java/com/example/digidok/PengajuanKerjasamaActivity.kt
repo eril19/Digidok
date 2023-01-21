@@ -1,7 +1,6 @@
 package com.example.digidok
 
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Typeface
 import com.example.digidok.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
@@ -13,16 +12,16 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.Dashboard.DashboardActivity
+import com.example.digidok.Notification.NotificationActivity
+import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.BeritaModel
-import com.example.digidok.data.model.daftarMitraModel
 import com.example.digidok.data.model.daftarPengajuanKerjasamaModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
-import java.util.*
 import kotlin.collections.ArrayList
 
 class PengajuanKerjasamaActivity : AppCompatActivity() {
@@ -199,7 +198,10 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                         popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_edit).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_hapus).isVisible = false
-                    } else{
+                    } else if (Preferences.Role(this@PengajuanKerjasamaActivity).equals("Staff",ignoreCase = true)){
+                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
+                    }
+                    else{
                         popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
                     }
 

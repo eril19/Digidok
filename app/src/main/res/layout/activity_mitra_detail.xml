@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:context=".MitraDetailActivity">
+            tools:context=".DaftarMitra.MitraDetailActivity">
 
 <!--            <LinearLayout-->
 <!--                android:id="@+id/title_detail"-->

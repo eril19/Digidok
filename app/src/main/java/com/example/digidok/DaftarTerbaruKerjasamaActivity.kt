@@ -8,6 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.digidok.Dashboard.DashboardActivity
+import com.example.digidok.Dashboard.DashboardModel
+import com.example.digidok.Notification.NotificationActivity
+import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel

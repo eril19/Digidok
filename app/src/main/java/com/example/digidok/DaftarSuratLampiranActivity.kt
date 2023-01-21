@@ -12,6 +12,9 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.Dashboard.DashboardActivity
+import com.example.digidok.Notification.NotificationActivity
+import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
@@ -29,6 +32,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
     var hasilTelaah = ""
     var catatanPenelaahan : EditText ? = null
     var daftarSuratLampiran: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
+    var isLoading : Boolean = false
     private var recyclerview: RecyclerView? = null
     val listTelaah = arrayListOf("Disetujui", "Dikembalikan", "Ditolak")
 

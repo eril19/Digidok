@@ -3,6 +3,8 @@ package com.example.digidok
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.digidok.Dashboard.DashboardActivity
+import com.example.digidok.Login.LoginActivity
 import com.example.digidok.utils.Preferences
 import android.os.Handler as Handler1
 
