@@ -125,6 +125,24 @@ interface ApiService {
     ): Observable<BaseApiModel<UserModel?>>
 
     @FormUrlEncoded
+    @POST("formulir/dokumen/submit/ubah")
+    fun updatePengajuan(
+        @Header("Authorization") token: String,
+        @Field("idMitra") idMitra: String,
+        @Field("idKategoriPks") idKategoriPks: String,
+        @Field("idTujuanPks") idTujuanPks: String,
+        @Field("nomorSurat") nomorSurat: String,
+        @Field("tanggalSurat") tanggalSurat: String,
+        @Field("objek") objek: String,
+        @Field("nilai") nilai: String,
+        @Field("tanggalMulai") tanggalMulai: String,
+        @Field("tanggalAkhir") tanggalAkhir: String,
+        @Field("perihal") perihal: String,
+        @Field("id") id: String,
+        @Field("dokumen") dokumen: String,
+    ): Observable<BaseApiModel<UserModel?>>
+
+    @FormUrlEncoded
     @POST("formulir/dokumen/telaah")
     fun Telaah(
         @Header("Authorization") token: String,
@@ -147,6 +165,19 @@ interface ApiService {
         @Field("isAktif") isAktif:Int,
     ): Observable<BaseApiModel<setAktifNonAktifModel?>>
 
+    @FormUrlEncoded
+    @POST("formulir/dokumen/set-status")
+    fun setStatus(
+        @Header("Authorization") token: String,
+        @Field("idStatus") idStatus: Int,
+        @Field("id") id:String,
+    ): Observable<BaseApiModel<UserModel?>>
+
+    @GET("formulir/dokumen/get-notifikasi")
+    fun notification(
+        @Header("Authorization") token: String,
+        ): Observable<BaseApiModel<notificationModel?>>
+
     @GET("setup/mitra/get-data")
     fun daftarMitra(
         @Header("Authorization") token: String,
@@ -157,7 +188,6 @@ interface ApiService {
         @Query("statusFilter") statusFilter: Int,
 
         ): Observable<BaseApiModel<daftarMitraModel?>>
-
 
 
     @GET("formulir/dokumen/get-data")

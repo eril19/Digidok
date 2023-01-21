@@ -1,6 +1,7 @@
 package com.example.digidok.data
 
 import com.example.digidok.BuildConfig.VERSION_NAME
+import com.example.digidok.Notification.NotificationModel
 import com.example.digidok.data.model.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -97,6 +98,54 @@ object RemoteDataSource : DataSource {
             tanggalMulai = tanggalMulai,
             tanggalAkhir = tanggalAkhir,
             perihal = perihal,
+            dokumen = dokumen,
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<UserModel?>>() {
+                override fun onSuccess(model: BaseApiModel<UserModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+    override fun UpdatePengajuan(
+        token: String,
+        idMitra: String,
+        idKategoriPks: String,
+        idTujuanPks: String,
+        nomorSurat: String,
+        tanggalSurat: String,
+        objek: String,
+        nilai: String,
+        tanggalMulai: String,
+        tanggalAkhir: String,
+        perihal: String,
+        id: String,
+        dokumen: String,
+        callback: DataSource.updatePengajuanCallback
+    ) {
+        mApiServiceDev.updatePengajuan(
+            token = "Bearer $token",
+            idMitra = idMitra,
+            idKategoriPks = idKategoriPks,
+            idTujuanPks = idTujuanPks,
+            nomorSurat = nomorSurat,
+            tanggalSurat = tanggalSurat,
+            objek = objek,
+            nilai = nilai,
+            tanggalMulai = tanggalMulai,
+            tanggalAkhir = tanggalAkhir,
+            perihal = perihal,
+            id=id,
             dokumen = dokumen,
         )
             .subscribeOn(Schedulers.io())
@@ -389,6 +438,55 @@ object RemoteDataSource : DataSource {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : ApiCallback<BaseApiModel<UserModel?>>() {
                 override fun onSuccess(model: BaseApiModel<UserModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+    override fun SetStatus(
+        token: String,
+        idStatus: Int,
+        id: String,
+        callback: DataSource.setStatusCallback
+    ) {
+        mApiServiceDev.setStatus(
+            token = "Bearer $token",
+            idStatus = idStatus,
+            id=id,
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<UserModel?>>() {
+                override fun onSuccess(model: BaseApiModel<UserModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+    override fun getNotification(token: String, callback: DataSource.NotificationCallback) {
+        mApiServiceDev.notification(
+            token = "Bearer $token",
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<notificationModel?>>() {
+                override fun onSuccess(model: BaseApiModel<notificationModel?>) {
                     model?.let { callback.onSuccess(it) }
                 }
 

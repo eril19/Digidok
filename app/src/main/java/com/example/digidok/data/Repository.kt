@@ -43,6 +43,25 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         remoteDataSource.InsertPengajuan(token, idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, dokumen, callback)
     }
 
+    override fun UpdatePengajuan(
+        token: String,
+        idMitra: String,
+        idKategoriPks: String,
+        idTujuanPks: String,
+        nomorSurat: String,
+        tanggalSurat: String,
+        objek: String,
+        nilai: String,
+        tanggalMulai: String,
+        tanggalAkhir: String,
+        perihal: String,
+        id: String,
+        dokumen: String,
+        callback: DataSource.updatePengajuanCallback
+    ) {
+        remoteDataSource.UpdatePengajuan(token, idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, id, dokumen, callback)
+    }
+
     override fun InsertMitra(
         token: String,
         npwp: String,
@@ -151,6 +170,19 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         callback: DataSource.TelaahCallback
     ) {
         remoteDataSource.Telaah(token, hasilTelaah, catatan, callback)
+    }
+
+    override fun SetStatus(
+        token: String,
+        idStatus: Int,
+        id: String,
+        callback: DataSource.setStatusCallback
+    ) {
+        remoteDataSource.SetStatus(token, idStatus, id, callback)
+    }
+
+    override fun getNotification(token: String, callback: DataSource.NotificationCallback) {
+        remoteDataSource.getNotification(token, callback)
     }
 
     override fun getNPWP(token: String, noNpwp: String, callback: DataSource.NPWPCallback) {

@@ -63,11 +63,9 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
     var perihal= ""
     var dokumen= ""
 
-//    var buttonDokumen : Button ? = null
 
     var spinnerMitra : Spinner? = null
     val listMitra :ArrayList<ListMitraModel> = ArrayList()
-
 
     var spinnerSkemaPemanfaatan : Spinner? = null
     val listSkemaPemanfaatan :ArrayList<KategoriPKSModel> = ArrayList()
@@ -79,8 +77,6 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pengajuan_kerjasama_detail)
-
-
 
         supportActionBar?.hide()
 
@@ -156,9 +152,9 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
             getPengajuanDetail(idPkscheck)
         }
 
-//        getListMitra()
-//        getKategoriPKS()
-//        getTujuanPKS()
+        getListMitra()
+        getKategoriPKS()
+        getTujuanPKS()
 
         isStatusEdit = intent.getStringExtra("status") ?: ""
 
@@ -236,7 +232,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 }
 
                 if (isStatusEdit.equals("Edit", true)){
-//                    update
+                    updatePengajuan(idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, idPkscheck,dokumen)
                     startActivity(
                         Intent(
                             this@PengajuanKerjasamaDetailActivity,
@@ -244,6 +240,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                         )
                     )
                 }
+
                 else if(isStatusEdit.equals("Tambah",true)){
                     insertPengajuan(idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, dokumen)
                     startActivity(
@@ -557,6 +554,56 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
             perihal = perihal,
             dokumen = dokumen,
             object : DataSource.InsertPengajuanCallback {
+                override fun onSuccess(data: BaseApiModel<UserModel?>) {
+                    com.example.digidok.isLoading = false
+                    if (data.isSuccess) {
+                        Toast.makeText(this@PengajuanKerjasamaDetailActivity, "Data pengajuan berhasil ditambah!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onError(message: String) {
+                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
+                    com.example.digidok.isLoading = false
+                }
+
+                override fun onFinish() {
+                    com.example.digidok.isLoading = false
+                }
+
+            })
+    }
+
+    fun updatePengajuan(
+        idMitra: String,
+        idKategoriPks: String,
+        idTujuanPks: String,
+        nomorSurat: String,
+        tanggalSurat: String,
+        objek: String,
+        nilai: String,
+        tanggalMulai: String,
+        tanggalAkhir: String,
+        perihal: String,
+        id:String,
+        dokumen: String,
+    ){
+        com.example.digidok.isLoading = true
+        val mRepository: Repository = Injection.provideRepository(this)
+        mRepository.UpdatePengajuan(
+            token = Preferences.isToken(context = this@PengajuanKerjasamaDetailActivity),
+            idMitra = idMitra,
+            idKategoriPks = idKategoriPks,
+            idTujuanPks = idTujuanPks,
+            nomorSurat = nomorSurat,
+            tanggalSurat = tanggalSurat,
+            objek = objek,
+            nilai = nilai,
+            tanggalMulai = tanggalMulai,
+            tanggalAkhir = tanggalAkhir,
+            perihal = perihal,
+            id = id,
+            dokumen = dokumen,
+            object : DataSource.updatePengajuanCallback {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     com.example.digidok.isLoading = false
                     if (data.isSuccess) {

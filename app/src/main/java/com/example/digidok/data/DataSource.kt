@@ -42,6 +42,23 @@ interface DataSource : BaseDataSource {
         callback: InsertPengajuanCallback
     )
 
+    fun UpdatePengajuan(
+        token: String,
+        idMitra: String,
+        idKategoriPks: String,
+        idTujuanPks: String,
+        nomorSurat: String,
+        tanggalSurat: String,
+        objek: String,
+        nilai: String,
+        tanggalMulai: String,
+        tanggalAkhir: String,
+        perihal: String,
+        id:String,
+        dokumen: String,
+        callback: updatePengajuanCallback
+    )
+
     fun InsertMitra(
         token: String,
         npwp: String,
@@ -129,6 +146,14 @@ interface DataSource : BaseDataSource {
         callback: TelaahCallback
     )
 
+    fun SetStatus(
+        token: String,
+        idStatus: Int,
+        id: String,
+        callback: setStatusCallback
+    )
+
+    fun getNotification(token: String, callback: NotificationCallback)
     fun getNPWP(token: String, noNpwp: String, callback: NPWPCallback)
     fun getTahun(token: String, callback: tahunCallback)
     fun getListMitra(token: String, callback: listMitraCallback)
@@ -422,6 +447,30 @@ interface DataSource : BaseDataSource {
 
     interface TelaahCallback {
         fun onSuccess(data: BaseApiModel<UserModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface setStatusCallback {
+        fun onSuccess(data: BaseApiModel<UserModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface updatePengajuanCallback {
+        fun onSuccess(data: BaseApiModel<UserModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface NotificationCallback {
+        fun onSuccess(data: BaseApiModel<notificationModel?>)
 
         fun onError(message: String)
 
