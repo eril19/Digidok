@@ -1,12 +1,12 @@
-package com.example.digidok
+package com.example.digidok.LaporanAsetDikerjasamakan
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.R
 
 class LaporanAsetDetailAdapter(private val context: Context, private val LaporanAsetDetail: List<LaporanAsetDetailModel>, val listener: (LaporanAsetDetailModel) -> Unit)
     : RecyclerView.Adapter<LaporanAsetDetailAdapter.LaporanAsetDetailViewHolder>(){

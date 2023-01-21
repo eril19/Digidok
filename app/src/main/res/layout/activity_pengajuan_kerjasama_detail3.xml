@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:context=".DaftarSuratLampiranActivity">
+            tools:context=".DaftarPengajuanKerjasama.DaftarSuratLampiranActivity">
 
             <LinearLayout
                 android:layout_width="match_parent"

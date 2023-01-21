@@ -1,10 +1,9 @@
-package com.example.digidok
+package com.example.digidok.LaporanAsetDikerjasamakan
 
 import android.os.Parcel
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 
-class LaporanAsetModel(
+class LaporanAsetKerjasamaModel(
     val header_color : String = "",
     val id_pks : String= "",
     val nama_mitra: String= "",
@@ -35,12 +34,12 @@ class LaporanAsetModel(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<LaporanAsetModel> {
-        override fun createFromParcel(parcel: Parcel): LaporanAsetModel {
-            return LaporanAsetModel(parcel)
+    companion object CREATOR : Parcelable.Creator<LaporanAsetKerjasamaModel> {
+        override fun createFromParcel(parcel: Parcel): LaporanAsetKerjasamaModel {
+            return LaporanAsetKerjasamaModel(parcel)
         }
 
-        override fun newArray(size: Int): Array<LaporanAsetModel?> {
+        override fun newArray(size: Int): Array<LaporanAsetKerjasamaModel?> {
             return arrayOfNulls(size)
         }
     }

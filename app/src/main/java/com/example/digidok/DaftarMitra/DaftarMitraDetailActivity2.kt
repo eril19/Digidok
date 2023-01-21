@@ -146,9 +146,9 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
             pdfPic = findViewById(R.id.gambarpdf)
             tnc = findViewById(R.id.pdfcapt)
 
-            profilPT?.visibility = View.GONE
-            pdfPic?.visibility = View.GONE
-            tnc?.visibility = View.GONE
+//            profilPT?.visibility = View.GONE
+//            pdfPic?.visibility = View.GONE
+//            tnc?.visibility = View.GONE
         }
         else{
             header.setText("Detail Mitra")

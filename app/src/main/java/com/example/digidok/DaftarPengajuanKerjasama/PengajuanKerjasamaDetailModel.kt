@@ -1,8 +1,7 @@
-package com.example.digidok
+package com.example.digidok.DaftarPengajuanKerjasama
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
 
 data class PengajuanKerjasamaDetailModel(
     val kodeLokasi:String = "",

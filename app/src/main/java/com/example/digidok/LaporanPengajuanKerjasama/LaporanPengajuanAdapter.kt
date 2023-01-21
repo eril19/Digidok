@@ -1,4 +1,4 @@
-package com.example.digidok
+package com.example.digidok.LaporanPengajuanKerjasama
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.LaporanPengajuanModel
 import com.example.digidok.R
 import java.text.DecimalFormat
 

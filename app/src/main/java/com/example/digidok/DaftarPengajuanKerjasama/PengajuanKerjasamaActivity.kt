@@ -1,4 +1,4 @@
-package com.example.digidok
+package com.example.digidok.DaftarPengajuanKerjasama
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -10,18 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
-import com.example.digidok.data.DataSource
-import com.example.digidok.data.Repository
-import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.daftarPengajuanKerjasamaModel
-import com.example.digidok.utils.Injection
+import com.example.digidok.R
 import com.example.digidok.utils.Preferences
-import com.example.digidok.utils.Preferences.safe
 import kotlin.collections.ArrayList
 
 class PengajuanKerjasamaActivity : AppCompatActivity() {
@@ -35,6 +31,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
     var order: String = "asc"
     var spinnerStatus: Spinner? = null
     val listStatus = arrayListOf("SEMUA", "DRAFT", "MENUNGGU VALIDASI", "DISETUJUI")
+    lateinit var mPengajuanKerjasamaViewModel: PengajuanKerjasamaViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,22 +43,29 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        mPengajuanKerjasamaViewModel = ViewModelProvider(this@PengajuanKerjasamaActivity).get(PengajuanKerjasamaViewModel::class.java)
+        mPengajuanKerjasamaViewModel.token.value = Preferences.isToken(this@PengajuanKerjasamaActivity)
+        mPengajuanKerjasamaViewModel.row.value = "10"
+        mPengajuanKerjasamaViewModel.order.value = "asc"
+        mPengajuanKerjasamaViewModel.start.value = "0"
+        mPengajuanKerjasamaViewModel.sortColumn.value = "no"
+
         spinnerStatus = findViewById<Spinner>(R.id.spinner_status)
 
         spinnerStatus?.onItemSelectedListener = object:AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position != 0) {
                     if (position-1 == 0){
-                    getPengajuanKerjasama("SEMUA")
+                    mPengajuanKerjasamaViewModel.getPengajuanKerjasama("SEMUA")
                     }
                     else if(position-1 == 1){
-                        getPengajuanKerjasama("DRAFT")
+                        mPengajuanKerjasamaViewModel.getPengajuanKerjasama("DRAFT")
                     }
                     else if(position-1 == 2){
-                        getPengajuanKerjasama("MENUNGGU VALIDASI")
+                        mPengajuanKerjasamaViewModel.getPengajuanKerjasama("MENUNGGU VALIDASI")
                     }
                     else if(position-1 == 3){
-                        getPengajuanKerjasama("DISETUJUI")
+                        mPengajuanKerjasamaViewModel.getPengajuanKerjasama("DISETUJUI")
                     }
                 }
             }
@@ -121,7 +125,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
 
         setSpinnerKategori()
         setList()
-        getPengajuanKerjasama("SEMUA")
+            mPengajuanKerjasamaViewModel.getPengajuanKerjasama("SEMUA")
 
     }
 
@@ -158,8 +162,6 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
             }
     }
 
-
-
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
     fun setList() {
@@ -169,7 +171,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
 
         recyclerview?.adapter = PengajuanKerjasamaAdapter(
             this,
-            pengajuanKerjasama,
+            mPengajuanKerjasamaViewModel,
             object : PengajuanKerjasamaAdapter.onItemClickListener {
 
                 override fun onItemClick(position: Int) {
@@ -244,51 +246,8 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
         }
     }
 
-    fun getPengajuanKerjasama(status:String) {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getDaftarPengajuanKerjasama(
-            token = Preferences.isToken(context = this@PengajuanKerjasamaActivity),
-            start = start,
-            row = 10,
-            order = order,
-            sortColumn = sortColumn,
-            search = "",
-            statusFilter = status,
-            object : DataSource.daftarPengajuanCallback {
-                override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        pengajuanKerjasama.clear()
-                        data.data?.dataDokumen?.forEach {
-                            pengajuanKerjasama?.add(
-                                PengajuanKerjasamaModel(
-                                    header_color = it?.statusLabel.safe(),
-                                    no_pks = it?.idPks.safe(),
-                                    nama_mitra = it?.nama.safe(),
-                                    periodeAwal = it?.periodeAwal.safe(),
-                                    periodeAkhir = it?.periodeAkhir.safe(),
-                                )
-                            )
-                        }
-                        setList()
-                    }
-            }
-
-            override fun onError(message: String) {
-                isLoading = false
-                Toast.makeText(this@PengajuanKerjasamaActivity, message, Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onFinish() {
-                isLoading = false
-            }
-
-        })
-    }
-
     override fun onResume() {
         super.onResume()
-        getPengajuanKerjasama("SEMUA")
+            mPengajuanKerjasamaViewModel.getPengajuanKerjasama("SEMUA")
     }
 }

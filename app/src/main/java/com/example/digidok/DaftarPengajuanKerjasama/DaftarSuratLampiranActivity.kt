@@ -1,4 +1,4 @@
-package com.example.digidok
+package com.example.digidok.DaftarPengajuanKerjasama
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
+import com.example.digidok.R
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
@@ -41,6 +42,8 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pengajuan_kerjasama_detail3)
 
         supportActionBar?.hide()
+        val header = findViewById<TextView>(R.id.header_title)
+        header.setText("Detail Pengajuan Kerjasama")
         var simpan = findViewById<Button>(R.id.simpanBtn)
 
         hideTelaah = intent.getStringExtra("status")?:""
@@ -52,6 +55,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
         if(hideTelaah.equals("Telaah",true)){
             menuTelaah.visibility = View.VISIBLE
+            header.setText("Telaah Pengajuan Kerjasama")
         } else {
             menuTelaah.visibility = View.GONE
         }
@@ -71,8 +75,6 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         onBackPressed()
         }
 
-        val header = findViewById<TextView>(R.id.header_title)
-        header.setText("Detail Pengajuan Kerjasama")
 
         val homeBtn : ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
@@ -231,11 +233,14 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
     fun setSpinnerKategori() {
         val arrayString = arrayListOf("Pilih hasil telaah")
         arrayString.addAll(listTelaah)
-        spinnerTelaah?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayString) {
+        spinnerTelaah?.adapter = object : ArrayAdapter<String>(this,
+            R.layout.dd_text_status, arrayString) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
+                            R.color.black
+                        ))
                         try {
                             convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
                         } catch (e: Exception) {

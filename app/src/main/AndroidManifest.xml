@@ -23,7 +23,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DaftarSuratLampiranActivity"
+            android:name=".DaftarPengajuanKerjasama.DaftarSuratLampiranActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -37,7 +37,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DataAsetdikerjasamakanActivity"
+            android:name=".DaftarPengajuanKerjasama.DataAsetdikerjasamakanActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -51,19 +51,19 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".PengajuanKerjasamaDetailActivity"
+            android:name=".DaftarPengajuanKerjasama.PengajuanKerjasamaDetailActivity"
             android:exported="false" />
         <activity
             android:name=".CekDokumen.CekDokumenActivity"
             android:exported="false" />
         <activity
-            android:name=".LaporanAsetDetailActivity"
+            android:name=".LaporanAsetDikerjasamakan.LaporanAsetDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".LaporanAsetActivity"
+            android:name=".LaporanAsetDikerjasamakan.LaporanAsetKerjasamaActivity"
             android:exported="false" />
         <activity
-            android:name=".LaporanPengajuanActivity"
+            android:name=".LaporanPengajuanKerjasama.LaporanPengajuanActivity"
             android:exported="false" />
         <activity
             android:name=".DaftarKJPP.KjppDetailActivity"
@@ -81,7 +81,7 @@
             android:name=".DaftarKJPP.DaftarKjppActivity"
             android:exported="false" />
         <activity
-            android:name=".PengajuanKerjasamaActivity"
+            android:name=".DaftarPengajuanKerjasama.PengajuanKerjasamaActivity"
             android:exported="false" />
         <activity
             android:name=".DaftarMitra.DaftarMitraActivity"

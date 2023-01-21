@@ -1,4 +1,4 @@
-package com.example.digidok
+package com.example.digidok.DaftarPengajuanKerjasama
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
+import com.example.digidok.R
 import com.example.digidok.SpinnerModel.KategoriPKSModel
 import com.example.digidok.SpinnerModel.ListMitraModel
 import com.example.digidok.SpinnerModel.TujuanPKSModel
@@ -262,11 +263,13 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
             simpan.visibility = View.GONE
 
             spinnerTujuan?.isEnabled = false
-            spinnerTujuan?.background = ContextCompat.getDrawable(this,R.drawable.custom_profile)
+            spinnerTujuan?.background = ContextCompat.getDrawable(this, R.drawable.custom_profile)
             spinnerMitra?.isEnabled = false
-            spinnerMitra?.background = ContextCompat.getDrawable(this,R.drawable.custom_profile)
+            spinnerMitra?.background = ContextCompat.getDrawable(this, R.drawable.custom_profile)
             spinnerSkemaPemanfaatan?.isEnabled = false
-            spinnerSkemaPemanfaatan?.background = ContextCompat.getDrawable(this,R.drawable.custom_profile)
+            spinnerSkemaPemanfaatan?.background = ContextCompat.getDrawable(this,
+                R.drawable.custom_profile
+            )
             skema?.isEnabled = false
             nama_mitra?.isEnabled = false
             ETtujuan?.isEnabled = false
@@ -578,11 +581,14 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         arrayStringMitra.addAll(listMitra.map {
             it.label
         })
-        spinnerMitra?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringMitra) {
+        spinnerMitra?.adapter = object : ArrayAdapter<String>(this,
+            R.layout.dd_text_status, arrayStringMitra) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
+                            R.color.black
+                        ))
                         try {
                             convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
                         } catch (e: Exception) {
@@ -618,11 +624,14 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         arrayStringTujuan.addAll(listTujuan.map {
             it.label
         })
-        spinnerTujuan?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringTujuan) {
+        spinnerTujuan?.adapter = object : ArrayAdapter<String>(this,
+            R.layout.dd_text_status, arrayStringTujuan) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
+                            R.color.black
+                        ))
                         try {
                             convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
                         } catch (e: Exception) {
@@ -657,11 +666,14 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         arrayStringSkema.addAll(listSkemaPemanfaatan.map {
             it.label
         })
-        spinnerSkemaPemanfaatan?.adapter = object : ArrayAdapter<String>(this, R.layout.dd_text_status, arrayStringSkema) {
+        spinnerSkemaPemanfaatan?.adapter = object : ArrayAdapter<String>(this,
+            R.layout.dd_text_status, arrayStringSkema) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
+                            R.color.black
+                        ))
                         try {
                             convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
                         } catch (e: Exception) {

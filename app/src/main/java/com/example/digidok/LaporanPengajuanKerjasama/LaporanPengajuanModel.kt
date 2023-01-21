@@ -1,8 +1,7 @@
-package com.example.digidok
+package com.example.digidok.LaporanPengajuanKerjasama
 
 import android.os.Parcel
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 
 class LaporanPengajuanModel(
     val header_color : String = "",

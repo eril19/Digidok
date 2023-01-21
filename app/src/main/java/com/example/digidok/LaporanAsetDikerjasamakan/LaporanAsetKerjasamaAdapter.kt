@@ -1,4 +1,4 @@
-package com.example.digidok
+package com.example.digidok.LaporanAsetDikerjasamakan
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.R
 import java.text.DecimalFormat
 
-class LaporanAsetAdapter(private val context: Context, private val LaporanAset: List<LaporanAsetModel>, private var mListener: onItemClickListener,
-                         val listener: (LaporanAsetModel) -> Unit)
-    : RecyclerView.Adapter<LaporanAsetAdapter.LaporanAsetViewHolder>(){
+class LaporanAsetKerjasamaAdapter(private val context: Context, private val LaporanAset: List<LaporanAsetKerjasamaModel>, private var mListener: onItemClickListener,
+                                  val listener: (LaporanAsetKerjasamaModel) -> Unit)
+    : RecyclerView.Adapter<LaporanAsetKerjasamaAdapter.LaporanAsetViewHolder>(){
 
 //    private lateinit var mListener: onItemClickListener
 
@@ -45,7 +45,7 @@ class LaporanAsetAdapter(private val context: Context, private val LaporanAset: 
             }
         }
 
-        fun bindView(laporanAsetModel: LaporanAsetModel, listener: (LaporanAsetModel) -> Unit){
+        fun bindView(laporanAsetModel: LaporanAsetKerjasamaModel, listener: (LaporanAsetKerjasamaModel) -> Unit){
             id_pks.text = laporanAsetModel.id_pks
             pks = laporanAsetModel.id_pks
             nama_mitra.text = laporanAsetModel.nama_mitra

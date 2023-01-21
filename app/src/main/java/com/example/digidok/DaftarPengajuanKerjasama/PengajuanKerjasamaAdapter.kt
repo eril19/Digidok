@@ -1,5 +1,5 @@
 
-package com.example.digidok
+package com.example.digidok.DaftarPengajuanKerjasama
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,14 +10,15 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.DaftarKJPP.DaftarKjppModel
+import com.example.digidok.R
 import java.text.SimpleDateFormat
 
-class PengajuanKerjasamaAdapter(private val context: Context, private val PengajuanKerja: List<PengajuanKerjasamaModel>, private var mListener: onItemClickListener,
-                         val listener: (PengajuanKerjasamaModel) -> Unit)
+class PengajuanKerjasamaAdapter(private val context: Context, val pengajuanKerjasamaViewModel: PengajuanKerjasamaViewModel, private var mListener: onItemClickListener,
+                                val listener: (PengajuanKerjasamaModel) -> Unit)
     : RecyclerView.Adapter<PengajuanKerjasamaAdapter.PengajuanKerjasamaViewHolder>(){
 
-//    private lateinit var mListener: onItemClickListener
-
+    private var PengajuanKerja: List<PengajuanKerjasamaModel> = pengajuanKerjasamaViewModel.mData
 
     interface onItemClickListener{
         fun onItemClick(position: Int)

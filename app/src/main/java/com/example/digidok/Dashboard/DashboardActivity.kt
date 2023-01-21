@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.*
 import com.example.digidok.DaftarKJPP.DaftarKjppActivity
 import com.example.digidok.DaftarMitra.DaftarMitraActivity
+import com.example.digidok.DaftarPengajuanKerjasama.PengajuanKerjasamaActivity
+import com.example.digidok.LaporanAsetDikerjasamakan.LaporanAsetKerjasamaActivity
+import com.example.digidok.LaporanPengajuanKerjasama.LaporanPengajuanActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.RepositoriDokumen.RepositoriDokumenActivity
@@ -74,7 +77,7 @@ class DashboardActivity : AppCompatActivity() {
 
         val laporanAsetBtn : ImageButton = findViewById(R.id.laporanAsetBtn)
         laporanAsetBtn.setOnClickListener {
-            val i : Intent = Intent(this@DashboardActivity, LaporanAsetActivity::class.java)
+            val i : Intent = Intent(this@DashboardActivity, LaporanAsetKerjasamaActivity::class.java)
             startActivity(i)
         }
 

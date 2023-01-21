@@ -1,4 +1,4 @@
-package com.example.digidok
+package com.example.digidok.DaftarPengajuanKerjasama
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.R
 
 class DataAsetdiKerjasamakanAdapter(private val context: Context, private val PengajuanKerjaDetail: List<PengajuanKerjasamaDetailModel>,
                                     private var mListener: onItemClickListener, val listener: (PengajuanKerjasamaDetailModel) -> Unit):

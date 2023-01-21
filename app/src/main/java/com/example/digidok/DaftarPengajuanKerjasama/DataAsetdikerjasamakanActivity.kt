@@ -1,4 +1,4 @@
-package com.example.digidok
+package com.example.digidok.DaftarPengajuanKerjasama
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
+import com.example.digidok.R
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.*
@@ -98,7 +99,8 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = DataAsetdiKerjasamakanAdapter(this, dataAset, object:DataAsetdiKerjasamakanAdapter.onItemClickListener{
+        recyclerview?.adapter = DataAsetdiKerjasamakanAdapter(this, dataAset, object:
+            DataAsetdiKerjasamakanAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
 //                TODO("Not yet implemented")
             }

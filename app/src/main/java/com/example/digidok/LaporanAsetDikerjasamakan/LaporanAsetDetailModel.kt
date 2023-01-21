@@ -1,4 +1,4 @@
-package com.example.digidok
+package com.example.digidok.LaporanAsetDikerjasamakan
 
 import android.os.Parcel
 import android.os.Parcelable

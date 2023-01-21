@@ -1,4 +1,4 @@
-package com.example.digidok
+package com.example.digidok.LaporanAsetDikerjasamakan
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
+import com.example.digidok.R
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
@@ -28,7 +29,7 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
     var row: Int = 0
     var sortColumn: String = "no"
     var order: String = "asc"
-    var data:LaporanAsetModel? = null
+    var data: LaporanAsetKerjasamaModel? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

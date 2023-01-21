@@ -1,9 +1,7 @@
-package com.example.digidok
+package com.example.digidok.DaftarPengajuanKerjasama
 
 import android.os.Parcel
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-import java.util.Date
 
 
 data class PengajuanKerjasamaModel(

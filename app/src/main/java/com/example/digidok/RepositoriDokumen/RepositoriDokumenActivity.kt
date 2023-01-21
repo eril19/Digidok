@@ -10,12 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.*
 import com.example.digidok.CekDokumen.CekDokumenActivity
 import com.example.digidok.DaftarKJPP.DaftarKjppViewModel
 import com.example.digidok.Dashboard.DashboardActivity
+import com.example.digidok.Dashboard.DashboardViewModel
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.SpinnerModel.KelurahanModel
@@ -30,7 +32,7 @@ import com.example.digidok.utils.Preferences.safe
 
 class RepositoriDokumenActivity : AppCompatActivity() {
     var isLoading : Boolean = false
-    var repositoriDokumen: ArrayList<RepositoriDokumenModel> = ArrayList()
+//    var repositoriDokumen: ArrayList<RepositoriDokumenModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
     lateinit var mRepositoriDokumenViewModel: RepositoriDokumenViewModel
 
@@ -45,13 +47,10 @@ class RepositoriDokumenActivity : AppCompatActivity() {
     var kelurahan = ""
 
     var spinnerTahun : Spinner? = null
-    val listTahun : ArrayList<TahunModel> = ArrayList()
 
     var spinnerKota : Spinner? = null
-    val listKota : ArrayList<KotaModel> = ArrayList()
 
     var spinnerKelurahan : Spinner? = null
-    val listKelurahan : ArrayList<KelurahanModel> = ArrayList()
 
     var spinnerStatus : Spinner? = null
     val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT", "DIKEMBALIKAN","DISETUJUI")
@@ -62,8 +61,8 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         setContentView(binding.root)
         setContentView(R.layout.activity_repositori_dokumen)
 
-        val adapter = ArrayAdapter(applicationContext, R.layout.dd_text_status, listTahun)
 
+        mRepositoriDokumenViewModel = ViewModelProvider(this@RepositoriDokumenActivity).get(RepositoriDokumenViewModel::class.java)
         mRepositoriDokumenViewModel.token.value = Preferences.isToken(this@RepositoriDokumenActivity)
         mRepositoriDokumenViewModel.row.value = "10"
         mRepositoriDokumenViewModel.order.value = "asc"
@@ -84,7 +83,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         spinnerTahun?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
-                    tahun = listTahun.get(position-1).value.safe().toInt()
+                    tahun = mRepositoriDokumenViewModel.mDataTahun.get(position-1).value.safe().toInt()
                     mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
 //                    minta  filter kota
                 }
@@ -99,7 +98,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         spinnerKota?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
-                    kota = listKota.get(position-1).value.safe()
+                    kota = mRepositoriDokumenViewModel.mDataKota.get(position-1).value.safe()
                     mRepositoriDokumenViewModel.getKelurahan(kota)
                     mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
                 }
@@ -113,7 +112,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         spinnerKelurahan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
-                    kelurahan = listKelurahan.get(position-1).value.safe()
+                    kelurahan = mRepositoriDokumenViewModel.mDataKelurahan.get(position-1).value.safe()
                     mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
                 }
             }
@@ -196,7 +195,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
 
     fun setSpinnerTahun() {
         val arrayStringTahun = arrayListOf("Pilih Tahun")
-        arrayStringTahun.addAll(listTahun.map {
+        arrayStringTahun.addAll(mRepositoriDokumenViewModel.mDataTahun.map {
             it.label
         })
         spinnerTahun?.adapter = object : ArrayAdapter<String>(this,
@@ -225,7 +224,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
 
     fun setSpinnerWilayah() {
         val arrayStringWilayah = arrayListOf("Pilih Wilayah")
-        arrayStringWilayah.addAll(listKota.map {
+        arrayStringWilayah.addAll(mRepositoriDokumenViewModel.mDataKota.map {
             it.label
         })
 
@@ -255,7 +254,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
 
     fun setSpinnerKelurahan() {
         val arrayStringKelurahan = arrayListOf("Pilih Kelurahan")
-        arrayStringKelurahan.addAll(listKelurahan.map {
+        arrayStringKelurahan.addAll(mRepositoriDokumenViewModel.mDataKelurahan.map {
             it.label
         })
 
