@@ -195,11 +195,12 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                     if (statusPengajuan.equals("Dikirim",true)) {
                         popupPencet.menu.findItem(R.id.menu_edit).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_hapus).isVisible = false
-
+                        popupPencet.menu.findItem(R.id.menu_kirim).isVisible = false
                     } else if(statusPengajuan.equals("Disetujui",true)) {
                         popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_edit).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_hapus).isVisible = false
+                        popupPencet.menu.findItem(R.id.menu_kirim).isVisible = false
                     } else if (Preferences.Role(this@PengajuanKerjasamaActivity).equals("Staff",ignoreCase = true)){
                         popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
                     }
