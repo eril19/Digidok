@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.DaftarKJPP.DaftarKjppModel
 import com.example.digidok.R
 import java.text.DecimalFormat
 
-class LaporanPengajuanAdapter(private val context: Context, private val LaporanPengajuan: List<LaporanPengajuanModel>, val listener: (LaporanPengajuanModel) -> Unit)
+class LaporanPengajuanAdapter(private val context: Context, val laporanPengajuanViewModel: LaporanPengajuanViewModel, val listener: (LaporanPengajuanModel) -> Unit)
     : RecyclerView.Adapter<LaporanPengajuanAdapter.LaporanPengajuanViewHolder>(){
+
+    private var LaporanPengajuan: List<LaporanPengajuanModel> = laporanPengajuanViewModel.mData
 
     class LaporanPengajuanViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val id_mitra = view.findViewById<TextView>(R.id.id_mitra)

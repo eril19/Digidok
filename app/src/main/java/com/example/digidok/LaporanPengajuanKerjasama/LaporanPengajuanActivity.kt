@@ -10,8 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.DaftarKJPP.DaftarKjppViewModel
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
@@ -27,9 +29,8 @@ import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
 class LaporanPengajuanActivity : AppCompatActivity() {
-    var isLoading : Boolean = false
-    var laporanPengajuan: ArrayList<LaporanPengajuanModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
+    lateinit var mLaporanPengajuanViewModel: LaporanPengajuanViewModel
 
     var start: Int = 0
     var row: Int = 0
@@ -59,8 +60,15 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         setContentView(binding.root)
         setContentView(R.layout.activity_laporan_pengajuan)
 
-        getTahun()
-        getKota()
+        mLaporanPengajuanViewModel = ViewModelProvider(this@LaporanPengajuanActivity).get(LaporanPengajuanViewModel::class.java)
+        mLaporanPengajuanViewModel.token.value = Preferences.isToken(this@LaporanPengajuanActivity)
+        mLaporanPengajuanViewModel.row.value = "10"
+        mLaporanPengajuanViewModel.order.value = "asc"
+        mLaporanPengajuanViewModel.start.value = "0"
+        mLaporanPengajuanViewModel.sortColumn.value = "no"
+
+        mLaporanPengajuanViewModel.getTahun()
+        mLaporanPengajuanViewModel.getKota()
 
         val adapter = ArrayAdapter(applicationContext, R.layout.dd_text_status, listTahun)
         val header = findViewById<TextView>(R.id.header_title)
@@ -75,8 +83,8 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         spinnerTahun?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
-                    tahun = listTahun.get(position-1).value.safe().toInt()
-                    getLaporanKerjasama(status,tahun,kelurahan)
+                    tahun = mLaporanPengajuanViewModel.mDataTahun.get(position-1).value.safe().toInt()
+                    mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan)
 //                    minta  filter kota
                 }
 
@@ -90,9 +98,9 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         spinnerKota?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
-                    kota = listKota.get(position-1).value.safe()
-                    getKelurahan(kota)
-                    getLaporanKerjasama(status,tahun,kelurahan)
+                    kota = mLaporanPengajuanViewModel.mDataKota.get(position-1).value.safe()
+                    mLaporanPengajuanViewModel.getKelurahan(kota)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan)
                 }
             }
 
@@ -104,8 +112,8 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         spinnerKelurahan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
-                    kelurahan = listKelurahan.get(position-1).value.safe()
-                    getLaporanKerjasama(status,tahun,kelurahan)
+                    kelurahan = mLaporanPengajuanViewModel.mDataKelurahan.get(position-1).value.safe()
+                    mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan)
                 }
             }
 
@@ -119,23 +127,23 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position-1 == 0){
                     status = "SEMUA"
-                    getLaporanKerjasama("SEMUA",tahun,kelurahan)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama("SEMUA",tahun,kelurahan)
                 }
                 else if(position-1 == 1){
                     status = "DIKIRIM"
-                    getLaporanKerjasama("DIKIRIM",tahun,kelurahan)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama("DIKIRIM",tahun,kelurahan)
                 }
                 else if(position-1 == 2){
                     status = "DRAFT"
-                    getLaporanKerjasama("DRAFT",tahun,kelurahan)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama("DRAFT",tahun,kelurahan)
                 }
                 else if(position-1 == 3){
                     status = "DIKEMBALIKAN"
-                    getLaporanKerjasama("DIKEMBALIKAN",tahun,kelurahan)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama("DIKEMBALIKAN",tahun,kelurahan)
                 }
                 else if(position-1 == 4){
                     status = "DISETUJUI"
-                    getLaporanKerjasama("DISETUJUI",tahun,kelurahan)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama("DISETUJUI",tahun,kelurahan)
                 }
             }
 
@@ -185,12 +193,12 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         }
 
         setList()
-        getLaporanKerjasama(status, tahun, kelurahan)
+        mLaporanPengajuanViewModel.getLaporanKerjasama(status, tahun, kelurahan)
     }
 
     fun setSpinnerTahun() {
         val arrayStringTahun = arrayListOf("Pilih Tahun")
-        arrayStringTahun.addAll(listTahun.map {
+        arrayStringTahun.addAll(mLaporanPengajuanViewModel.mDataTahun.map {
             it.label
         })
         spinnerTahun?.adapter = object : ArrayAdapter<String>(this,
@@ -219,7 +227,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
 
     fun setSpinnerWilayah() {
         val arrayStringWilayah = arrayListOf("Pilih Wilayah")
-        arrayStringWilayah.addAll(listKota.map {
+        arrayStringWilayah.addAll(mLaporanPengajuanViewModel.mDataKota.map {
             it.label
         })
 
@@ -249,7 +257,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
 
     fun setSpinnerKelurahan() {
         val arrayStringKelurahan = arrayListOf("Pilih Kelurahan")
-        arrayStringKelurahan.addAll(listKelurahan.map {
+        arrayStringKelurahan.addAll(mLaporanPengajuanViewModel.mDataKelurahan.map {
             it.label
         })
 
@@ -310,164 +318,8 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         recyclerview = findViewById<RecyclerView>(R.id.rv_list_laporan_pengajuan)
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
-        recyclerview?.adapter = LaporanPengajuanAdapter(this, laporanPengajuan){
+        recyclerview?.adapter = LaporanPengajuanAdapter(this, mLaporanPengajuanViewModel){
         }
     }
 
-    fun getLaporanKerjasama(statusFitler:String,tahunFilter:Int,kelurahanFilter:String) {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getLaporanKerjasama(
-            token = Preferences.isToken(context = this@LaporanPengajuanActivity),
-            start = start,
-            row = 10,
-            order = order,
-            sortColumn = sortColumn,
-            search = "",
-            statusFilter = statusFitler,
-            tahunFilter = tahunFilter,
-            kelurahanFilter = kelurahanFilter,
-            object : DataSource.laporanKerjasamaCallback {
-                override fun onSuccess(data: BaseApiModel<laporanKerjasamaModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        laporanPengajuan.clear()
-                        data.data?.dataDokumen?.forEach {
-                            laporanPengajuan?.add(
-                                LaporanPengajuanModel(
-                                    header_color = it?.statusLabel.safe(),
-                                    id_pks = it?.idPks.safe(),
-                                    jenis_kerjasama = it?.kategoriPks.safe(),
-                                    no_surat = it?.noPks.safe(),
-                                    jenis_bmd = it?.objekPks.safe(),
-                                    nilai_pks = it?.nilaiPks.toString().safe(),
-                                    nama_mitra = it?.namaMitra.safe(),
-                                    perihal = it?.perihalPks.safe(),
-                                    id_mitra = it?.idMitra.safe(),
-                                    alamatMitra = it?.alamatMitra.safe(),
-                                    periodeAkhir = it?.periodeAkhir.safe(),
-                                    periodeAwal = it?.periodeAwal.safe()
-                                )
-                            )
-                        }
-                        setList()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@LaporanPengajuanActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
-    }
-
-    fun getTahun() {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getTahun(
-            token = Preferences.isToken(context = this@LaporanPengajuanActivity),
-            object : DataSource.tahunCallback {
-                override fun onSuccess(data: BaseApiModel<tahunModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        listTahun.clear()
-                        data.data?.dataTahun?.forEach {
-                            listTahun?.add(
-                                TahunModel(
-                                    value = it?.value.safe(),
-                                    label  =it?.label.safe()
-                                )
-                            )
-                        }
-                        setList()
-                        setSpinnerTahun()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@LaporanPengajuanActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
-    }
-
-    fun getKelurahan(idKota:String) {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getKelurahan(
-            token = Preferences.isToken(context = this@LaporanPengajuanActivity),
-            idKota = idKota,
-            object : DataSource.kelurahanCallback {
-                override fun onSuccess(data: BaseApiModel<kelurahanModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        data.data?.dataKelurahan?.forEach {
-                            listKelurahan?.add(
-                                KelurahanModel(
-                                    value = it?.value.safe(),
-                                    label  =it?.label.safe()
-                                )
-                            )
-                        }
-                        setList()
-                        setSpinnerKelurahan()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@LaporanPengajuanActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
-    }
-
-    fun getKota() {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getKota(
-            token = Preferences.isToken(context = this@LaporanPengajuanActivity),
-            object : DataSource.kotaCallback {
-                override fun onSuccess(data: BaseApiModel<kotaModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        listKota.clear()
-                        data.data?.dataKota?.forEach {
-                            listKota?.add(
-                                KotaModel(
-                                    value = it?.value.safe(),
-                                    label  =it?.label.safe()
-                                )
-                            )
-                        }
-                        setList()
-                        setSpinnerWilayah()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@LaporanPengajuanActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
-    }
 }

@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.DaftarKJPP.DaftarKjppModel
 import com.example.digidok.R
 
-class LaporanAsetDetailAdapter(private val context: Context, private val LaporanAsetDetail: List<LaporanAsetDetailModel>, val listener: (LaporanAsetDetailModel) -> Unit)
+class LaporanAsetDetailAdapter(private val context: Context, val laporanAsetKerjasamaViewModel: LaporanAsetKerjasamaViewModel, val listener: (LaporanAsetDetailModel) -> Unit)
     : RecyclerView.Adapter<LaporanAsetDetailAdapter.LaporanAsetDetailViewHolder>(){
+
+    private var LaporanAsetDetail: List<LaporanAsetDetailModel> = laporanAsetKerjasamaViewModel.mDataDetail
 
     class LaporanAsetDetailViewHolder(view: View): RecyclerView.ViewHolder(view) {
 //        val num_laporan = view.findViewById<TextView>(R.id.num_laporan)

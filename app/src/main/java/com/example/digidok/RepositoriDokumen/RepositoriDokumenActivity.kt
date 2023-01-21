@@ -31,8 +31,6 @@ import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
 class RepositoriDokumenActivity : AppCompatActivity() {
-    var isLoading : Boolean = false
-//    var repositoriDokumen: ArrayList<RepositoriDokumenModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
     lateinit var mRepositoriDokumenViewModel: RepositoriDokumenViewModel
 

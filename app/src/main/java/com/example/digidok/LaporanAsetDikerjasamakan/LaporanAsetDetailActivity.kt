@@ -22,8 +22,7 @@ import com.example.digidok.utils.Preferences.safe
 import java.text.DecimalFormat
 
 class LaporanAsetDetailActivity : AppCompatActivity() {
-    var isLoading : Boolean = false
-    var laporanAsetDetail: ArrayList<LaporanAsetDetailModel> = ArrayList()
+    lateinit var mLaporanAsetKerjasamaViewModel: LaporanAsetKerjasamaViewModel
     private var recyclerview: RecyclerView? = null
     var start: Int = 0
     var row: Int = 0
@@ -89,7 +88,7 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
         }
 
         setList()
-        getLaporanAsetDetail()
+        mLaporanAsetKerjasamaViewModel.getLaporanAsetDetail()
     }
 
     fun setList(){
@@ -97,56 +96,9 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = LaporanAsetDetailAdapter(this,  laporanAsetDetail){
+        recyclerview?.adapter = LaporanAsetDetailAdapter(this,  mLaporanAsetKerjasamaViewModel){
 
         }
     }
 
-    fun getLaporanAsetDetail() {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getLaporanAsetDikerjasamakan(
-            token = Preferences.isToken(context = this@LaporanAsetDetailActivity),
-            start = start,
-            row = 10,
-            order = order,
-            sortColumn = sortColumn,
-            search = "",
-            statusFilter = "SEMUA",
-            tahunFilter = 2017,
-            kelurahanFilter = "",
-            object : DataSource.laporanAsetDikerjasamakanCallback {
-                override fun onSuccess(data: BaseApiModel<laporanAsetDikerjasamakanModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        laporanAsetDetail.clear()
-                        data.data?.dataDokumen?.forEach {
-                                it?.dataDetail?.forEach{
-                                laporanAsetDetail?.add(
-                                LaporanAsetDetailModel(
-                                    kode_barang = it?.kobar.safe(),
-                                    nama_bmd = it?.nabar.safe(),
-                                    kode_lokasi = it?.kolok.safe(),
-                                    nama_lokasi = it?.nalok.safe(),
-                                    luas_bmd = it?.luas.safe() + " "+ it?.satuan.safe(),
-                                    keterangan_bmd = it?.keterangan.safe(),
-                                )
-                            )
-                        setList()
-                        }
-                    }
-                }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@LaporanAsetDetailActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
-    }
 }

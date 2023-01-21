@@ -8,14 +8,16 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.DaftarKJPP.DaftarKjppModel
 import com.example.digidok.R
 import java.text.DecimalFormat
 
-class LaporanAsetKerjasamaAdapter(private val context: Context, private val LaporanAset: List<LaporanAsetKerjasamaModel>, private var mListener: onItemClickListener,
+class LaporanAsetKerjasamaAdapter(private val context: Context, val laporanAsetKerjasamaViewModel: LaporanAsetKerjasamaViewModel, private var mListener: onItemClickListener,
                                   val listener: (LaporanAsetKerjasamaModel) -> Unit)
     : RecyclerView.Adapter<LaporanAsetKerjasamaAdapter.LaporanAsetViewHolder>(){
 
-//    private lateinit var mListener: onItemClickListener
+    private var LaporanAset: List<LaporanAsetKerjasamaModel> = laporanAsetKerjasamaViewModel.mData
+
 
     interface onItemClickListener{
         fun onItemClick(position: Int, nama:String, nilai:String,jenisKerjasama:String,pks:String)
