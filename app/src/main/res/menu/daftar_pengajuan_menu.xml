@@ -15,4 +15,7 @@
     <item
         android:id="@+id/menu_kirim"
         android:title="Kirim"/>
+    <item
+        android:id="@+id/menu_restore"
+        android:title="Restore"/>
 </menu>
