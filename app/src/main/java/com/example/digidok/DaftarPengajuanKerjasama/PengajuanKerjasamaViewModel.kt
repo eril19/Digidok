@@ -8,6 +8,7 @@ import com.example.digidok.DaftarKJPP.DaftarKjppModel
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.UserModel
 import com.example.digidok.data.model.daftarPengajuanKerjasamaModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
@@ -53,6 +54,32 @@ class PengajuanKerjasamaViewModel(context: Application) : AndroidViewModel(conte
                                 )
                             )
                         }
+                    }
+                }
+
+                override fun onError(message: String) {
+                    isLoading.value = false
+                    mMessageResponse.value = message
+                }
+
+                override fun onFinish() {
+                    isLoading.value = false
+                }
+
+            })
+    }
+
+    fun setStatus(idStatus: Int, id:String) {
+        isLoading.value = true
+        mRepository.SetStatus(
+            token = token.value.safe(),
+            idStatus = idStatus,
+            id = id,
+            object : DataSource.setStatusCallback {
+                override fun onSuccess(data: BaseApiModel<UserModel?>) {
+                    isLoading.value = false
+                    if (data.isSuccess) {
+                        mMessageResponse.value = "Berhasil diubah!"
                     }
                 }
 

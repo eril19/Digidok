@@ -234,9 +234,15 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                                 true
                             }
                             R.id.menu_hapus -> {
-                                val intent = Intent(this@PengajuanKerjasamaActivity, DaftarSuratLampiranActivity::class.java)
-                                intent.putExtra("status", "Hapus")
-//                                startActivity(intent)
+                                mPengajuanKerjasamaViewModel.setStatus(0, idPks)
+                                true
+                            }
+                            R.id.menu_kirim -> {
+                                mPengajuanKerjasamaViewModel.setStatus(2, idPks)
+                                true
+                            }
+                            R.id.menu_restore -> {
+                                mPengajuanKerjasamaViewModel.setStatus(1, idPks)
                                 true
                             }
                         }

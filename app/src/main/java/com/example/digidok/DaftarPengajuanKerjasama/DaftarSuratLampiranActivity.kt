@@ -75,6 +75,10 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         onBackPressed()
         }
 
+        val backArrow = findViewById<ImageButton>(R.id.backbtn)
+        backArrow.setOnClickListener {
+            onBackPressed()
+        }
 
         val homeBtn : ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {

@@ -201,8 +201,6 @@ class DaftarMitraActivity : AppCompatActivity() {
             }
     }
 
-
-
     fun setSpinnerKategori() {
         val arrayString = arrayListOf("Pilih Status")
         arrayString.addAll(listStatus)
@@ -238,5 +236,8 @@ class DaftarMitraActivity : AppCompatActivity() {
 
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
-
+    override fun onResume() {
+        super.onResume()
+        mDaftarMitraViewModel.getDaftarMitra(2)
+    }
 }

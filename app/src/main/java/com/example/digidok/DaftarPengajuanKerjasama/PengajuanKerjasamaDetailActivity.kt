@@ -164,6 +164,10 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 //            no_pengajuan?.background =
 //                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
 
+            val dot = findViewById<ImageView>(R.id.dot)
+
+            dot.visibility = View.GONE
+
             nama_mitra?.isEnabled = true
             nama_mitra?.background =
                 ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)

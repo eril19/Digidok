@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
+import com.example.digidok.DaftarKJPP.DaftarKjppViewModel
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
@@ -73,12 +75,17 @@ class MitraDetailActivity : AppCompatActivity() {
     var jenis_pajak: EditText? = null
     var badan_hukum: EditText? = null
 
+    lateinit var mDaftarMitraDetailViewModel: DaftarMitraDetailViewModel
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mitra_detail)
 
         supportActionBar?.hide()
 
+        mDaftarMitraDetailViewModel = ViewModelProvider(this@MitraDetailActivity).get(DaftarMitraDetailViewModel::class.java)
+        mDaftarMitraDetailViewModel.token.value = Preferences.isToken(this@MitraDetailActivity)
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
@@ -141,9 +148,7 @@ class MitraDetailActivity : AppCompatActivity() {
         val refresh = findViewById<ImageView>(R.id.refreshButton)
 
         if (!idMitraCheck.equals("")){
-            getDetailMitra(idMitraCheck)
-//            npwp?.setText(NPWPcheck)
-//            npwpData = NPWPcheck
+            mDaftarMitraDetailViewModel.getDetailMitra(idMitraCheck)
             legalWp = 0
         }
 
@@ -510,102 +515,26 @@ class MitraDetailActivity : AppCompatActivity() {
         }
 
         refresh.setOnClickListener {
-            getNpwp(npwp?.text.toString())
+            mDaftarMitraDetailViewModel.getNpwp(npwp?.text.toString())
             legalWp = 1
         }
 
     }
 
-    fun getDetailMitra(id:String){
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getDetailMitra(
-            token = Preferences.isToken(context = this@MitraDetailActivity),
-            id = id,
-            object : DataSource.detailMitraCallback {
-                override fun onSuccess(data: BaseApiModel<detailMitramodel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        npwp?.setText(data.data?.npwp)
-                        nama?.setText(data.data?.nama)
-                        alamat?.setText(data.data?.alamat)
-                        kelurahan?.setText(data.data?.kelurahan)
-                        kecamatan?.setText(data.data?.kecamatan)
-                        kota?.setText(data.data?.kotaKabupaten)
-                        provinsi?.setText(data.data?.provinsi)
-                        klasifikasi?.setText(data.data?.klasifikasi)
-                        kpp?.setText(data.data?.namaKpp)
-                        kanwil?.setText(data.data?.kanwil)
-                        telp?.setText(data.data?.nomorTelepon)
-                        fax?.setText(data.data?.nomorFax)
-                        email?.setText(data.data?.email)
-                        ttl?.setText(data.data?.ttl)
-                        tgl_daftar?.setText(data.data?.tanggalDaftar)
-                        status_pkp?.setText(data.data?.statusPkp)
-                        tgl_pkp?.setText(data.data?.tanggalPengukuhanPkp)
-                        jenis_pajak?.setText(data.data?.jenisWajibPajak)
-                        badan_hukum?.setText(data.data?.badanHukum)
-                        legalWp = data.data?.legalWp ?: 0
-                        statusMitra = data.data?.statusMitra.safe()
-                        jenisMitra = data.data?.jenisMitra.safe()
-                        tahunGabung = data.data?.tahunGabung.toString().safe()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@MitraDetailActivity, "Data gagal dimuat", Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                    Toast.makeText(this@MitraDetailActivity, "Data selesai dimuat", Toast.LENGTH_LONG).show()
-                }
-
-            })
-    }
-
-    fun getNpwp(noNpwp: String) {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getNPWP(
-            token = Preferences.isToken(context = this@MitraDetailActivity),
-            noNpwp = noNpwp,
-            object : DataSource.NPWPCallback {
-                override fun onSuccess(data: BaseApiModel<NPWPModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        npwp?.setText(noNpwp)
-                        nama?.setText(data.data?.nama)
-                        alamat?.setText(data.data?.alamat)
-                        kelurahan?.setText(data.data?.kelurahan)
-                        kecamatan?.setText(data.data?.kecamatan)
-                        kota?.setText(data.data?.kabKota)
-                        provinsi?.setText(data.data?.provinsi)
-                        klasifikasi?.setText(data.data?.klasifikasiKlu)
-//                        kpp.setText(data.data?.)
-                        kanwil?.setText(data.data?.kanwil)
-                        telp?.setText(data.data?.nomorTelepon)
-                        fax?.setText(data.data?.nomorFax)
-                        email?.setText(data.data?.email)
-                        ttl?.setText(data.data?.ttl)
-                        tgl_daftar?.setText(data.data?.tanggalDaftar)
-                        status_pkp?.setText(data.data?.statusPkp)
-                        tgl_pkp?.setText(data.data?.tanggalPengukuhanPkp)
-                        jenis_pajak?.setText(data.data?.jenisWajibPajak)
-                        badan_hukum?.setText(data.data?.badanHukum)
-                    }
-                }
-
-                override fun onError(message: String) {
-                    Toast.makeText(this@MitraDetailActivity, "Data gagal dimuat", Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    Toast.makeText(this@MitraDetailActivity, "Data selesai dimuat", Toast.LENGTH_LONG).show()
-                }
-
-            })
-    }
+//    private fun observeViewModel() {
+//        mDaftarMitraDetailViewModel.mMessageResponse.observe(this){
+//            Toast.makeText(this@MitraDetailActivity, it, Toast.LENGTH_LONG).show()
+//        }
+//
+//        mDaftarMitraDetailViewModel.username.observe(this){
+//            namaUser?.text = it
+//        }
+//
+//        mDaftarMitraDetailViewModel.jml.observe(this){
+//            jml?.text = mDaftarMitraDetailViewModel.jml.value
+//            jmlMitra?.text = mDaftarMitraDetailViewModel.jmlMitra.value
+//            jmlNilai?.text = mDaftarMitraDetailViewModel.jmlNilai.value
+//        }
+//    }
 
 }
