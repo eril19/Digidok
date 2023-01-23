@@ -23,8 +23,8 @@ class ProfileOptionActivity : AppCompatActivity() {
 
 
         back.setOnClickListener {
-            val intent = Intent(this@ProfileOptionActivity, MenuActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@ProfileOptionActivity, MenuActivity::class.java)
+//            startActivity(intent)
         }
 
         header.setText("Profile Options")

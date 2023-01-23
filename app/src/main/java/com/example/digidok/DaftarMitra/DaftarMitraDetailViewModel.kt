@@ -54,9 +54,8 @@ class DaftarMitraDetailViewModel(context: Application) : AndroidViewModel(contex
     var statusMitra = MutableLiveData<String>()
     val mData: MutableList<DaftarMitraDetailModel> = mutableListOf()
 
-
     fun getDetailMitra(id:String){
-    isLoading.value = true
+        isLoading.value = true
         mRepository.getDetailMitra(
             token = token.value.safe(),
             id = id,
