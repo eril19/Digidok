@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.Dashboard.DashboardAdapter
 import com.example.digidok.Dashboard.DashboardModel
-import com.example.digidok.Profile.ProfileOptionActivity
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
@@ -82,7 +81,7 @@ class DashboardFragment : Fragment() {
 
         dropdown_profile.setOnClickListener {
 //            val i = Intent(this@LoginActivity, MenuActivity::class.java)
-            startActivity(Intent(this@DashboardFragment.requireContext(), ProfileOptionActivity::class.java))
+//            startActivity(Intent(this@DashboardFragment.requireContext(), ProfileOptionActivity::class.java))
         }
 
         return v
