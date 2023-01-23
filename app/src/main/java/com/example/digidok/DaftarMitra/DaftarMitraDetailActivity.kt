@@ -468,6 +468,8 @@ class MitraDetailActivity : AppCompatActivity() {
                 ContextCompat.getDrawable(this@MitraDetailActivity, R.drawable.custom_profile)
         }
 
+        observeViewModel()
+
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
         next_detail_btn.setOnClickListener {
             val i = Intent(this@MitraDetailActivity, DaftarMitraDetailActivity2::class.java)
@@ -521,20 +523,80 @@ class MitraDetailActivity : AppCompatActivity() {
 
     }
 
-//    private fun observeViewModel() {
-//        mDaftarMitraDetailViewModel.mMessageResponse.observe(this){
-//            Toast.makeText(this@MitraDetailActivity, it, Toast.LENGTH_LONG).show()
-//        }
-//
-//        mDaftarMitraDetailViewModel.username.observe(this){
-//            namaUser?.text = it
-//        }
-//
-//        mDaftarMitraDetailViewModel.jml.observe(this){
-//            jml?.text = mDaftarMitraDetailViewModel.jml.value
-//            jmlMitra?.text = mDaftarMitraDetailViewModel.jmlMitra.value
-//            jmlNilai?.text = mDaftarMitraDetailViewModel.jmlNilai.value
-//        }
-//    }
+    private fun observeViewModel() {
+        mDaftarMitraDetailViewModel.mMessageResponse.observe(this){
+            Toast.makeText(this@MitraDetailActivity, it, Toast.LENGTH_LONG).show()
+        }
+
+        mDaftarMitraDetailViewModel.npwp.observe(this){
+            npwp?.setText(it)
+        }
+
+        mDaftarMitraDetailViewModel.nama.observe(this){
+            npwp?.setText(mDaftarMitraDetailViewModel.npwp.value)
+            nama?.setText(mDaftarMitraDetailViewModel.nama.value)
+        }
+        mDaftarMitraDetailViewModel.alamat.observe(this){
+            alamat?.setText(mDaftarMitraDetailViewModel.alamat.value)
+        }
+        mDaftarMitraDetailViewModel.kecamatan.observe(this){
+            kecamatan?.setText(mDaftarMitraDetailViewModel.kecamatan.value)
+        }
+        mDaftarMitraDetailViewModel.kelurahan.observe(this){
+            kelurahan?.setText(mDaftarMitraDetailViewModel.kelurahan.value)
+        }
+        mDaftarMitraDetailViewModel.kota.observe(this){
+            kota?.setText(mDaftarMitraDetailViewModel.kota.value)
+        }
+        mDaftarMitraDetailViewModel.provinsi.observe(this){
+            provinsi?.setText(mDaftarMitraDetailViewModel.provinsi.value)
+        }
+        mDaftarMitraDetailViewModel.klasifikasi.observe(this){
+            klasifikasi?.setText(mDaftarMitraDetailViewModel.klasifikasi.value)
+        }
+        mDaftarMitraDetailViewModel.kpp.observe(this){
+            kpp?.setText(mDaftarMitraDetailViewModel.kpp.value)
+        }
+        mDaftarMitraDetailViewModel.kanwil.observe(this){
+            kanwil?.setText(mDaftarMitraDetailViewModel.kanwil.value)
+        }
+        mDaftarMitraDetailViewModel.telp.observe(this){
+            telp?.setText(mDaftarMitraDetailViewModel.telp.value)
+        }
+        mDaftarMitraDetailViewModel.fax.observe(this){
+            fax?.setText(mDaftarMitraDetailViewModel.fax.value)
+        }
+        mDaftarMitraDetailViewModel.email.observe(this){
+            email?.setText(mDaftarMitraDetailViewModel.email.value)
+        }
+        mDaftarMitraDetailViewModel.ttl.observe(this){
+            ttl?.setText(mDaftarMitraDetailViewModel.ttl.value)
+        }
+        mDaftarMitraDetailViewModel.tgl_daftar.observe(this){
+            tgl_daftar?.setText(mDaftarMitraDetailViewModel.tgl_daftar.value)
+        }
+        mDaftarMitraDetailViewModel.status_pkp.observe(this){
+            status_pkp?.setText(mDaftarMitraDetailViewModel.status_pkp.value)
+        }
+        mDaftarMitraDetailViewModel.tgl_pkp.observe(this){
+            tgl_pkp?.setText(mDaftarMitraDetailViewModel.tgl_pkp.value)
+        }
+        mDaftarMitraDetailViewModel.jenis_pajak.observe(this){
+            jenis_pajak?.setText(mDaftarMitraDetailViewModel.jenis_pajak.value)
+        }
+        mDaftarMitraDetailViewModel.statusMitra.observe(this){
+            statusMitra = mDaftarMitraDetailViewModel.statusMitra.value.safe()
+         }
+        mDaftarMitraDetailViewModel.jenisMitra.observe(this){
+            jenisMitra = mDaftarMitraDetailViewModel.jenisMitra.value.safe()
+        }
+        mDaftarMitraDetailViewModel.tahunGabung.observe(this){
+            tahunGabung = mDaftarMitraDetailViewModel.tahunGabung.value.safe()
+            legalWp = mDaftarMitraDetailViewModel.legalWp.value.toString().toLong()
+        }
+        mDaftarMitraDetailViewModel.legalWp.observe(this){
+            legalWp = mDaftarMitraDetailViewModel.legalWp.value.toString().toLong()
+        }
+    }
 
 }

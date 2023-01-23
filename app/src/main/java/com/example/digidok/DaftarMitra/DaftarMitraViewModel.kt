@@ -75,13 +75,7 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
                         data.data?.dataMitra?.forEach {
                             mData?.add(
                                 DaftarMitraModel(
-                                    header_color = if (it?.status == 0) {
-                                        "TIDAK AKTIF"
-                                    } else if (it?.status == 1) {
-                                        "AKTIF"
-                                    } else {
-                                        ""
-                                    },
+                                    header_color = it.statusLabel.safe(),
                                     id_mitra = it?.kodeMitra.safe(),
                                     nama_mitra = it?.namaMitra.safe(),
                                     jenis_mitra = it?.jenisMitra.safe(),

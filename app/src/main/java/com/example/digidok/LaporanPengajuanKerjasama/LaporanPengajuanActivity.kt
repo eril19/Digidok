@@ -60,6 +60,9 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         setContentView(binding.root)
         setContentView(R.layout.activity_laporan_pengajuan)
 
+        val progress = findViewById<ProgressBar>(R.id.progressBar)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_laporan_pengajuan)
+
         mLaporanPengajuanViewModel = ViewModelProvider(this@LaporanPengajuanActivity).get(LaporanPengajuanViewModel::class.java)
         mLaporanPengajuanViewModel.token.value = Preferences.isToken(this@LaporanPengajuanActivity)
         mLaporanPengajuanViewModel.row.value = "10"
@@ -194,6 +197,20 @@ class LaporanPengajuanActivity : AppCompatActivity() {
 
         setList()
         mLaporanPengajuanViewModel.getLaporanKerjasama(status, tahun, kelurahan)
+
+        mLaporanPengajuanViewModel.isLoading.observe(this){
+            if (it){
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
+
+        mLaporanPengajuanViewModel.responseSucces.observe(this){
+            setList()
+        }
     }
 
     fun setSpinnerTahun() {

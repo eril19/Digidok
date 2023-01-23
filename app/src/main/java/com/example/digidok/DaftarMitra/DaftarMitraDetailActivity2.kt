@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
@@ -64,6 +65,8 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
     var pdfPic : ImageView ? = null
     var tnc : TextView?=null
 
+    lateinit var mDaftarMitraDetailViewModel2: DaftarMitraDetailViewModel2
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mitra_detail2)
@@ -72,6 +75,9 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
         isEdit = intent.getStringExtra("menu2") ?: ""
         data = intent.getParcelableExtra("dataDetail")
         idMitraCheck = intent.getStringExtra("id") ?: ""
+
+        mDaftarMitraDetailViewModel2 = ViewModelProvider(this@DaftarMitraDetailActivity2).get(DaftarMitraDetailViewModel2::class.java)
+        mDaftarMitraDetailViewModel2.token.value = Preferences.isToken(this@DaftarMitraDetailActivity2)
 
         spinner_jenis_mitra = findViewById<Spinner>(R.id.spinner_jenis_mitra)
         spinner_jenis_mitra?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -115,8 +121,9 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
         }
 
-        getJenisMitra()
-        getStatusMitra()
+            mDaftarMitraDetailViewModel2.getJenisMitra()
+        mDaftarMitraDetailViewModel2.getStatusMitra()
+
         val prev_detail_btn = findViewById<Button>(R.id.prev_detail_btn)
         prev_detail_btn.setOnClickListener {
             onBackPressed()
@@ -217,7 +224,7 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
                 tahunGabungValue = etTahunGabung.text.toString()
 
-                UpdateData(
+                    mDaftarMitraDetailViewModel2.UpdateData(
                     npwp,
                     nama,
                     alamat,
@@ -253,7 +260,7 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
                 tahunGabungValue = etTahunGabung.text.toString()
 
-                InsertData(
+                    mDaftarMitraDetailViewModel2.InsertData(
                     npwp,
                     nama,
                     alamat,
@@ -315,160 +322,13 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
         }
 
 //        setSpinnerKategori()
+
+        setSpinnerStatusMitra()
+        setSpinnerjenisMitra()
+
     }
 
 
-    fun InsertData(
-        npwp: String,
-        nama: String,
-        alamat: String,
-        kelurahan: String,
-        kecamatan: String,
-        kotaKabupaten: String,
-        provinsi: String,
-        klasifikasi: String,
-        namaKpp: String,
-        kanwil: String,
-        nomorTelepon: String,
-        nomorFax: String,
-        email: String,
-        ttl: String,
-        tanggalDaftar: String,
-        statusPkp: String,
-        tanggalPengukuhanPkp: String,
-        jenisWajibPajak: String,
-        badanHukum: String,
-        tahunGabung: String,
-        jenisMitra: String,
-        statusMitra: String,
-        legalWp:Long,
-        companyProfile: String
-    ) {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.InsertMitra(
-            token = Preferences.isToken(context = this@DaftarMitraDetailActivity2),
-            npwp = npwp,
-            nama = nama,
-            alamat = alamat,
-            kelurahan = kelurahan,
-            kecamatan = kecamatan,
-            kotaKabupaten = kotaKabupaten,
-            provinsi = provinsi,
-            klasifikasi = klasifikasi,
-            namaKpp = namaKpp,
-            kanwil = kanwil,
-            nomorTelepon = nomorTelepon,
-            nomorFax = nomorFax,
-            email = email,
-            ttl = ttl,
-            tanggalDaftar = tanggalDaftar,
-            statusPkp = statusPkp,
-            tanggalPengukuhanPkp = tanggalPengukuhanPkp,
-            jenisWajibPajak = jenisWajibPajak,
-            badanHukum = badanHukum,
-            tahunGabung = tahunGabung,
-            jenisMitra = jenisMitra,
-            statusMitra = statusMitra,
-            companyProfile = companyProfile,
-            legalWp = legalWp,
-            object : DataSource.InsertMitraCallback {
-                override fun onSuccess(data: BaseApiModel<UserModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        Toast.makeText(this@DaftarMitraDetailActivity2, "Data baru mitra berhasil ditambahkan!", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@DaftarMitraDetailActivity2, message, Toast.LENGTH_LONG).show()
-
-
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
-    }
-
-    fun UpdateData(
-        npwp: String,
-        nama: String,
-        alamat: String,
-        kelurahan: String,
-        kecamatan: String,
-        kotaKabupaten: String,
-        provinsi: String,
-        klasifikasi: String,
-        namaKpp: String,
-        kanwil: String,
-        nomorTelepon: String,
-        nomorFax: String,
-        email: String,
-        ttl: String,
-        tanggalDaftar: String,
-        statusPkp: String,
-        tanggalPengukuhanPkp: String,
-        jenisWajibPajak: String,
-        badanHukum: String,
-        tahunGabung: String,
-        jenisMitra: String,
-        statusMitra: String,
-        legalWp:Long,
-        companyProfile: String,
-        id:String
-    ) {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.updateMitra(
-            token = Preferences.isToken(context = this@DaftarMitraDetailActivity2),
-            npwp = npwp,
-            nama = nama,
-            alamat = alamat,
-            kelurahan = kelurahan,
-            kecamatan = kecamatan,
-            kotaKabupaten = kotaKabupaten,
-            provinsi = provinsi,
-            klasifikasi = klasifikasi,
-            namaKpp = namaKpp,
-            kanwil = kanwil,
-            nomorTelepon = nomorTelepon,
-            nomorFax = nomorFax,
-            email = email,
-            ttl = ttl,
-            tanggalDaftar = tanggalDaftar,
-            statusPkp = statusPkp,
-            tanggalPengukuhanPkp = tanggalPengukuhanPkp,
-            jenisWajibPajak = jenisWajibPajak,
-            badanHukum = badanHukum,
-            tahunGabung = tahunGabung,
-            jenisMitra = jenisMitra,
-            statusMitra = statusMitra,
-            companyProfile = companyProfile,
-            legalWp = legalWp,
-            id = id,
-            object : DataSource.updateMitraCallback {
-                override fun onSuccess(data: BaseApiModel<UserModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        Toast.makeText(this@DaftarMitraDetailActivity2, "Data mitra berhasil diubah!", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@DaftarMitraDetailActivity2, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
-    }
 
     fun setSpinnerjenisMitra(){
         val arrayStringTahun = arrayListOf("Pilih Jenis Mitra")
@@ -567,74 +427,6 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
         }
 
 
-    }
-
-    fun getJenisMitra(){
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getJenisMitra(
-            token = Preferences.isToken(context = this@DaftarMitraDetailActivity2),
-            object : DataSource.jenisMitraCallback {
-                override fun onSuccess(data: BaseApiModel<jenisMitramodel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        listJenisMitra.clear()
-                        data.data?.dataJenisMitra?.forEach {
-                            listJenisMitra?.add(
-                                JenisMitraModel(
-                                    value = it?.value.safe(),
-                                    label  =it?.label.safe()
-                                )
-                            )
-                        }
-//                        setList()
-                        setSpinnerjenisMitra()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
-    }
-
-    fun getStatusMitra(){
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getStatusMitra(
-            token = Preferences.isToken(context = this@DaftarMitraDetailActivity2),
-            object : DataSource.statusMitraCallback {
-                override fun onSuccess(data: BaseApiModel<statusMitramodel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        listJenisMitra.clear()
-                        data.data?.dataStatusMitra?.forEach {
-                            listStatusMitra?.add(
-                                StatusMitraModel(
-                                    value = it?.value.safe(),
-                                    label  =it?.label.safe()
-                                )
-                            )
-                        }
-//                        setList()
-                        setSpinnerStatusMitra()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
     }
 
     fun getIndex(spinner: Spinner,  myString : String): Int {

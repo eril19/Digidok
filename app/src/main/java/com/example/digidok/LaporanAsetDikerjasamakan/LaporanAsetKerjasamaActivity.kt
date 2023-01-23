@@ -61,6 +61,8 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
 
         val adapter = ArrayAdapter(applicationContext, R.layout.dd_text_status, listTahun)
         val header = findViewById<TextView>(R.id.header_title)
+        val progress = findViewById<ProgressBar>(R.id.progressBar)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_laporan_aset)
 
         mLaporanAsetKerjasamaViewModel = ViewModelProvider(this@LaporanAsetKerjasamaActivity).get(LaporanAsetKerjasamaViewModel::class.java)
         mLaporanAsetKerjasamaViewModel.token.value = Preferences.isToken(this@LaporanAsetKerjasamaActivity)
@@ -150,10 +152,6 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
             }
         }
 
-        setSpinnerStatus()
-        setSpinnerTahun()
-        setSpinnerWilayah()
-        setSpinnerKelurahan()
 
         val back = findViewById<ImageView>(R.id.backbtn)
         header.setText("Laporan Aset Dikerjasamakan")
@@ -189,8 +187,30 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
             startActivity(Intent(this@LaporanAsetKerjasamaActivity, NotificationActivity::class.java))
         }
 
+        setSpinnerStatus()
+        setSpinnerTahun()
+        setSpinnerWilayah()
+        setSpinnerKelurahan()
         setList()
         mLaporanAsetKerjasamaViewModel.getLaporanAset(status,tahun,kelurahan)
+
+        mLaporanAsetKerjasamaViewModel.isLoading.observe(this){
+            if (it){
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
+
+        mLaporanAsetKerjasamaViewModel.responseSucces.observe(this){
+            setList()
+            setSpinnerStatus()
+            setSpinnerTahun()
+            setSpinnerWilayah()
+            setSpinnerKelurahan()
+        }
     }
 
     fun setSpinnerTahun() {

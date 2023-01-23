@@ -59,6 +59,8 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         setContentView(binding.root)
         setContentView(R.layout.activity_repositori_dokumen)
 
+        val progress = findViewById<ProgressBar>(R.id.progressBar)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_repositori)
 
         mRepositoriDokumenViewModel = ViewModelProvider(this@RepositoriDokumenActivity).get(RepositoriDokumenViewModel::class.java)
         mRepositoriDokumenViewModel.token.value = Preferences.isToken(this@RepositoriDokumenActivity)
@@ -83,7 +85,6 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                 if(position!=0){
                     tahun = mRepositoriDokumenViewModel.mDataTahun.get(position-1).value.safe().toInt()
                     mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
-//                    minta  filter kota
                 }
 
             }
@@ -149,7 +150,6 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             }
         }
 
-
         setSpinnerStatus()
         setSpinnerTahun()
         setSpinnerWilayah()
@@ -189,6 +189,29 @@ class RepositoriDokumenActivity : AppCompatActivity() {
 
         setList()
         mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
+
+        mRepositoriDokumenViewModel.isLoading.observe(this){
+            if (it){
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
+
+        mRepositoriDokumenViewModel.responseSucces.observe(this){
+            setList()
+        }
+
+        mRepositoriDokumenViewModel.responseSucces.observe(this){
+            setSpinnerTahun()
+        }
+
+        mRepositoriDokumenViewModel.responseSucces.observe(this){
+            setSpinnerKelurahan()
+        }
+
     }
 
     fun setSpinnerTahun() {

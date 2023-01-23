@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +33,8 @@ class DaftarKjppActivity : AppCompatActivity() {
         mDaftarKjppViewModel.start.value = "0"
         mDaftarKjppViewModel.sortColumn.value = "no"
 
+        val progress = findViewById<ProgressBar>(R.id.progressBar)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_kjpp)
 
         val header = findViewById<TextView>(R.id.header_title)
         header.setText("Daftar Kantor Jasa Penilaian Publik")
@@ -72,7 +75,20 @@ class DaftarKjppActivity : AppCompatActivity() {
 
         mDaftarKjppViewModel.getKJPP()
         setList()
-        observeViewModel()
+
+        mDaftarKjppViewModel.isLoading.observe(this){
+            if (it){
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
+
+        mDaftarKjppViewModel.responseSucces.observe(this){
+            setList()
+        }
     }
 
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")

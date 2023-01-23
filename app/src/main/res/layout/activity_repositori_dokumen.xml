@@ -133,6 +133,13 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:visibility="visible"/>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_list_repositori"
                     android:layout_width="match_parent"

@@ -23,6 +23,8 @@ class daftarMitraModel(
         val jenisMitra: String = "",
         @SerializedName("statusMitra")
         val statusMitra: String = "",
+        @SerializedName("statusLabel")
+        val statusLabel: String = "",
         @SerializedName("status")
         val status: Int,
     )

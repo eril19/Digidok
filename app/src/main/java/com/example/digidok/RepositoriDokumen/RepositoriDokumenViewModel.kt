@@ -24,6 +24,7 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
     var isLoading = MutableLiveData<Boolean>()
     val token = MutableLiveData<String>()
     val responseSucces = MutableLiveData<Boolean>()
+    val spinnerStatusSuccess = MutableLiveData<Boolean>()
     val mMessageResponse = MutableLiveData<String>()
     val mRepository: Repository = Injection.provideRepository(context)
 

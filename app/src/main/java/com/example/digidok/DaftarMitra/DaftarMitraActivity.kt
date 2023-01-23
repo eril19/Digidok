@@ -47,6 +47,9 @@ class DaftarMitraActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        val progress = findViewById<ProgressBar>(R.id.progressBar)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_mitra)
+
         spinnerStatus = findViewById<Spinner>(R.id.spinner_status)
         spinnerStatus?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -111,6 +114,20 @@ class DaftarMitraActivity : AppCompatActivity() {
         setList()
         setSpinnerKategori()
         mDaftarMitraViewModel.getDaftarMitra(2)
+
+        mDaftarMitraViewModel.isLoading.observe(this){
+            if (it){
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
+
+        mDaftarMitraViewModel.responseSucces.observe(this){
+            setList()
+        }
 
     }
 
