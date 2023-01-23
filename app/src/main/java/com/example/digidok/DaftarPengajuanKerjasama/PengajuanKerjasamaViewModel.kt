@@ -42,6 +42,7 @@ class PengajuanKerjasamaViewModel(context: Application) : AndroidViewModel(conte
                 override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
+                        responseSucces.value = true
                         mData.clear()
                         data.data?.dataDokumen?.forEach {
                             mData?.add(

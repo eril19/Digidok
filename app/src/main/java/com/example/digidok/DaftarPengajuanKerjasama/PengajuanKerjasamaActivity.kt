@@ -94,6 +94,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
             startActivity(i)
         }
 
+        val progress = findViewById<ProgressBar>(R.id.progressBar)
         val recyclerView = findViewById<RecyclerView>(R.id.rv_list_pengajuan_kerjasama)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
@@ -124,9 +125,20 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
         }
 
         setSpinnerKategori()
-        setList()
-            mPengajuanKerjasamaViewModel.getPengajuanKerjasama("SEMUA")
 
+        mPengajuanKerjasamaViewModel.isLoading.observe(this){
+            if (it){
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
+
+        mPengajuanKerjasamaViewModel.responseSucces.observe(this){
+            setList()
+        }
     }
 
     fun setSpinnerKategori() {
