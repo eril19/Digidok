@@ -1,15 +1,17 @@
-package com.example.digidok.DaftarPengajuanKerjasama
+package com.example.digidok.DaftarPengajuanKerjasamaDetail2
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.DaftarPengajuanKerjasamaDetail.DaftarPengajuanKerjasamaDetailModel
+import com.example.digidok.DaftarPengajuanKerjasama.DaftarPengajuanKerjasamaActivity
+import com.example.digidok.DaftarPengajuanKerjasamaDetail3.DaftarSuratLampiranActivity
+import com.example.digidok.DaftarPengajuanKerjasamaDetail1.DaftarPengajuanKerjasamaDetailModel
+import com.example.digidok.DaftarPengajuanKerjasamaDetail3.DaftarPengajuanKerjasamaDetail3ViewModel
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
@@ -27,6 +29,7 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
     var dataAset: ArrayList<DaftarPengajuanKerjasamaDetailModel> = ArrayList()
     var idPksCheck : String = ""
     private var recyclerview: RecyclerView? = null
+    lateinit var mDaftarPengajuanKerjasamaDetail2ViewModel: DaftarPengajuanKerjasamaDetail2ViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +38,13 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
         idPksCheck = intent.getStringExtra("idPks") ?: ""
+
+        val progress = findViewById<ProgressBar>(R.id.progressBar)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_daftar_aset)
+
+        mDaftarPengajuanKerjasamaDetail2ViewModel = ViewModelProvider(this@DataAsetdikerjasamakanActivity).get(
+            DaftarPengajuanKerjasamaDetail2ViewModel::class.java)
+        mDaftarPengajuanKerjasamaDetail2ViewModel.token.value = Preferences.isToken(this@DataAsetdikerjasamakanActivity)
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
@@ -88,11 +98,25 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
         }
 
         if (!idPksCheck.equals("")){
-            getPengajuanKerjasamaDetail(idPksCheck)
+            mDaftarPengajuanKerjasamaDetail2ViewModel.getPengajuanKerjasamaDetail(idPksCheck)
         }
 
-
         setList()
+
+        mDaftarPengajuanKerjasamaDetail2ViewModel.isLoading.observe(this){
+            if (it){
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
+
+        mDaftarPengajuanKerjasamaDetail2ViewModel.responseSucces.observe(this){
+            setList()
+        }
+
     }
 
     fun setList(){
@@ -100,8 +124,8 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = DataAsetdiKerjasamakanAdapter(this, dataAset, object:
-            DataAsetdiKerjasamakanAdapter.onItemClickListener{
+        recyclerview?.adapter = DataAsetdiKerjasamakanAdapter(this, mDaftarPengajuanKerjasamaDetail2ViewModel, object:
+            DataAsetdiKerjasamakanAdapter.onItemClickListener {
             override fun onItemClick(position: Int) {
 //                TODO("Not yet implemented")
             }
@@ -112,44 +136,5 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
 
     }
 
-    fun getPengajuanKerjasamaDetail(idPks:String) {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getDaftarPengajuanKerjasamaDetail(
-            token = Preferences.isToken(context = this@DataAsetdikerjasamakanActivity),
-            id = idPks,
-            object : DataSource.daftarPengajuanDetailCallback {
-                override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        dataAset.clear()
-                        data.data?.dataAsetDikerjasamakan?.forEach {
-                            dataAset?.add(
-                                DaftarPengajuanKerjasamaDetailModel(
-                                    kodeLokasi = it?.kolok.safe(),
-                                    namaLokasi = it?.nalok.safe(),
-                                    kodeBarang = it?.kobar.safe(),
-                                    namaBarang = it?.nabar.safe(),
-                                    luas = it?.luas.safe(),
-                                    luasManfaat = it?.luasManfaat.safe(),
-                                    alamat = it?.keterangan.safe(),
-                                )
-                            )
-                        }
-                        setList()
-                    }
-            }
-
-            override fun onError(message: String) {
-//                isLoading = false
-                Toast.makeText(this@DataAsetdikerjasamakanActivity, "data gagal", Toast.LENGTH_LONG ).show()
-            }
-
-            override fun onFinish() {
-                isLoading = false
-            }
-
-        })
-    }
 
 }

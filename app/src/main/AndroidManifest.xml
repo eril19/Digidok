@@ -23,7 +23,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DaftarPengajuanKerjasama.DaftarSuratLampiranActivity"
+            android:name=".DaftarPengajuanKerjasamaDetail3.DaftarSuratLampiranActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -37,7 +37,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DaftarPengajuanKerjasama.DataAsetdikerjasamakanActivity"
+            android:name=".DaftarPengajuanKerjasamaDetail2.DataAsetdikerjasamakanActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -51,7 +51,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DaftarPengajuanKerjasamaDetail.DaftarPengajuanKerjasamaDetailActivity"
+            android:name=".DaftarPengajuanKerjasamaDetail1.DaftarPengajuanKerjasamaDetailActivity"
             android:exported="false" />
         <activity
             android:name=".CekDokumen.CekDokumenActivity"

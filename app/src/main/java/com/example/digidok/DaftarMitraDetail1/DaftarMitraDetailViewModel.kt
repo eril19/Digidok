@@ -57,7 +57,7 @@ class DaftarMitraDetailViewModel(context: Application) : AndroidViewModel(contex
             id = id,
             object : DataSource.detailMitraCallback {
                 override fun onSuccess(data: BaseApiModel<detailMitramodel?>) {
-                    com.example.digidok.isLoading = false
+                   isLoading.value = false
                     if (data.isSuccess) {
                         npwp.value = data.data?.npwp
                         nama.value =data.data?.nama

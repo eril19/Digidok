@@ -13,7 +13,8 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.DaftarPengajuanKerjasamaDetail.DaftarPengajuanKerjasamaDetailActivity
+import com.example.digidok.DaftarPengajuanKerjasamaDetail1.DaftarPengajuanKerjasamaDetailActivity
+import com.example.digidok.DaftarPengajuanKerjasamaDetail3.DaftarSuratLampiranActivity
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity

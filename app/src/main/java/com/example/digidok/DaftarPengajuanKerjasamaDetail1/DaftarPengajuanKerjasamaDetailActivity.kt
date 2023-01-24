@@ -1,4 +1,4 @@
-package com.example.digidok.DaftarPengajuanKerjasamaDetail
+package com.example.digidok.DaftarPengajuanKerjasamaDetail1
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -10,11 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.DaftarPengajuanKerjasama.DaftarPengajuanKerjasamaActivity
-import com.example.digidok.DaftarPengajuanKerjasama.DataAsetdiKerjasamakanAdapter
-import com.example.digidok.DaftarPengajuanKerjasama.DataAsetdikerjasamakanActivity
+import com.example.digidok.DaftarPengajuanKerjasamaDetail2.DataAsetdiKerjasamakanAdapter
+import com.example.digidok.DaftarPengajuanKerjasamaDetail2.DataAsetdikerjasamakanActivity
+import com.example.digidok.DaftarPengajuanKerjasamaDetail3.DaftarPengajuanKerjasamaDetail3ViewModel
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
@@ -76,6 +78,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
     var spinnerTujuan : Spinner? = null
     val listTujuan :ArrayList<TujuanPKSModel> = ArrayList()
 
+    lateinit var mDaftarPengajuanKerjasamaDetailViewModel: DaftarPengajuanKerjasamaDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +87,10 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         idPkscheck = intent.getStringExtra("idPks") ?: ""
+
+        mDaftarPengajuanKerjasamaDetailViewModel = ViewModelProvider(this@DaftarPengajuanKerjasamaDetailActivity).get(
+            DaftarPengajuanKerjasamaDetailViewModel::class.java)
+        mDaftarPengajuanKerjasamaDetailViewModel.token.value = Preferences.isToken(this@DaftarPengajuanKerjasamaDetailActivity)
 
         spinnerMitra = findViewById<Spinner>(R.id.spinner_mitra)
         spinnerMitra?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -152,12 +159,12 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         val buttonDokumen = findViewById<ImageButton>(R.id.buttonDokumen)
 
         if (!idPkscheck.equals("")){
-            getPengajuanDetail(idPkscheck)
+            mDaftarPengajuanKerjasamaDetailViewModel.getPengajuanKerjasamaDetail(idPkscheck)
         }
 
-        getListMitra()
-        getKategoriPKS()
-        getTujuanPKS()
+        mDaftarPengajuanKerjasamaDetailViewModel.getListMitra()
+        mDaftarPengajuanKerjasamaDetailViewModel.getKategoriPKS()
+        mDaftarPengajuanKerjasamaDetailViewModel.getTujuanPKS()
 
         isStatusEdit = intent.getStringExtra("status") ?: ""
 
@@ -239,7 +246,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 }
 
                 if (isStatusEdit.equals("Edit", true)){
-                    updatePengajuan(idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, idPkscheck,dokumen)
+                    mDaftarPengajuanKerjasamaDetailViewModel.updatePengajuan(idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, idPkscheck,dokumen)
                     startActivity(
                         Intent(
                             this@DaftarPengajuanKerjasamaDetailActivity,
@@ -249,7 +256,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 }
 
                 else if(isStatusEdit.equals("Tambah",true)){
-                    insertPengajuan(idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, dokumen)
+                    mDaftarPengajuanKerjasamaDetailViewModel.insertPengajuan(idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, dokumen)
                     startActivity(
                         Intent(
                             this@DaftarPengajuanKerjasamaDetailActivity,
@@ -285,8 +292,6 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
             nilai_?.isEnabled = false
             Objek?.isEnabled = false
         }
-
-
 
         close_detail_btn.setOnClickListener {
             startActivity(
@@ -361,278 +366,63 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
             startActivity(i)
         }
 
-        setList()
+        observeViewModel()
 
-    }
-
-    fun setList() {
-        recyclerview = findViewById<RecyclerView>(R.id.rv_list_daftar_aset)
-        recyclerview?.layoutManager = LinearLayoutManager(this)
-        recyclerview?.setHasFixedSize(true)
-
-        recyclerview?.adapter = DataAsetdiKerjasamakanAdapter(
-            this,
-            pengajuanKerjasamaDetail,
-            object : DataAsetdiKerjasamakanAdapter.onItemClickListener {
-                override fun onItemClick(position: Int) {
-                    TODO("Not yet implemented")
-                }
-
-            }) {
-
+//        setList()
+        mDaftarPengajuanKerjasamaDetailViewModel.responseSuccesMitra.observe(this){
+            setSpinnerMitra()
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.responseSuccesStatus.observe(this){
+            setSpinnerKategoriPKS()
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.responseSuccesTujuan.observe(this){
+            setSpinnerTujuanPKS()
         }
 
     }
 
-    fun getListMitra() {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getListMitra(
-            token = Preferences.isToken(context = this@DaftarPengajuanKerjasamaDetailActivity),
-            object : DataSource.listMitraCallback {
-                override fun onSuccess(data: BaseApiModel<listMitra?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        listMitra.clear()
-                        data.data?.dataMitra?.forEach {
-                            listMitra?.add(
-                                ListMitraModel(
-                                    value = it?.value.safe(),
-                                    label  =it?.label.safe()
-                                )
-                            )
-                        }
-//                        setList()
-                        setSpinnerMitra()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
-    }
-
-    fun getKategoriPKS() {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getKategoriPKS(
-            token = Preferences.isToken(context = this@DaftarPengajuanKerjasamaDetailActivity),
-            object : DataSource.kategoriPKSCallback {
-                override fun onSuccess(data: BaseApiModel<kategoriPKSmodel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        listSkemaPemanfaatan.clear()
-                        data.data?.dataKategoriPks?.forEach {
-                            listSkemaPemanfaatan?.add(
-                                KategoriPKSModel(
-                                    value = it?.value.safe(),
-                                    label  =it?.label.safe()
-                                )
-                            )
-                        }
-//                        setList()
-                        setSpinnerKategoriPKS()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
-    }
-
-    fun getTujuanPKS() {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getTujuanPKS(
-            token = Preferences.isToken(context = this@DaftarPengajuanKerjasamaDetailActivity),
-            object : DataSource.tujuanPKSCallback {
-                override fun onSuccess(data: BaseApiModel<tujuanPKSmodel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        listTujuan.clear()
-                        data.data?.dataTujuanPks?.forEach {
-                            listTujuan?.add(
-                                TujuanPKSModel(
-                                    value = it?.value.safe(),
-                                    label  =it?.label.safe()
-                                )
-                            )
-                        }
-//                        setList()
-                        setSpinnerTujuanPKS()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
-    }
-
-    fun getPengajuanDetail(idPks: String) {
-        com.example.digidok.isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getDaftarPengajuanKerjasamaDetail(
-            token = Preferences.isToken(context = this@DaftarPengajuanKerjasamaDetailActivity),
-            id = idPks,
-            object : DataSource.daftarPengajuanDetailCallback {
-                override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>) {
-                    com.example.digidok.isLoading = false
-                    if (data.isSuccess) {
-                        no_pengajuan?.setText(data.data?.noPengajuan)
-                        nama_mitra?.setText(data.data?.mitra)
-                        skema?.setText(data.data?.skemaPemanfaatan)
-                        ETtujuan?.setText(data.data?.tujuan)
-                        no_surat?.setText(data.data?.nomorSurat)
-                        tgl_surat?.setText(data.data?.tanggalSurat)
-                        Objek?.setText(data.data?.objek)
-                        nilai_?.setText("Rp." + data.data?.nilai.toString())
-                        tgl_mulai?.setText(data.data?.tanggalMulai)
-                        tgl_akhir?.setText(data.data?.tanggalAkhir)
-                        prihal?.setText(data.data?.perihal)
-                        url = data.data?.dokumen.toString()
-                        idMitra = data.data?.idMitra.toString()
-                        idTujuanPks = data.data?.idTujuan.toString()
-                        idKategoriPks = data.data?.idSkemaPemanfaatan.toString()
-                    }
-
-                    getListMitra()
-                    getKategoriPKS()
-                    getTujuanPKS()
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-//                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, "Data selesai dimuat", Toast.LENGTH_LONG).show()
-                }
-
-            })
-    }
-
-    fun insertPengajuan(
-        idMitra: String,
-        idKategoriPks: String,
-        idTujuanPks: String,
-        nomorSurat: String,
-        tanggalSurat: String,
-        objek: String,
-        nilai: String,
-        tanggalMulai: String,
-        tanggalAkhir: String,
-        perihal: String,
-        dokumen: String,
-    ){
-        com.example.digidok.isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.InsertPengajuan(
-            token = Preferences.isToken(context = this@DaftarPengajuanKerjasamaDetailActivity),
-            idMitra = idMitra,
-            idKategoriPks = idKategoriPks,
-            idTujuanPks = idTujuanPks,
-            nomorSurat = nomorSurat,
-            tanggalSurat = tanggalSurat,
-            objek = objek,
-            nilai = nilai,
-            tanggalMulai = tanggalMulai,
-            tanggalAkhir = tanggalAkhir,
-            perihal = perihal,
-            dokumen = dokumen,
-            object : DataSource.InsertPengajuanCallback {
-                override fun onSuccess(data: BaseApiModel<UserModel?>) {
-                    com.example.digidok.isLoading = false
-                    if (data.isSuccess) {
-                        Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, "Data pengajuan berhasil ditambah!", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
-                    com.example.digidok.isLoading = false
-                }
-
-                override fun onFinish() {
-                    com.example.digidok.isLoading = false
-                }
-
-            })
-    }
-
-    fun updatePengajuan(
-        idMitra: String,
-        idKategoriPks: String,
-        idTujuanPks: String,
-        nomorSurat: String,
-        tanggalSurat: String,
-        objek: String,
-        nilai: String,
-        tanggalMulai: String,
-        tanggalAkhir: String,
-        perihal: String,
-        id:String,
-        dokumen: String,
-    ){
-        com.example.digidok.isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.UpdatePengajuan(
-            token = Preferences.isToken(context = this@DaftarPengajuanKerjasamaDetailActivity),
-            idMitra = idMitra,
-            idKategoriPks = idKategoriPks,
-            idTujuanPks = idTujuanPks,
-            nomorSurat = nomorSurat,
-            tanggalSurat = tanggalSurat,
-            objek = objek,
-            nilai = nilai,
-            tanggalMulai = tanggalMulai,
-            tanggalAkhir = tanggalAkhir,
-            perihal = perihal,
-            id = id,
-            dokumen = dokumen,
-            object : DataSource.updatePengajuanCallback {
-                override fun onSuccess(data: BaseApiModel<UserModel?>) {
-                    com.example.digidok.isLoading = false
-                    if (data.isSuccess) {
-                        Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, "Data pengajuan berhasil ditambah!", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
-                    com.example.digidok.isLoading = false
-                }
-
-                override fun onFinish() {
-                    com.example.digidok.isLoading = false
-                }
-
-            })
+    private fun observeViewModel() {
+        mDaftarPengajuanKerjasamaDetailViewModel.mMessageResponse.observe(this){
+            Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, it, Toast.LENGTH_LONG).show()
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.mitra.observe(this){
+            idMitra = mDaftarPengajuanKerjasamaDetailViewModel.mitra.value.safe()
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.skema.observe(this){
+            idKategoriPks = mDaftarPengajuanKerjasamaDetailViewModel.skema.value.safe()
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.tujuan.observe(this){
+            idTujuanPks = mDaftarPengajuanKerjasamaDetailViewModel.tujuan.value.safe()
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.nomorSurat.observe(this){
+            no_surat?.setText(mDaftarPengajuanKerjasamaDetailViewModel.nomorSurat.value)
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.tanggalSurat.observe(this){
+            tgl_surat?.setText(mDaftarPengajuanKerjasamaDetailViewModel.tanggalSurat.value)
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.tanggalMulai.observe(this){
+            tgl_mulai?.setText(mDaftarPengajuanKerjasamaDetailViewModel.tanggalMulai.value)
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.tanggalAkhir.observe(this){
+            tgl_akhir?.setText(mDaftarPengajuanKerjasamaDetailViewModel.tanggalAkhir.value)
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.perihal.observe(this){
+            prihal?.setText(mDaftarPengajuanKerjasamaDetailViewModel.perihal.value)
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.objek.observe(this){
+            Objek?.setText(mDaftarPengajuanKerjasamaDetailViewModel.objek.value)
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.nilai.observe(this){
+            nilai_?.setText(mDaftarPengajuanKerjasamaDetailViewModel.nilai.value)
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.perihal.observe(this){
+            prihal?.setText(mDaftarPengajuanKerjasamaDetailViewModel.perihal.value)
+        }
     }
 
     fun setSpinnerMitra(){
         val arrayStringMitra = arrayListOf("Pilih Mitra")
-        arrayStringMitra.addAll(listMitra.map {
+        arrayStringMitra.addAll(mDaftarPengajuanKerjasamaDetailViewModel.mDataMitra.map {
             it.label
         })
         spinnerMitra?.adapter = object : ArrayAdapter<String>(this,
@@ -660,7 +450,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         var positionJenisMitra = 0
         var position = 0
-        listMitra.forEach {
+        mDaftarPengajuanKerjasamaDetailViewModel.mDataMitra.forEach {
             position += 1
             if(idMitra.equals(it.value)){
                 positionJenisMitra = position
@@ -675,7 +465,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
     fun setSpinnerTujuanPKS(){
 
         val arrayStringTujuan = arrayListOf("Pilih Tujuan")
-        arrayStringTujuan.addAll(listTujuan.map {
+        arrayStringTujuan.addAll(mDaftarPengajuanKerjasamaDetailViewModel.mDataTujuan.map {
             it.label
         })
         spinnerTujuan?.adapter = object : ArrayAdapter<String>(this,
@@ -703,7 +493,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         var positionJenisMitra = 0
         var position = 0
-        listTujuan.forEach {
+        mDaftarPengajuanKerjasamaDetailViewModel.mDataTujuan.forEach {
             position += 1
             if(idTujuanPks.equals(it.value)){
                 positionJenisMitra = position
@@ -717,7 +507,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
     fun setSpinnerKategoriPKS() {
         val arrayStringSkema = arrayListOf("Pilih Skema Pemanfaatan")
-        arrayStringSkema.addAll(listSkemaPemanfaatan.map {
+        arrayStringSkema.addAll(mDaftarPengajuanKerjasamaDetailViewModel.mDataKategori.map {
             it.label
         })
         spinnerSkemaPemanfaatan?.adapter = object : ArrayAdapter<String>(this,
@@ -745,7 +535,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         var positionJenisMitra = 0
         var position = 0
-        listSkemaPemanfaatan.forEach {
+        mDaftarPengajuanKerjasamaDetailViewModel.mDataKategori.forEach {
             position += 1
             if(idKategoriPks.equals(it.value)){
                 positionJenisMitra = position

@@ -1,4 +1,4 @@
-package com.example.digidok.DaftarPengajuanKerjasama
+package com.example.digidok.DaftarPengajuanKerjasamaDetail3
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -10,9 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.DaftarPengajuanKerjasamaDetail.DaftarPengajuanKerjasamaDetailModel
+import com.example.digidok.DaftarMitraDetail2.DaftarMitraDetailViewModel2
+import com.example.digidok.DaftarPengajuanKerjasama.DaftarPengajuanKerjasamaActivity
+import com.example.digidok.DaftarPengajuanKerjasamaDetail1.DaftarPengajuanKerjasamaDetailModel
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
@@ -37,6 +40,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
     var isLoading : Boolean = false
     private var recyclerview: RecyclerView? = null
     val listTelaah = arrayListOf("Disetujui", "Dikembalikan", "Ditolak")
+    lateinit var mDaftarPengajuanKerjasamaDetail3ViewModel: DaftarPengajuanKerjasamaDetail3ViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +51,8 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         header.setText("Detail Pengajuan Kerjasama")
         var simpan = findViewById<Button>(R.id.simpanBtn)
         var dot = findViewById<ImageView>(R.id.dotTelaah)
+        val progress = findViewById<ProgressBar>(R.id.progressBar)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_surat_lampiran)
 
         hideTelaah = intent.getStringExtra("status")?:""
         idPksCheck = intent.getStringExtra("idPks") ?: ""
@@ -54,6 +60,10 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         catatanPenelaahan = findViewById(R.id.catatan_penelaahan)
 
         var menuTelaah = findViewById<LinearLayout>(R.id.menu_telaah)
+
+        mDaftarPengajuanKerjasamaDetail3ViewModel = ViewModelProvider(this@DaftarSuratLampiranActivity).get(
+            DaftarPengajuanKerjasamaDetail3ViewModel::class.java)
+        mDaftarPengajuanKerjasamaDetail3ViewModel.token.value = Preferences.isToken(this@DaftarSuratLampiranActivity)
 
         if(hideTelaah.equals("Telaah",true)){
             menuTelaah.visibility = View.VISIBLE
@@ -64,7 +74,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         }
 
         if (!idPksCheck.equals("")){
-            getPengajuanKerjasamaDetail(idPksCheck)
+            mDaftarPengajuanKerjasamaDetail3ViewModel.getPengajuanKerjasamaDetail(idPksCheck)
         }
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
@@ -133,38 +143,23 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
         simpan.setOnClickListener {
             catatan = catatanTelaah.text.toString()
-            Telaah(hasilTelaah, catatan,idPksCheck)
+           mDaftarPengajuanKerjasamaDetail3ViewModel.Telaah(hasilTelaah, catatan,idPksCheck)
             startActivity(Intent(this@DaftarSuratLampiranActivity, DaftarPengajuanKerjasamaActivity::class.java))
         }
 
-    }
+        mDaftarPengajuanKerjasamaDetail3ViewModel.isLoading.observe(this){
+            if (it){
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
 
-    fun Telaah(hasilTelaah:String, catatan : String, id:String){
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.Telaah(
-            token = Preferences.isToken(context = this@DaftarSuratLampiranActivity),
-            hasilTelaah = hasilTelaah,
-            catatan = catatan,
-            id = id,
-            object : DataSource.TelaahCallback {
-                override fun onSuccess(data: BaseApiModel<UserModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        Toast.makeText(this@DaftarSuratLampiranActivity, "Berhasil!", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@DaftarSuratLampiranActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
+        mDaftarPengajuanKerjasamaDetail3ViewModel.responseSucces.observe(this){
+            setList()
+        }
 
     }
 
@@ -175,7 +170,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
         recyclerview?.adapter = DaftarSuratLampiranAdapter(
             this,
-            daftarSuratLampiran,
+            mDaftarPengajuanKerjasamaDetail3ViewModel,
             object : DaftarSuratLampiranAdapter.onItemClickListener {
                 override fun onItemClick(position: Int) {
                     TODO("Not yet implemented")
@@ -196,46 +191,6 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
         }
 
-    }
-
-    fun getPengajuanKerjasamaDetail(idPks:String) {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getDaftarPengajuanKerjasamaDetail(
-            token = Preferences.isToken(context = this@DaftarSuratLampiranActivity),
-            id = idPks,
-            object : DataSource.daftarPengajuanDetailCallback {
-                override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        daftarSuratLampiran.clear()
-                        data.data?.dataLampiran?.forEach {
-                            var url = ""
-                            daftarSuratLampiran?.add(
-                                DaftarPengajuanKerjasamaDetailModel(
-                                    kodeDokumen = it?.kodeDokumen.safe(),
-                                    jenisDokumen = it?.jenisDokumen.safe(),
-                                    noSurat = it?.noSurat.safe(),
-                                    tanggalDokumen = it?.tanggal.safe(),
-                                    keteranganSurat = it?.keterangan.safe(),
-                                    lampiranLink = it?.file.safe()
-                                )
-                            )
-                        }
-                        setList()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@DaftarSuratLampiranActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
     }
 
     fun setSpinnerKategori() {

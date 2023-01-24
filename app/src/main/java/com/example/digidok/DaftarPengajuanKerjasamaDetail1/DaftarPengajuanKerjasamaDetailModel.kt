@@ -1,4 +1,4 @@
-package com.example.digidok.DaftarPengajuanKerjasamaDetail
+package com.example.digidok.DaftarPengajuanKerjasamaDetail1
 
 import android.os.Parcel
 import android.os.Parcelable

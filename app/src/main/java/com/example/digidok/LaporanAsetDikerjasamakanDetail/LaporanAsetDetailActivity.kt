@@ -3,7 +3,9 @@ package com.example.digidok.LaporanAsetDikerjasamakanDetail
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +18,7 @@ import com.example.digidok.R
 import java.text.DecimalFormat
 
 class LaporanAsetDetailActivity : AppCompatActivity() {
-    lateinit var mLaporanAsetKerjasamaViewModel: LaporanAsetKerjasamaViewModel
+    lateinit var mLaporanAsetKerjasamaDetailViewModel: LaporanAsetDetailViewModel
     private var recyclerview: RecyclerView? = null
     var start: Int = 0
     var row: Int = 0
@@ -32,6 +34,8 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
         supportActionBar?.hide()
         data = intent.getParcelableExtra("laporanAset")
 
+        val progress = findViewById<ProgressBar>(R.id.progressBar)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_laporan_aset_detail)
 
         val tutup = findViewById<TextView>(R.id.close_detail_btn)
         val backArrow = findViewById<ImageButton>(R.id.backbtn)
@@ -82,7 +86,21 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
         }
 
         setList()
-        mLaporanAsetKerjasamaViewModel.getLaporanAsetDetail()
+        mLaporanAsetKerjasamaDetailViewModel.getLaporanAsetDetail()
+
+        mLaporanAsetKerjasamaDetailViewModel.isLoading.observe(this){
+            if (it){
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
+
+        mLaporanAsetKerjasamaDetailViewModel.responseSucces.observe(this){
+            setList()
+        }
     }
 
     fun setList(){
@@ -90,7 +108,7 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = LaporanAsetDetailAdapter(this,  mLaporanAsetKerjasamaViewModel){
+        recyclerview?.adapter = LaporanAsetDetailAdapter(this,  mLaporanAsetKerjasamaDetailViewModel){
 
         }
     }

@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.LaporanAsetDikerjasamakan.LaporanAsetKerjasamaViewModel
 import com.example.digidok.R
 
-class LaporanAsetDetailAdapter(private val context: Context, val laporanAsetKerjasamaViewModel: LaporanAsetKerjasamaViewModel, val listener: (LaporanAsetDetailModel) -> Unit)
+class LaporanAsetDetailAdapter(private val context: Context, val laporanAsetKerjasamaDetailViewModel: LaporanAsetDetailViewModel, val listener: (LaporanAsetDetailModel) -> Unit)
     : RecyclerView.Adapter<LaporanAsetDetailAdapter.LaporanAsetDetailViewHolder>(){
 
-    private var LaporanAsetDetail: List<LaporanAsetDetailModel> = laporanAsetKerjasamaViewModel.mDataDetail
+    private var LaporanAsetDetail: List<LaporanAsetDetailModel> = laporanAsetKerjasamaDetailViewModel.mData
 
     class LaporanAsetDetailViewHolder(view: View): RecyclerView.ViewHolder(view) {
 //        val num_laporan = view.findViewById<TextView>(R.id.num_laporan)

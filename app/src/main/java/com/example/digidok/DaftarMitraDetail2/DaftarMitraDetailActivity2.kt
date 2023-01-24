@@ -319,10 +319,16 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
         }
 
-//        setSpinnerKategori()
-
         setSpinnerStatusMitra()
         setSpinnerjenisMitra()
+
+        mDaftarMitraDetailViewModel2.responseSuccesStatus.observe(this){
+            setSpinnerStatusMitra()
+        }
+
+        mDaftarMitraDetailViewModel2.responseSuccesJenis.observe(this){
+            setSpinnerjenisMitra()
+        }
 
     }
 
@@ -330,7 +336,7 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
     fun setSpinnerjenisMitra(){
         val arrayStringTahun = arrayListOf("Pilih Jenis Mitra")
-        arrayStringTahun.addAll(listJenisMitra.map {
+        arrayStringTahun.addAll(mDaftarMitraDetailViewModel2.mDataJenisMitra.map {
             it.label
         })
         spinner_jenis_mitra?.adapter =
@@ -364,7 +370,7 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
         var positionJenisMitra = 0
         var position = 0
-        listJenisMitra.forEach {
+        mDaftarMitraDetailViewModel2.mDataJenisMitra.forEach {
             position += 1
             if(jenisMitra.equals(it.value)){
                 positionJenisMitra = position
@@ -379,7 +385,7 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
     fun setSpinnerStatusMitra() {
         val arrayStringWilayah = arrayListOf("Pilih Status")
-        arrayStringWilayah.addAll(listStatusMitra.map {
+        arrayStringWilayah.addAll(mDaftarMitraDetailViewModel2.mDataStatusMitra.map {
             it.label
         })
         spinner_status_mitra?.adapter =
@@ -413,7 +419,7 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
         var positionStatusMitra = 0
         var position = 0
-        listStatusMitra.forEach {
+        mDaftarMitraDetailViewModel2.mDataStatusMitra.forEach {
             position += 1
             if(statusMitra.equals(it.value)){
                 positionStatusMitra = position
@@ -425,19 +431,6 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
         }
 
 
-    }
-
-    fun getIndex(spinner: Spinner,  myString : String): Int {
-
-        var index = 0
-        var i = 0
-        for ( i in 0..spinner.getCount()){
-            if (spinner.getItemAtPosition(i).equals(myString)){
-                index = i;
-            }
-        }
-
-        return index
     }
 
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")

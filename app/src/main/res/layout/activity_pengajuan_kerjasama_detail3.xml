@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:context=".DaftarPengajuanKerjasama.DaftarSuratLampiranActivity">
+            tools:context=".DaftarPengajuanKerjasamaDetail3.DaftarSuratLampiranActivity">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -100,6 +100,13 @@
 <!--                        android:layout_height="1dp"-->
 <!--                        android:layout_marginBottom="10dp"-->
 <!--                        android:background="#949494" />-->
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_gravity="center"
+                        android:visibility="visible"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_list_surat_lampiran"

@@ -135,6 +135,12 @@
                     android:textColor="#0A3E0C"
                     android:textSize="14dp" />
 
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:visibility="visible"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_list_laporan_aset_detail"

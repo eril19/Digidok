@@ -18,6 +18,8 @@ class DaftarMitraDetailViewModel2(context: Application) : AndroidViewModel(conte
     var isLoading = MutableLiveData<Boolean>()
     val token = MutableLiveData<String>()
     val responseSucces = MutableLiveData<Boolean>()
+    val responseSuccesJenis = MutableLiveData<Boolean>()
+    val responseSuccesStatus = MutableLiveData<Boolean>()
     val mMessageResponse = MutableLiveData<String>()
     val mRepository: Repository = Injection.provideRepository(context)
 
@@ -88,6 +90,7 @@ class DaftarMitraDetailViewModel2(context: Application) : AndroidViewModel(conte
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
+                        responseSucces.value = true
                         mMessageResponse.value = "Data berhasil di tambah"
                     }
                 }
@@ -163,6 +166,7 @@ class DaftarMitraDetailViewModel2(context: Application) : AndroidViewModel(conte
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
+                        responseSucces.value = true
                         mMessageResponse.value = "Data berhasil di update"
                     }
                 }
@@ -189,6 +193,7 @@ class DaftarMitraDetailViewModel2(context: Application) : AndroidViewModel(conte
                     if (data.isSuccess) {
                         mDataJenisMitra.clear()
                         data.data?.dataJenisMitra?.forEach {
+                            responseSuccesJenis.value = true
                             mDataJenisMitra?.add(
                                 JenisMitraModel(
                                     value = it?.value.safe(),
@@ -223,6 +228,7 @@ class DaftarMitraDetailViewModel2(context: Application) : AndroidViewModel(conte
                     if (data.isSuccess) {
                         mDataStatusMitra.clear()
                         data.data?.dataStatusMitra?.forEach {
+                            responseSuccesStatus.value = true
                             mDataStatusMitra?.add(
                                 StatusMitraModel(
                                     value = it?.value.safe(),
