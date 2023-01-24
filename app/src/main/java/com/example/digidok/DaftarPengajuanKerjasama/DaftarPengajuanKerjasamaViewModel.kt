@@ -1,20 +1,17 @@
 package com.example.digidok.DaftarPengajuanKerjasama
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.digidok.DaftarKJPP.DaftarKjppModel
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.UserModel
 import com.example.digidok.data.model.daftarPengajuanKerjasamaModel
 import com.example.digidok.utils.Injection
-import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
-class PengajuanKerjasamaViewModel(context: Application) : AndroidViewModel(context)  {
+class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel(context)  {
     var isLoading = MutableLiveData<Boolean>()
     val token = MutableLiveData<String>()
     val responseSucces = MutableLiveData<Boolean>()
@@ -26,7 +23,7 @@ class PengajuanKerjasamaViewModel(context: Application) : AndroidViewModel(conte
     val sortColumn = MutableLiveData<String>()
     val order = MutableLiveData<String>()
 
-    val mData: MutableList<PengajuanKerjasamaModel> = mutableListOf()
+    val mData: MutableList<DaftarPengajuanKerjasamaModel> = mutableListOf()
 
     fun getPengajuanKerjasama(status:String) {
         isLoading.value = true
@@ -46,7 +43,7 @@ class PengajuanKerjasamaViewModel(context: Application) : AndroidViewModel(conte
                         mData.clear()
                         data.data?.dataDokumen?.forEach {
                             mData?.add(
-                                PengajuanKerjasamaModel(
+                                DaftarPengajuanKerjasamaModel(
                                     header_color = it?.statusLabel.safe(),
                                     no_pks = it?.idPks.safe(),
                                     nama_mitra = it?.nama.safe(),

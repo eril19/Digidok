@@ -1,4 +1,4 @@
-package com.example.digidok.LaporanAsetDikerjasamakan
+package com.example.digidok.LaporanAsetDikerjasamakanDetail
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.DaftarKJPP.DaftarKjppModel
+import com.example.digidok.LaporanAsetDikerjasamakan.LaporanAsetKerjasamaViewModel
 import com.example.digidok.R
 
 class LaporanAsetDetailAdapter(private val context: Context, val laporanAsetKerjasamaViewModel: LaporanAsetKerjasamaViewModel, val listener: (LaporanAsetDetailModel) -> Unit)

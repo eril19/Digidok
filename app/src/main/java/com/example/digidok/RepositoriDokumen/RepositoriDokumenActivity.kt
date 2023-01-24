@@ -204,11 +204,15 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             setList()
         }
 
-        mRepositoriDokumenViewModel.responseSucces.observe(this){
+        mRepositoriDokumenViewModel.responseSuccesTahun.observe(this){
             setSpinnerTahun()
         }
 
-        mRepositoriDokumenViewModel.responseSucces.observe(this){
+        mRepositoriDokumenViewModel.responseSuccesKota.observe(this){
+            setSpinnerWilayah()
+        }
+
+        mRepositoriDokumenViewModel.responseSuccesKelurahan.observe(this){
             setSpinnerKelurahan()
         }
 

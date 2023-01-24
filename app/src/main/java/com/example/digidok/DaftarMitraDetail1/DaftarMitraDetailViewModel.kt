@@ -1,18 +1,14 @@
-package com.example.digidok.DaftarMitra
+package com.example.digidok.DaftarMitraDetail1
 
 import android.app.Application
-import android.widget.EditText
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.digidok.DaftarKJPP.DaftarKjppModel
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.NPWPModel
 import com.example.digidok.data.model.detailMitramodel
 import com.example.digidok.utils.Injection
-import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
 class DaftarMitraDetailViewModel(context: Application) : AndroidViewModel(context) {

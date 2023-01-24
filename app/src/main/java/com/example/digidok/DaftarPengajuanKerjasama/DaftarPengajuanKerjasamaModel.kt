@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 
-data class PengajuanKerjasamaModel(
+data class DaftarPengajuanKerjasamaModel(
     val header_color : String,
     val no_pks : String,
     val nama_mitra: String,
@@ -34,12 +34,12 @@ data class PengajuanKerjasamaModel(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<PengajuanKerjasamaModel> {
-        override fun createFromParcel(parcel: Parcel): PengajuanKerjasamaModel {
-            return PengajuanKerjasamaModel(parcel)
+    companion object CREATOR : Parcelable.Creator<DaftarPengajuanKerjasamaModel> {
+        override fun createFromParcel(parcel: Parcel): DaftarPengajuanKerjasamaModel {
+            return DaftarPengajuanKerjasamaModel(parcel)
         }
 
-        override fun newArray(size: Int): Array<PengajuanKerjasamaModel?> {
+        override fun newArray(size: Int): Array<DaftarPengajuanKerjasamaModel?> {
             return arrayOfNulls(size)
         }
     }

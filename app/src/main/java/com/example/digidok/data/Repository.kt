@@ -167,9 +167,10 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         token: String,
         hasilTelaah: String,
         catatan: String,
+        id:String,
         callback: DataSource.TelaahCallback
     ) {
-        remoteDataSource.Telaah(token, hasilTelaah, catatan, callback)
+        remoteDataSource.Telaah(token, hasilTelaah, catatan, id,callback)
     }
 
     override fun SetStatus(

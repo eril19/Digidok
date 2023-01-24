@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.DaftarPengajuanKerjasamaDetail.DaftarPengajuanKerjasamaDetailActivity
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
@@ -20,10 +21,10 @@ import com.example.digidok.R
 import com.example.digidok.utils.Preferences
 import kotlin.collections.ArrayList
 
-class PengajuanKerjasamaActivity : AppCompatActivity() {
+class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
 
     var isLoading: Boolean = false
-    var pengajuanKerjasama: ArrayList<PengajuanKerjasamaModel> = ArrayList()
+    var pengajuanKerjasama: ArrayList<DaftarPengajuanKerjasamaModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
     var start: Int = 0
     var row: Int = 0
@@ -31,7 +32,7 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
     var order: String = "asc"
     var spinnerStatus: Spinner? = null
     val listStatus = arrayListOf("SEMUA", "DRAFT", "MENUNGGU VALIDASI", "DISETUJUI")
-    lateinit var mPengajuanKerjasamaViewModel: PengajuanKerjasamaViewModel
+    lateinit var mPengajuanKerjasamaViewModel: DaftarPengajuanKerjasamaViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +44,8 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        mPengajuanKerjasamaViewModel = ViewModelProvider(this@PengajuanKerjasamaActivity).get(PengajuanKerjasamaViewModel::class.java)
-        mPengajuanKerjasamaViewModel.token.value = Preferences.isToken(this@PengajuanKerjasamaActivity)
+        mPengajuanKerjasamaViewModel = ViewModelProvider(this@DaftarPengajuanKerjasamaActivity).get(DaftarPengajuanKerjasamaViewModel::class.java)
+        mPengajuanKerjasamaViewModel.token.value = Preferences.isToken(this@DaftarPengajuanKerjasamaActivity)
         mPengajuanKerjasamaViewModel.row.value = "10"
         mPengajuanKerjasamaViewModel.order.value = "asc"
         mPengajuanKerjasamaViewModel.start.value = "0"
@@ -82,14 +83,14 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
         val back = findViewById<ImageView>(R.id.backbtn)
 
         back.setOnClickListener {
-            val intent = Intent(this@PengajuanKerjasamaActivity, DashboardActivity::class.java)
+            val intent = Intent(this@DaftarPengajuanKerjasamaActivity, DashboardActivity::class.java)
             startActivity(intent)
             finish()
         }
 
         val tambahMitraBtn = findViewById<Button>(R.id.tambahMitraBtn)
         tambahMitraBtn.setOnClickListener {
-            val i = Intent(this@PengajuanKerjasamaActivity, PengajuanKerjasamaDetailActivity::class.java)
+            val i = Intent(this@DaftarPengajuanKerjasamaActivity, DaftarPengajuanKerjasamaDetailActivity::class.java)
             i.putExtra("status", "Tambah")
             startActivity(i)
         }
@@ -101,27 +102,27 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
 
         val homeBtn : ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaActivity, DashboardActivity::class.java))
+            startActivity(Intent(this@DaftarPengajuanKerjasamaActivity, DashboardActivity::class.java))
         }
 
         val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
         homeBtn2.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaActivity, DashboardActivity::class.java))
+            startActivity(Intent(this@DaftarPengajuanKerjasamaActivity, DashboardActivity::class.java))
         }
 
         val homeBtn3 : ImageButton = findViewById(R.id.homeBtn)
         homeBtn3.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaActivity, DashboardActivity::class.java))
+            startActivity(Intent(this@DaftarPengajuanKerjasamaActivity, DashboardActivity::class.java))
         }
 
         val profileBtn : ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaActivity, ProfileActivity::class.java))
+            startActivity(Intent(this@DaftarPengajuanKerjasamaActivity, ProfileActivity::class.java))
         }
 
         val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
         notificationBtn.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaActivity, NotificationActivity::class.java))
+            startActivity(Intent(this@DaftarPengajuanKerjasamaActivity, NotificationActivity::class.java))
         }
 
         setSpinnerKategori()
@@ -181,15 +182,15 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = PengajuanKerjasamaAdapter(
+        recyclerview?.adapter = DaftarPengajuanKerjasamaAdapter(
             this,
             mPengajuanKerjasamaViewModel,
-            object : PengajuanKerjasamaAdapter.onItemClickListener {
+            object : DaftarPengajuanKerjasamaAdapter.onItemClickListener {
 
                 override fun onItemClick(position: Int) {
                     val i = Intent(
-                        this@PengajuanKerjasamaActivity,
-                        PengajuanKerjasamaDetailActivity::class.java
+                        this@DaftarPengajuanKerjasamaActivity,
+                        DaftarPengajuanKerjasamaDetailActivity::class.java
                     )
                     i.putExtra("PengajuanKerjasama", pengajuanKerjasama[position])
                     startActivity(i)
@@ -201,21 +202,41 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                     idPks: String,
                     view: View
                 ) {
-                    val popupPencet = PopupMenu(this@PengajuanKerjasamaActivity, view)
+                    val popupPencet = PopupMenu(this@DaftarPengajuanKerjasamaActivity, view)
                     popupPencet.inflate(R.menu.daftar_pengajuan_menu)
 
-                    if (statusPengajuan.equals("Dikirim",true)) {
+                    if (statusPengajuan.equals("DISETUJUI",true)) {
+                        popupPencet.menu.findItem(R.id.menu_view).isVisible = true
                         popupPencet.menu.findItem(R.id.menu_edit).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_hapus).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_kirim).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_restore).isVisible = false
-                    } else if(statusPengajuan.equals("Disetujui",true)) {
+                    }
+                    else if(statusPengajuan.equals("DRAFT",true) || statusPengajuan.equals("DIKEMBALIKAN",true)) {
+                        popupPencet.menu.findItem(R.id.menu_view).isVisible = true
+                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
+                        popupPencet.menu.findItem(R.id.menu_edit).isVisible = true
+                        popupPencet.menu.findItem(R.id.menu_hapus).isVisible = true
+                        popupPencet.menu.findItem(R.id.menu_kirim).isVisible = true
+                        popupPencet.menu.findItem(R.id.menu_restore).isVisible = false
+                    }
+                    else if(statusPengajuan.equals("DIKIRIM",true)) {
+                        popupPencet.menu.findItem(R.id.menu_view).isVisible = true
+                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = true
+                        popupPencet.menu.findItem(R.id.menu_edit).isVisible = false
+                        popupPencet.menu.findItem(R.id.menu_hapus).isVisible = false
+                        popupPencet.menu.findItem(R.id.menu_kirim).isVisible = false
+                        popupPencet.menu.findItem(R.id.menu_restore).isVisible = false
+                    }
+                    else if(statusPengajuan.equals("DIHAPUS",true)) {
+                        popupPencet.menu.findItem(R.id.menu_view).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_edit).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_hapus).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_kirim).isVisible = false
-                        popupPencet.menu.findItem(R.id.menu_restore).isVisible = false
-                    } else if (Preferences.Role(this@PengajuanKerjasamaActivity).equals("Staff",ignoreCase = true)){
+                        popupPencet.menu.findItem(R.id.menu_restore).isVisible = true
+                    }
+                    else if (Preferences.Role(this@DaftarPengajuanKerjasamaActivity).equals("Staff",ignoreCase = true)){
                         popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
                     }
                     else{
@@ -225,21 +246,21 @@ class PengajuanKerjasamaActivity : AppCompatActivity() {
                     popupPencet.setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.menu_view -> {
-                                val intent = Intent(this@PengajuanKerjasamaActivity, PengajuanKerjasamaDetailActivity::class.java)
+                                val intent = Intent(this@DaftarPengajuanKerjasamaActivity, DaftarPengajuanKerjasamaDetailActivity::class.java)
                                 intent.putExtra("status", "View")
                                 intent.putExtra("idPks",idPks)
                                 startActivity(intent)
                                 true
                             }
                             R.id.menu_edit -> {
-                                val intent = Intent(this@PengajuanKerjasamaActivity, PengajuanKerjasamaDetailActivity::class.java)
+                                val intent = Intent(this@DaftarPengajuanKerjasamaActivity, DaftarPengajuanKerjasamaDetailActivity::class.java)
                                 intent.putExtra("idPks",idPks)
                                 intent.putExtra("status", "Edit")
                                 startActivity(intent)
                                 true
                             }
                             R.id.menu_telaah -> {
-                                val intent = Intent(this@PengajuanKerjasamaActivity, DaftarSuratLampiranActivity::class.java)
+                                val intent = Intent(this@DaftarPengajuanKerjasamaActivity, DaftarSuratLampiranActivity::class.java)
                                 intent.putExtra("idPks",idPks)
                                 intent.putExtra("status", "Telaah")
                                 startActivity(intent)

@@ -194,11 +194,11 @@
                     </ImageView>
 
                     <ImageView
+                        android:id="@+id/dotTelaah"
                         android:layout_width="7dp"
                         android:layout_height="7dp"
                         android:layout_marginRight="3dp"
-                        android:src="@drawable/ic_circle_pagination">
-                    </ImageView>
+                        android:src="@drawable/ic_circle_pagination"></ImageView>
 
                     <ImageView
                         android:layout_width="7dp"

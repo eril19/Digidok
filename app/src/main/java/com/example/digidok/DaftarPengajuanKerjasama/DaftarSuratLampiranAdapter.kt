@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.DaftarPengajuanKerjasamaDetail.DaftarPengajuanKerjasamaDetailModel
 import com.example.digidok.R
 
-class DaftarSuratLampiranAdapter(private val context: Context, private val PengajuanKerja: List<PengajuanKerjasamaDetailModel>, private var mListener: onItemClickListener,
-                                 val listener: (PengajuanKerjasamaDetailModel) -> Unit)
+class DaftarSuratLampiranAdapter(private val context: Context, private val PengajuanKerja: List<DaftarPengajuanKerjasamaDetailModel>, private var mListener: onItemClickListener,
+                                 val listener: (DaftarPengajuanKerjasamaDetailModel) -> Unit)
     : RecyclerView.Adapter<DaftarSuratLampiranAdapter.DaftarSuratLampiranViewHolder>()
 {
 
@@ -39,7 +40,7 @@ class DaftarSuratLampiranAdapter(private val context: Context, private val Penga
 
 
 
-        fun bindView(pengajuanKerjasamaDetailModel: PengajuanKerjasamaDetailModel, listener: (PengajuanKerjasamaDetailModel) -> Unit){
+        fun bindView(pengajuanKerjasamaDetailModel: DaftarPengajuanKerjasamaDetailModel, listener: (DaftarPengajuanKerjasamaDetailModel) -> Unit){
             kodeDokumen.text = pengajuanKerjasamaDetailModel.kodeDokumen
             jenisDokumen.text = pengajuanKerjasamaDetailModel.jenisDokumen
             noSurat.text = pengajuanKerjasamaDetailModel.noSurat

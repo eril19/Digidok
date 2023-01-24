@@ -1,4 +1,4 @@
-package com.example.digidok.DaftarPengajuanKerjasama
+package com.example.digidok.DaftarPengajuanKerjasamaDetail
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -12,6 +12,9 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.DaftarPengajuanKerjasama.DaftarPengajuanKerjasamaActivity
+import com.example.digidok.DaftarPengajuanKerjasama.DataAsetdiKerjasamakanAdapter
+import com.example.digidok.DaftarPengajuanKerjasama.DataAsetdikerjasamakanActivity
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
@@ -26,11 +29,11 @@ import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
-class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
+class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
     var isStatusEdit: String = ""
     var isLoading: Boolean = false
-    var pengajuanKerjasamaDetail: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
+    var pengajuanKerjasamaDetail: ArrayList<DaftarPengajuanKerjasamaDetailModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
     var start: Int = 0
     var row: Int = 0
@@ -230,7 +233,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 val back = findViewById<ImageView>(R.id.backbtn)
 
                 back.setOnClickListener {
-                    val intent = Intent(this@PengajuanKerjasamaDetailActivity, PengajuanKerjasamaActivity::class.java)
+                    val intent = Intent(this@DaftarPengajuanKerjasamaDetailActivity, DaftarPengajuanKerjasamaActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -239,8 +242,8 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                     updatePengajuan(idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, idPkscheck,dokumen)
                     startActivity(
                         Intent(
-                            this@PengajuanKerjasamaDetailActivity,
-                            PengajuanKerjasamaActivity::class.java
+                            this@DaftarPengajuanKerjasamaDetailActivity,
+                            DaftarPengajuanKerjasamaActivity::class.java
                         )
                     )
                 }
@@ -249,8 +252,8 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                     insertPengajuan(idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, dokumen)
                     startActivity(
                         Intent(
-                            this@PengajuanKerjasamaDetailActivity,
-                            PengajuanKerjasamaActivity::class.java
+                            this@DaftarPengajuanKerjasamaDetailActivity,
+                            DaftarPengajuanKerjasamaActivity::class.java
                         )
                     )
                 }
@@ -288,8 +291,8 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         close_detail_btn.setOnClickListener {
             startActivity(
                 Intent(
-                    this@PengajuanKerjasamaDetailActivity,
-                    PengajuanKerjasamaActivity::class.java
+                    this@DaftarPengajuanKerjasamaDetailActivity,
+                    DaftarPengajuanKerjasamaActivity::class.java
                 )
             )
             finish()
@@ -298,8 +301,8 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         backArrow.setOnClickListener {
             startActivity(
                 Intent(
-                    this@PengajuanKerjasamaDetailActivity,
-                    PengajuanKerjasamaActivity::class.java
+                    this@DaftarPengajuanKerjasamaDetailActivity,
+                    DaftarPengajuanKerjasamaActivity::class.java
                 )
             )
             finish()
@@ -319,32 +322,32 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         val homeBtn : ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaDetailActivity, DashboardActivity::class.java))
+            startActivity(Intent(this@DaftarPengajuanKerjasamaDetailActivity, DashboardActivity::class.java))
         }
 
         val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
         homeBtn2.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaDetailActivity, DashboardActivity::class.java))
+            startActivity(Intent(this@DaftarPengajuanKerjasamaDetailActivity, DashboardActivity::class.java))
         }
 
         val homeBtn3 : ImageButton = findViewById(R.id.homeBtn)
         homeBtn3.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaDetailActivity, DashboardActivity::class.java))
+            startActivity(Intent(this@DaftarPengajuanKerjasamaDetailActivity, DashboardActivity::class.java))
         }
 
         val profileBtn : ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaDetailActivity, ProfileActivity::class.java))
+            startActivity(Intent(this@DaftarPengajuanKerjasamaDetailActivity, ProfileActivity::class.java))
         }
 
         val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
         notificationBtn.setOnClickListener {
-            startActivity(Intent(this@PengajuanKerjasamaDetailActivity, NotificationActivity::class.java))
+            startActivity(Intent(this@DaftarPengajuanKerjasamaDetailActivity, NotificationActivity::class.java))
         }
 
         next_detail_btn.setOnClickListener {
             val i = Intent(
-                this@PengajuanKerjasamaDetailActivity,
+                this@DaftarPengajuanKerjasamaDetailActivity,
                 DataAsetdikerjasamakanActivity::class.java
             )
             i.putExtra("hideTelaah", true)
@@ -385,7 +388,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
         mRepository.getListMitra(
-            token = Preferences.isToken(context = this@PengajuanKerjasamaDetailActivity),
+            token = Preferences.isToken(context = this@DaftarPengajuanKerjasamaDetailActivity),
             object : DataSource.listMitraCallback {
                 override fun onSuccess(data: BaseApiModel<listMitra?>) {
                     isLoading = false
@@ -419,7 +422,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
         mRepository.getKategoriPKS(
-            token = Preferences.isToken(context = this@PengajuanKerjasamaDetailActivity),
+            token = Preferences.isToken(context = this@DaftarPengajuanKerjasamaDetailActivity),
             object : DataSource.kategoriPKSCallback {
                 override fun onSuccess(data: BaseApiModel<kategoriPKSmodel?>) {
                     isLoading = false
@@ -453,7 +456,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
         mRepository.getTujuanPKS(
-            token = Preferences.isToken(context = this@PengajuanKerjasamaDetailActivity),
+            token = Preferences.isToken(context = this@DaftarPengajuanKerjasamaDetailActivity),
             object : DataSource.tujuanPKSCallback {
                 override fun onSuccess(data: BaseApiModel<tujuanPKSmodel?>) {
                     isLoading = false
@@ -474,7 +477,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
-                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {
@@ -488,7 +491,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         com.example.digidok.isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
         mRepository.getDaftarPengajuanKerjasamaDetail(
-            token = Preferences.isToken(context = this@PengajuanKerjasamaDetailActivity),
+            token = Preferences.isToken(context = this@DaftarPengajuanKerjasamaDetailActivity),
             id = idPks,
             object : DataSource.daftarPengajuanDetailCallback {
                 override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>) {
@@ -518,7 +521,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
                 override fun onError(message: String) {
                     isLoading = false
-                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFinish() {
@@ -545,7 +548,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         com.example.digidok.isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
         mRepository.InsertPengajuan(
-            token = Preferences.isToken(context = this@PengajuanKerjasamaDetailActivity),
+            token = Preferences.isToken(context = this@DaftarPengajuanKerjasamaDetailActivity),
             idMitra = idMitra,
             idKategoriPks = idKategoriPks,
             idTujuanPks = idTujuanPks,
@@ -561,12 +564,12 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     com.example.digidok.isLoading = false
                     if (data.isSuccess) {
-                        Toast.makeText(this@PengajuanKerjasamaDetailActivity, "Data pengajuan berhasil ditambah!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, "Data pengajuan berhasil ditambah!", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onError(message: String) {
-                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
                     com.example.digidok.isLoading = false
                 }
 
@@ -594,7 +597,7 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
         com.example.digidok.isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
         mRepository.UpdatePengajuan(
-            token = Preferences.isToken(context = this@PengajuanKerjasamaDetailActivity),
+            token = Preferences.isToken(context = this@DaftarPengajuanKerjasamaDetailActivity),
             idMitra = idMitra,
             idKategoriPks = idKategoriPks,
             idTujuanPks = idTujuanPks,
@@ -611,12 +614,12 @@ class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     com.example.digidok.isLoading = false
                     if (data.isSuccess) {
-                        Toast.makeText(this@PengajuanKerjasamaDetailActivity, "Data pengajuan berhasil ditambah!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, "Data pengajuan berhasil ditambah!", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onError(message: String) {
-                    Toast.makeText(this@PengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, message, Toast.LENGTH_LONG).show()
                     com.example.digidok.isLoading = false
                 }
 

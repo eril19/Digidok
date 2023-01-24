@@ -1,7 +1,6 @@
-package com.example.digidok.DaftarMitra
+package com.example.digidok.DaftarMitraDetail2
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.digidok.LaporanPengajuanKerjasama.LaporanPengajuanModel
@@ -13,7 +12,6 @@ import com.example.digidok.data.model.UserModel
 import com.example.digidok.data.model.jenisMitramodel
 import com.example.digidok.data.model.statusMitramodel
 import com.example.digidok.utils.Injection
-import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
 class DaftarMitraDetailViewModel2(context: Application) : AndroidViewModel(context)  {

@@ -1,24 +1,18 @@
-package com.example.digidok.LaporanAsetDikerjasamakan
+package com.example.digidok.LaporanAsetDikerjasamakanDetail
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.Dashboard.DashboardActivity
+import com.example.digidok.LaporanAsetDikerjasamakan.LaporanAsetKerjasamaModel
+import com.example.digidok.LaporanAsetDikerjasamakan.LaporanAsetKerjasamaViewModel
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.R
-import com.example.digidok.data.DataSource
-import com.example.digidok.data.Repository
-import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.laporanAsetDikerjasamakanModel
-import com.example.digidok.utils.Injection
-import com.example.digidok.utils.Preferences
-import com.example.digidok.utils.Preferences.safe
 import java.text.DecimalFormat
 
 class LaporanAsetDetailActivity : AppCompatActivity() {

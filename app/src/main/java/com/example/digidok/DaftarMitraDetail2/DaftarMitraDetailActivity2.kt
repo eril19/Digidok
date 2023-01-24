@@ -1,4 +1,4 @@
-package com.example.digidok.DaftarMitra
+package com.example.digidok.DaftarMitraDetail2
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -10,17 +10,14 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.example.digidok.DaftarMitra.DaftarMitraActivity
+import com.example.digidok.DaftarMitraDetail1.DaftarMitraDetailModel
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.R
 import com.example.digidok.SpinnerModel.JenisMitraModel
 import com.example.digidok.SpinnerModel.StatusMitraModel
-import com.example.digidok.data.DataSource
-import com.example.digidok.data.Repository
-import com.example.digidok.data.model.*
-import com.example.digidok.isLoading
-import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
@@ -76,7 +73,8 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
         data = intent.getParcelableExtra("dataDetail")
         idMitraCheck = intent.getStringExtra("id") ?: ""
 
-        mDaftarMitraDetailViewModel2 = ViewModelProvider(this@DaftarMitraDetailActivity2).get(DaftarMitraDetailViewModel2::class.java)
+        mDaftarMitraDetailViewModel2 = ViewModelProvider(this@DaftarMitraDetailActivity2).get(
+            DaftarMitraDetailViewModel2::class.java)
         mDaftarMitraDetailViewModel2.token.value = Preferences.isToken(this@DaftarMitraDetailActivity2)
 
         spinner_jenis_mitra = findViewById<Spinner>(R.id.spinner_jenis_mitra)

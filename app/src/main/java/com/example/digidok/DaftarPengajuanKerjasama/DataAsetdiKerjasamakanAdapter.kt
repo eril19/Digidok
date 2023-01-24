@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.DaftarPengajuanKerjasamaDetail.DaftarPengajuanKerjasamaDetailModel
 import com.example.digidok.R
 
-class DataAsetdiKerjasamakanAdapter(private val context: Context, private val PengajuanKerjaDetail: List<PengajuanKerjasamaDetailModel>,
-                                    private var mListener: onItemClickListener, val listener: (PengajuanKerjasamaDetailModel) -> Unit):
+class DataAsetdiKerjasamakanAdapter(private val context: Context, private val PengajuanKerjaDetail: List<DaftarPengajuanKerjasamaDetailModel>,
+                                    private var mListener: onItemClickListener, val listener: (DaftarPengajuanKerjasamaDetailModel) -> Unit):
 RecyclerView.Adapter<DataAsetdiKerjasamakanAdapter.PengajuanKerjasamaDetailViewHolder>(){
 
     interface onItemClickListener{
@@ -35,7 +36,7 @@ RecyclerView.Adapter<DataAsetdiKerjasamakanAdapter.PengajuanKerjasamaDetailViewH
 //            }
 //        }
 
-        fun bindView(pengajuanKerjasamaDetailModel: PengajuanKerjasamaDetailModel, listener: (PengajuanKerjasamaDetailModel) -> Unit){
+        fun bindView(pengajuanKerjasamaDetailModel: DaftarPengajuanKerjasamaDetailModel, listener: (DaftarPengajuanKerjasamaDetailModel) -> Unit){
             alamat.text  = pengajuanKerjasamaDetailModel.alamat
             luas.text = pengajuanKerjasamaDetailModel.luas
             luasManfaat.text = pengajuanKerjasamaDetailModel.luasManfaat

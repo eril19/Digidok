@@ -1,11 +1,9 @@
 package com.example.digidok.LaporanAsetDikerjasamakan
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.digidok.LaporanPengajuanKerjasama.LaporanPengajuanModel
-import com.example.digidok.RepositoriDokumen.RepositoriDokumenModel
+import com.example.digidok.LaporanAsetDikerjasamakanDetail.LaporanAsetDetailModel
 import com.example.digidok.SpinnerModel.KelurahanModel
 import com.example.digidok.SpinnerModel.KotaModel
 import com.example.digidok.SpinnerModel.TahunModel
@@ -13,13 +11,15 @@ import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.*
 import com.example.digidok.utils.Injection
-import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
 class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(context) {
     var isLoading = MutableLiveData<Boolean>()
     val token = MutableLiveData<String>()
     val responseSucces = MutableLiveData<Boolean>()
+    val responseSuccesTahun = MutableLiveData<Boolean>()
+    val responseSuccesKelurahan = MutableLiveData<Boolean>()
+    val responseSuccesKota = MutableLiveData<Boolean>()
     val mMessageResponse = MutableLiveData<String>()
     val mRepository: Repository = Injection.provideRepository(context)
 
@@ -52,6 +52,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                     if (data.isSuccess) {
                         mData.clear()
                         data.data?.dataDokumen?.forEach {
+                            responseSucces.value = true
                             mData?.add(
                                 LaporanAsetKerjasamaModel(
                                     header_color = it?.statusLabel.safe(),
@@ -87,6 +88,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                     if (data.isSuccess) {
                         mDataTahun.clear()
                         data.data?.dataTahun?.forEach {
+                            responseSuccesTahun.value = true
                             mDataTahun?.add(
                                 TahunModel(
                                     value = it?.value.safe(),
@@ -120,6 +122,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                     if (data.isSuccess) {
                         mDataKelurahan.clear()
                         data.data?.dataKelurahan?.forEach {
+                            responseSuccesKelurahan.value = true
                             mDataKelurahan?.add(
                                 KelurahanModel(
                                     value = it?.value.safe(),
@@ -152,6 +155,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                     if (data.isSuccess) {
                         mDataKota.clear()
                         data.data?.dataKota?.forEach {
+                            responseSuccesKota.value = true
                             mDataKota?.add(
                                 KotaModel(
                                     value = it?.value.safe(),

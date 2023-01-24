@@ -148,7 +148,8 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Field("hasilTelaah") hasilTelaah: String,
         @Field("catatan") catatan: String,
-    ): Observable<BaseApiModel<UserModel?>>
+        @Field("id") id: String,
+        ): Observable<BaseApiModel<UserModel?>>
 
     @FormUrlEncoded
     @POST("auth/get-data")

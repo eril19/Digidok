@@ -1,4 +1,4 @@
-package com.example.digidok.DaftarMitra
+package com.example.digidok.DaftarMitraDetail1
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,18 +7,11 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.digidok.DaftarKJPP.DaftarKjppViewModel
+import com.example.digidok.DaftarMitraDetail2.DaftarMitraDetailActivity2
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.R
-import com.example.digidok.data.DataSource
-import com.example.digidok.data.Repository
-import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.NPWPModel
-import com.example.digidok.data.model.detailMitramodel
-import com.example.digidok.isLoading
-import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
@@ -84,7 +77,8 @@ class MitraDetailActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        mDaftarMitraDetailViewModel = ViewModelProvider(this@MitraDetailActivity).get(DaftarMitraDetailViewModel::class.java)
+        mDaftarMitraDetailViewModel = ViewModelProvider(this@MitraDetailActivity).get(
+            DaftarMitraDetailViewModel::class.java)
         mDaftarMitraDetailViewModel.token.value = Preferences.isToken(this@MitraDetailActivity)
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)

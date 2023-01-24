@@ -1,4 +1,4 @@
-package com.example.digidok.DaftarMitra
+package com.example.digidok.DaftarMitraDetail1
 
 import android.os.Parcel
 import android.os.Parcelable

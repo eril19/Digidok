@@ -12,6 +12,7 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.DaftarPengajuanKerjasamaDetail.DaftarPengajuanKerjasamaDetailModel
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
@@ -32,7 +33,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
     var catatan = ""
     var hasilTelaah = ""
     var catatanPenelaahan : EditText ? = null
-    var daftarSuratLampiran: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
+    var daftarSuratLampiran: ArrayList<DaftarPengajuanKerjasamaDetailModel> = ArrayList()
     var isLoading : Boolean = false
     private var recyclerview: RecyclerView? = null
     val listTelaah = arrayListOf("Disetujui", "Dikembalikan", "Ditolak")
@@ -45,6 +46,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         val header = findViewById<TextView>(R.id.header_title)
         header.setText("Detail Pengajuan Kerjasama")
         var simpan = findViewById<Button>(R.id.simpanBtn)
+        var dot = findViewById<ImageView>(R.id.dotTelaah)
 
         hideTelaah = intent.getStringExtra("status")?:""
         idPksCheck = intent.getStringExtra("idPks") ?: ""
@@ -55,6 +57,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
         if(hideTelaah.equals("Telaah",true)){
             menuTelaah.visibility = View.VISIBLE
+            dot.visibility = View.GONE
             header.setText("Telaah Pengajuan Kerjasama")
         } else {
             menuTelaah.visibility = View.GONE
@@ -66,7 +69,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
-            startActivity(Intent(this@DaftarSuratLampiranActivity, PengajuanKerjasamaActivity::class.java))
+            startActivity(Intent(this@DaftarSuratLampiranActivity, DaftarPengajuanKerjasamaActivity::class.java))
             finish()
         }
 
@@ -130,19 +133,20 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
         simpan.setOnClickListener {
             catatan = catatanTelaah.text.toString()
-            Telaah(hasilTelaah, catatan)
-            startActivity(Intent(this@DaftarSuratLampiranActivity, PengajuanKerjasamaActivity::class.java))
+            Telaah(hasilTelaah, catatan,idPksCheck)
+            startActivity(Intent(this@DaftarSuratLampiranActivity, DaftarPengajuanKerjasamaActivity::class.java))
         }
 
     }
 
-    fun Telaah(hasilTelaah:String, catatan : String){
+    fun Telaah(hasilTelaah:String, catatan : String, id:String){
         isLoading = true
         val mRepository: Repository = Injection.provideRepository(this)
         mRepository.Telaah(
             token = Preferences.isToken(context = this@DaftarSuratLampiranActivity),
             hasilTelaah = hasilTelaah,
             catatan = catatan,
+            id = id,
             object : DataSource.TelaahCallback {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     isLoading = false
@@ -208,7 +212,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
                         data.data?.dataLampiran?.forEach {
                             var url = ""
                             daftarSuratLampiran?.add(
-                                PengajuanKerjasamaDetailModel(
+                                DaftarPengajuanKerjasamaDetailModel(
                                     kodeDokumen = it?.kodeDokumen.safe(),
                                     jenisDokumen = it?.jenisDokumen.safe(),
                                     noSurat = it?.noSurat.safe(),

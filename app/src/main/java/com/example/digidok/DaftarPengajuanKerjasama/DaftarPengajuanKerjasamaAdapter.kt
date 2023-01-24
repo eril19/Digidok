@@ -10,15 +10,14 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.DaftarKJPP.DaftarKjppModel
 import com.example.digidok.R
 import java.text.SimpleDateFormat
 
-class PengajuanKerjasamaAdapter(private val context: Context, val pengajuanKerjasamaViewModel: PengajuanKerjasamaViewModel, private var mListener: onItemClickListener,
-                                val listener: (PengajuanKerjasamaModel) -> Unit)
-    : RecyclerView.Adapter<PengajuanKerjasamaAdapter.PengajuanKerjasamaViewHolder>(){
+class DaftarPengajuanKerjasamaAdapter(private val context: Context, val pengajuanKerjasamaViewModel: DaftarPengajuanKerjasamaViewModel, private var mListener: onItemClickListener,
+                                      val listener: (DaftarPengajuanKerjasamaModel) -> Unit)
+    : RecyclerView.Adapter<DaftarPengajuanKerjasamaAdapter.PengajuanKerjasamaViewHolder>(){
 
-    private var PengajuanKerja: List<PengajuanKerjasamaModel> = pengajuanKerjasamaViewModel.mData
+    private var PengajuanKerja: List<DaftarPengajuanKerjasamaModel> = pengajuanKerjasamaViewModel.mData
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
@@ -52,7 +51,7 @@ class PengajuanKerjasamaAdapter(private val context: Context, val pengajuanKerja
         }
 
 
-        fun bindView(pengajuanKerjasamaModel: PengajuanKerjasamaModel, listener: (PengajuanKerjasamaModel) -> Unit){
+        fun bindView(pengajuanKerjasamaModel: DaftarPengajuanKerjasamaModel, listener: (DaftarPengajuanKerjasamaModel) -> Unit){
             id_pks.text = pengajuanKerjasamaModel.no_pks
             nama_mitra.text = pengajuanKerjasamaModel.nama_mitra
 //            jenis_mitra.text = pengajuanKerjasamaModel.jenis_mitra

@@ -14,17 +14,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.Dashboard.DashboardActivity
+import com.example.digidok.LaporanAsetDikerjasamakanDetail.LaporanAsetDetailActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.R
-import com.example.digidok.RepositoriDokumen.RepositoriDokumenViewModel
 import com.example.digidok.SpinnerModel.KelurahanModel
 import com.example.digidok.SpinnerModel.KotaModel
 import com.example.digidok.SpinnerModel.TahunModel
-import com.example.digidok.data.DataSource
-import com.example.digidok.data.Repository
-import com.example.digidok.data.model.*
-import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
@@ -152,6 +148,10 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
             }
         }
 
+        setSpinnerStatus()
+        setSpinnerTahun()
+        setSpinnerWilayah()
+        setSpinnerKelurahan()
 
         val back = findViewById<ImageView>(R.id.backbtn)
         header.setText("Laporan Aset Dikerjasamakan")
@@ -187,10 +187,7 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
             startActivity(Intent(this@LaporanAsetKerjasamaActivity, NotificationActivity::class.java))
         }
 
-        setSpinnerStatus()
-        setSpinnerTahun()
-        setSpinnerWilayah()
-        setSpinnerKelurahan()
+
         setList()
         mLaporanAsetKerjasamaViewModel.getLaporanAset(status,tahun,kelurahan)
 
@@ -206,16 +203,23 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
 
         mLaporanAsetKerjasamaViewModel.responseSucces.observe(this){
             setList()
-            setSpinnerStatus()
+        }
+        mLaporanAsetKerjasamaViewModel.responseSuccesTahun.observe(this){
             setSpinnerTahun()
+        }
+
+        mLaporanAsetKerjasamaViewModel.responseSuccesKota.observe(this){
             setSpinnerWilayah()
+        }
+
+        mLaporanAsetKerjasamaViewModel.responseSuccesKelurahan.observe(this){
             setSpinnerKelurahan()
         }
     }
 
     fun setSpinnerTahun() {
         val arrayStringTahun = arrayListOf("Pilih Tahun")
-        arrayStringTahun.addAll(listTahun.map {
+        arrayStringTahun.addAll(mLaporanAsetKerjasamaViewModel.mDataTahun.map {
             it.label
         })
         spinnerTahun?.adapter = object : ArrayAdapter<String>(this,
@@ -244,7 +248,7 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
 
     fun setSpinnerWilayah() {
         val arrayStringWilayah = arrayListOf("Pilih Wilayah")
-        arrayStringWilayah.addAll(listKota.map {
+        arrayStringWilayah.addAll(mLaporanAsetKerjasamaViewModel.mDataKota.map {
             it.label
         })
 
@@ -274,7 +278,7 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
 
     fun setSpinnerKelurahan() {
         val arrayStringKelurahan = arrayListOf("Pilih Kelurahan")
-        arrayStringKelurahan.addAll(listKelurahan.map {
+        arrayStringKelurahan.addAll(mLaporanAsetKerjasamaViewModel.mDataKelurahan.map {
             it.label
         })
 

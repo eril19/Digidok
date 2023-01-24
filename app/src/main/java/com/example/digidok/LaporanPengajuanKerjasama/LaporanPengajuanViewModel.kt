@@ -20,6 +20,9 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
     var isLoading = MutableLiveData<Boolean>()
     val token = MutableLiveData<String>()
     val responseSucces = MutableLiveData<Boolean>()
+    val responseSuccesTahun = MutableLiveData<Boolean>()
+    val responseSuccesKelurahan = MutableLiveData<Boolean>()
+    val responseSuccesKota = MutableLiveData<Boolean>()
     val mMessageResponse = MutableLiveData<String>()
     val mRepository: Repository = Injection.provideRepository(context)
 
@@ -51,6 +54,7 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                     if (data.isSuccess) {
                         mData.clear()
                         data.data?.dataDokumen?.forEach {
+                        responseSucces.value = true
                             mData?.add(
                                 LaporanPengajuanModel(
                                     header_color = it?.statusLabel.safe(),
@@ -94,6 +98,7 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                     if (data.isSuccess) {
                         mDataTahun.clear()
                         data.data?.dataTahun?.forEach {
+                            responseSuccesTahun.value = true
                             mDataTahun?.add(
                                 TahunModel(
                                     value = it?.value.safe(),
@@ -127,6 +132,7 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                     if (data.isSuccess) {
                         mDataKelurahan.clear()
                         data.data?.dataKelurahan?.forEach {
+                            responseSuccesKelurahan.value = true
                             mDataKelurahan?.add(
                                 KelurahanModel(
                                     value = it?.value.safe(),
@@ -159,6 +165,7 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                     if (data.isSuccess) {
                         mDataKota.clear()
                         data.data?.dataKota?.forEach {
+                            responseSuccesKota.value = true
                             mDataKota?.add(
                                 KotaModel(
                                     value = it?.value.safe(),

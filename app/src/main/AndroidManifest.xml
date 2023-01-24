@@ -51,13 +51,13 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DaftarPengajuanKerjasama.PengajuanKerjasamaDetailActivity"
+            android:name=".DaftarPengajuanKerjasamaDetail.DaftarPengajuanKerjasamaDetailActivity"
             android:exported="false" />
         <activity
             android:name=".CekDokumen.CekDokumenActivity"
             android:exported="false" />
         <activity
-            android:name=".LaporanAsetDikerjasamakan.LaporanAsetDetailActivity"
+            android:name=".LaporanAsetDikerjasamakanDetail.LaporanAsetDetailActivity"
             android:exported="false" />
         <activity
             android:name=".LaporanAsetDikerjasamakan.LaporanAsetKerjasamaActivity"
@@ -69,10 +69,10 @@
             android:name=".DaftarKJPP.KjppDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".DaftarMitra.DaftarMitraDetailActivity2"
+            android:name=".DaftarMitraDetail2.DaftarMitraDetailActivity2"
             android:exported="false" />
         <activity
-            android:name=".DaftarMitra.MitraDetailActivity"
+            android:name=".DaftarMitraDetail1.MitraDetailActivity"
             android:exported="false" />
         <activity
             android:name=".RepositoriDokumen.RepositoriDokumenActivity"
@@ -81,7 +81,7 @@
             android:name=".DaftarKJPP.DaftarKjppActivity"
             android:exported="false" />
         <activity
-            android:name=".DaftarPengajuanKerjasama.PengajuanKerjasamaActivity"
+            android:name=".DaftarPengajuanKerjasama.DaftarPengajuanKerjasamaActivity"
             android:exported="false" />
         <activity
             android:name=".DaftarMitra.DaftarMitraActivity"

@@ -208,6 +208,15 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             }
         }
 
+        mLaporanPengajuanViewModel.responseSuccesTahun.observe(this){
+            setSpinnerTahun()
+        }
+        mLaporanPengajuanViewModel.responseSuccesKota.observe(this){
+            setSpinnerWilayah()
+        }
+        mLaporanPengajuanViewModel.responseSuccesKelurahan.observe(this){
+            setSpinnerKelurahan()
+        }
         mLaporanPengajuanViewModel.responseSucces.observe(this){
             setList()
         }

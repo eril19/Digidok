@@ -24,6 +24,9 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
     var isLoading = MutableLiveData<Boolean>()
     val token = MutableLiveData<String>()
     val responseSucces = MutableLiveData<Boolean>()
+    val responseSuccesTahun = MutableLiveData<Boolean>()
+    val responseSuccesKelurahan = MutableLiveData<Boolean>()
+    val responseSuccesKota = MutableLiveData<Boolean>()
     val spinnerStatusSuccess = MutableLiveData<Boolean>()
     val mMessageResponse = MutableLiveData<String>()
     val mRepository: Repository = Injection.provideRepository(context)
@@ -56,6 +59,7 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                     if (data.isSuccess) {
                         mData.clear()
                         data.data?.dataDokumen?.forEach {
+                            responseSucces.value = true
                             mData?.add(
                                 RepositoriDokumenModel(
                                     header_color = it?.statusLabel.safe(),
@@ -91,6 +95,7 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                     if (data.isSuccess) {
                         mDataTahun.clear()
                         data.data?.dataTahun?.forEach {
+                            responseSuccesTahun.value = true
                             mDataTahun?.add(
                                 TahunModel(
                                     value = it?.value.safe(),
@@ -124,6 +129,7 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                     if (data.isSuccess) {
                         mDataKelurahan.clear()
                         data.data?.dataKelurahan?.forEach {
+                            responseSuccesKelurahan.value = true
                             mDataKelurahan?.add(
                                 KelurahanModel(
                                     value = it?.value.safe(),
@@ -156,6 +162,7 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                     if (data.isSuccess) {
                         mDataKota.clear()
                         data.data?.dataKota?.forEach {
+                            responseSuccesKota.value = true
                             mDataKota?.add(
                                 KotaModel(
                                     value = it?.value.safe(),
