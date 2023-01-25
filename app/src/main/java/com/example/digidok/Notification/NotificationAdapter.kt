@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.DaftarMitra.DaftarMitraModel
 import com.example.digidok.R
 
-class NotificationAdapter(private val context: Context, private val notification: List<NotificationModel>, val listener: (NotificationModel) -> Unit)
+class NotificationAdapter(private val context: Context, val notificationViewModel: NotificationViewModel, val listener: (NotificationModel) -> Unit)
     : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>(){
+
+    private var notification: List<NotificationModel> = notificationViewModel.mData
 
     class NotificationViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val notificationTitle = view.findViewById<TextView>(R.id.notificationTitle)
@@ -19,7 +22,7 @@ class NotificationAdapter(private val context: Context, private val notification
         fun bindView(NotificationModel: NotificationModel, listener: (NotificationModel) -> Unit){
             notificationTitle.text = NotificationModel.NotificationTitle
             notificationDetail.text = NotificationModel.NotificationDetail
-            NotificationDateTime.text = NotificationModel.NotificationDateTime
+//            NotificationDateTime.text = NotificationModel.NotificationDateTime
         }
     }
 
@@ -34,5 +37,6 @@ class NotificationAdapter(private val context: Context, private val notification
     }
 
     override fun getItemCount(): Int = notification.size
+
 
 }

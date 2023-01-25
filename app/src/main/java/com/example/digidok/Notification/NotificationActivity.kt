@@ -3,22 +3,34 @@ package com.example.digidok.Notification
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.util.Log
+import android.view.View
+import android.widget.*
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.*
 import com.example.digidok.Dashboard.DashboardActivity
+import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
-import com.example.digidok.R
+import com.example.digidok.utils.Preferences
 
 class NotificationActivity : AppCompatActivity() {
+
+    private var recyclerview : RecyclerView ? =null
+    lateinit var mNotificationViewModel: NotificationViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
 
         supportActionBar?.hide()
 
+        mNotificationViewModel = ViewModelProvider(this@NotificationActivity).get(NotificationViewModel::class.java)
+        mNotificationViewModel.token.value = Preferences.isToken(this@NotificationActivity)
+
+        val progress = findViewById<ProgressBar>(R.id.progressBar)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_notification)
         val header = findViewById<TextView>(R.id.header_title)
 
         header.setText("Notification")
@@ -55,49 +67,33 @@ class NotificationActivity : AppCompatActivity() {
             startActivity(Intent(this@NotificationActivity, NotificationActivity::class.java))
         }
 
-        val notificationList = listOf<NotificationModel>(
-            NotificationModel(
-                NotificationTitle = "PKS-2022-000021 - Tanah",
-                NotificationDetail = "BINA NUSANTARA",
-                NotificationDateTime = "7 Okt 2022, 11:55"
-            ),
-            NotificationModel(
-                NotificationTitle = "PKS-2022-000022 - Tanah",
-                NotificationDetail = "Jakarta Asset Management Center",
-                NotificationDateTime = "7 Okt 2022, 11:55"
-            ),
-            NotificationModel(
-                NotificationTitle = "No PKS - Jenis BMD",
-                NotificationDetail = "Nama mitra",
-                NotificationDateTime = "7 Okt 2022, 11:55"
-            ),
-            NotificationModel(
-                NotificationTitle = "No PKS - Jenis BMD",
-                NotificationDetail = "Nama mitra",
-                NotificationDateTime = "7 Okt 2022, 11:55"
-            ),
-            NotificationModel(
-                NotificationTitle = "No PKS - Jenis BMD",
-                NotificationDetail = "Nama mitra",
-                NotificationDateTime = "7 Okt 2022, 11:55"
-            ),
-            NotificationModel(
-                NotificationTitle = "No PKS - Jenis BMD",
-                NotificationDetail = "Nama mitra",
-                NotificationDateTime = "7 Okt 2022, 11:55"
-            ),
-            NotificationModel(
-                NotificationTitle = "No PKS - Jenis BMD",
-                NotificationDetail = "Nama mitra",
-                NotificationDateTime = "7 Okt 2022, 11:55"
-            )
-        )
+        mNotificationViewModel.getNotification()
+        setList()
 
-        val recyclerView = findViewById<RecyclerView>(R.id.rv_notification)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = NotificationAdapter(this, notificationList){
+        mNotificationViewModel.isLoading.observe(this){
+            if (it){
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
+
+        mNotificationViewModel.responseSucces.observe(this){
+            setList()
+        }
+
+    }
+
+    fun setList(){
+        recyclerview = findViewById<RecyclerView>(R.id.rv_notification)
+        recyclerview?.layoutManager = LinearLayoutManager(this)
+        recyclerview?.setHasFixedSize(true)
+        recyclerview?.adapter = NotificationAdapter(this, mNotificationViewModel){
 
         }
+
     }
+
 }

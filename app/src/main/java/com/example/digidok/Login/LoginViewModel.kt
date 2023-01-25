@@ -39,6 +39,7 @@ class LoginViewModel(context: Application): AndroidViewModel(context) {
                 override fun onError(message: String) {
                     progressLogin.value = false
                     mMessageResponse.value = message
+                    responseSucces.value = false
                 }
 
                 override fun onFinish() {
