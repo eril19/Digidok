@@ -95,12 +95,6 @@
 
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#949494" />
-
                     <TextView
                         android:id="@+id/title_pengajuan"
                         android:layout_width="match_parent"
@@ -110,7 +104,14 @@
                         android:text="Pengajuan"
                         android:textColor="@color/black"
                         android:textSize="14dp"
+                        android:layout_marginBottom="5dp"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#949494" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
