@@ -78,6 +78,10 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
     var spinnerTujuan : Spinner? = null
     val listTujuan :ArrayList<TujuanPKSModel> = ArrayList()
 
+    var dokumenPKS : TextView ?= null
+    var pdfPic : ImageView ? = null
+    var tnc : TextView?=null
+
     lateinit var mDaftarPengajuanKerjasamaDetailViewModel: DaftarPengajuanKerjasamaDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -174,7 +178,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
 //            no_pengajuan?.background =
 //                ContextCompat.getDrawable(this, R.drawable.custom_profile_enable)
 
-            val dot = findViewById<ImageView>(R.id.dot)
+            val dot = findViewById<LinearLayout>(R.id.dot)
 
             dot.visibility = View.GONE
 
@@ -317,9 +321,26 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         if(isStatusEdit.equals("Tambah",true)){
             header.setText("Tambah Pengajuan Kerjasama")
+
+            dokumenPKS = findViewById(R.id.title_Dokumen)
+            pdfPic = findViewById(R.id.buttonDokumen)
+            tnc = findViewById(R.id.pdfcapt)
+
+            dokumenPKS?.visibility = View.GONE
+            pdfPic?.visibility = View.GONE
+            tnc?.visibility = View.GONE
+
         }
         else if(isStatusEdit.equals("Edit",true)){
             header.setText("Edit Pengajuan Kerjasama")
+
+            dokumenPKS = findViewById(R.id.title_Dokumen)
+            pdfPic = findViewById(R.id.buttonDokumen)
+            tnc = findViewById(R.id.pdfcapt)
+
+            dokumenPKS?.visibility = View.GONE
+            pdfPic?.visibility = View.GONE
+            tnc?.visibility = View.GONE
         }
         else{
         header.setText("Detail Pengajuan Kerjasama")

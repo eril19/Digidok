@@ -144,6 +144,13 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
         if(isTambah.equals("Tambah",true)){
             header.setText("Tambah Mitra")
+            profilPT = findViewById(R.id.title_profil_perusahaan)
+            pdfPic = findViewById(R.id.gambarpdf)
+            tnc = findViewById(R.id.pdfcapt)
+
+            profilPT?.visibility = View.GONE
+            pdfPic?.visibility = View.GONE
+            tnc?.visibility = View.GONE
         }
         else if(isTambah.equals("Edit",true)){
             header.setText("Edit Mitra")
@@ -151,9 +158,9 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
             pdfPic = findViewById(R.id.gambarpdf)
             tnc = findViewById(R.id.pdfcapt)
 
-//            profilPT?.visibility = View.GONE
-//            pdfPic?.visibility = View.GONE
-//            tnc?.visibility = View.GONE
+            profilPT?.visibility = View.GONE
+            pdfPic?.visibility = View.GONE
+            tnc?.visibility = View.GONE
         }
         else{
             header.setText("Detail Mitra")
