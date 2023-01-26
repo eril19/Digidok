@@ -71,7 +71,7 @@
                 tools:visibility="visible" />
 
             <TextView
-                android:id="@+id/NotificationDateTime"
+                android:id="@+id/PksStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/notificationDetail"
@@ -81,7 +81,7 @@
                 android:textSize="13sp"
                 android:fontFamily="@font/roboto"
                 android:visibility="visible"
-                tools:text="7 Okt 2022, 11:55"
+                tools:text="DIKIRIM"
                 tools:visibility="visible" />
 
 
