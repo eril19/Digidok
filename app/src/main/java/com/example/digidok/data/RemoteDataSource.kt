@@ -742,6 +742,48 @@ object RemoteDataSource : DataSource {
             })
     }
 
+    override fun getLaporanAsetDetail(
+        token: String,
+        id: String,
+        callback: DataSource.LaporanAsetDetailCallback
+    ) {
+        mApiServiceDev.laporanAsetDetail(token = "Bearer $token", id = id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<laporanAsetDetailModel?>>() {
+                override fun onSuccess(model: BaseApiModel<laporanAsetDetailModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
+    override fun getCekDokumen(token: String, id: String, callback: DataSource.CekDokumenCallback) {
+        mApiServiceDev.cekDokumen(token = "Bearer $token", id = id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiCallback<BaseApiModel<cekDokumenModel?>>() {
+                override fun onSuccess(model: BaseApiModel<cekDokumenModel?>) {
+                    model?.let { callback.onSuccess(it) }
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
+
+                override fun onFinish() {
+                    callback.onFinish()
+                }
+            })
+    }
+
     override fun getDaftarPengajuanKerjasama(
         token: String,
         start: Int,

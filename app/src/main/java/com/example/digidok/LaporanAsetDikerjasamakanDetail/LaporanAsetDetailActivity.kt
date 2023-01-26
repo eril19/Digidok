@@ -20,10 +20,7 @@ import java.text.DecimalFormat
 class LaporanAsetDetailActivity : AppCompatActivity() {
     lateinit var mLaporanAsetKerjasamaDetailViewModel: LaporanAsetDetailViewModel
     private var recyclerview: RecyclerView? = null
-    var start: Int = 0
-    var row: Int = 0
-    var sortColumn: String = "no"
-    var order: String = "asc"
+    var idPKS = ""
     var data: LaporanAsetKerjasamaModel? = null
 
 
@@ -47,6 +44,7 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
 
         nama_mitra.text = data?.nama_mitra
         id_pks.text = data?.id_pks
+        idPKS = data?.id_pks.toString()
         nilai_pks.text = "Rp. " + formatter.format(data?.nilai_pks?.toLong())
         jenis_kerjasama.text =  data?.jenis_kerjasama
 
@@ -86,7 +84,7 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
         }
 
         setList()
-        mLaporanAsetKerjasamaDetailViewModel.getLaporanAsetDetail()
+        mLaporanAsetKerjasamaDetailViewModel.getLaporanAsetDetail(idPKS)
 
         mLaporanAsetKerjasamaDetailViewModel.isLoading.observe(this){
             if (it){

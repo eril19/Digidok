@@ -19,6 +19,8 @@ class repositoriDokumenModel(
         val dataLampiran: List<listLampiran>,
         @SerializedName("namaMitra")
         val namaMitra: String = "",
+        @SerializedName("statusLabel")
+        val statusLabel: String = "",
         @SerializedName("status")
         val status: Int,
     )

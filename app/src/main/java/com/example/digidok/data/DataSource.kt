@@ -198,6 +198,18 @@ interface DataSource : BaseDataSource {
         callback: detailMitraCallback
     )
 
+    fun getLaporanAsetDetail(
+        token: String,
+        id: String,
+        callback: LaporanAsetDetailCallback
+    )
+
+    fun getCekDokumen(
+        token: String,
+        id: String,
+        callback: CekDokumenCallback
+    )
+
     fun getLaporanAsetDikerjasamakan(
         token: String,
         start: Int,
@@ -472,6 +484,22 @@ interface DataSource : BaseDataSource {
 
     interface NotificationCallback {
         fun onSuccess(data: BaseApiModel<notificationModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface LaporanAsetDetailCallback {
+        fun onSuccess(data: BaseApiModel<laporanAsetDetailModel?>)
+
+        fun onError(message: String)
+
+        fun onFinish()
+    }
+
+    interface CekDokumenCallback {
+        fun onSuccess(data: BaseApiModel<cekDokumenModel?>)
 
         fun onError(message: String)
 

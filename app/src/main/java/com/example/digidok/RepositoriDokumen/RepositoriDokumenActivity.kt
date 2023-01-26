@@ -137,11 +137,11 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                 }
                 else if(position-1 == 3){
                     status = "DIKEMBALIKAN"
-                        mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
                 }
                 else if(position-1 == 4){
                     status = "DISETUJUI"
-                        mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
                 }
             }
 

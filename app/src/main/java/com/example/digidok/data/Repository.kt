@@ -276,6 +276,18 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         remoteDataSource.getDetailMitra(token, id, callback)
     }
 
+    override fun getLaporanAsetDetail(
+        token: String,
+        id: String,
+        callback: DataSource.LaporanAsetDetailCallback
+    ) {
+       remoteDataSource.getLaporanAsetDetail(token, id, callback)
+    }
+
+    override fun getCekDokumen(token: String, id: String, callback: DataSource.CekDokumenCallback) {
+        remoteDataSource.getCekDokumen(token, id, callback)
+    }
+
     override fun getLaporanAsetDikerjasamakan(
         token: String,
         start: Int,

@@ -10,11 +10,12 @@ class RepositoriDokumenModel(
     val harga: String,
     val no_surat: String,
     val nama_mitra: String,
+    val idPks: String,
+
 
     ): Parcelable {
-
-
     constructor(parcel: Parcel) : this(
+        parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
@@ -33,6 +34,7 @@ class RepositoriDokumenModel(
         parcel.writeString(harga)
         parcel.writeString(no_surat)
         parcel.writeString(nama_mitra)
+        parcel.writeString(idPks)
     }
 
     companion object CREATOR : Parcelable.Creator<RepositoriDokumenModel> {

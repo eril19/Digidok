@@ -237,8 +237,11 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
                         popupPencet.menu.findItem(R.id.menu_kirim).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_restore).isVisible = true
                     }
-                    else if (Preferences.Role(this@DaftarPengajuanKerjasamaActivity).equals("Staff",ignoreCase = true)){
-                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
+                    else if (!Preferences.Role(this@DaftarPengajuanKerjasamaActivity).equals("Supervisor",ignoreCase = true)){
+                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = true
+                    }
+                    else if (!Preferences.Role(this@DaftarPengajuanKerjasamaActivity).equals("Administrator",ignoreCase = true)){
+                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = true
                     }
                     else{
                         popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false

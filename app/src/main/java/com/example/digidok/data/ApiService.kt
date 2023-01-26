@@ -248,6 +248,18 @@ interface ApiService {
         @Query("id") id: String,
         ): Observable<BaseApiModel<daftarPengajuanKerjasamaDetailModel?>>
 
+    @GET("pelaporan/laporan-aset-dikerjasamakan/detail")
+    fun laporanAsetDetail(
+        @Header("Authorization") token: String,
+        @Query("id") id: String,
+    ): Observable<BaseApiModel<laporanAsetDetailModel?>>
+
+    @GET("pelaporan/repositori-dokumen/detail")
+    fun cekDokumen(
+        @Header("Authorization") token: String,
+        @Query("id") id: String,
+    ): Observable<BaseApiModel<cekDokumenModel?>>
+
     @GET("setup/kjpp/get-data")
     fun daftarKJPP(
         @Header("Authorization") token: String,

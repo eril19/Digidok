@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.cekDokumenModel
 import com.example.digidok.data.model.repositoriDokumenModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences.safe
@@ -17,32 +18,20 @@ class CekDokumenViewModel(context: Application) : AndroidViewModel(context)  {
     val mMessageResponse = MutableLiveData<String>()
     val mRepository: Repository = Injection.provideRepository(context)
 
-    val start = MutableLiveData<String>()
-    val row = MutableLiveData<String>()
-    val sortColumn = MutableLiveData<String>()
-    val order = MutableLiveData<String>()
-
     val mData: MutableList<CekDokumenModel> = mutableListOf()
 
-    fun getCekDokumen() {
+    fun getCekDokumen(id:String) {
         isLoading.value = true
-        mRepository.getRepositoriDokumen(
+        mRepository.getCekDokumen(
             token = token.value.safe(),
-            start = start.value.safe().toInt(),
-            row = 10,
-            order = order.value.safe(),
-            sortColumn = sortColumn.value.safe(),
-            search = "",
-            statusFilter = "SEMUA",
-            tahunFilter = 2017,
-            kelurahanFilter = "",
-            object : DataSource.repositoriDokumenCallback {
-                override fun onSuccess(data: BaseApiModel<repositoriDokumenModel?>) {
+            id = id,
+            object : DataSource.CekDokumenCallback {
+                override fun onSuccess(data: BaseApiModel<cekDokumenModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()
-                        data.data?.dataDokumen?.forEach {
-                            it?.dataLampiran?.forEach{
+                        data.data?.dataLampiran?.forEach {
+                                responseSucces.value = true
                                 mData?.add(
                                     CekDokumenModel(
                                         header_color = "Dokumen",
@@ -50,7 +39,7 @@ class CekDokumenViewModel(context: Application) : AndroidViewModel(context)  {
                                         file = it?.file.safe()
                                     )
                                 )
-                            }
+
                         }
                     }
                 }

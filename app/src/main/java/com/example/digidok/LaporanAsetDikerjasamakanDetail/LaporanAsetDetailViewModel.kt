@@ -9,6 +9,7 @@ import com.example.digidok.SpinnerModel.StatusMitraModel
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
+import com.example.digidok.data.model.laporanAsetDetailModel
 import com.example.digidok.data.model.laporanAsetDikerjasamakanModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences.safe
@@ -17,8 +18,6 @@ class LaporanAsetDetailViewModel(context: Application) : AndroidViewModel(contex
     var isLoading = MutableLiveData<Boolean>()
     val token = MutableLiveData<String>()
     val responseSucces = MutableLiveData<Boolean>()
-    val responseSuccesJenis = MutableLiveData<Boolean>()
-    val responseSuccesStatus = MutableLiveData<Boolean>()
     val mMessageResponse = MutableLiveData<String>()
     val mRepository: Repository = Injection.provideRepository(context)
 
@@ -29,25 +28,18 @@ class LaporanAsetDetailViewModel(context: Application) : AndroidViewModel(contex
 
     val mData: MutableList<LaporanAsetDetailModel> = mutableListOf()
 
-    fun getLaporanAsetDetail() {
+    fun getLaporanAsetDetail(id:String) {
         isLoading.value = true
-        mRepository.getLaporanAsetDikerjasamakan(
+        mRepository.getLaporanAsetDetail(
             token = token.value.safe(),
-            start = start.value.safe().toInt(),
-            row = 10,
-            order = order.value.safe(),
-            sortColumn = sortColumn.value.safe(),
-            search = "",
-            statusFilter = "SEMUA",
-            tahunFilter = 2017,
-            kelurahanFilter = "",
-            object : DataSource.laporanAsetDikerjasamakanCallback {
-                override fun onSuccess(data: BaseApiModel<laporanAsetDikerjasamakanModel?>) {
+            id = id,
+            object : DataSource.LaporanAsetDetailCallback {
+                override fun onSuccess(data: BaseApiModel<laporanAsetDetailModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()
-                        data.data?.dataDokumen?.forEach {
-                            it?.dataDetail?.forEach{
+                        data.data?.dataDetail?.forEach {
+                                responseSucces.value = true
                                 mData?.add(
                                     LaporanAsetDetailModel(
                                         kode_barang = it?.kobar.safe(),
@@ -58,7 +50,6 @@ class LaporanAsetDetailViewModel(context: Application) : AndroidViewModel(contex
                                         keterangan_bmd = it?.keterangan.safe(),
                                     )
                                 )
-                            }
                         }
                     }
                 }

@@ -4,7 +4,9 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -30,13 +32,9 @@ class CekDokumenActivity : AppCompatActivity() {
 
     private var recyclerview: RecyclerView? = null
     var data: RepositoriDokumenModel? = null
-    var start: Int = 0
-    var row: Int = 0
-    var sortColumn: String = "no"
-    var order: String = "asc"
     var formatter : DecimalFormat = DecimalFormat("#,###")
     lateinit var mCekDokumenViewModel: CekDokumenViewModel
-
+    var idPKS = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,20 +42,18 @@ class CekDokumenActivity : AppCompatActivity() {
 
         mCekDokumenViewModel = ViewModelProvider(this@CekDokumenActivity).get(CekDokumenViewModel::class.java)
         mCekDokumenViewModel.token.value = Preferences.isToken(this@CekDokumenActivity)
-        mCekDokumenViewModel.row.value = "10"
-        mCekDokumenViewModel.order.value = "asc"
-        mCekDokumenViewModel.start.value = "0"
-        mCekDokumenViewModel.sortColumn.value = "no"
 
         supportActionBar?.hide()
         data = intent.getParcelableExtra("Cek Dokumen")
-
+        val progress = findViewById<ProgressBar>(R.id.progressBar)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_cek_dokumen)
         val nama = findViewById<TextView>(R.id.namamitradokumen)
         val nomer = findViewById<TextView>(R.id.nomerpksdokumen)
         val jenis = findViewById<TextView>(R.id.jeniskerjadokumen)
         val harga = findViewById<TextView>(R.id.hargadokumen)
         val nilai = "Rp. " +  formatter.format(data?.harga?.toLong())
 
+        idPKS = data?.idPks.toString()
         nama.setText(data?.nama_mitra)
         nomer.setText(data?.no_surat)
         harga.setText(nilai)
@@ -103,7 +99,22 @@ class CekDokumenActivity : AppCompatActivity() {
         }
 
         setList()
-        mCekDokumenViewModel.getCekDokumen()
+        mCekDokumenViewModel.getCekDokumen(idPKS)
+
+        mCekDokumenViewModel.isLoading.observe(this){
+            if (it){
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
+
+        mCekDokumenViewModel.responseSucces.observe(this){
+            setList()
+        }
+
     }
 
     fun setList(){

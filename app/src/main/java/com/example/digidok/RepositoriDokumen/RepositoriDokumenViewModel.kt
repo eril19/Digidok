@@ -43,7 +43,7 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
 
     fun getRepositoriDokumen(statusFitler:String,tahunFilter:Int,kelurahanFilter:String) {
         isLoading.value = true
-        mRepository.getLaporanAsetDikerjasamakan(
+        mRepository.getRepositoriDokumen(
             token = token.value.safe(),
             start = start.value.safe().toInt(),
             row = 10,
@@ -53,8 +53,8 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
             statusFilter = statusFitler,
             tahunFilter = tahunFilter,
             kelurahanFilter = kelurahanFilter,
-            object : DataSource.laporanAsetDikerjasamakanCallback {
-                override fun onSuccess(data: BaseApiModel<laporanAsetDikerjasamakanModel?>) {
+            object : DataSource.repositoriDokumenCallback {
+                override fun onSuccess(data: BaseApiModel<repositoriDokumenModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()
@@ -67,6 +67,7 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                                     jenis_kerjasama = it?.kategoriPks.safe(),
                                     no_surat = it?.idPks.safe(),
                                     harga = it?.nilaiPks.toString().safe(),
+                                    idPks = it?.idPks.safe()
                                 )
                             )
                         }

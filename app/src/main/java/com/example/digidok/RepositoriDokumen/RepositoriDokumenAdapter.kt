@@ -50,13 +50,11 @@ class RepositoriDokumemAdapter(private val context: Context, val repositoriDokum
                     R.color.blue
                 )
             }
-
             else if(repositorDashboardModel.header_color.equals("Dikembalikan", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     android.R.color.holo_orange_dark
                 )
             }
-
             else if(repositorDashboardModel.header_color.equals("Draft", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     android.R.color.darker_gray

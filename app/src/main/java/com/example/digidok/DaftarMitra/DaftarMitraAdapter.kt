@@ -59,7 +59,7 @@ class DaftarMitraAdapter(private val context: Context, val daftarMitraViewModel:
             NPWP = daftarMitraModel.npwp_mitra
 
 
-            if (daftarMitraModel.header_color.equals("TIDAK AKTIF", true) ) {
+            if (daftarMitraModel.header_color.equals("NON AKTIF", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
                     R.color.red2
                 )
