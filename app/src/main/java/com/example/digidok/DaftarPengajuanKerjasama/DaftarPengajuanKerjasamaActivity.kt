@@ -32,7 +32,8 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
     var sortColumn: String = "idPks"
     var order: String = "asc"
     var spinnerStatus: Spinner? = null
-    val listStatus = arrayListOf("SEMUA", "DRAFT", "MENUNGGU VALIDASI", "DISETUJUI")
+    val listStatus = arrayListOf("SEMUA", "DRAFT/DIKEMBALIKAN", "DIKIRIM", "DISETUJUI")
+    var role = ""
     lateinit var mPengajuanKerjasamaViewModel: DaftarPengajuanKerjasamaViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,9 +78,11 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
 
         }
 
+        role = intent.getStringExtra("role") ?: ""
+
 
         val header = findViewById<TextView>(R.id.header_title)
-
+//        header.setText(role)
         header.setText("Daftar Pengajuan Kerjasama")
         val back = findViewById<ImageView>(R.id.backbtn)
 
@@ -139,7 +142,7 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
         }
 
         mPengajuanKerjasamaViewModel.responseSucces.observe(this){
-            setList()
+            setList(role)
         }
     }
 
@@ -178,7 +181,7 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
 
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
-    fun setList() {
+    fun setList(role:String) {
         recyclerview = findViewById<RecyclerView>(R.id.rv_list_pengajuan_kerjasama)
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
@@ -208,6 +211,9 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
 
                     if (statusPengajuan.equals("DISETUJUI",true)) {
                         popupPencet.menu.findItem(R.id.menu_view).isVisible = true
+                        if (!role.equals("Administrator",ignoreCase = true)|| !role.equals("Supervisor",ignoreCase = true)){
+                            popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
+                        }
                         popupPencet.menu.findItem(R.id.menu_edit).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_hapus).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_kirim).isVisible = false
@@ -224,6 +230,9 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
                     else if(statusPengajuan.equals("DIKIRIM",true)) {
                         popupPencet.menu.findItem(R.id.menu_view).isVisible = true
                         popupPencet.menu.findItem(R.id.menu_telaah).isVisible = true
+                        if (!role.equals("Administrator",ignoreCase = true) || !role.equals("Supervisor",ignoreCase = true)){
+                            popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
+                        }
                         popupPencet.menu.findItem(R.id.menu_edit).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_hapus).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_kirim).isVisible = false
@@ -237,12 +246,12 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
                         popupPencet.menu.findItem(R.id.menu_kirim).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_restore).isVisible = true
                     }
-                    else if (!Preferences.Role(this@DaftarPengajuanKerjasamaActivity).equals("Supervisor",ignoreCase = true)){
-                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = true
-                    }
-                    else if (!Preferences.Role(this@DaftarPengajuanKerjasamaActivity).equals("Administrator",ignoreCase = true)){
-                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = true
-                    }
+//                    else if (!Preferences.Role(this@DaftarPengajuanKerjasamaActivity).equals("Supervisor",ignoreCase = true)){
+//                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = true
+//                    }
+//                    if (!Preferences.Role(this@DaftarPengajuanKerjasamaActivity).equals("Administrator",ignoreCase = true)){
+//                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = true
+//                    }
                     else{
                         popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
                     }

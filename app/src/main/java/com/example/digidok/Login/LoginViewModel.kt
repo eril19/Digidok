@@ -33,7 +33,7 @@ class LoginViewModel(context: Application): AndroidViewModel(context) {
                     role.value = data.data?.namaRole.safe()
                     token.value = data.data?.token.safe()
                     responseSucces.value = data.isSuccess
-                    mMessageResponse.value = data.message
+                    mMessageResponse.value = "Berhasil login!"
                 }
 
                 override fun onError(message: String) {

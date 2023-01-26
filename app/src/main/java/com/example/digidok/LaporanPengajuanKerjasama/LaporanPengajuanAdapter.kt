@@ -56,7 +56,7 @@ class LaporanPengajuanAdapter(private val context: Context, val laporanPengajuan
             }
             else if(laporanPengajuanModel.header_color.equals("Disetujui", true) ) {
                 header_color.background = ContextCompat.getDrawable(header_color.context,
-                    android.R.color.holo_green_light
+                    R.color.green
                 )
             }
             else if(laporanPengajuanModel.header_color.equals("Draft", true) ) {

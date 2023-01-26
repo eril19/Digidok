@@ -51,7 +51,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
     var spinnerKelurahan : Spinner? = null
 
     var spinnerStatus : Spinner? = null
-    val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT", "DIKEMBALIKAN","DISETUJUI")
+    val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT/DIKEMBALIKAN","DISETUJUI")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,10 +136,6 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                     mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
                 }
                 else if(position-1 == 3){
-                    status = "DIKEMBALIKAN"
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
-                }
-                else if(position-1 == 4){
                     status = "DISETUJUI"
                     mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
                 }

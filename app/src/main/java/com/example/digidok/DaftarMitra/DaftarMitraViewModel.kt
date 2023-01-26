@@ -43,6 +43,7 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
                     isLoading.value = false
                     if (data.isSuccess) {
                         mMessageResponse.value =  "Status Mitra Berhasil Diubah"
+                        responseSucces.value = data.isSuccess
                     }
                 }
 
@@ -75,7 +76,7 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
                         data.data?.dataMitra?.forEach {
                             mData?.add(
                                 DaftarMitraModel(
-                                    header_color = it.statusLabel.safe(),
+                                    header_color = it.statusLabel.toUpperCase().safe(),
                                     id_mitra = it?.kodeMitra.safe(),
                                     nama_mitra = it?.namaMitra.safe(),
                                     jenis_mitra = it?.jenisMitra.safe(),

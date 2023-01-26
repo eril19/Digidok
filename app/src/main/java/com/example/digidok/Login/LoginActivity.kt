@@ -59,10 +59,13 @@ class LoginActivity : AppCompatActivity() {
                 Preferences.saveToken(this@LoginActivity, mLoginViewModel.token.value.safe())
                 Preferences.saveLogin(this@LoginActivity, true)
                 startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
-                Toast.makeText(this@LoginActivity, mLoginViewModel.mMessageResponse.value.toString(), Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this@LoginActivity, mLoginViewModel.mMessageResponse.value.toString(), Toast.LENGTH_LONG).show()
             }
+        }
+
+        mLoginViewModel.mMessageResponse.observe(this){
+            Toast.makeText(this@LoginActivity, it, Toast.LENGTH_LONG).show()
         }
 
         mLoginViewModel.progressLogin.observe(this){

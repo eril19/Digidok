@@ -210,7 +210,7 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
             dokumen = dokumen,
             object : DataSource.InsertPengajuanCallback {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
-                    com.example.digidok.isLoading = false
+                    isLoading.value = false
                     if (data.isSuccess) {
                        mMessageResponse.value = "Berhasil menambahkan data"
                     }

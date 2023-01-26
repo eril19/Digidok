@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.Dashboard.DashboardActivity
@@ -15,14 +16,16 @@ import com.example.digidok.LaporanAsetDikerjasamakan.LaporanAsetKerjasamaViewMod
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.R
+import com.example.digidok.RepositoriDokumen.RepositoriDokumenViewModel
+import com.example.digidok.utils.Preferences
 import java.text.DecimalFormat
 
 class LaporanAsetDetailActivity : AppCompatActivity() {
-    lateinit var mLaporanAsetKerjasamaDetailViewModel: LaporanAsetDetailViewModel
     private var recyclerview: RecyclerView? = null
     var idPKS = ""
     var data: LaporanAsetKerjasamaModel? = null
 
+    lateinit var mLaporanAsetDetailViewModel: LaporanAsetDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +33,9 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
         data = intent.getParcelableExtra("laporanAset")
+        mLaporanAsetDetailViewModel = ViewModelProvider(this@LaporanAsetDetailActivity).get(
+            LaporanAsetDetailViewModel::class.java)
+        mLaporanAsetDetailViewModel.token.value = Preferences.isToken(this@LaporanAsetDetailActivity)
 
         val progress = findViewById<ProgressBar>(R.id.progressBar)
         val recyclerView = findViewById<RecyclerView>(R.id.rv_list_laporan_aset_detail)
@@ -84,9 +90,9 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
         }
 
         setList()
-        mLaporanAsetKerjasamaDetailViewModel.getLaporanAsetDetail(idPKS)
+        mLaporanAsetDetailViewModel.getLaporanAsetDetail(idPKS)
 
-        mLaporanAsetKerjasamaDetailViewModel.isLoading.observe(this){
+        mLaporanAsetDetailViewModel.isLoading.observe(this){
             if (it){
                 progress.visibility = View.VISIBLE
                 recyclerView.visibility = View.GONE
@@ -96,7 +102,7 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
             }
         }
 
-        mLaporanAsetKerjasamaDetailViewModel.responseSucces.observe(this){
+        mLaporanAsetDetailViewModel.responseSucces.observe(this){
             setList()
         }
     }
@@ -106,7 +112,7 @@ class LaporanAsetDetailActivity : AppCompatActivity() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = LaporanAsetDetailAdapter(this,  mLaporanAsetKerjasamaDetailViewModel){
+        recyclerview?.adapter = LaporanAsetDetailAdapter(this,  mLaporanAsetDetailViewModel){
 
         }
     }

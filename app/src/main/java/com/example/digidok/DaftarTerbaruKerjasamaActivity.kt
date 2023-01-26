@@ -3,15 +3,18 @@ package com.example.digidok
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.Dashboard.DashboardActivity
+import com.example.digidok.Dashboard.DashboardAdapter
 import com.example.digidok.Dashboard.DashboardModel
+import com.example.digidok.Dashboard.DashboardViewModel
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
+import com.example.digidok.RepositoriDokumen.RepositoriDokumenViewModel
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
@@ -22,16 +25,26 @@ import com.example.digidok.utils.Preferences.safe
 import java.text.DecimalFormat
 
 class DaftarTerbaruKerjasamaActivity : AppCompatActivity() {
+
+    lateinit var mDashboardViewModel: DashboardViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daftar_terbaru_kerjasama)
 
         supportActionBar?.hide()
 
+        val progress = findViewById<ProgressBar>(R.id.progressBar)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_dashboard)
+
+        mDashboardViewModel = ViewModelProvider(this@DaftarTerbaruKerjasamaActivity).get(
+            DashboardViewModel::class.java)
+        mDashboardViewModel.token.value = Preferences.isToken(this@DaftarTerbaruKerjasamaActivity)
+
         recyclerview = findViewById(R.id.rv_list_dashboard)
 
         setList()
-        getDashboard()
+        mDashboardViewModel.getDashboard()
 
         val header = findViewById<TextView>(R.id.header_title)
         header.setText("Daftar Terbaru Kerjasama")
@@ -68,57 +81,28 @@ class DaftarTerbaruKerjasamaActivity : AppCompatActivity() {
         notificationBtn.setOnClickListener {
             startActivity(Intent(this@DaftarTerbaruKerjasamaActivity, NotificationActivity::class.java))
         }
+
+        mDashboardViewModel.isLoading.observe(this){
+            if (it){
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
+
+        mDashboardViewModel.responseSucces.observe(this){
+            setList()
+        }
+
     }
 
     fun setList() {
         recyclerview?.layoutManager = LinearLayoutManager(this)
         recyclerview?.setHasFixedSize(true)
-//        recyclerview?.adapter = DashboardAdapter(this, dashboardList) {
-//        }
-    }
-
-    fun getDashboard() {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.getDashboard(
-            token = Preferences.isToken(context = this@DaftarTerbaruKerjasamaActivity),
-            object : DataSource.dashboardCallback {
-                override fun onSuccess(data: BaseApiModel<dashboardModel?>) {
-                    isLoading = false
-
-//                    if(data.code == 401){
-//                        logout
-//                    }
-
-                    if (data.isSuccess) {
-//                        var value: Long = 0
-                        dashboardList.clear()
-//                        value = Integer.parseInt(data.data?.jumlahNilaiKerjasama.safe()).toLong()
-                        var formatter : DecimalFormat = DecimalFormat("#,###")
-                        data.data?.dataMitra?.forEach {
-                            dashboardList?.add(
-                                DashboardModel(
-                                    nama_mitra = it?.namaMitra.safe(),
-                                    jumlah_kerjasama = it?.jumlahKederjasama.safe(),
-                                    total_nilai = it?.totalNilai.toString().safe(),
-                                    jenis_mitra = it?.idMitra.safe()
-                                )
-                            )
-                        }
-                        setList()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@DaftarTerbaruKerjasamaActivity, message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
+        recyclerview?.adapter = DashboardAdapter(this, mDashboardViewModel) {
+        }
     }
 
     companion object {

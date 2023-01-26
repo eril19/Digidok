@@ -137,6 +137,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
             }
         }
 
+        observeViewModel()
         setSpinnerKategori()
 
         val catatanTelaah = findViewById<EditText>(R.id.catatan_penelaahan)
@@ -189,6 +190,13 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
             }) {
 
+        }
+
+    }
+
+    private fun observeViewModel() {
+       mDaftarPengajuanKerjasamaDetail3ViewModel.mMessageResponse.observe(this){
+            Toast.makeText(this@DaftarSuratLampiranActivity, it, Toast.LENGTH_LONG).show()
         }
 
     }

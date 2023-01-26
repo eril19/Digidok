@@ -33,6 +33,7 @@ class DashboardActivity : AppCompatActivity() {
     var jml : TextView? = null
     var jmlMitra :TextView? = null
     var jmlNilai :TextView? = null
+    var role = ""
     lateinit var mDashboardViewModel: DashboardViewModel
 
     val mRepository: Repository = Injection.provideRepository(this)
@@ -63,6 +64,8 @@ class DashboardActivity : AppCompatActivity() {
 
         namaUser = findViewById(R.id.namaUser)
         namaRole.text = Preferences.Role(this@DashboardActivity)
+        role = Preferences.Role(this@DashboardActivity)
+
 
         dokumenBtn.setOnClickListener {
             val i : Intent = Intent(this@DashboardActivity, RepositoriDokumenActivity::class.java)
@@ -90,6 +93,7 @@ class DashboardActivity : AppCompatActivity() {
         val pengajuanKerjasamaabtn : ImageButton = findViewById(R.id.pengajuanBtn)
         pengajuanKerjasamaabtn.setOnClickListener {
             val i : Intent = Intent(this@DashboardActivity, DaftarPengajuanKerjasamaActivity::class.java)
+            i.putExtra("role", role)
             startActivity(i)
         }
 

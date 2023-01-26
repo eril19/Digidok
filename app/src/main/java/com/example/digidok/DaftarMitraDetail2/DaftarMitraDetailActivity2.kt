@@ -219,10 +219,8 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
         if (isEdit.equals("Edit")){
             etSimpan.setOnClickListener {
-
                 tahunGabungValue = etTahunGabung.text.toString()
-
-                    mDaftarMitraDetailViewModel2.UpdateData(
+                mDaftarMitraDetailViewModel2.UpdateData(
                     npwp,
                     nama,
                     alamat,
@@ -257,8 +255,7 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
             etSimpan.setOnClickListener {
 
                 tahunGabungValue = etTahunGabung.text.toString()
-
-                    mDaftarMitraDetailViewModel2.InsertData(
+                mDaftarMitraDetailViewModel2.InsertData(
                     npwp,
                     nama,
                     alamat,
@@ -319,6 +316,7 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
         }
 
+        observeViewModel()
         setSpinnerStatusMitra()
         setSpinnerjenisMitra()
 
@@ -332,7 +330,12 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
     }
 
+    private fun observeViewModel() {
+        mDaftarMitraDetailViewModel2.mMessageResponse.observe(this){
+            Toast.makeText(this@DaftarMitraDetailActivity2, it, Toast.LENGTH_LONG).show()
+        }
 
+    }
 
     fun setSpinnerjenisMitra(){
         val arrayStringTahun = arrayListOf("Pilih Jenis Mitra")

@@ -28,6 +28,7 @@ class DaftarMitraActivity : AppCompatActivity() {
     var statusFilter = "1"
     var spinnerStatus: Spinner? = null
     val listStatus = arrayListOf("NON AKTIF", "AKTIF", "SEMUA")
+    var status = 0
 
     lateinit var mDaftarMitraViewModel: DaftarMitraViewModel
 
@@ -54,7 +55,7 @@ class DaftarMitraActivity : AppCompatActivity() {
         spinnerStatus = findViewById<Spinner>(R.id.spinner_status)
         spinnerStatus?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                mDaftarMitraViewModel.getDaftarMitra(2)
+//                mDaftarMitraViewModel.getDaftarMitra(2)
             }
 
             override fun onItemSelected(
@@ -64,7 +65,8 @@ class DaftarMitraActivity : AppCompatActivity() {
                 id: Long
             ) {
                 if (position != 0) {
-                    mDaftarMitraViewModel.getDaftarMitra(position - 1)
+                    status = position-1
+                    mDaftarMitraViewModel.getDaftarMitra(position-1)
                 }
             }
 
@@ -113,6 +115,7 @@ class DaftarMitraActivity : AppCompatActivity() {
         }
 
         setList()
+        observeViewModel()
         setSpinnerKategori()
         mDaftarMitraViewModel.getDaftarMitra(2)
 
@@ -128,6 +131,13 @@ class DaftarMitraActivity : AppCompatActivity() {
 
         mDaftarMitraViewModel.responseSucces.observe(this){
             setList()
+        }
+
+    }
+
+    private fun observeViewModel() {
+        mDaftarMitraViewModel.mMessageResponse.observe(this){
+            Toast.makeText(this@DaftarMitraActivity, it, Toast.LENGTH_LONG).show()
         }
 
     }
@@ -254,8 +264,8 @@ class DaftarMitraActivity : AppCompatActivity() {
 
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
-    override fun onResume() {
-        super.onResume()
-        mDaftarMitraViewModel.getDaftarMitra(2)
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        mDaftarMitraViewModel.getDaftarMitra(2)
+//    }
 }
