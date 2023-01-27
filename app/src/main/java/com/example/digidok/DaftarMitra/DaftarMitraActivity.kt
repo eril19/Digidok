@@ -171,9 +171,13 @@ class DaftarMitraActivity : AppCompatActivity() {
                     popupPencet.inflate(R.menu.daftar_mitra_menu)
 
                     if ( statusMitra.equals("1")) {
-                        popupPencet.menu.findItem(R.id.setAktif).isVisible = false
+
+                        popupPencet.menu.findItem(R.id.setNonAktif).isVisible = false
+
 
                     } else {
+                        popupPencet.menu.findItem(R.id.menuView).isVisible = false
+                        popupPencet.menu.findItem(R.id.menuEdit).isVisible = false
                         popupPencet.menu.findItem(R.id.setNonAktif).isVisible = false
                     }
 
@@ -209,11 +213,6 @@ class DaftarMitraActivity : AppCompatActivity() {
                                 true
                             }
                             R.id.setNonAktif -> {
-//                                holder.statusMitra = "Tidak Aktif"
-//                                holder.header_color.text = "Tidak Aktif"
-//                                holder.header_color.background = ContextCompat.getDrawable(holder.header_color.context,
-//                                    R.color.red2
-//                                )
                                 mDaftarMitraViewModel.getSetAktifNonAktif(kodeMitra, false)
                                 true
                             }
