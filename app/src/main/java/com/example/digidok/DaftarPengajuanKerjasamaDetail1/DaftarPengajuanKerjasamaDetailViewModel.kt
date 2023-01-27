@@ -212,7 +212,8 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
-                       mMessageResponse.value = "Berhasil menambahkan data"
+                        responseSucces.value = true
+                        mMessageResponse.value = "Berhasil menambahkan data"
                     }
                 }
 

@@ -439,6 +439,48 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         mDaftarPengajuanKerjasamaDetailViewModel.perihal.observe(this){
             prihal?.setText(mDaftarPengajuanKerjasamaDetailViewModel.perihal.value)
         }
+        mDaftarPengajuanKerjasamaDetailViewModel.responseSuccesMitra.observe(this){
+            var positionJenisMitra = 0
+            var position = 0
+            mDaftarPengajuanKerjasamaDetailViewModel.mDataMitra.forEach {
+                position += 1
+                if(idMitra.equals(it.value)){
+                    positionJenisMitra = position
+                }
+            }
+
+            if(!idMitra.isNullOrEmpty()){
+                spinnerMitra?.setSelection(positionJenisMitra)
+            }
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.responseSuccesStatus.observe(this){
+            var positionJenisMitra = 0
+            var position = 0
+            mDaftarPengajuanKerjasamaDetailViewModel.mDataTujuan.forEach {
+                position += 1
+                if(idTujuanPks.equals(it.value)){
+                    positionJenisMitra = position
+                }
+            }
+
+            if(!idTujuanPks.isNullOrEmpty()){
+                spinnerTujuan?.setSelection(positionJenisMitra)
+            }
+        }
+        mDaftarPengajuanKerjasamaDetailViewModel.responseSuccesTujuan.observe(this){
+            var positionJenisMitra = 0
+            var position = 0
+            mDaftarPengajuanKerjasamaDetailViewModel.mDataKategori.forEach {
+                position += 1
+                if(idKategoriPks.equals(it.value)){
+                    positionJenisMitra = position
+                }
+            }
+
+            if(!idKategoriPks.isNullOrEmpty()){
+                spinnerSkemaPemanfaatan?.setSelection(positionJenisMitra)
+            }
+        }
     }
 
     fun setSpinnerMitra(){

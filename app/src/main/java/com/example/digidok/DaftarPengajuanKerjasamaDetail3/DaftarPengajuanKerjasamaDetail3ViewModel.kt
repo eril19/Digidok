@@ -81,6 +81,7 @@ class DaftarPengajuanKerjasamaDetail3ViewModel(context: Application) : AndroidVi
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
+                        responseSucces.value = true
                         mMessageResponse.value = "Telaah Berhasil"
                     }
                 }
