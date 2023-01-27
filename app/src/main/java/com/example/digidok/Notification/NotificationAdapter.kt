@@ -17,12 +17,12 @@ class NotificationAdapter(private val context: Context, val notificationViewMode
     class NotificationViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val notificationTitle = view.findViewById<TextView>(R.id.notificationTitle)
         val notificationDetail = view.findViewById<TextView>(R.id.notificationDetail)
-       // val NotificationDateTime = view.findViewById<TextView>(R.id.NotificationDateTime)
+        val NotificationStatus = view.findViewById<TextView>(R.id.PksStatus)
 
         fun bindView(NotificationModel: NotificationModel, listener: (NotificationModel) -> Unit){
             notificationTitle.text = NotificationModel.NotificationTitle
             notificationDetail.text = NotificationModel.NotificationDetail
-//            NotificationDateTime.text = NotificationModel.NotificationDateTime
+            NotificationStatus.text = NotificationModel.status
         }
     }
 

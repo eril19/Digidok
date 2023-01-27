@@ -11,6 +11,8 @@ class notificationModel (
         val idPks: String = "",
         @SerializedName("namaMitra")
         val namaMitra: String,
+        @SerializedName("status")
+        val status: String,
     )
 
 }

@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 data class NotificationModel(
     val NotificationTitle : String,
     val NotificationDetail: String,
-//    val NotificationDateTime: String
+    val status: String
 ): Parcelable

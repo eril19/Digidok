@@ -42,6 +42,7 @@ class NotificationViewModel(context: Application) : AndroidViewModel(context)  {
                                 NotificationModel(
                                     NotificationTitle = it?.idPks.safe(),
                                     NotificationDetail = it?.namaMitra.safe(),
+                                    status = it?.status.safe()
                                 )
                             )
                         }
