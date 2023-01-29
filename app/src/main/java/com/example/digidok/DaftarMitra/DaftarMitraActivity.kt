@@ -28,7 +28,7 @@ class DaftarMitraActivity : AppCompatActivity() {
     var statusFilter = "1"
     var spinnerStatus: Spinner? = null
     val listStatus = arrayListOf("NON AKTIF", "AKTIF", "SEMUA")
-    var status = 0
+    var status = 2
 
     lateinit var mDaftarMitraViewModel: DaftarMitraViewModel
 
@@ -44,6 +44,7 @@ class DaftarMitraActivity : AppCompatActivity() {
         mDaftarMitraViewModel.order.value = "asc"
         mDaftarMitraViewModel.start.value = "0"
         mDaftarMitraViewModel.sortColumn.value = "no"
+        mDaftarMitraViewModel.status.value = 2
 
         val adapter = ArrayAdapter(applicationContext, R.layout.dd_text_status, listStatus)
 
@@ -65,8 +66,8 @@ class DaftarMitraActivity : AppCompatActivity() {
                 id: Long
             ) {
                 if (position != 0) {
-                    status = position-1
-                    mDaftarMitraViewModel.getDaftarMitra(position-1)
+                    mDaftarMitraViewModel.status.value = position-1
+                    mDaftarMitraViewModel.getDaftarMitra(mDaftarMitraViewModel.status.value?:0)
                 }
             }
 
@@ -117,7 +118,7 @@ class DaftarMitraActivity : AppCompatActivity() {
         setList()
         observeViewModel()
         setSpinnerKategori()
-        mDaftarMitraViewModel.getDaftarMitra(2)
+        mDaftarMitraViewModel.getDaftarMitra(mDaftarMitraViewModel.status.value?:0)
 
         mDaftarMitraViewModel.isLoading.observe(this){
             if (it){
@@ -131,6 +132,7 @@ class DaftarMitraActivity : AppCompatActivity() {
 
         mDaftarMitraViewModel.responseSucces.observe(this){
             setList()
+//            mDaftarMitraViewModel.getDaftarMitra(status)
         }
 
     }
@@ -172,7 +174,7 @@ class DaftarMitraActivity : AppCompatActivity() {
 
                     if ( statusMitra.equals("1")) {
 
-                        popupPencet.menu.findItem(R.id.setNonAktif).isVisible = false
+                        popupPencet.menu.findItem(R.id.setAktif).isVisible = false
 
 
                     } else {

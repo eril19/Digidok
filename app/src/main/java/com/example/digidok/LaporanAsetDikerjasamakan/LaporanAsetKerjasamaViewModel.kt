@@ -48,11 +48,12 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
             kelurahanFilter = kelurahanFilter,
             object : DataSource.laporanAsetDikerjasamakanCallback {
                 override fun onSuccess(data: BaseApiModel<laporanAsetDikerjasamakanModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()
                         data.data?.dataDokumen?.forEach {
-                            responseSucces.value = true
+//                            responseSucces.value = true
                             mData?.add(
                                 LaporanAsetKerjasamaModel(
                                     header_color = it?.statusLabel.safe(),
@@ -84,11 +85,12 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
             token = token.value.safe(),
             object : DataSource.tahunCallback {
                 override fun onSuccess(data: BaseApiModel<tahunModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataTahun.clear()
                         data.data?.dataTahun?.forEach {
-                            responseSuccesTahun.value = true
+//                            responseSuccesTahun.value = true
                             mDataTahun?.add(
                                 TahunModel(
                                     value = it?.value.safe(),
@@ -118,11 +120,12 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
             idKota = idKota,
             object : DataSource.kelurahanCallback {
                 override fun onSuccess(data: BaseApiModel<kelurahanModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataKelurahan.clear()
                         data.data?.dataKelurahan?.forEach {
-                            responseSuccesKelurahan.value = true
+//                            responseSuccesKelurahan.value = true
                             mDataKelurahan?.add(
                                 KelurahanModel(
                                     value = it?.value.safe(),
@@ -151,11 +154,12 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
             token = token.value.safe(),
             object : DataSource.kotaCallback {
                 override fun onSuccess(data: BaseApiModel<kotaModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataKota.clear()
                         data.data?.dataKota?.forEach {
-                            responseSuccesKota.value = true
+//                            responseSuccesKota.value = true
                             mDataKota?.add(
                                 KotaModel(
                                     value = it?.value.safe(),

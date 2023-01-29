@@ -32,7 +32,7 @@ class DashboardViewModel(context: Application): AndroidViewModel(context) {
         mRepository.getProfile(token = token.value.safe(),
             object : DataSource.ProfileCallback {
                 override fun onSuccess(data: BaseApiModel<ProfileModel?>) {
-
+                    responseSucces.value = data.isSuccess
                     if (data.isSuccess) {
                         username.value = data.data?.nama
                     } else {
@@ -58,6 +58,7 @@ class DashboardViewModel(context: Application): AndroidViewModel(context) {
             token = token.value.safe(),
             object : DataSource.dashboardCallback {
                 override fun onSuccess(data: BaseApiModel<dashboardModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()

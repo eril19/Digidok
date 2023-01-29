@@ -20,7 +20,7 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
     val responseSucces = MutableLiveData<Boolean>()
     val mMessageResponse = MutableLiveData<String>()
     val mRepository: Repository = Injection.provideRepository(context)
-
+    val status = MutableLiveData<Int>()
     val start = MutableLiveData<String>()
     val row = MutableLiveData<String>()
     val sortColumn = MutableLiveData<String>()
@@ -40,10 +40,11 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
             },
             object : DataSource.setAktifNonAktifCallback {
                 override fun onSuccess(data: BaseApiModel<setAktifNonAktifModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mMessageResponse.value =  "Status Mitra Berhasil Diubah"
-                        responseSucces.value = data.isSuccess
+                        getDaftarMitra(status.value ?: 0)
                     }
                 }
 
@@ -70,6 +71,7 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
             statusFilter = status,
             object : DataSource.daftarMitraCallback {
                 override fun onSuccess(data: BaseApiModel<daftarMitraModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()

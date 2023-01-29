@@ -55,11 +55,12 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
             kelurahanFilter = kelurahanFilter,
             object : DataSource.repositoriDokumenCallback {
                 override fun onSuccess(data: BaseApiModel<repositoriDokumenModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()
                         data.data?.dataDokumen?.forEach {
-                            responseSucces.value = true
+//                            responseSucces.value = true
                             mData?.add(
                                 RepositoriDokumenModel(
                                     header_color = it?.statusLabel.safe(),
@@ -92,11 +93,11 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
             token = token.value.safe(),
             object : DataSource.tahunCallback {
                 override fun onSuccess(data: BaseApiModel<tahunModel?>) {
+                    responseSuccesTahun.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataTahun.clear()
                         data.data?.dataTahun?.forEach {
-                            responseSuccesTahun.value = true
                             mDataTahun?.add(
                                 TahunModel(
                                     value = it?.value.safe(),
@@ -126,11 +127,11 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
             idKota = idKota,
             object : DataSource.kelurahanCallback {
                 override fun onSuccess(data: BaseApiModel<kelurahanModel?>) {
+                    responseSuccesKelurahan.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataKelurahan.clear()
                         data.data?.dataKelurahan?.forEach {
-                            responseSuccesKelurahan.value = true
                             mDataKelurahan?.add(
                                 KelurahanModel(
                                     value = it?.value.safe(),
@@ -159,11 +160,11 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
             token = token.value.safe(),
             object : DataSource.kotaCallback {
                 override fun onSuccess(data: BaseApiModel<kotaModel?>) {
+                    responseSuccesKota.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataKota.clear()
                         data.data?.dataKota?.forEach {
-                            responseSuccesKota.value = true
                             mDataKota?.add(
                                 KotaModel(
                                     value = it?.value.safe(),

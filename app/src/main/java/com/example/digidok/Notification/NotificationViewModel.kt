@@ -33,11 +33,11 @@ class NotificationViewModel(context: Application) : AndroidViewModel(context)  {
             token = token.value.safe(),
             object : DataSource.NotificationCallback {
                 override fun onSuccess(data: BaseApiModel<notificationModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()
                         data.data?.dataDokumen?.forEach {
-                            responseSucces.value = true
                             mData?.add(
                                 NotificationModel(
                                     NotificationTitle = it?.idPks.safe(),

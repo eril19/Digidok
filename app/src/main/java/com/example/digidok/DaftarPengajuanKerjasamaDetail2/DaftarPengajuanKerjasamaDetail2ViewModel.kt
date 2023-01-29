@@ -42,11 +42,11 @@ class DaftarPengajuanKerjasamaDetail2ViewModel(context: Application) : AndroidVi
             id = idPks,
             object : DataSource.daftarPengajuanDetailCallback {
                 override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()
                         data.data?.dataAsetDikerjasamakan?.forEach {
-                            responseSucces.value = true
                             var url = ""
                             mData?.add(
                                 DaftarPengajuanKerjasamaDetailModel(

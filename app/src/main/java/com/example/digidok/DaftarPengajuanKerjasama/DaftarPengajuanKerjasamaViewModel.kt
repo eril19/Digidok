@@ -23,6 +23,8 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
     val sortColumn = MutableLiveData<String>()
     val order = MutableLiveData<String>()
 
+    val status = MutableLiveData<String>()
+
     val mData: MutableList<DaftarPengajuanKerjasamaModel> = mutableListOf()
 
     fun getPengajuanKerjasama(status:String) {
@@ -37,9 +39,9 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
             statusFilter = status,
             object : DataSource.daftarPengajuanCallback {
                 override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
-                        responseSucces.value = true
                         mData.clear()
                         data.data?.dataDokumen?.forEach {
                             mData?.add(
@@ -75,9 +77,11 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
             id = id,
             object : DataSource.setStatusCallback {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mMessageResponse.value = "Berhasil diubah!"
+                        getPengajuanKerjasama(status.value?: "SEMUA")
                     }
                 }
 

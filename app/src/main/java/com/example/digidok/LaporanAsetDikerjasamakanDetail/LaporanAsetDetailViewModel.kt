@@ -35,11 +35,12 @@ class LaporanAsetDetailViewModel(context: Application) : AndroidViewModel(contex
             id = id,
             object : DataSource.LaporanAsetDetailCallback {
                 override fun onSuccess(data: BaseApiModel<laporanAsetDetailModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()
                         data.data?.dataDetail?.forEach {
-                                responseSucces.value = true
+//                                responseSucces.value = true
                                 mData?.add(
                                     LaporanAsetDetailModel(
                                         kode_barang = it?.kobar.safe(),

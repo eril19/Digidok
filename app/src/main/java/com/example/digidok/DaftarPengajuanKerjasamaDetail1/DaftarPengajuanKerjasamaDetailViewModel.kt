@@ -54,6 +54,7 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
             id = idPks,
             object : DataSource.daftarPengajuanDetailCallback {
                 override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mitra.value = data.data?.idMitra
@@ -67,6 +68,10 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
                         dokumen.value = data.data?.dokumen
                         nilai.value = "Rp. " + data.data?.nilai.toString()
                         objek.value = data.data?.objek
+                        getListMitra()
+                        getKategoriPKS()
+                        getTujuanPKS()
+
                     }
                 }
 
@@ -88,11 +93,11 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
             token = token.value.safe(),
             object : DataSource.listMitraCallback {
                 override fun onSuccess(data: BaseApiModel<listMitra?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataMitra.clear()
                         data.data?.dataMitra?.forEach {
-                            responseSuccesMitra.value = true
                             mDataMitra?.add(
                                 ListMitraModel(
                                     value = it?.value.safe(),
@@ -121,11 +126,11 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
             token = token.value.safe(),
             object : DataSource.kategoriPKSCallback {
                 override fun onSuccess(data: BaseApiModel<kategoriPKSmodel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataKategori.clear()
                         data.data?.dataKategoriPks?.forEach {
-                            responseSuccesStatus.value = true
                             mDataKategori?.add(
                                 KategoriPKSModel(
                                     value = it?.value.safe(),
@@ -154,6 +159,7 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
             token = token.value.safe(),
             object : DataSource.tujuanPKSCallback {
                 override fun onSuccess(data: BaseApiModel<tujuanPKSmodel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataTujuan.clear()
@@ -210,9 +216,10 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
             dokumen = dokumen,
             object : DataSource.InsertPengajuanCallback {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
-                        responseSucces.value = true
+//                        responseSucces.value = true
                         mMessageResponse.value = "Berhasil menambahkan data"
                     }
                 }
@@ -260,7 +267,8 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
             dokumen = dokumen,
             object : DataSource.updatePengajuanCallback {
                 override fun onSuccess(data: BaseApiModel<UserModel?>) {
-                    com.example.digidok.isLoading = false
+                    responseSucces.value = data.isSuccess
+                    isLoading.value = false
                     if (data.isSuccess) {
                         mMessageResponse.value = "Data berhasil di ubah"
                     }

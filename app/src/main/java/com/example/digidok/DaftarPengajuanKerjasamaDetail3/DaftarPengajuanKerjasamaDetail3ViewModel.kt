@@ -38,11 +38,12 @@ class DaftarPengajuanKerjasamaDetail3ViewModel(context: Application) : AndroidVi
             id = idPks,
             object : DataSource.daftarPengajuanDetailCallback {
                 override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaDetailModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()
                         data.data?.dataLampiran?.forEach {
-                            responseSucces.value = true
+//                            responseSucces.value = true
                             var url = ""
                             mData?.add(
                                 DaftarPengajuanKerjasamaDetailModel(
