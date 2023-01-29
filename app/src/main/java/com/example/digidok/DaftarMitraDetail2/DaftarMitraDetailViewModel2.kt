@@ -189,7 +189,7 @@ class DaftarMitraDetailViewModel2(context: Application) : AndroidViewModel(conte
             token = token.value.safe(),
             object : DataSource.jenisMitraCallback {
                 override fun onSuccess(data: BaseApiModel<jenisMitramodel?>) {
-                    com.example.digidok.isLoading = false
+                    isLoading.value = false
                     if (data.isSuccess) {
                         mDataJenisMitra.clear()
                         data.data?.dataJenisMitra?.forEach {

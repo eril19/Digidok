@@ -119,7 +119,7 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
         }
 
-            mDaftarMitraDetailViewModel2.getJenisMitra()
+        mDaftarMitraDetailViewModel2.getJenisMitra()
         mDaftarMitraDetailViewModel2.getStatusMitra()
 
         val prev_detail_btn = findViewById<Button>(R.id.prev_detail_btn)

@@ -35,7 +35,6 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
     var isStatusEdit: String = ""
     var isLoading: Boolean = false
-    var pengajuanKerjasamaDetail: ArrayList<DaftarPengajuanKerjasamaDetailModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
     var start: Int = 0
     var row: Int = 0
@@ -57,30 +56,24 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
     var url = ""
 
     var idMitra = ""
-    var idKategoriPks= ""
-    var idTujuanPks= ""
-    var nomorSurat= ""
-    var tanggalSurat= ""
-    var objek= ""
+    var idKategoriPks = ""
+    var idTujuanPks = ""
+    var nomorSurat = ""
+    var tanggalSurat = ""
+    var objek = ""
     var nilai = ""
-    var tanggalMulai= ""
-    var tanggalAkhir= ""
-    var perihal= ""
-    var dokumen= ""
+    var tanggalMulai = ""
+    var tanggalAkhir = ""
+    var perihal = ""
+    var dokumen = ""
 
 
-    var spinnerMitra : Spinner? = null
-    val listMitra :ArrayList<ListMitraModel> = ArrayList()
-
-    var spinnerSkemaPemanfaatan : Spinner? = null
-    val listSkemaPemanfaatan :ArrayList<KategoriPKSModel> = ArrayList()
-
-    var spinnerTujuan : Spinner? = null
-    val listTujuan :ArrayList<TujuanPKSModel> = ArrayList()
-
-    var dokumenPKS : TextView ?= null
-    var pdfPic : ImageView ? = null
-    var tnc : TextView?=null
+    var spinnerMitra: Spinner? = null
+    var spinnerSkemaPemanfaatan: Spinner? = null
+    var spinnerTujuan: Spinner? = null
+    var dokumenPKS: TextView? = null
+    var pdfPic: ImageView? = null
+    var tnc: TextView? = null
 
     lateinit var mDaftarPengajuanKerjasamaDetailViewModel: DaftarPengajuanKerjasamaDetailViewModel
 
@@ -92,17 +85,25 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         idPkscheck = intent.getStringExtra("idPks") ?: ""
 
-        mDaftarPengajuanKerjasamaDetailViewModel = ViewModelProvider(this@DaftarPengajuanKerjasamaDetailActivity).get(
-            DaftarPengajuanKerjasamaDetailViewModel::class.java)
-        mDaftarPengajuanKerjasamaDetailViewModel.token.value = Preferences.isToken(this@DaftarPengajuanKerjasamaDetailActivity)
+        mDaftarPengajuanKerjasamaDetailViewModel =
+            ViewModelProvider(this@DaftarPengajuanKerjasamaDetailActivity).get(
+                DaftarPengajuanKerjasamaDetailViewModel::class.java
+            )
+        mDaftarPengajuanKerjasamaDetailViewModel.token.value =
+            Preferences.isToken(this@DaftarPengajuanKerjasamaDetailActivity)
 
         spinnerMitra = findViewById<Spinner>(R.id.spinner_mitra)
-        spinnerMitra?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (mDaftarPengajuanKerjasamaDetailViewModel.mDataMitra.size!=0){
-                if(position!=0){
-                    idMitra = listMitra[position-1].value.safe()
-                }
+        spinnerMitra?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (mDaftarPengajuanKerjasamaDetailViewModel.mDataMitra.size != 0) {
+                    if (position != 0) {
+                        idMitra = mDaftarPengajuanKerjasamaDetailViewModel.mDataMitra[position - 1].value.safe()
+                    }
                 }
             }
 
@@ -113,28 +114,39 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         }
 
         spinnerSkemaPemanfaatan = findViewById<Spinner>(R.id.spinner_skema_pemanfaatan)
-        spinnerSkemaPemanfaatan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-               if (listSkemaPemanfaatan.size!=0){
-                if(position!=0){
-                    idKategoriPks = listSkemaPemanfaatan[position-1].value.safe()
+        spinnerSkemaPemanfaatan?.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    if (mDaftarPengajuanKerjasamaDetailViewModel.mDataKategori.size != 0) {
+                        if (position != 0) {
+                            idKategoriPks = mDaftarPengajuanKerjasamaDetailViewModel.mDataKategori[position - 1].value.safe()
+                        }
+                    }
                 }
-               }
-            }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
 
-        }
+            }
 
         spinnerTujuan = findViewById<Spinner>(R.id.spinner_tujuan)
-        spinnerTujuan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (listTujuan.size != 0){
-                if(position!=0){
-                    idTujuanPks = listTujuan[position-1].value.safe()
-                }
+        spinnerTujuan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (mDaftarPengajuanKerjasamaDetailViewModel.mDataTujuan.size != 0) {
+                    if (position != 0) {
+                        idTujuanPks = mDaftarPengajuanKerjasamaDetailViewModel.mDataTujuan[position - 1].value.safe()
+                    }
                 }
             }
 
@@ -151,7 +163,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         val prev = findViewById<Button>(R.id.prev_detail_btn)
         no_pengajuan = findViewById<EditText>(R.id.no_pengajuan)
         nama_mitra = findViewById<EditText>(R.id.nama_mitra)
-       // ETtujuan = findViewById<EditText>(R.id.tujuan)
+        // ETtujuan = findViewById<EditText>(R.id.tujuan)
         no_surat = findViewById<EditText>(R.id.no_surat)
         tgl_surat = findViewById<EditText>(R.id.tgl_surat)
         Objek = findViewById<EditText>(R.id.objek)
@@ -159,21 +171,21 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         nilai_ = findViewById<EditText>(R.id.nilai)
         tgl_akhir = findViewById<EditText>(R.id.tgl_akhir)
         prihal = findViewById<EditText>(R.id.perihal)
-      //  skema = findViewById<EditText>(R.id.skema_pemanfaatan)
+        //  skema = findViewById<EditText>(R.id.skema_pemanfaatan)
         val buttonDokumen = findViewById<ImageButton>(R.id.buttonDokumen)
 
-        if (!idPkscheck.equals("")){
+        if (!idPkscheck.equals("")) {
             mDaftarPengajuanKerjasamaDetailViewModel.getPengajuanKerjasamaDetail(idPkscheck)
         }
 
-        mDaftarPengajuanKerjasamaDetailViewModel.getPengajuanKerjasamaDetail(idPkscheck?:"")
-        mDaftarPengajuanKerjasamaDetailViewModel.getListMitra()
-        mDaftarPengajuanKerjasamaDetailViewModel.getKategoriPKS()
-        mDaftarPengajuanKerjasamaDetailViewModel.getTujuanPKS()
+//        mDaftarPengajuanKerjasamaDetailViewModel.getPengajuanKerjasamaDetail(idPkscheck?:"")
+//        mDaftarPengajuanKerjasamaDetailViewModel.getListMitra()
+//        mDaftarPengajuanKerjasamaDetailViewModel.getKategoriPKS()
+//        mDaftarPengajuanKerjasamaDetailViewModel.getTujuanPKS()
 
         isStatusEdit = intent.getStringExtra("status") ?: ""
 
-        if (isStatusEdit.equals("Edit", true) || isStatusEdit.equals("Tambah",true)) {
+        if (isStatusEdit.equals("Edit", true) || isStatusEdit.equals("Tambah", true)) {
             no_pengajuan?.isEnabled = false
             no_pengajuan?.setText("(Auto)")
 //            no_pengajuan?.background =
@@ -245,23 +257,49 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 val back = findViewById<ImageView>(R.id.backbtn)
 
                 back.setOnClickListener {
-                    val intent = Intent(this@DaftarPengajuanKerjasamaDetailActivity, DaftarPengajuanKerjasamaActivity::class.java)
+                    val intent = Intent(
+                        this@DaftarPengajuanKerjasamaDetailActivity,
+                        DaftarPengajuanKerjasamaActivity::class.java
+                    )
                     startActivity(intent)
                     finish()
                 }
 
-                if (isStatusEdit.equals("Edit", true)){
-                    mDaftarPengajuanKerjasamaDetailViewModel.updatePengajuan(idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, idPkscheck,dokumen)
+                if (isStatusEdit.equals("Edit", true)) {
+                    mDaftarPengajuanKerjasamaDetailViewModel.updatePengajuan(
+                        idMitra,
+                        idKategoriPks,
+                        idTujuanPks,
+                        nomorSurat,
+                        tanggalSurat,
+                        objek,
+                        nilai,
+                        tanggalMulai,
+                        tanggalAkhir,
+                        perihal,
+                        idPkscheck,
+                        dokumen
+                    )
                     startActivity(
                         Intent(
                             this@DaftarPengajuanKerjasamaDetailActivity,
                             DaftarPengajuanKerjasamaActivity::class.java
                         )
                     )
-                }
-
-                else if(isStatusEdit.equals("Tambah",true)){
-                    mDaftarPengajuanKerjasamaDetailViewModel.insertPengajuan(idMitra, idKategoriPks, idTujuanPks, nomorSurat, tanggalSurat, objek, nilai, tanggalMulai, tanggalAkhir, perihal, dokumen)
+                } else if (isStatusEdit.equals("Tambah", true)) {
+                    mDaftarPengajuanKerjasamaDetailViewModel.insertPengajuan(
+                        idMitra,
+                        idKategoriPks,
+                        idTujuanPks,
+                        nomorSurat,
+                        tanggalSurat,
+                        objek,
+                        nilai,
+                        tanggalMulai,
+                        tanggalAkhir,
+                        perihal,
+                        dokumen
+                    )
                     startActivity(
                         Intent(
                             this@DaftarPengajuanKerjasamaDetailActivity,
@@ -271,8 +309,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 }
             }
 
-        }
-        else {
+        } else {
             no_pengajuan?.isEnabled = false
             no_pengajuan?.setText("(Auto)")
 
@@ -283,7 +320,8 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
             spinnerMitra?.isEnabled = false
             spinnerMitra?.background = ContextCompat.getDrawable(this, R.drawable.custom_profile)
             spinnerSkemaPemanfaatan?.isEnabled = false
-            spinnerSkemaPemanfaatan?.background = ContextCompat.getDrawable(this,
+            spinnerSkemaPemanfaatan?.background = ContextCompat.getDrawable(
+                this,
                 R.drawable.custom_profile
             )
             skema?.isEnabled = false
@@ -320,7 +358,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         val header = findViewById<TextView>(R.id.header_title)
 
-        if(isStatusEdit.equals("Tambah",true)){
+        if (isStatusEdit.equals("Tambah", true)) {
             header.setText("Tambah Pengajuan Kerjasama")
 
             dokumenPKS = findViewById(R.id.title_Dokumen)
@@ -331,8 +369,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
             pdfPic?.visibility = View.GONE
             tnc?.visibility = View.GONE
 
-        }
-        else if(isStatusEdit.equals("Edit",true)){
+        } else if (isStatusEdit.equals("Edit", true)) {
             header.setText("Edit Pengajuan Kerjasama")
 
             dokumenPKS = findViewById(R.id.title_Dokumen)
@@ -342,34 +379,58 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
             dokumenPKS?.visibility = View.GONE
             pdfPic?.visibility = View.GONE
             tnc?.visibility = View.GONE
-        }
-        else{
-        header.setText("Detail Pengajuan Kerjasama")
+        } else {
+            header.setText("Detail Pengajuan Kerjasama")
         }
 
-        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        val homeBtn: ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
-            startActivity(Intent(this@DaftarPengajuanKerjasamaDetailActivity, DashboardActivity::class.java))
+            startActivity(
+                Intent(
+                    this@DaftarPengajuanKerjasamaDetailActivity,
+                    DashboardActivity::class.java
+                )
+            )
         }
 
-        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        val homeBtn2: ImageButton = findViewById(R.id.logo_2)
         homeBtn2.setOnClickListener {
-            startActivity(Intent(this@DaftarPengajuanKerjasamaDetailActivity, DashboardActivity::class.java))
+            startActivity(
+                Intent(
+                    this@DaftarPengajuanKerjasamaDetailActivity,
+                    DashboardActivity::class.java
+                )
+            )
         }
 
-        val homeBtn3 : ImageButton = findViewById(R.id.homeBtn)
+        val homeBtn3: ImageButton = findViewById(R.id.homeBtn)
         homeBtn3.setOnClickListener {
-            startActivity(Intent(this@DaftarPengajuanKerjasamaDetailActivity, DashboardActivity::class.java))
+            startActivity(
+                Intent(
+                    this@DaftarPengajuanKerjasamaDetailActivity,
+                    DashboardActivity::class.java
+                )
+            )
         }
 
-        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        val profileBtn: ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
-            startActivity(Intent(this@DaftarPengajuanKerjasamaDetailActivity, ProfileActivity::class.java))
+            startActivity(
+                Intent(
+                    this@DaftarPengajuanKerjasamaDetailActivity,
+                    ProfileActivity::class.java
+                )
+            )
         }
 
-        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        val notificationBtn: ImageButton = findViewById(R.id.notificationBtn)
         notificationBtn.setOnClickListener {
-            startActivity(Intent(this@DaftarPengajuanKerjasamaDetailActivity, NotificationActivity::class.java))
+            startActivity(
+                Intent(
+                    this@DaftarPengajuanKerjasamaDetailActivity,
+                    NotificationActivity::class.java
+                )
+            )
         }
 
         next_detail_btn.setOnClickListener {
@@ -378,7 +439,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
                 DataAsetdikerjasamakanActivity::class.java
             )
             i.putExtra("hideTelaah", true)
-            i.putExtra("idPks",idPkscheck)
+            i.putExtra("idPks", idPkscheck)
             startActivity(i)
         }
 
@@ -391,73 +452,82 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         observeViewModel()
 
 //        setList()
-        mDaftarPengajuanKerjasamaDetailViewModel.responseSuccesMitra.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.responseSuccesMitra.observe(this) {
             setSpinnerMitra()
         }
-        mDaftarPengajuanKerjasamaDetailViewModel.responseSuccesStatus.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.responseSuccesStatus.observe(this) {
             setSpinnerKategoriPKS()
         }
-        mDaftarPengajuanKerjasamaDetailViewModel.responseSuccesTujuan.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.responseSuccesTujuan.observe(this) {
             setSpinnerTujuanPKS()
         }
 
     }
 
     private fun observeViewModel() {
-        mDaftarPengajuanKerjasamaDetailViewModel.mMessageResponse.observe(this){
-            Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, it, Toast.LENGTH_LONG).show()
+        mDaftarPengajuanKerjasamaDetailViewModel.mMessageResponse.observe(this) {
+            Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, it, Toast.LENGTH_LONG)
+                .show()
         }
-        mDaftarPengajuanKerjasamaDetailViewModel.mitra.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.mitra.observe(this) {
             idMitra = mDaftarPengajuanKerjasamaDetailViewModel.mitra.value.safe()
         }
-        mDaftarPengajuanKerjasamaDetailViewModel.skema.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.skema.observe(this) {
             idKategoriPks = mDaftarPengajuanKerjasamaDetailViewModel.skema.value.safe()
         }
-        mDaftarPengajuanKerjasamaDetailViewModel.tujuan.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.tujuan.observe(this) {
             idTujuanPks = mDaftarPengajuanKerjasamaDetailViewModel.tujuan.value.safe()
         }
-        mDaftarPengajuanKerjasamaDetailViewModel.nomorSurat.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.nomorSurat.observe(this) {
             no_surat?.setText(mDaftarPengajuanKerjasamaDetailViewModel.nomorSurat.value)
         }
-        mDaftarPengajuanKerjasamaDetailViewModel.tanggalSurat.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.tanggalSurat.observe(this) {
             tgl_surat?.setText(mDaftarPengajuanKerjasamaDetailViewModel.tanggalSurat.value)
         }
-        mDaftarPengajuanKerjasamaDetailViewModel.tanggalMulai.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.tanggalMulai.observe(this) {
             tgl_mulai?.setText(mDaftarPengajuanKerjasamaDetailViewModel.tanggalMulai.value)
         }
-        mDaftarPengajuanKerjasamaDetailViewModel.tanggalAkhir.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.tanggalAkhir.observe(this) {
             tgl_akhir?.setText(mDaftarPengajuanKerjasamaDetailViewModel.tanggalAkhir.value)
         }
-        mDaftarPengajuanKerjasamaDetailViewModel.perihal.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.perihal.observe(this) {
             prihal?.setText(mDaftarPengajuanKerjasamaDetailViewModel.perihal.value)
         }
-        mDaftarPengajuanKerjasamaDetailViewModel.objek.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.objek.observe(this) {
             Objek?.setText(mDaftarPengajuanKerjasamaDetailViewModel.objek.value)
         }
-        mDaftarPengajuanKerjasamaDetailViewModel.nilai.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.nilai.observe(this) {
             nilai_?.setText(mDaftarPengajuanKerjasamaDetailViewModel.nilai.value)
         }
-        mDaftarPengajuanKerjasamaDetailViewModel.perihal.observe(this){
+        mDaftarPengajuanKerjasamaDetailViewModel.perihal.observe(this) {
             prihal?.setText(mDaftarPengajuanKerjasamaDetailViewModel.perihal.value)
         }
 
     }
 
-    fun setSpinnerMitra(){
+    fun setSpinnerMitra() {
         val arrayStringMitra = arrayListOf("Pilih Mitra")
         arrayStringMitra.addAll(mDaftarPengajuanKerjasamaDetailViewModel.mDataMitra.map {
             it.label
         })
-        spinnerMitra?.adapter = object : ArrayAdapter<String>(this,
-            R.layout.dd_text_status, arrayStringMitra) {
+        spinnerMitra?.adapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.dd_text_status, arrayStringMitra
+        ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
-                            R.color.black
-                        ))
+                        if (position == 0) convertView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
                         try {
-                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                            convertView.typeface = Typeface.createFromAsset(
+                                convertView.context.resources.assets,
+                                "fonts/cs.ttf"
+                            )
                         } catch (e: Exception) {
                             showErrorInflateFont()
                         }
@@ -475,32 +545,40 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         var position = 0
         mDaftarPengajuanKerjasamaDetailViewModel.mDataMitra.forEach {
             position += 1
-            if(idMitra.equals(it.value)){
+            if (idMitra.equals(it.value)) {
                 positionJenisMitra = position
             }
         }
 
-        if(!idMitra.isNullOrEmpty()){
+        if (!idMitra.isNullOrEmpty()) {
             spinnerMitra?.setSelection(positionJenisMitra)
         }
     }
 
-    fun setSpinnerTujuanPKS(){
+    fun setSpinnerTujuanPKS() {
 
         val arrayStringTujuan = arrayListOf("Pilih Tujuan")
         arrayStringTujuan.addAll(mDaftarPengajuanKerjasamaDetailViewModel.mDataTujuan.map {
             it.label
         })
-        spinnerTujuan?.adapter = object : ArrayAdapter<String>(this,
-            R.layout.dd_text_status, arrayStringTujuan) {
+        spinnerTujuan?.adapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.dd_text_status, arrayStringTujuan
+        ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
-                            R.color.black
-                        ))
+                        if (position == 0) convertView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
                         try {
-                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                            convertView.typeface = Typeface.createFromAsset(
+                                convertView.context.resources.assets,
+                                "fonts/cs.ttf"
+                            )
                         } catch (e: Exception) {
                             showErrorInflateFont()
                         }
@@ -518,12 +596,12 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         var position = 0
         mDaftarPengajuanKerjasamaDetailViewModel.mDataTujuan.forEach {
             position += 1
-            if(idTujuanPks.equals(it.value)){
+            if (idTujuanPks.equals(it.value)) {
                 positionJenisMitra = position
             }
         }
 
-        if(!idTujuanPks.isNullOrEmpty()){
+        if (!idTujuanPks.isNullOrEmpty()) {
             spinnerTujuan?.setSelection(positionJenisMitra)
         }
     }
@@ -533,16 +611,24 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         arrayStringSkema.addAll(mDaftarPengajuanKerjasamaDetailViewModel.mDataKategori.map {
             it.label
         })
-        spinnerSkemaPemanfaatan?.adapter = object : ArrayAdapter<String>(this,
-            R.layout.dd_text_status, arrayStringSkema) {
+        spinnerSkemaPemanfaatan?.adapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.dd_text_status, arrayStringSkema
+        ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
-                            R.color.black
-                        ))
+                        if (position == 0) convertView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
                         try {
-                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                            convertView.typeface = Typeface.createFromAsset(
+                                convertView.context.resources.assets,
+                                "fonts/cs.ttf"
+                            )
                         } catch (e: Exception) {
                             showErrorInflateFont()
                         }
@@ -560,12 +646,12 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         var position = 0
         mDaftarPengajuanKerjasamaDetailViewModel.mDataKategori.forEach {
             position += 1
-            if(idKategoriPks.equals(it.value)){
+            if (idKategoriPks.equals(it.value)) {
                 positionJenisMitra = position
             }
         }
 
-        if(!idKategoriPks.isNullOrEmpty()){
+        if (!idKategoriPks.isNullOrEmpty()) {
             spinnerSkemaPemanfaatan?.setSelection(positionJenisMitra)
         }
     }
