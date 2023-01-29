@@ -93,7 +93,6 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
             token = token.value.safe(),
             object : DataSource.listMitraCallback {
                 override fun onSuccess(data: BaseApiModel<listMitra?>) {
-                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataMitra.clear()
@@ -105,6 +104,7 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
                                 )
                             )
                         }
+                        responseSuccesMitra.value = data.isSuccess
                     }
                 }
 
@@ -126,7 +126,6 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
             token = token.value.safe(),
             object : DataSource.kategoriPKSCallback {
                 override fun onSuccess(data: BaseApiModel<kategoriPKSmodel?>) {
-                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataKategori.clear()
@@ -138,6 +137,7 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
                                 )
                             )
                         }
+                        responseSuccesStatus.value = data.isSuccess
                     }
                 }
 
@@ -159,12 +159,10 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
             token = token.value.safe(),
             object : DataSource.tujuanPKSCallback {
                 override fun onSuccess(data: BaseApiModel<tujuanPKSmodel?>) {
-                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataTujuan.clear()
                         data.data?.dataTujuanPks?.forEach {
-                            responseSuccesTujuan.value = true
                             mDataTujuan?.add(
                                 TujuanPKSModel(
                                     value = it?.value.safe(),
@@ -172,6 +170,7 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
                                 )
                             )
                         }
+                        responseSuccesTujuan.value = true
                     }
                 }
 
