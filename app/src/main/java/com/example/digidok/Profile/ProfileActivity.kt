@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.lifecycle.ViewModelProvider
+import com.example.digidok.DaftarMitra.DaftarMitraViewModel
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Login.LoginActivity
 import com.example.digidok.Notification.NotificationActivity
@@ -13,9 +15,9 @@ import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.ProfileModel
 import com.example.digidok.data.model.UserModel
-import com.example.digidok.isLoading
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
+import com.example.digidok.utils.Preferences.safe
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -35,12 +37,16 @@ class ProfileActivity : AppCompatActivity() {
     var telepon = ""
     var email = ""
     var password = ""
+    lateinit var mProfileViewModel: ProfileViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
         supportActionBar?.hide()
+        mProfileViewModel = ViewModelProvider(this@ProfileActivity).get(ProfileViewModel::class.java)
+        mProfileViewModel.token.value = Preferences.isToken(this@ProfileActivity)
+
         val header = findViewById<TextView>(R.id.header_title)
         val logoout = findViewById<Button>(R.id.logout)
         val back = findViewById<ImageView>(R.id.backbtn)
@@ -72,7 +78,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         back.setOnClickListener {
-            onBackPressed()
+            startActivity(Intent(this@ProfileActivity,DashboardActivity::class.java))
         }
 
         header.setText("Profile")
@@ -89,7 +95,8 @@ class ProfileActivity : AppCompatActivity() {
                 Toast.makeText(this@ProfileActivity, "Tidak boleh ada kolom yang kosong", Toast.LENGTH_SHORT).show()
             }
             else{
-                updateProfile(nama, nip, telepon, email, keterangan, password)
+                mProfileViewModel.updateProfile(nama, nip, telepon, email, keterangan, password)
+//                startActivity(Intent(this@ProfileActivity,ProfileActivity::class.java))
             }
 
         }
@@ -119,79 +126,41 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(Intent(this@ProfileActivity, NotificationActivity::class.java))
         }
 
-        getProfileData()
+        mProfileViewModel.getProfileData()
+        observeViewModel()
+
+        mProfileViewModel.responseSucces.observe(this){
+        observeViewModel()
+//            mDaftarMitraViewModel.getDaftarMitra(status)
+        }
 
     }
 
-    fun getProfileData() {
-        mRepository.getProfile(token = Preferences.isToken(this@ProfileActivity),
-            object : DataSource.ProfileCallback {
-                override fun onSuccess(data: BaseApiModel<ProfileModel?>) {
-
-                    if (data.isSuccess) {
-                        uName?.text = data.data?.userId
-                        titleProfile?.text = data.data?.nama
-                        Nama?.setText(data.data?.nama)
-                        Keterangan?.setText(data.data?.description)
-                        NIP?.setText(data.data?.nip)
-                        Telepon?.setText(data.data?.noHp)
-                        Email?.setText(data.data?.email)
-
-                    } else {
-//                        messageError = data.message
-                        Toast.makeText(this@ProfileActivity, "Data Gagal", Toast.LENGTH_LONG).show()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    isLoading = false
-                    Toast.makeText(this@ProfileActivity, message, Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onFinish() {
-//                    Toast.makeText(this@ProfileActivity, "Data Selesai", Toast.LENGTH_LONG).show()
-                    isLoading = false
-                }
-
-            })
+    private fun observeViewModel() {
+        mProfileViewModel.mMessageResponse.observe(this){
+            Toast.makeText(this@ProfileActivity, it, Toast.LENGTH_LONG).show()
+        }
+        mProfileViewModel.username.observe(this){
+            uName?.text = mProfileViewModel.username.value
+        }
+        mProfileViewModel.title.observe(this){
+            titleProfile?.text = mProfileViewModel.title.value
+        }
+        mProfileViewModel.name.observe(this){
+            Nama?.setText(mProfileViewModel.name.value)
+        }
+        mProfileViewModel.desc.observe(this){
+            Keterangan?.setText(mProfileViewModel.desc.value)
+        }
+        mProfileViewModel.nip.observe(this){
+            NIP?.setText(mProfileViewModel.nip.value)
+        }
+        mProfileViewModel.telepon.observe(this){
+            Telepon?.setText(mProfileViewModel.telepon.value)
+        }
+        mProfileViewModel.email.observe(this){
+            Email?.setText(mProfileViewModel.email.value)
+        }
     }
 
-    fun updateProfile(
-        nama: String,
-        nip: String,
-        telepon: String,
-        email: String,
-        keterangan: String,
-        password: String
-    ) {
-        isLoading = true
-        val mRepository: Repository = Injection.provideRepository(this)
-        mRepository.updateProfile(
-            token = Preferences.isToken(context = this@ProfileActivity),
-            nama = nama,
-            nip = nip,
-            telepon = telepon,
-            email = email,
-            keterangan = keterangan,
-            password = password,
-            object : DataSource.updateProfileCallback {
-                override fun onSuccess(data: BaseApiModel<UserModel?>) {
-                    isLoading = false
-                    if (data.isSuccess) {
-                        Toast.makeText(this@ProfileActivity, "Ubah data pada profil berhasil!", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                override fun onError(message: String) {
-                    Toast.makeText(this@ProfileActivity, "Password salah", Toast.LENGTH_LONG).show()
-                    isLoading = false
-                }
-
-                override fun onFinish() {
-                    isLoading = false
-                }
-
-            })
-
-    }
 }

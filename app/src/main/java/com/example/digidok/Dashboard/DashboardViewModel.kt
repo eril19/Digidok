@@ -3,7 +3,6 @@ package com.example.digidok.Dashboard
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.digidok.dashboardList
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
@@ -33,6 +32,7 @@ class DashboardViewModel(context: Application): AndroidViewModel(context) {
             object : DataSource.ProfileCallback {
                 override fun onSuccess(data: BaseApiModel<ProfileModel?>) {
                     responseSucces.value = data.isSuccess
+                    isLoading.value = true
                     if (data.isSuccess) {
                         username.value = data.data?.nama
                     } else {
@@ -62,6 +62,7 @@ class DashboardViewModel(context: Application): AndroidViewModel(context) {
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()
+                        getProfileData()
                         var formatter : DecimalFormat = DecimalFormat("#,###")
                         jmlMitra.value = data.data?.jumlahMitra.safe()
                         jmlNilai.value = "Rp. " + formatter.format(data.data?.jumlahNilaiKerjasama)

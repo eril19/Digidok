@@ -166,6 +166,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
             mDaftarPengajuanKerjasamaDetailViewModel.getPengajuanKerjasamaDetail(idPkscheck)
         }
 
+        mDaftarPengajuanKerjasamaDetailViewModel.getPengajuanKerjasamaDetail(idPkscheck?:"")
         mDaftarPengajuanKerjasamaDetailViewModel.getListMitra()
         mDaftarPengajuanKerjasamaDetailViewModel.getKategoriPKS()
         mDaftarPengajuanKerjasamaDetailViewModel.getTujuanPKS()

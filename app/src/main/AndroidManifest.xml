@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Digidok"
         tools:targetApi="31">
         <activity
-            android:name=".DaftarTerbaruKerjasamaActivity"
+            android:name=".Dashboard.DaftarTerbaruKerjasamaActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

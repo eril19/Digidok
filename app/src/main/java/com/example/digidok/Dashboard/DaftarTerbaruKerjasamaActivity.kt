@@ -1,4 +1,4 @@
-package com.example.digidok
+package com.example.digidok.Dashboard
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,25 +8,15 @@ import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.Dashboard.DashboardActivity
-import com.example.digidok.Dashboard.DashboardAdapter
-import com.example.digidok.Dashboard.DashboardModel
-import com.example.digidok.Dashboard.DashboardViewModel
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
-import com.example.digidok.RepositoriDokumen.RepositoriDokumenViewModel
-import com.example.digidok.data.DataSource
-import com.example.digidok.data.Repository
-import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.dashboardModel
-import com.example.digidok.utils.Injection
+import com.example.digidok.R
 import com.example.digidok.utils.Preferences
-import com.example.digidok.utils.Preferences.safe
-import java.text.DecimalFormat
 
 class DaftarTerbaruKerjasamaActivity : AppCompatActivity() {
 
     lateinit var mDashboardViewModel: DashboardViewModel
+    private var recyclerview: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

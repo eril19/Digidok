@@ -3,7 +3,9 @@ package com.example.digidok.Dashboard
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -45,6 +47,8 @@ class DashboardActivity : AppCompatActivity() {
         mDashboardViewModel = ViewModelProvider(this@DashboardActivity).get(DashboardViewModel::class.java)
         mDashboardViewModel.token.value = Preferences.isToken(this@DashboardActivity)
 
+        val progress = findViewById<ProgressBar>(R.id.progressBar)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_list_dashboard)
 
         val calendar: Calendar = Calendar.getInstance()
         val currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
@@ -127,6 +131,22 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(Intent(this@DashboardActivity, DaftarTerbaruKerjasamaActivity::class.java))
         }
 
+        mDashboardViewModel.isLoading.observe(this){
+            if (it){
+                progress.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                progress.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        }
+
+
+        mDashboardViewModel.responseSucces.observe(this){
+            setList()
+            observeViewModel()
+//            mDaftarMitraViewModel.getDaftarMitra(status)
+        }
     }
 
     fun setList() {
