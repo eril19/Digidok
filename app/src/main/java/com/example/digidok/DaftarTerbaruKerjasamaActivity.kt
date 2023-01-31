@@ -1,4 +1,4 @@
-package com.example.digidok.Dashboard
+package com.example.digidok
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,9 +8,11 @@ import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.Dashboard.DashboardActivity
+import com.example.digidok.Dashboard.DashboardAdapter
+import com.example.digidok.Dashboard.DashboardViewModel
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
-import com.example.digidok.R
 import com.example.digidok.utils.Preferences
 
 class DaftarTerbaruKerjasamaActivity : AppCompatActivity() {
