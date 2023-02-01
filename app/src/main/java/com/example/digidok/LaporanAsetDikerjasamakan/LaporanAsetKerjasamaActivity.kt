@@ -32,7 +32,7 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
     var sortColumn: String = "no"
     var order: String = "asc"
 
-    var tahun = 2017
+    var tahun = ""
     var kota = ""
     var status = ""
     var kelurahan = ""
@@ -81,7 +81,7 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
         spinnerTahun?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
-                    tahun = mLaporanAsetKerjasamaViewModel.mDataTahun.get(position-1).value.safe().toInt()
+                    tahun = mLaporanAsetKerjasamaViewModel.mDataTahun.get(position-1).value.safe()
                     mLaporanAsetKerjasamaViewModel.getLaporanAset(status,tahun,kelurahan)
                 }
 

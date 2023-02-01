@@ -218,7 +218,7 @@ interface DataSource : BaseDataSource {
         sortColumn: String,
         search: String,
         statusFilter: String,
-        tahunFilter: Int,
+        tahunFilter: String,
         kelurahanFilter: String,
         callback: laporanAsetDikerjasamakanCallback
     )
@@ -231,7 +231,7 @@ interface DataSource : BaseDataSource {
         sortColumn: String,
         search: String,
         statusFilter: String,
-        tahunFilter: Int,
+        tahunFilter: String,
         kelurahanFilter: String,
         callback: laporanKerjasamaCallback
     )
@@ -244,7 +244,7 @@ interface DataSource : BaseDataSource {
         sortColumn: String,
         search: String,
         statusFilter: String,
-        tahunFilter: Int,
+        tahunFilter: String,
         kelurahanFilter: String,
         callback: repositoriDokumenCallback
     )

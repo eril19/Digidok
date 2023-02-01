@@ -34,7 +34,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
     val mDataKota: MutableList<KotaModel> = mutableListOf()
     val mDataTahun: MutableList<TahunModel> = mutableListOf()
 
-    fun getLaporanAset(statusFitler:String,tahunFilter:Int,kelurahanFilter:String) {
+    fun getLaporanAset(statusFitler:String,tahunFilter:String,kelurahanFilter:String) {
         isLoading.value = true
         mRepository.getLaporanAsetDikerjasamakan(
             token = token.value.safe(),

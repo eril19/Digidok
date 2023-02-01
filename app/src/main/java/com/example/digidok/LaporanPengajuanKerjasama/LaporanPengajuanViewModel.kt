@@ -36,7 +36,7 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
     val mDataKota: MutableList<KotaModel> = mutableListOf()
     val mDataTahun: MutableList<TahunModel> = mutableListOf()
 
-    fun getLaporanKerjasama(statusFitler:String,tahunFilter:Int,kelurahanFilter:String) {
+    fun getLaporanKerjasama(statusFitler:String,tahunFilter:String,kelurahanFilter:String) {
         isLoading.value = true
         mRepository.getLaporanKerjasama(
             token = token.value.safe(),
@@ -50,12 +50,10 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
             kelurahanFilter = kelurahanFilter,
             object : DataSource.laporanKerjasamaCallback {
                 override fun onSuccess(data: BaseApiModel<laporanKerjasamaModel?>) {
-                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()
                         data.data?.dataDokumen?.forEach {
-//                        responseSucces.value = true
                             mData?.add(
                                 LaporanPengajuanModel(
                                     header_color = it?.statusLabel.safe(),
@@ -73,6 +71,7 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                                 )
                             )
                         }
+                    responseSucces.value = data.isSuccess
 
                     }
                 }

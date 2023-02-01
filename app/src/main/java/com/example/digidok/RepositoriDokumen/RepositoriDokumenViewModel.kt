@@ -41,7 +41,7 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
     val mDataKota: MutableList<KotaModel> = mutableListOf()
     val mDataTahun: MutableList<TahunModel> = mutableListOf()
 
-    fun getRepositoriDokumen(statusFitler:String,tahunFilter:Int,kelurahanFilter:String) {
+    fun getRepositoriDokumen(statusFitler:String,tahunFilter:String,kelurahanFilter:String) {
         isLoading.value = true
         mRepository.getRepositoriDokumen(
             token = token.value.safe(),

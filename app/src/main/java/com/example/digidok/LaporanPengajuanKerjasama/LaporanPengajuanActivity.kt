@@ -37,7 +37,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
     var sortColumn: String = "no"
     var order: String = "asc"
 
-    var tahun = 2017
+    var tahun = ""
     var kota = ""
     var status = ""
     var kelurahan = ""
@@ -86,9 +86,8 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         spinnerTahun?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
-                    tahun = mLaporanPengajuanViewModel.mDataTahun.get(position-1).value.safe().toInt()
+                    tahun = mLaporanPengajuanViewModel.mDataTahun.get(position-1).value.safe()
                     mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan)
-//                    minta  filter kota
                 }
 
             }

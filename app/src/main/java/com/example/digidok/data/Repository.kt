@@ -296,7 +296,7 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         sortColumn: String,
         search: String,
         statusFilter: String,
-        tahunFilter: Int,
+        tahunFilter: String,
         kelurahanFilter: String,
         callback: DataSource.laporanAsetDikerjasamakanCallback
     ) {
@@ -322,7 +322,7 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         sortColumn: String,
         search: String,
         statusFilter: String,
-        tahunFilter: Int,
+        tahunFilter: String,
         kelurahanFilter: String,
         callback: DataSource.laporanKerjasamaCallback
     ) {
@@ -348,7 +348,7 @@ open class Repository(private val remoteDataSource: DataSource) : DataSource {
         sortColumn: String,
         search: String,
         statusFilter: String,
-        tahunFilter: Int,
+        tahunFilter: String,
         kelurahanFilter: String,
         callback: DataSource.repositoriDokumenCallback
     ) {

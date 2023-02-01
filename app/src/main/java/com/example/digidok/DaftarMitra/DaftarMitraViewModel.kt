@@ -71,7 +71,7 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
             statusFilter = status,
             object : DataSource.daftarMitraCallback {
                 override fun onSuccess(data: BaseApiModel<daftarMitraModel?>) {
-//                    responseSucces.value = data.isSuccess
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mData.clear()

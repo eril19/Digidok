@@ -828,7 +828,7 @@ object RemoteDataSource : DataSource {
         sortColumn: String,
         search: String,
         statusFilter: String,
-        tahunFilter: Int,
+        tahunFilter: String,
         kelurahanFilter: String,
         callback: DataSource.laporanAsetDikerjasamakanCallback
     ) {
@@ -868,7 +868,7 @@ object RemoteDataSource : DataSource {
         sortColumn: String,
         search: String,
         statusFilter: String,
-        tahunFilter: Int,
+        tahunFilter: String,
         kelurahanFilter: String,
         callback: DataSource.laporanKerjasamaCallback
     ) {
@@ -908,7 +908,7 @@ object RemoteDataSource : DataSource {
         sortColumn: String,
         search: String,
         statusFilter: String,
-        tahunFilter: Int,
+        tahunFilter: String,
         kelurahanFilter: String,
         callback: DataSource.repositoriDokumenCallback
     ) {

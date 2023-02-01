@@ -212,7 +212,7 @@ interface ApiService {
         @Query("sortColumn") sortColumn: String,
         @Query("search") search: String,
         @Query("statusFilter") statusFilter: String,
-        @Query("tahunFilter") tahunFilter: Int,
+        @Query("tahunFilter") tahunFilter: String,
         @Query("kelurahanFilter") kelurahanFilter: String,
         ): Observable<BaseApiModel<laporanKerjasamaModel?>>
 
@@ -225,7 +225,7 @@ interface ApiService {
         @Query("sortColumn") sortColumn: String,
         @Query("search") search: String,
         @Query("statusFilter") statusFilter: String,
-        @Query("tahunFilter") tahunFilter: Int,
+        @Query("tahunFilter") tahunFilter: String,
         @Query("kelurahanFilter") kelurahanFilter: String,
     ): Observable<BaseApiModel<laporanAsetDikerjasamakanModel?>>
 
@@ -238,7 +238,7 @@ interface ApiService {
         @Query("sortColumn") sortColumn: String,
         @Query("search") search: String,
         @Query("statusFilter") statusFilter: String,
-        @Query("tahunFilter") tahunFilter: Int,
+        @Query("tahunFilter") tahunFilter: String,
         @Query("kelurahanFilter") kelurahanFilter: String,
     ): Observable<BaseApiModel<repositoriDokumenModel?>>
 
