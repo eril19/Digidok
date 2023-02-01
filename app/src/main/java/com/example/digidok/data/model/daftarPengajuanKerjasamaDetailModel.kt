@@ -24,7 +24,7 @@ class daftarPengajuanKerjasamaDetailModel(
     @SerializedName("objek")
     val objek: String,
     @SerializedName("nilai")
-    val nilai: Long,
+    val nilai: String,
     @SerializedName("tanggalMulai")
     val tanggalMulai: String,
     @SerializedName("tanggalAkhir")
@@ -44,7 +44,7 @@ class daftarPengajuanKerjasamaDetailModel(
         @SerializedName("jenisDokumen")
         val jenisDokumen: String,
         @SerializedName("amount")
-        val amount: Long,
+        val amount: String,
         @SerializedName("noSurat")
         val noSurat: String,
         @SerializedName("tanggal")

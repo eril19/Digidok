@@ -47,7 +47,7 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
     val listKelurahan : ArrayList<KelurahanModel> = ArrayList()
 
     var spinnerStatus : Spinner? = null
-    val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT", "DIKEMBALIKAN", "DISETUJUI")
+    val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAF/DIKEMBALIKAN", "DISETUJUI")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -127,17 +127,13 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
                 }
                 else if(position-1 == 1){
                     status = "DIKIRIM"
-                    mLaporanAsetKerjasamaViewModel.getLaporanAset("DIKIRIM",tahun,kelurahan)
+                    mLaporanAsetKerjasamaViewModel.getLaporanAset("MENUNGGU VALIDASI",tahun,kelurahan)
                 }
                 else if(position-1 == 2){
                     status = "DRAFT"
                     mLaporanAsetKerjasamaViewModel.getLaporanAset("DRAFT",tahun,kelurahan)
                 }
                 else if(position-1 == 3){
-                    status = "DIKEMBALIKAN"
-                    mLaporanAsetKerjasamaViewModel.getLaporanAset("DIKEMBALIKAN",tahun,kelurahan)
-                }
-                else if(position-1 == 4){
                     status = "DISETUJUI"
                     mLaporanAsetKerjasamaViewModel.getLaporanAset("DISETUJUI",tahun,kelurahan)
                 }

@@ -97,6 +97,4 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
             })
     }
 
-    
-
 }

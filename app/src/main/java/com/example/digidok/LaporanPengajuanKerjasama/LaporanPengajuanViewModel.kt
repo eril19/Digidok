@@ -95,7 +95,6 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
             token = token.value.safe(),
             object : DataSource.tahunCallback {
                 override fun onSuccess(data: BaseApiModel<tahunModel?>) {
-                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataTahun.clear()
@@ -108,6 +107,7 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                                 )
                             )
                         }
+                    responseSuccesTahun.value = data.isSuccess
                     }
                 }
 
@@ -130,7 +130,6 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
             idKota = idKota,
             object : DataSource.kelurahanCallback {
                 override fun onSuccess(data: BaseApiModel<kelurahanModel?>) {
-                    responseSuccesKelurahan.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataKelurahan.clear()
@@ -142,6 +141,7 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                                 )
                             )
                         }
+                    responseSuccesKelurahan.value = data.isSuccess
                     }
                 }
 
@@ -163,7 +163,6 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
             token = token.value.safe(),
             object : DataSource.kotaCallback {
                 override fun onSuccess(data: BaseApiModel<kotaModel?>) {
-                    responseSuccesKelurahan.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataKota.clear()
@@ -176,6 +175,7 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                                 )
                             )
                         }
+                    responseSuccesKota.value = data.isSuccess
                     }
                 }
 

@@ -69,7 +69,7 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
                         mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"")
                     }
                     else if(position-1 == 2){
-                        mDaftarPengajuanKerjasamaViewModel.status.value = "DIKIRIM"
+                        mDaftarPengajuanKerjasamaViewModel.status.value = "MENUNGGU VALIDASI"
                         mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"")
                     }
                     else if(position-1 == 3){
@@ -239,7 +239,7 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
                         popupPencet.menu.findItem(R.id.menu_view).isVisible = true
                         popupPencet.menu.findItem(R.id.menu_telaah).isVisible = true
                         if (!role.equals("Administrator",ignoreCase = true) || !role.equals("Supervisor",ignoreCase = true)){
-                            popupPencet.menu.findItem(R.id.menu_telaah).isVisible = true
+                            popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
                         }
                         popupPencet.menu.findItem(R.id.menu_edit).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_hapus).isVisible = false

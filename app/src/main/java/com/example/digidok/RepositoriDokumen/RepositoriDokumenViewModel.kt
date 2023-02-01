@@ -93,7 +93,6 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
             token = token.value.safe(),
             object : DataSource.tahunCallback {
                 override fun onSuccess(data: BaseApiModel<tahunModel?>) {
-                    responseSuccesTahun.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataTahun.clear()
@@ -105,6 +104,7 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                                 )
                             )
                         }
+                        responseSuccesTahun.value = data.isSuccess
                     }
                 }
 

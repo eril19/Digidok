@@ -48,9 +48,9 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
             kelurahanFilter = kelurahanFilter,
             object : DataSource.laporanAsetDikerjasamakanCallback {
                 override fun onSuccess(data: BaseApiModel<laporanAsetDikerjasamakanModel?>) {
-                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
+                    responseSucces.value = data.isSuccess
                         mData.clear()
                         data.data?.dataDokumen?.forEach {
 //                            responseSucces.value = true
@@ -85,7 +85,6 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
             token = token.value.safe(),
             object : DataSource.tahunCallback {
                 override fun onSuccess(data: BaseApiModel<tahunModel?>) {
-                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataTahun.clear()
@@ -98,6 +97,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                                 )
                             )
                         }
+                    responseSuccesTahun.value = data.isSuccess
                     }
                 }
 
@@ -120,7 +120,6 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
             idKota = idKota,
             object : DataSource.kelurahanCallback {
                 override fun onSuccess(data: BaseApiModel<kelurahanModel?>) {
-                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataKelurahan.clear()
@@ -133,6 +132,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                                 )
                             )
                         }
+                    responseSuccesKelurahan.value = data.isSuccess
                     }
                 }
 
@@ -154,7 +154,6 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
             token = token.value.safe(),
             object : DataSource.kotaCallback {
                 override fun onSuccess(data: BaseApiModel<kotaModel?>) {
-                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataKota.clear()
@@ -167,6 +166,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                                 )
                             )
                         }
+                    responseSuccesKota.value = data.isSuccess
                     }
                 }
 

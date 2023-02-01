@@ -115,7 +115,7 @@ class DaftarMitraActivity : AppCompatActivity() {
             startActivity(Intent(this@DaftarMitraActivity, NotificationActivity::class.java))
         }
 
-        setList()
+//        setList()
         observeViewModel()
         setSpinnerKategori()
         mDaftarMitraViewModel.getDaftarMitra(mDaftarMitraViewModel.status.value?:0)
@@ -131,8 +131,7 @@ class DaftarMitraActivity : AppCompatActivity() {
         }
 
         mDaftarMitraViewModel.responseSucces.observe(this){
-            setList()
-//            mDaftarMitraViewModel.getDaftarMitra(status)
+                setList()
         }
 
     }

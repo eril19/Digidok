@@ -128,7 +128,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                     mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
                 }
                 else if(position-1 == 1){
-                    status = "DIKIRIM"
+                    status = "MENUNGGU VALIDASI"
                     mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
                 }
                 else if(position-1 == 2){
