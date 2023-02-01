@@ -227,6 +227,14 @@ class DaftarMitraActivity : AppCompatActivity() {
 
 
             }
+
+        recyclerview?.adapter?.notifyDataSetChanged()
+        recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                mDaftarMitraViewModel.getDaftarMitra(status)
+            }
+        })
     }
 
     fun setSpinnerKategori() {

@@ -177,6 +177,12 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         if (!idPkscheck.equals("")) {
             mDaftarPengajuanKerjasamaDetailViewModel.getPengajuanKerjasamaDetail(idPkscheck)
         }
+        else{
+            mDaftarPengajuanKerjasamaDetailViewModel.getListMitra()
+            mDaftarPengajuanKerjasamaDetailViewModel.getKategoriPKS()
+            mDaftarPengajuanKerjasamaDetailViewModel.getTujuanPKS()
+
+        }
 
 //        mDaftarPengajuanKerjasamaDetailViewModel.getPengajuanKerjasamaDetail(idPkscheck?:"")
 //        mDaftarPengajuanKerjasamaDetailViewModel.getListMitra()

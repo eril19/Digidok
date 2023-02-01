@@ -91,6 +91,7 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
                             )
                         }
                     }
+                    start.value = start.value?.toInt()?.plus(10).toString()
                 }
 
                 override fun onError(message: String) {

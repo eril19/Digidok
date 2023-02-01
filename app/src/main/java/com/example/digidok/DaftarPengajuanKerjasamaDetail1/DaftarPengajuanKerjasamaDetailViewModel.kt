@@ -66,7 +66,7 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
                         tanggalAkhir.value = data.data?.tanggalAkhir
                         perihal.value = data.data?.perihal
                         dokumen.value = data.data?.dokumen
-                        nilai.value = "Rp. " + data.data?.nilai.toString()
+                        nilai.value = data.data?.nilai.toString()
                         objek.value = data.data?.objek
                         getListMitra()
                         getKategoriPKS()
