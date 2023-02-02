@@ -1,5 +1,6 @@
 package com.example.digidok.LaporanPengajuanKerjasama
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,7 @@ class LaporanPengajuanAdapter(private val context: Context, val laporanPengajuan
         val header_color = view.findViewById<TextView>(R.id.header_color)
         var formatter : DecimalFormat = DecimalFormat("#,###")
 
+        @SuppressLint("SetTextI18n")
         fun bindView(laporanPengajuanModel: LaporanPengajuanModel, listener: (LaporanPengajuanModel) -> Unit){
             id_mitra.text = laporanPengajuanModel.id_mitra
             nama_mitra.text = laporanPengajuanModel.nama_mitra
@@ -39,7 +41,13 @@ class LaporanPengajuanAdapter(private val context: Context, val laporanPengajuan
             jenis_kerjasama.text = laporanPengajuanModel.jenis_kerjasama
             no_surat.text = laporanPengajuanModel.no_surat
             jenis_bmd.text = laporanPengajuanModel.jenis_bmd
-            nilai_pks.text = "Rp. " +  formatter.format(laporanPengajuanModel.nilai_pks.toLong())
+
+            var nilaiPKS = 0f
+            if(laporanPengajuanModel.nilai_pks.isNullOrEmpty() || !laporanPengajuanModel.nilai_pks.equals("-")){
+                nilaiPKS = laporanPengajuanModel.nilai_pks.toFloat()
+            }
+
+            nilai_pks.text = "Rp. " +  formatter.format(nilaiPKS.toLong())
             detail_pks.text = laporanPengajuanModel.perihal
             periodeAwal.text = laporanPengajuanModel.periodeAwal
             periodeAkhir.text = laporanPengajuanModel.periodeAkhir
