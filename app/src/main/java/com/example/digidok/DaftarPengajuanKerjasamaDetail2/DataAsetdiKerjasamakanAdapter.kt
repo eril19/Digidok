@@ -41,8 +41,8 @@ RecyclerView.Adapter<DataAsetdiKerjasamakanAdapter.PengajuanKerjasamaDetailViewH
 
         fun bindView(pengajuanKerjasamaDetailModel: DaftarPengajuanKerjasamaDetailModel, listener: (DaftarPengajuanKerjasamaDetailModel) -> Unit){
             alamat.text  = pengajuanKerjasamaDetailModel.alamat
-            luas.text = pengajuanKerjasamaDetailModel.luas
-            luasManfaat.text = pengajuanKerjasamaDetailModel.luasManfaat
+            luas.text = pengajuanKerjasamaDetailModel.luas + " " + pengajuanKerjasamaDetailModel.satuan
+            luasManfaat.text = pengajuanKerjasamaDetailModel.luasManfaat + " " + pengajuanKerjasamaDetailModel.satuan
             namaLokasi.text = pengajuanKerjasamaDetailModel.namaLokasi
             namaBarang.text  = pengajuanKerjasamaDetailModel.namaBarang
             kodeBarang.text = pengajuanKerjasamaDetailModel.kodeBarang
