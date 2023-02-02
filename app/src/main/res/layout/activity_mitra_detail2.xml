@@ -231,7 +231,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="8dp"
-                            android:text="*file pdf dan maksimal 10mb"
+                            android:text=""
                             android:textColor="#616161"
                             android:textSize="14dp" />
                     </LinearLayout>

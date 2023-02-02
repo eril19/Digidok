@@ -564,7 +564,7 @@
                                 android:id="@+id/pdfcapt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="*file pdf dan maksimal 10mb"
+                                android:text=""
                                 android:layout_marginLeft="8dp"
                                 android:textColor="#616161"
                                 android:textSize="14dp"
