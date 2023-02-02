@@ -61,7 +61,7 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                                     jenis_kerjasama = it?.kategoriPks.safe(),
                                     no_surat = it?.noPks.safe(),
                                     jenis_bmd = it?.objekPks.safe(),
-                                    nilai_pks = it?.nilaiPks.toString().safe(),
+                                    nilai_pks = it?.nilaiPks.safe(),
                                     nama_mitra = it?.namaMitra.safe(),
                                     perihal = it?.perihalPks.safe(),
                                     id_mitra = it?.idMitra.safe(),
@@ -72,7 +72,6 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                             )
                         }
                     responseSucces.value = data.isSuccess
-
                     }
                 }
 
@@ -89,12 +88,10 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
     }
 
     fun getTahun() {
-        isLoading.value = true
         mRepository.getTahun(
             token = token.value.safe(),
             object : DataSource.tahunCallback {
                 override fun onSuccess(data: BaseApiModel<tahunModel?>) {
-                    isLoading.value = false
                     if (data.isSuccess) {
                         mDataTahun.clear()
                         data.data?.dataTahun?.forEach {
@@ -111,25 +108,21 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                 }
 
                 override fun onError(message: String) {
-                    isLoading.value = false
                     mMessageResponse.value = message
                 }
 
                 override fun onFinish() {
-                    isLoading.value = false
                 }
 
             })
     }
 
     fun getKelurahan(idKota:String) {
-        isLoading.value = true
         mRepository.getKelurahan(
             token = token.value.safe(),
             idKota = idKota,
             object : DataSource.kelurahanCallback {
                 override fun onSuccess(data: BaseApiModel<kelurahanModel?>) {
-                    isLoading.value = false
                     if (data.isSuccess) {
                         mDataKelurahan.clear()
                         data.data?.dataKelurahan?.forEach {
@@ -145,19 +138,16 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                 }
 
                 override fun onError(message: String) {
-                    isLoading.value = false
                     mMessageResponse.value = message
                 }
 
                 override fun onFinish() {
-                    isLoading.value = false
                 }
 
             })
     }
 
     fun getKota() {
-        isLoading.value = true
         mRepository.getKota(
             token = token.value.safe(),
             object : DataSource.kotaCallback {
@@ -179,12 +169,11 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                 }
 
                 override fun onError(message: String) {
-                    isLoading.value = false
                     mMessageResponse.value = message
                 }
 
                 override fun onFinish() {
-                    isLoading.value = false
+
                 }
 
             })
