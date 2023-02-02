@@ -1,5 +1,6 @@
 package com.example.digidok.LaporanAsetDikerjasamakan
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -41,18 +42,27 @@ class LaporanAsetKerjasamaAdapter(private val context: Context, val laporanAsetK
         var jenisKerjasama = ""
         var pks = ""
         var formatter : DecimalFormat = DecimalFormat("#,###")
+
+
         init {
             tomboldetail.setOnClickListener {
                 listener.onItemClick(adapterPosition,nama,nilai, jenisKerjasama, pks)
             }
         }
 
+        @SuppressLint("SetTextI18n")
         fun bindView(laporanAsetModel: LaporanAsetKerjasamaModel, listener: (LaporanAsetKerjasamaModel) -> Unit){
             id_pks.text = laporanAsetModel.id_pks
             pks = laporanAsetModel.id_pks
             nama_mitra.text = laporanAsetModel.nama_mitra
             nama = laporanAsetModel.nama_mitra
-            nilai_pks.text = "Rp. " +  formatter.format(laporanAsetModel.nilai_pks.toLong())
+            var nilaiPKS = 0f
+            if(laporanAsetModel.nilai_pks.isNullOrEmpty() || !laporanAsetModel.nilai_pks.equals("-")){
+                nilaiPKS = laporanAsetModel.nilai_pks.toFloat()
+            }
+
+            nilai_pks.text = "Rp. " +  formatter.format(nilaiPKS.toLong())
+
             nilai = laporanAsetModel.nilai_pks
             jenis_kerjasama.text = laporanAsetModel.jenis_kerjasama
             jenisKerjasama = laporanAsetModel.jenis_kerjasama

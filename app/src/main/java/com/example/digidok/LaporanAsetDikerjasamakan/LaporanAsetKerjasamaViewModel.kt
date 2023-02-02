@@ -50,7 +50,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                 override fun onSuccess(data: BaseApiModel<laporanAsetDikerjasamakanModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
-                    responseSucces.value = data.isSuccess
+                        responseSucces.value = data.isSuccess
                         mData.clear()
                         data.data?.dataDokumen?.forEach {
 //                            responseSucces.value = true
@@ -60,7 +60,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                                     id_pks = it?.idPks.safe(),
                                     nama_mitra = it?.namaMitra.safe(),
                                     jenis_kerjasama = it?.kategoriPks.safe(),
-                                    nilai_pks = it?.nilaiPks.toString().safe(),
+                                    nilai_pks = it?.nilaiPks.safe(),
                                 )
                             )
                         }
@@ -80,12 +80,10 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
     }
 
     fun getTahun() {
-        isLoading.value = true
         mRepository.getTahun(
             token = token.value.safe(),
             object : DataSource.tahunCallback {
                 override fun onSuccess(data: BaseApiModel<tahunModel?>) {
-                    isLoading.value = false
                     if (data.isSuccess) {
                         mDataTahun.clear()
                         data.data?.dataTahun?.forEach {
@@ -97,34 +95,29 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                                 )
                             )
                         }
-                    responseSuccesTahun.value = data.isSuccess
+                        responseSuccesTahun.value = data.isSuccess
                     }
                 }
 
                 override fun onError(message: String) {
-                    isLoading.value = false
                     mMessageResponse.value = message
                 }
 
                 override fun onFinish() {
-                    isLoading.value = false
                 }
 
             })
     }
 
     fun getKelurahan(idKota:String) {
-        isLoading.value = true
         mRepository.getKelurahan(
             token = token.value.safe(),
             idKota = idKota,
             object : DataSource.kelurahanCallback {
                 override fun onSuccess(data: BaseApiModel<kelurahanModel?>) {
-                    isLoading.value = false
                     if (data.isSuccess) {
                         mDataKelurahan.clear()
                         data.data?.dataKelurahan?.forEach {
-//                            responseSuccesKelurahan.value = true
                             mDataKelurahan?.add(
                                 KelurahanModel(
                                     value = it?.value.safe(),
@@ -132,24 +125,21 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                                 )
                             )
                         }
-                    responseSuccesKelurahan.value = data.isSuccess
+                        responseSuccesKelurahan.value = data.isSuccess
                     }
                 }
 
                 override fun onError(message: String) {
-                    isLoading.value = false
                     mMessageResponse.value = message
                 }
 
                 override fun onFinish() {
-                    isLoading.value = false
                 }
 
             })
     }
 
     fun getKota() {
-        isLoading.value = true
         mRepository.getKota(
             token = token.value.safe(),
             object : DataSource.kotaCallback {
@@ -166,17 +156,16 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                                 )
                             )
                         }
-                    responseSuccesKota.value = data.isSuccess
+                        responseSuccesKota.value = data.isSuccess
                     }
                 }
 
                 override fun onError(message: String) {
-                    isLoading.value = false
                     mMessageResponse.value = message
                 }
 
                 override fun onFinish() {
-                    isLoading.value = false
+
                 }
 
             })

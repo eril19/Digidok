@@ -88,15 +88,14 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
     }
 
     fun getTahun() {
-        isLoading.value = true
         mRepository.getTahun(
             token = token.value.safe(),
             object : DataSource.tahunCallback {
                 override fun onSuccess(data: BaseApiModel<tahunModel?>) {
-                    isLoading.value = false
                     if (data.isSuccess) {
                         mDataTahun.clear()
                         data.data?.dataTahun?.forEach {
+//                            responseSuccesTahun.value = true
                             mDataTahun?.add(
                                 TahunModel(
                                     value = it?.value.safe(),
@@ -109,26 +108,21 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                 }
 
                 override fun onError(message: String) {
-                    isLoading.value = false
                     mMessageResponse.value = message
                 }
 
                 override fun onFinish() {
-                    isLoading.value = false
                 }
 
             })
     }
 
     fun getKelurahan(idKota:String) {
-        isLoading.value = true
         mRepository.getKelurahan(
             token = token.value.safe(),
             idKota = idKota,
             object : DataSource.kelurahanCallback {
                 override fun onSuccess(data: BaseApiModel<kelurahanModel?>) {
-                    responseSuccesKelurahan.value = data.isSuccess
-                    isLoading.value = false
                     if (data.isSuccess) {
                         mDataKelurahan.clear()
                         data.data?.dataKelurahan?.forEach {
@@ -139,32 +133,30 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                                 )
                             )
                         }
+                        responseSuccesKelurahan.value = data.isSuccess
                     }
                 }
 
                 override fun onError(message: String) {
-                    isLoading.value = false
                     mMessageResponse.value = message
                 }
 
                 override fun onFinish() {
-                    isLoading.value = false
                 }
 
             })
     }
 
     fun getKota() {
-        isLoading.value = true
         mRepository.getKota(
             token = token.value.safe(),
             object : DataSource.kotaCallback {
                 override fun onSuccess(data: BaseApiModel<kotaModel?>) {
-                    responseSuccesKota.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         mDataKota.clear()
                         data.data?.dataKota?.forEach {
+//                            responseSuccesKota.value = true
                             mDataKota?.add(
                                 KotaModel(
                                     value = it?.value.safe(),
@@ -172,16 +164,16 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                                 )
                             )
                         }
+                        responseSuccesKota.value = data.isSuccess
                     }
                 }
 
                 override fun onError(message: String) {
-                    isLoading.value = false
                     mMessageResponse.value = message
                 }
 
                 override fun onFinish() {
-                    isLoading.value = false
+
                 }
 
             })

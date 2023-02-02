@@ -1,5 +1,6 @@
 package com.example.digidok.RepositoriDokumen
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +35,8 @@ class RepositoriDokumemAdapter(private val context: Context, val repositoriDokum
         var nilai = ""
         var jenisKerjasama = ""
         var pks = ""
+
+        @SuppressLint("SetTextI18n")
 
         fun bindView(repositorDashboardModel: RepositoriDokumenModel, listener: (RepositoriDokumenModel) -> Unit){
             jenis_kerjasama.text = repositorDashboardModel.jenis_kerjasama
