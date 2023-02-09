@@ -26,6 +26,9 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
     val sortColumn = MutableLiveData<String>()
     val order = MutableLiveData<String>()
 
+    val isPaginating = MutableLiveData(true)
+    val isLastPage = MutableLiveData<Boolean>()
+
     val mData: MutableList<DaftarMitraModel> = mutableListOf()
 
     fun getSetAktifNonAktif(kodeMitra: String, isAktif: Boolean) {
@@ -44,7 +47,7 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
                     isLoading.value = false
                     if (data.isSuccess) {
                         mMessageResponse.value =  "Status Mitra Berhasil Diubah"
-                        getDaftarMitra(status.value ?: 0)
+                        getDaftarMitra(status.value ?: 0, true)
                     }
                 }
 
@@ -60,8 +63,10 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
             })
     }
 
-    fun getDaftarMitra(status: Int) {
-        isLoading.value = true
+    fun getDaftarMitra(status: Int, isClear: Boolean) {
+        if(isClear){
+            isLoading.value = true
+        }
         mRepository.getDaftarMitra(
             token = token.value.safe(),
             start = start.value.safe().toInt(),
@@ -74,7 +79,9 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
                     responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
-                        mData.clear()
+                        if(isClear){
+                            mData.clear()
+                        }
                         data.data?.dataMitra?.forEach {
                             mData?.add(
                                 DaftarMitraModel(
@@ -91,6 +98,8 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
                             )
                         }
                     }
+
+                    isLastPage.value = data.data?.dataMitra?.size != 10
                     start.value = start.value?.toInt()?.plus(10).toString()
                 }
 
@@ -101,6 +110,7 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
 
                 override fun onFinish() {
                     isLoading.value = false
+                    isPaginating.value = false
                 }
 
             })
