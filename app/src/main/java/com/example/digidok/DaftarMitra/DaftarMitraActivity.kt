@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -33,12 +34,14 @@ class DaftarMitraActivity : AppCompatActivity() {
     lateinit var mDaftarMitraViewModel: DaftarMitraViewModel
 
     private var recyclerview: RecyclerView? = null
+    lateinit var mLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daftar_mitra)
 
-        mDaftarMitraViewModel = ViewModelProvider(this@DaftarMitraActivity).get(DaftarMitraViewModel::class.java)
+        mDaftarMitraViewModel =
+            ViewModelProvider(this@DaftarMitraActivity).get(DaftarMitraViewModel::class.java)
         mDaftarMitraViewModel.token.value = Preferences.isToken(this@DaftarMitraActivity)
         mDaftarMitraViewModel.row.value = "10"
         mDaftarMitraViewModel.order.value = "asc"
@@ -66,8 +69,8 @@ class DaftarMitraActivity : AppCompatActivity() {
                 id: Long
             ) {
                 if (position != 0) {
-                    mDaftarMitraViewModel.status.value = position-1
-                    mDaftarMitraViewModel.getDaftarMitra(mDaftarMitraViewModel.status.value?:0)
+                    mDaftarMitraViewModel.status.value = position - 1
+                    mDaftarMitraViewModel.getDaftarMitra(mDaftarMitraViewModel.status.value ?: 0, true)
                 }
             }
 
@@ -90,27 +93,27 @@ class DaftarMitraActivity : AppCompatActivity() {
             startActivity(i)
         }
 
-        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        val homeBtn: ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
             startActivity(Intent(this@DaftarMitraActivity, DashboardActivity::class.java))
         }
 
-        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        val homeBtn2: ImageButton = findViewById(R.id.logo_2)
         homeBtn2.setOnClickListener {
             startActivity(Intent(this@DaftarMitraActivity, DashboardActivity::class.java))
         }
 
-        val homeBtn3 : ImageButton = findViewById(R.id.homeBtn)
+        val homeBtn3: ImageButton = findViewById(R.id.homeBtn)
         homeBtn3.setOnClickListener {
             startActivity(Intent(this@DaftarMitraActivity, DashboardActivity::class.java))
         }
 
-        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        val profileBtn: ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
             startActivity(Intent(this@DaftarMitraActivity, ProfileActivity::class.java))
         }
 
-        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        val notificationBtn: ImageButton = findViewById(R.id.notificationBtn)
         notificationBtn.setOnClickListener {
             startActivity(Intent(this@DaftarMitraActivity, NotificationActivity::class.java))
         }
@@ -118,10 +121,10 @@ class DaftarMitraActivity : AppCompatActivity() {
 //        setList()
         observeViewModel()
         setSpinnerKategori()
-        mDaftarMitraViewModel.getDaftarMitra(mDaftarMitraViewModel.status.value?:0)
+        mDaftarMitraViewModel.getDaftarMitra(mDaftarMitraViewModel.status.value ?: 0, true)
 
-        mDaftarMitraViewModel.isLoading.observe(this){
-            if (it){
+        mDaftarMitraViewModel.isLoading.observe(this) {
+            if (it) {
                 progress.visibility = View.VISIBLE
                 recyclerView.visibility = View.GONE
             } else {
@@ -130,14 +133,14 @@ class DaftarMitraActivity : AppCompatActivity() {
             }
         }
 
-        mDaftarMitraViewModel.responseSucces.observe(this){
-                setList()
+        mDaftarMitraViewModel.responseSucces.observe(this) {
+            setList()
         }
 
     }
 
     private fun observeViewModel() {
-        mDaftarMitraViewModel.mMessageResponse.observe(this){
+        mDaftarMitraViewModel.mMessageResponse.observe(this) {
             Toast.makeText(this@DaftarMitraActivity, it, Toast.LENGTH_LONG).show()
         }
 
@@ -145,85 +148,88 @@ class DaftarMitraActivity : AppCompatActivity() {
 
     fun setList() {
         recyclerview = findViewById<RecyclerView>(R.id.rv_list_mitra)
-        recyclerview?.layoutManager = LinearLayoutManager(this)
+
+        mLayoutManager = LinearLayoutManager(this@DaftarMitraActivity, LinearLayoutManager.VERTICAL, false)
+        recyclerview?.layoutManager = mLayoutManager
         recyclerview?.setHasFixedSize(true)
-
-
         recyclerview?.adapter =
-            DaftarMitraAdapter(this, mDaftarMitraViewModel, object : DaftarMitraAdapter.onItemClickListener {
-                override fun onItemClick(position: Int) {
-                    val i = Intent(
-                        this@DaftarMitraActivity,
-                        MitraDetailActivity::class.java
-                    )
-                    i.putExtra("menu", "Edit")
+            DaftarMitraAdapter(
+                this,
+                mDaftarMitraViewModel,
+                object : DaftarMitraAdapter.onItemClickListener {
+                    override fun onItemClick(position: Int) {
+                        val i = Intent(
+                            this@DaftarMitraActivity,
+                            MitraDetailActivity::class.java
+                        )
+                        i.putExtra("menu", "Edit")
 
-                    startActivity(i)
-                }
-
-                override fun onItemClickPopupMenu(
-                    position: Int,
-                    kodeMitra: String,
-                    statusMitra: String,
-                    idMitra: String,
-                    view: View
-                ) {
-                    val popupPencet = PopupMenu(this@DaftarMitraActivity, view)
-                    popupPencet.inflate(R.menu.daftar_mitra_menu)
-
-                    if ( statusMitra.equals("1")) {
-
-                        popupPencet.menu.findItem(R.id.setAktif).isVisible = false
-
-
-                    } else {
-                        popupPencet.menu.findItem(R.id.menuView).isVisible = false
-                        popupPencet.menu.findItem(R.id.menuEdit).isVisible = false
-                        popupPencet.menu.findItem(R.id.setNonAktif).isVisible = false
+                        startActivity(i)
                     }
 
-                    popupPencet.setOnMenuItemClickListener { item ->
-                        when (item.itemId) {
-                            R.id.menuView -> {
-                                val i = Intent(
-                                    this@DaftarMitraActivity,
-                                    MitraDetailActivity::class.java
-                                )
-                                i.putExtra("menu", "View")
-                                i.putExtra("id",kodeMitra)
-                                startActivity(i)
-                                true
-                            }
-                            R.id.menuEdit -> {
-                                val i = Intent(
-                                    this@DaftarMitraActivity,
-                                    MitraDetailActivity::class.java
-                                )
-                                i.putExtra("menu", "Edit")
-                                i.putExtra("id",kodeMitra)
-                                startActivity(i)
-                                true
-                            }
-                            R.id.setAktif -> {
+                    override fun onItemClickPopupMenu(
+                        position: Int,
+                        kodeMitra: String,
+                        statusMitra: String,
+                        idMitra: String,
+                        view: View
+                    ) {
+                        val popupPencet = PopupMenu(this@DaftarMitraActivity, view)
+                        popupPencet.inflate(R.menu.daftar_mitra_menu)
+
+                        if (statusMitra.equals("1")) {
+
+                            popupPencet.menu.findItem(R.id.setAktif).isVisible = false
+
+
+                        } else {
+                            popupPencet.menu.findItem(R.id.menuView).isVisible = false
+                            popupPencet.menu.findItem(R.id.menuEdit).isVisible = false
+                            popupPencet.menu.findItem(R.id.setNonAktif).isVisible = false
+                        }
+
+                        popupPencet.setOnMenuItemClickListener { item ->
+                            when (item.itemId) {
+                                R.id.menuView -> {
+                                    val i = Intent(
+                                        this@DaftarMitraActivity,
+                                        MitraDetailActivity::class.java
+                                    )
+                                    i.putExtra("menu", "View")
+                                    i.putExtra("id", kodeMitra)
+                                    startActivity(i)
+                                    true
+                                }
+                                R.id.menuEdit -> {
+                                    val i = Intent(
+                                        this@DaftarMitraActivity,
+                                        MitraDetailActivity::class.java
+                                    )
+                                    i.putExtra("menu", "Edit")
+                                    i.putExtra("id", kodeMitra)
+                                    startActivity(i)
+                                    true
+                                }
+                                R.id.setAktif -> {
 //                                holder.statusMitra = "Aktif"
 //                                holder.header_color.text = "Aktif"
 //                                holder.header_color.background = ContextCompat.getDrawable(holder.header_color.context,
 //                                    R.color.green
 //                                )
-                                mDaftarMitraViewModel.getSetAktifNonAktif(kodeMitra, true)
-                                true
+                                    mDaftarMitraViewModel.getSetAktifNonAktif(kodeMitra, true)
+                                    true
+                                }
+                                R.id.setNonAktif -> {
+                                    mDaftarMitraViewModel.getSetAktifNonAktif(kodeMitra, false)
+                                    true
+                                }
                             }
-                            R.id.setNonAktif -> {
-                                mDaftarMitraViewModel.getSetAktifNonAktif(kodeMitra, false)
-                                true
-                            }
-                        }
-                        false
+                            false
 
+                        }
+                        popupPencet.show()
                     }
-                    popupPencet.show()
-                }
-            }) {
+                }) {
 
 
             }
@@ -235,6 +241,29 @@ class DaftarMitraActivity : AppCompatActivity() {
 //                mDaftarMitraViewModel.getDaftarMitra(status)
 //            }
 //        })
+
+        recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val visibleItemCount = mLayoutManager.childCount
+                val totalItemCount = mLayoutManager.itemCount
+                val firstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition()
+
+                if (visibleItemCount + firstVisibleItemPosition >= totalItemCount
+                    && firstVisibleItemPosition >= 0
+                    && totalItemCount >= 10
+                    && mDaftarMitraViewModel.isLoading.value == false
+                    && mDaftarMitraViewModel.isPaginating.value == false
+                    && mDaftarMitraViewModel.isLastPage.value == false
+                ) {
+                    mDaftarMitraViewModel.isPaginating.value = true
+                    Handler().postDelayed({
+                        mDaftarMitraViewModel.getDaftarMitra(mDaftarMitraViewModel.status.value ?: 0, false)
+                    }, 300)
+                }
+            }
+        })
+
     }
 
     fun setSpinnerKategori() {

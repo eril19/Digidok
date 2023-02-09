@@ -12,11 +12,9 @@ import com.example.digidok.R
 
 class DaftarMitraAdapter(private val context: Context, val daftarMitraViewModel: DaftarMitraViewModel, private var mListener: onItemClickListener,
                          val listener: (DaftarMitraModel) -> Unit)
-    : RecyclerView.Adapter<DaftarMitraAdapter.DaftarMitraViewHolder>(){
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private var DaftarMitra: List<DaftarMitraModel> = daftarMitraViewModel.mData
-
-//    private lateinit var mListener: onItemClickListener
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
@@ -24,7 +22,6 @@ class DaftarMitraAdapter(private val context: Context, val daftarMitraViewModel:
     }
 
     class DaftarMitraViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
-
         val id_mitra = view.findViewById<TextView>(R.id.id_mitra)
         val nama_mitra = view.findViewById<TextView>(R.id.nama_mitra)
         val jenis_mitra = view.findViewById<TextView>(R.id.jenis_mitra)
@@ -70,32 +67,43 @@ class DaftarMitraAdapter(private val context: Context, val daftarMitraViewModel:
                 )
             }
         }
+    }
 
+    class LoadingViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DaftarMitraViewHolder {
-        val itemView = LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_mitra, parent, false)
-        return DaftarMitraViewHolder(itemView, mListener)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            R.layout.item_pagination -> {
+                val itemView = LayoutInflater.from(context).inflate(R.layout.item_pagination, parent, false)
+                return LoadingViewHolder(itemView)
+            }
+            else -> {
+                val itemView = LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_mitra, parent, false)
+                return DaftarMitraViewHolder(itemView, mListener)
+
+            }
+        }
     }
 
-    override fun onBindViewHolder(holder: DaftarMitraViewHolder, position: Int) {
-        holder.bindView(DaftarMitra[position], listener)
-//        holder.popup.setOnClickListener(View.OnClickListener{
-//            val popupPencet = PopupMenu(context, holder.popup)
-//            popupPencet.inflate(R.menu.daftar_mitra_menu)
-//
-//            if(holder.statusMitra.equals("Aktif",true)){
-//                popupPencet.menu.findItem(R.id.setAktif).isVisible = false
-//
-//            }
-//            else{
-//                popupPencet.menu.findItem(R.id.setNonAktif).isVisible = false
-//            }
-//            popupPencet.show()
-//        })
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is DaftarMitraViewHolder) {
+            holder.bindView(DaftarMitra[position], listener)
+        }
     }
 
-    override fun getItemCount(): Int = DaftarMitra.size
+    override fun getItemViewType(position: Int): Int {
+        return if((position == itemCount - 1) && daftarMitraViewModel.isLastPage.value == false){
+            R.layout.item_pagination
+        } else {
+            R.layout.layout_card_daftar_mitra
+        }
 
+    }
+
+    override fun getItemCount(): Int {
+        val extras = (if(daftarMitraViewModel.isLastPage.value == true) 0 else 1)
+        return DaftarMitra.size + extras
+    }
 }
