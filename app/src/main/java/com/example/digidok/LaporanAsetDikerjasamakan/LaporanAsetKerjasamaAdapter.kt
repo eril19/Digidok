@@ -10,12 +10,13 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.DaftarKJPP.DaftarKjppModel
+import com.example.digidok.DaftarMitra.DaftarMitraAdapter
 import com.example.digidok.R
 import java.text.DecimalFormat
 
 class LaporanAsetKerjasamaAdapter(private val context: Context, val laporanAsetKerjasamaViewModel: LaporanAsetKerjasamaViewModel, private var mListener: onItemClickListener,
                                   val listener: (LaporanAsetKerjasamaModel) -> Unit)
-    : RecyclerView.Adapter<LaporanAsetKerjasamaAdapter.LaporanAsetViewHolder>(){
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private var LaporanAset: List<LaporanAsetKerjasamaModel> = laporanAsetKerjasamaViewModel.mData
 
@@ -95,20 +96,41 @@ class LaporanAsetKerjasamaAdapter(private val context: Context, val laporanAsetK
 
 
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LaporanAsetViewHolder {
-
-        val itemView = LayoutInflater.from(context).inflate(R.layout.layout_card_laporan_aset, parent, false)
-
-        return LaporanAsetViewHolder(itemView, mListener)
-
+    class LoadingViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     }
 
-    override fun onBindViewHolder(holder: LaporanAsetViewHolder, position: Int) {
-        holder.bindView(LaporanAset[position], listener)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            R.layout.item_pagination -> {
+                val itemView = LayoutInflater.from(context).inflate(R.layout.item_pagination, parent, false)
+                return LoadingViewHolder(itemView)
+            }
+            else -> {
+                val itemView = LayoutInflater.from(context).inflate(R.layout.layout_card_laporan_aset, parent, false)
+                return LaporanAsetViewHolder(itemView, mListener)
+
+            }
+        }
     }
 
-    override fun getItemCount(): Int = LaporanAset.size
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is LaporanAsetViewHolder) {
+            holder.bindView(LaporanAset[position], listener)
+        }
+    }
 
+    override fun getItemViewType(position: Int): Int {
+        return if((position == itemCount - 1) && laporanAsetKerjasamaViewModel.isLastPage.value == false){
+            R.layout.item_pagination
+        } else {
+            R.layout.layout_card_laporan_aset
+        }
+
+    }
+
+    override fun getItemCount(): Int {
+        val extras = (if(laporanAsetKerjasamaViewModel.isLastPage.value == true) 0 else 1)
+        return LaporanAset.size + extras
+    }
 }

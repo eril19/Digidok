@@ -36,13 +36,18 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
     val sortColumn = MutableLiveData<String>()
     val order = MutableLiveData<String>()
 
+    val isPaginating = MutableLiveData(true)
+    val isLastPage = MutableLiveData<Boolean>()
+
     val mData: MutableList<RepositoriDokumenModel> = mutableListOf()
     val mDataKelurahan: MutableList<KelurahanModel> = mutableListOf()
     val mDataKota: MutableList<KotaModel> = mutableListOf()
     val mDataTahun: MutableList<TahunModel> = mutableListOf()
 
-    fun getRepositoriDokumen(statusFitler:String,tahunFilter:String,kelurahanFilter:String) {
-        isLoading.value = true
+    fun getRepositoriDokumen(statusFitler:String,tahunFilter:String,kelurahanFilter:String,isClear:Boolean) {
+        if(isClear){
+            isLoading.value = true
+        }
         mRepository.getRepositoriDokumen(
             token = token.value.safe(),
             start = start.value.safe().toInt(),
@@ -58,7 +63,9 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                     responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
-                        mData.clear()
+                        if(isClear){
+                            mData.clear()
+                        }
                         data.data?.dataDokumen?.forEach {
 //                            responseSucces.value = true
                             mData?.add(
@@ -73,6 +80,8 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                             )
                         }
                     }
+                    isLastPage.value = data.data?.dataDokumen?.size != 10
+                    start.value = start.value?.toInt()?.plus(10).toString()
                 }
 
                 override fun onError(message: String) {
@@ -82,6 +91,7 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
 
                 override fun onFinish() {
                     isLoading.value = false
+                    isPaginating.value = false
                 }
 
             })

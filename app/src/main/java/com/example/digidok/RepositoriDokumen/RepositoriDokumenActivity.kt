@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import com.example.digidok.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -52,6 +53,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
 
     var spinnerStatus : Spinner? = null
     val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT/DIKEMBALIKAN","DISETUJUI")
+    lateinit var mLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,7 +86,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
                     tahun = mRepositoriDokumenViewModel.mDataTahun.get(position-1).value.safe()
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
                 }
 
             }
@@ -99,7 +101,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                 if(position!=0){
                     kota = mRepositoriDokumenViewModel.mDataKota.get(position-1).value.safe()
                     mRepositoriDokumenViewModel.getKelurahan(kota)
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
                 }
             }
 
@@ -112,7 +114,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
                     kelurahan = mRepositoriDokumenViewModel.mDataKelurahan.get(position-1).value.safe()
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,isClear = true)
                 }
             }
 
@@ -125,19 +127,19 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position-1 == 0){
                     status = "SEMUA"
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
                 }
                 else if(position-1 == 1){
                     status = "MENUNGGU VALIDASI"
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
                 }
                 else if(position-1 == 2){
                     status = "DRAFT"
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
                 }
                 else if(position-1 == 3){
                     status = "DISETUJUI"
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
                 }
             }
 
@@ -183,8 +185,8 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             startActivity(Intent(this@RepositoriDokumenActivity, NotificationActivity::class.java))
         }
 
-        setList()
-        mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan)
+//        setList()
+        mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
 
         mRepositoriDokumenViewModel.isLoading.observe(this){
             if (it){
@@ -334,7 +336,8 @@ class RepositoriDokumenActivity : AppCompatActivity() {
 
     fun setList(){
         recyclerview = findViewById<RecyclerView>(R.id.rv_list_repositori)
-        recyclerview?.layoutManager = LinearLayoutManager(this)
+        mLayoutManager = LinearLayoutManager(this@RepositoriDokumenActivity, LinearLayoutManager.VERTICAL, false)
+        recyclerview?.layoutManager = mLayoutManager
         recyclerview?.setHasFixedSize(true)
 
         recyclerview?.adapter = RepositoriDokumemAdapter(this,  mRepositoriDokumenViewModel, object:
@@ -358,6 +361,28 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         ){
 
         }
+
+        recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val visibleItemCount = mLayoutManager.childCount
+                val totalItemCount = mLayoutManager.itemCount
+                val firstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition()
+
+                if (visibleItemCount + firstVisibleItemPosition >= totalItemCount
+                    && firstVisibleItemPosition >= 0
+                    && totalItemCount >= 10
+                    && mRepositoriDokumenViewModel.isLoading.value == false
+                    && mRepositoriDokumenViewModel.isPaginating.value == false
+                    && mRepositoriDokumenViewModel.isLastPage.value == false
+                ) {
+                    mRepositoriDokumenViewModel.isPaginating.value = true
+                    Handler().postDelayed({
+                        mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan, false)
+                    }, 300)
+                }
+            }
+        })
 
     }
 

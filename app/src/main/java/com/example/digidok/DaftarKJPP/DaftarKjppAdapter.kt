@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.DaftarMitra.DaftarMitraAdapter
 import com.example.digidok.R
 
 class DaftarKjppAdapter(private val context: Context, val daftarKjppViewModel: DaftarKjppViewModel, private var mListener: onItemClickListener, val listener: (DaftarKjppModel) -> Unit)
-    : RecyclerView.Adapter<DaftarKjppAdapter.DaftarKJPPViewHolder>(){
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private var DaftarKJPP: List<DaftarKjppModel> = daftarKjppViewModel.mData
 
@@ -49,19 +50,41 @@ class DaftarKjppAdapter(private val context: Context, val daftarKjppViewModel: D
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DaftarKJPPViewHolder {
+    class LoadingViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        val itemView = LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_kjpp, parent, false)
-
-        return DaftarKJPPViewHolder(itemView,mListener)
     }
 
-    override fun onBindViewHolder(holder: DaftarKJPPViewHolder, position: Int) {
-        holder.bindView(DaftarKJPP[position], listener)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            R.layout.item_pagination -> {
+                val itemView = LayoutInflater.from(context).inflate(R.layout.item_pagination, parent, false)
+                return LoadingViewHolder(itemView)
+            }
+            else -> {
+                val itemView = LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_kjpp, parent, false)
+                return DaftarKjppAdapter.DaftarKJPPViewHolder(itemView, mListener)
+
+            }
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if((position == itemCount - 1) && daftarKjppViewModel.isLastPage.value == false){
+            R.layout.item_pagination
+        } else {
+            R.layout.layout_card_daftar_kjpp
+        }
     }
 
     override fun getItemCount(): Int {
-        return DaftarKJPP.size
+        val extras = (if(daftarKjppViewModel.isLastPage.value == true) 0 else 1)
+        return DaftarKJPP.size + extras
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is DaftarKJPPViewHolder){
+            holder.bindView(DaftarKJPP[position],listener)
+        }
     }
 
 }

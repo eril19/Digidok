@@ -9,11 +9,12 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.DaftarKJPP.DaftarKjppModel
+import com.example.digidok.DaftarMitra.DaftarMitraAdapter
 import com.example.digidok.R
 import java.text.DecimalFormat
 
-class LaporanPengajuanAdapter(private val context: Context, val laporanPengajuanViewModel: LaporanPengajuanViewModel, val listener: (LaporanPengajuanModel) -> Unit)
-    : RecyclerView.Adapter<LaporanPengajuanAdapter.LaporanPengajuanViewHolder>(){
+class LaporanPengajuanAdapter(private val context: Context, val laporanPengajuanViewModel: LaporanPengajuanViewModel,val listener: (LaporanPengajuanModel) -> Unit)
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private var LaporanPengajuan: List<LaporanPengajuanModel> = laporanPengajuanViewModel.mData
 
@@ -75,16 +76,42 @@ class LaporanPengajuanAdapter(private val context: Context, val laporanPengajuan
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LaporanPengajuanViewHolder {
-        return LaporanPengajuanViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.layout_card_pengajuan, parent, false)
-        )
+    class LoadingViewHolder(view: View): RecyclerView.ViewHolder(view) {
+
     }
 
-    override fun onBindViewHolder(holder: LaporanPengajuanViewHolder, position: Int) {
-        holder.bindView(LaporanPengajuan[position], listener)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            R.layout.item_pagination -> {
+                val itemView = LayoutInflater.from(context).inflate(R.layout.item_pagination, parent, false)
+                return LoadingViewHolder(itemView)
+            }
+            else -> {
+                val itemView = LayoutInflater.from(context).inflate(R.layout.layout_card_pengajuan, parent, false)
+                return LaporanPengajuanViewHolder(itemView)
+
+            }
+        }
     }
 
-    override fun getItemCount(): Int = LaporanPengajuan.size
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is LaporanPengajuanViewHolder) {
+            holder.bindView(LaporanPengajuan[position], listener)
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if((position == itemCount - 1) && laporanPengajuanViewModel.isLastPage.value == false){
+            R.layout.item_pagination
+        } else {
+            R.layout.layout_card_pengajuan
+        }
+
+    }
+
+    override fun getItemCount(): Int {
+        val extras = (if(laporanPengajuanViewModel.isLastPage.value == true) 0 else 1)
+        return LaporanPengajuan.size + extras
+    }
 
 }

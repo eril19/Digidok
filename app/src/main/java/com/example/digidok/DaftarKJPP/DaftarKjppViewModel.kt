@@ -23,22 +23,30 @@ class DaftarKjppViewModel(context: Application) : AndroidViewModel(context) {
     val sortColumn = MutableLiveData<String>()
     val order = MutableLiveData<String>()
 
+    val isPaginating = MutableLiveData(true)
+    val isLastPage = MutableLiveData<Boolean>()
+
     val mData: MutableList<DaftarKjppModel> = mutableListOf()
 
 
-    fun getKJPP() {
-        isLoading.value = true
+    fun getKJPP(isClear: Boolean) {
+        if (isClear) {
+            isLoading.value = true
+        }
         mRepository.getKJPP(
             token = token.value.safe(),
             start = start.value.safe().toInt(),
-            row = row.value.safe().toInt(),
+            row = 10,
             order = order.value.safe(),
             sortColumn = sortColumn.value.safe(),
             object : DataSource.KJPPCallback {
                 override fun onSuccess(data: BaseApiModel<daftarKJPPModel?>) {
+                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
-                        mData.clear()
+                        if (isClear) {
+                            mData.clear()
+                        }
                         data.data?.dataKjpp?.forEach {
                             mData?.add(
                                 DaftarKjppModel(
@@ -54,6 +62,8 @@ class DaftarKjppViewModel(context: Application) : AndroidViewModel(context) {
                             )
                         }
                     }
+                    isLastPage.value = data.data?.dataKjpp?.size != 10
+                    start.value = start.value?.toInt()?.plus(10).toString()
                 }
 
                 override fun onError(message: String) {
@@ -63,6 +73,7 @@ class DaftarKjppViewModel(context: Application) : AndroidViewModel(context) {
 
                 override fun onFinish() {
                     isLoading.value = false
+                    isPaginating.value = false
                 }
 
             })

@@ -10,12 +10,13 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.digidok.DaftarMitra.DaftarMitraAdapter
 import com.example.digidok.R
 import java.text.SimpleDateFormat
 
 class DaftarPengajuanKerjasamaAdapter(private val context: Context, val pengajuanKerjasamaViewModel: DaftarPengajuanKerjasamaViewModel, private var mListener: onItemClickListener,
                                       val listener: (DaftarPengajuanKerjasamaModel) -> Unit)
-    : RecyclerView.Adapter<DaftarPengajuanKerjasamaAdapter.PengajuanKerjasamaViewHolder>(){
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private var PengajuanKerja: List<DaftarPengajuanKerjasamaModel> = pengajuanKerjasamaViewModel.mData
 
@@ -94,18 +95,42 @@ class DaftarPengajuanKerjasamaAdapter(private val context: Context, val pengajua
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PengajuanKerjasamaViewHolder {
-
-        val itemView = LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_pengajuan, parent, false)
-
-        return PengajuanKerjasamaViewHolder(itemView, mListener)
+    class LoadingViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     }
 
-    override fun onBindViewHolder(holder: PengajuanKerjasamaViewHolder, position: Int) {
-        holder.bindView(PengajuanKerja[position], listener)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            R.layout.item_pagination -> {
+                val itemView = LayoutInflater.from(context).inflate(R.layout.item_pagination, parent, false)
+                return LoadingViewHolder(itemView)
+            }
+            else -> {
+                val itemView = LayoutInflater.from(context).inflate(R.layout.layout_card_daftar_pengajuan, parent, false)
+                return PengajuanKerjasamaViewHolder(itemView, mListener)
+
+            }
+        }
     }
 
-    override fun getItemCount(): Int = PengajuanKerja.size
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is PengajuanKerjasamaViewHolder) {
+            holder.bindView(PengajuanKerja[position], listener)
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if((position == itemCount - 1) && pengajuanKerjasamaViewModel.isLastPage.value == false){
+            R.layout.item_pagination
+        } else {
+            R.layout.layout_card_daftar_pengajuan
+        }
+
+    }
+
+    override fun getItemCount(): Int {
+        val extras = (if(pengajuanKerjasamaViewModel.isLastPage.value == true) 0 else 1)
+        return PengajuanKerja.size + extras
+    }
 
 }

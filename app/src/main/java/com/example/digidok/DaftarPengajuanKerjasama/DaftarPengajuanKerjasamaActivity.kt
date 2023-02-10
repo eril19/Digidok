@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import com.example.digidok.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,7 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
     var role = ""
     var status = ""
     lateinit var mDaftarPengajuanKerjasamaViewModel: DaftarPengajuanKerjasamaViewModel
+    lateinit var mLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,19 +64,19 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
                 if (position != 0) {
                     if (position-1 == 0){
                         mDaftarPengajuanKerjasamaViewModel.status.value = "SEMUA"
-                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"")
+                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"",true)
                     }
                     else if(position-1 == 1){
                         mDaftarPengajuanKerjasamaViewModel.status.value = "DRAFT"
-                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"")
+                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"",true)
                     }
                     else if(position-1 == 2){
                         mDaftarPengajuanKerjasamaViewModel.status.value = "MENUNGGU VALIDASI"
-                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"")
+                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"",true)
                     }
                     else if(position-1 == 3){
                         mDaftarPengajuanKerjasamaViewModel.status.value = "DISETUJUI"
-                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"")
+                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"",true)
                     }
                 }
             }
@@ -136,7 +138,7 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
         }
 
         setSpinnerKategori()
-        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"")
+        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"",true)
 
         mDaftarPengajuanKerjasamaViewModel.isLoading.observe(this){
             if (it){
@@ -150,7 +152,6 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
 
         mDaftarPengajuanKerjasamaViewModel.responseSucces.observe(this){
             setList(role)
-//            mPengajuanKerjasamaViewModel.getPengajuanKerjasama(status)
         }
     }
 
@@ -191,7 +192,8 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
 
     fun setList(role:String) {
         recyclerview = findViewById<RecyclerView>(R.id.rv_list_pengajuan_kerjasama)
-        recyclerview?.layoutManager = LinearLayoutManager(this)
+        mLayoutManager = LinearLayoutManager(this@DaftarPengajuanKerjasamaActivity, LinearLayoutManager.VERTICAL, false)
+        recyclerview?.layoutManager = mLayoutManager
         recyclerview?.setHasFixedSize(true)
 
         recyclerview?.adapter = DaftarPengajuanKerjasamaAdapter(
@@ -309,10 +311,33 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
             }) {
 
         }
+
+        recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val visibleItemCount = mLayoutManager.childCount
+                val totalItemCount = mLayoutManager.itemCount
+                val firstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition()
+
+                if (visibleItemCount + firstVisibleItemPosition >= totalItemCount
+                    && firstVisibleItemPosition >= 0
+                    && totalItemCount >= 10
+                    && mDaftarPengajuanKerjasamaViewModel.isLoading.value == false
+                    && mDaftarPengajuanKerjasamaViewModel.isPaginating.value == false
+                    && mDaftarPengajuanKerjasamaViewModel.isLastPage.value == false
+                ) {
+                    mDaftarPengajuanKerjasamaViewModel.isPaginating.value = true
+                    Handler().postDelayed({
+                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value ?: "", false)
+                    }, 300)
+                }
+            }
+        })
+
     }
 
     override fun onResume() {
         super.onResume()
-            mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama("SEMUA")
+            mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama("SEMUA",true)
     }
 }

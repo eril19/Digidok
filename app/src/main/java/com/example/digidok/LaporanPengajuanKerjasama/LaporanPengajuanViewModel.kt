@@ -30,14 +30,17 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
     val row = MutableLiveData<String>()
     val sortColumn = MutableLiveData<String>()
     val order = MutableLiveData<String>()
-
+    val isPaginating = MutableLiveData(true)
+    val isLastPage = MutableLiveData<Boolean>()
     val mData: MutableList<LaporanPengajuanModel> = mutableListOf()
     val mDataKelurahan: MutableList<KelurahanModel> = mutableListOf()
     val mDataKota: MutableList<KotaModel> = mutableListOf()
     val mDataTahun: MutableList<TahunModel> = mutableListOf()
 
-    fun getLaporanKerjasama(statusFitler:String,tahunFilter:String,kelurahanFilter:String) {
-        isLoading.value = true
+    fun getLaporanKerjasama(statusFitler:String,tahunFilter:String,kelurahanFilter:String,isClear:Boolean) {
+        if(isClear){
+            isLoading.value = true
+        }
         mRepository.getLaporanKerjasama(
             token = token.value.safe(),
             start = start.value.safe().toInt(),
@@ -52,7 +55,9 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                 override fun onSuccess(data: BaseApiModel<laporanKerjasamaModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
-                        mData.clear()
+                        if(isClear){
+                            mData.clear()
+                        }
                         data.data?.dataDokumen?.forEach {
                             mData?.add(
                                 LaporanPengajuanModel(
@@ -73,6 +78,9 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                         }
                     responseSucces.value = data.isSuccess
                     }
+                    isLastPage.value = data.data?.dataDokumen?.size != 10
+                    start.value = start.value?.toInt()?.plus(10).toString()
+
                 }
 
                 override fun onError(message: String) {
@@ -82,6 +90,8 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
 
                 override fun onFinish() {
                     isLoading.value = false
+                    isPaginating.value = false
+
                 }
 
             })

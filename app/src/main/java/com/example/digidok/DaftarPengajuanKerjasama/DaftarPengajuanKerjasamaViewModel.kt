@@ -24,11 +24,14 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
     val order = MutableLiveData<String>()
 
     val status = MutableLiveData<String>()
-
+    val isPaginating = MutableLiveData(true)
+    val isLastPage = MutableLiveData<Boolean>()
     val mData: MutableList<DaftarPengajuanKerjasamaModel> = mutableListOf()
 
-    fun getPengajuanKerjasama(status:String) {
-        isLoading.value = true
+    fun getPengajuanKerjasama(status:String,isClear:Boolean) {
+        if(isClear){
+            isLoading.value = true
+        }
         mRepository.getDaftarPengajuanKerjasama(
             token = token.value.safe(),
             start = start.value.safe().toInt(),
@@ -42,7 +45,9 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
                     responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
-                        mData.clear()
+                        if(isClear){
+                            mData.clear()
+                        }
                         data.data?.dataDokumen?.forEach {
                             mData?.add(
                                 DaftarPengajuanKerjasamaModel(
@@ -55,6 +60,9 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
                             )
                         }
                     }
+
+                    isLastPage.value = data.data?.dataDokumen?.size != 10
+                    start.value = start.value?.toInt()?.plus(10).toString()
                 }
 
                 override fun onError(message: String) {
@@ -64,6 +72,7 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
 
                 override fun onFinish() {
                     isLoading.value = false
+                    isPaginating.value = false
                 }
 
             })
@@ -81,7 +90,7 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
                     isLoading.value = false
                     if (data.isSuccess) {
                         mMessageResponse.value = "Berhasil diubah!"
-                        getPengajuanKerjasama(status.value?: "SEMUA")
+                        getPengajuanKerjasama(status.value?: "SEMUA",true)
                     }
                 }
 

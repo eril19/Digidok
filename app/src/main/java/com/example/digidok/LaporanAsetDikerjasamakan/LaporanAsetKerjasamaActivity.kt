@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import com.example.digidok.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +49,7 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
 
     var spinnerStatus : Spinner? = null
     val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAF/DIKEMBALIKAN", "DISETUJUI")
+    lateinit var mLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +84,7 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
                     tahun = mLaporanAsetKerjasamaViewModel.mDataTahun.get(position-1).value.safe()
-                    mLaporanAsetKerjasamaViewModel.getLaporanAset(status,tahun,kelurahan)
+                    mLaporanAsetKerjasamaViewModel.getLaporanAset(status,tahun,kelurahan,true)
                 }
 
             }
@@ -97,7 +99,7 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
                 if(position!=0){
                     kota = mLaporanAsetKerjasamaViewModel.mDataKota.get(position-1).value.safe()
                     mLaporanAsetKerjasamaViewModel.getKelurahan(kota)
-                    mLaporanAsetKerjasamaViewModel.getLaporanAset(status,tahun,kelurahan)
+                    mLaporanAsetKerjasamaViewModel.getLaporanAset(status,tahun,kelurahan,true)
                 }
             }
 
@@ -110,7 +112,7 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
                     kelurahan = mLaporanAsetKerjasamaViewModel.mDataKelurahan.get(position-1).value.safe()
-                    mLaporanAsetKerjasamaViewModel.getLaporanAset(status,tahun,kelurahan)
+                    mLaporanAsetKerjasamaViewModel.getLaporanAset(status,tahun,kelurahan,true)
                 }
             }
 
@@ -123,19 +125,19 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position-1 == 0){
                     status = "SEMUA"
-                    mLaporanAsetKerjasamaViewModel.getLaporanAset("SEMUA",tahun,kelurahan)
+                    mLaporanAsetKerjasamaViewModel.getLaporanAset("SEMUA",tahun,kelurahan,true)
                 }
                 else if(position-1 == 1){
                     status = "DIKIRIM"
-                    mLaporanAsetKerjasamaViewModel.getLaporanAset("MENUNGGU VALIDASI",tahun,kelurahan)
+                    mLaporanAsetKerjasamaViewModel.getLaporanAset("MENUNGGU VALIDASI",tahun,kelurahan,true)
                 }
                 else if(position-1 == 2){
                     status = "DRAFT"
-                    mLaporanAsetKerjasamaViewModel.getLaporanAset("DRAFT",tahun,kelurahan)
+                    mLaporanAsetKerjasamaViewModel.getLaporanAset("DRAFT",tahun,kelurahan,true)
                 }
                 else if(position-1 == 3){
                     status = "DISETUJUI"
-                    mLaporanAsetKerjasamaViewModel.getLaporanAset("DISETUJUI",tahun,kelurahan)
+                    mLaporanAsetKerjasamaViewModel.getLaporanAset("DISETUJUI",tahun,kelurahan,true)
                 }
             }
 
@@ -185,7 +187,7 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
 
 
         setList()
-        mLaporanAsetKerjasamaViewModel.getLaporanAset(status,tahun,kelurahan)
+        mLaporanAsetKerjasamaViewModel.getLaporanAset(status,tahun,kelurahan,true)
 
         mLaporanAsetKerjasamaViewModel.isLoading.observe(this){
             if (it){
@@ -333,7 +335,8 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
 
     fun setList(){
         recyclerview = findViewById<RecyclerView>(R.id.rv_list_laporan_aset)
-        recyclerview?.layoutManager = LinearLayoutManager(this)
+        mLayoutManager = LinearLayoutManager(this@LaporanAsetKerjasamaActivity, LinearLayoutManager.VERTICAL, false)
+        recyclerview?.layoutManager = mLayoutManager
         recyclerview?.setHasFixedSize(true)
         recyclerview?.adapter = LaporanAsetKerjasamaAdapter(this, mLaporanAsetKerjasamaViewModel,object : LaporanAsetKerjasamaAdapter.onItemClickListener {
 
@@ -352,7 +355,27 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
 
 
         }
+        recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val visibleItemCount = mLayoutManager.childCount
+                val totalItemCount = mLayoutManager.itemCount
+                val firstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition()
 
+                if (visibleItemCount + firstVisibleItemPosition >= totalItemCount
+                    && firstVisibleItemPosition >= 0
+                    && totalItemCount >= 10
+                    && mLaporanAsetKerjasamaViewModel.isLoading.value == false
+                    && mLaporanAsetKerjasamaViewModel.isPaginating.value == false
+                    && mLaporanAsetKerjasamaViewModel.isLastPage.value == false
+                ) {
+                    mLaporanAsetKerjasamaViewModel.isPaginating.value = true
+                    Handler().postDelayed({
+                        mLaporanAsetKerjasamaViewModel.getLaporanAset(status,tahun,kelurahan,false)
+                    }, 300)
+                }
+            }
+        })
     }
 
 }

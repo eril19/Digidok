@@ -27,15 +27,18 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
     val row = MutableLiveData<String>()
     val sortColumn = MutableLiveData<String>()
     val order = MutableLiveData<String>()
-
+    val isPaginating = MutableLiveData(true)
+    val isLastPage = MutableLiveData<Boolean>()
     val mData: MutableList<LaporanAsetKerjasamaModel> = mutableListOf()
     val mDataDetail: MutableList<LaporanAsetDetailModel> = mutableListOf()
     val mDataKelurahan: MutableList<KelurahanModel> = mutableListOf()
     val mDataKota: MutableList<KotaModel> = mutableListOf()
     val mDataTahun: MutableList<TahunModel> = mutableListOf()
 
-    fun getLaporanAset(statusFitler:String,tahunFilter:String,kelurahanFilter:String) {
-        isLoading.value = true
+    fun getLaporanAset(statusFitler:String,tahunFilter:String,kelurahanFilter:String,isClear:Boolean) {
+        if(isClear){
+            isLoading.value = true
+        }
         mRepository.getLaporanAsetDikerjasamakan(
             token = token.value.safe(),
             start = start.value.safe().toInt(),
@@ -50,8 +53,9 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                 override fun onSuccess(data: BaseApiModel<laporanAsetDikerjasamakanModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
-                        responseSucces.value = data.isSuccess
-                        mData.clear()
+                        if(isClear){
+                            mData.clear()
+                        }
                         data.data?.dataDokumen?.forEach {
 //                            responseSucces.value = true
                             mData?.add(
@@ -64,7 +68,10 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                                 )
                             )
                         }
+                    responseSucces.value = data.isSuccess
                     }
+                    isLastPage.value = data.data?.dataDokumen?.size != 10
+                    start.value = start.value?.toInt()?.plus(10).toString()
                 }
 
                 override fun onError(message: String) {
@@ -74,6 +81,8 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
 
                 override fun onFinish() {
                     isLoading.value = false
+                    isPaginating.value = false
+
                 }
 
             })

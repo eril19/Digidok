@@ -123,6 +123,10 @@ class DaftarMitraActivity : AppCompatActivity() {
         setSpinnerKategori()
         mDaftarMitraViewModel.getDaftarMitra(mDaftarMitraViewModel.status.value ?: 0, true)
 
+
+
+
+
         mDaftarMitraViewModel.isLoading.observe(this) {
             if (it) {
                 progress.visibility = View.VISIBLE
@@ -233,14 +237,6 @@ class DaftarMitraActivity : AppCompatActivity() {
 
 
             }
-
-//        recyclerview?.adapter?.notifyDataSetChanged()
-//        recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//                mDaftarMitraViewModel.getDaftarMitra(status)
-//            }
-//        })
 
         recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import com.example.digidok.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -53,6 +54,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
 
     var spinnerStatus : Spinner? = null
     val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT/DIKEMBALIKAN", "DISETUJUI")
+    lateinit var mLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,7 +89,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
                     tahun = mLaporanPengajuanViewModel.mDataTahun.get(position-1).value.safe()
-                    mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan,true)
                 }
 
             }
@@ -102,7 +104,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                 if(position!=0){
                     kota = mLaporanPengajuanViewModel.mDataKota.get(position-1).value.safe()
                     mLaporanPengajuanViewModel.getKelurahan(kota)
-                    mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan,true)
                 }
             }
 
@@ -115,7 +117,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if(position!=0){
                     kelurahan = mLaporanPengajuanViewModel.mDataKelurahan.get(position-1).value.safe()
-                    mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan,true)
                 }
             }
 
@@ -129,19 +131,19 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position-1 == 0){
                     status = "SEMUA"
-                    mLaporanPengajuanViewModel.getLaporanKerjasama("SEMUA",tahun,kelurahan)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama("SEMUA",tahun,kelurahan,true)
                 }
                 else if(position-1 == 1){
                     status = "DIKIRIM"
-                    mLaporanPengajuanViewModel.getLaporanKerjasama("MENUNGGU VALIDASI",tahun,kelurahan)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama("MENUNGGU VALIDASI",tahun,kelurahan,true)
                 }
                 else if(position-1 == 2){
                     status = "DRAFT"
-                    mLaporanPengajuanViewModel.getLaporanKerjasama("DRAFT",tahun,kelurahan)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama("DRAFT",tahun,kelurahan,true)
                 }
                 else if(position-1 == 3){
                     status = "DISETUJUI"
-                    mLaporanPengajuanViewModel.getLaporanKerjasama("DISETUJUI",tahun,kelurahan)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama("DISETUJUI",tahun,kelurahan,true)
                 }
             }
 
@@ -191,7 +193,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         }
 
         setList()
-        mLaporanPengajuanViewModel.getLaporanKerjasama(status, tahun, kelurahan)
+        mLaporanPengajuanViewModel.getLaporanKerjasama(status, tahun, kelurahan,true)
 
         mLaporanPengajuanViewModel.isLoading.observe(this){
             if (it){
@@ -337,10 +339,34 @@ class LaporanPengajuanActivity : AppCompatActivity() {
 
     fun setList(){
         recyclerview = findViewById<RecyclerView>(R.id.rv_list_laporan_pengajuan)
-        recyclerview?.layoutManager = LinearLayoutManager(this)
+        mLayoutManager = LinearLayoutManager(this@LaporanPengajuanActivity, LinearLayoutManager.VERTICAL, false)
+        recyclerview?.layoutManager = mLayoutManager
         recyclerview?.setHasFixedSize(true)
         recyclerview?.adapter = LaporanPengajuanAdapter(this, mLaporanPengajuanViewModel){
         }
+
+        recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val visibleItemCount = mLayoutManager.childCount
+                val totalItemCount = mLayoutManager.itemCount
+                val firstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition()
+
+                if (visibleItemCount + firstVisibleItemPosition >= totalItemCount
+                    && firstVisibleItemPosition >= 0
+                    && totalItemCount >= 10
+                    && mLaporanPengajuanViewModel.isLoading.value == false
+                    && mLaporanPengajuanViewModel.isPaginating.value == false
+                    && mLaporanPengajuanViewModel.isLastPage.value == false
+                ) {
+                    mLaporanPengajuanViewModel.isPaginating.value = true
+                    Handler().postDelayed({
+                        mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan, false)
+                    }, 300)
+                }
+            }
+        })
+
     }
 
 }
