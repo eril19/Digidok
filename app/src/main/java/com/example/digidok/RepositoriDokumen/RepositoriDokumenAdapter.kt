@@ -9,8 +9,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.DaftarKJPP.DaftarKjppModel
-import com.example.digidok.DaftarMitra.DaftarMitraAdapter
 import com.example.digidok.R
 
 class RepositoriDokumemAdapter(private val context: Context, val repositoriDokumenViewModel: RepositoriDokumenViewModel, private var mListener: onItemClickListener

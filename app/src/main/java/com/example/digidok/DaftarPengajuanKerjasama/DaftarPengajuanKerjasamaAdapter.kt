@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.DaftarMitra.DaftarMitraAdapter
 import com.example.digidok.R
 import java.text.SimpleDateFormat
 

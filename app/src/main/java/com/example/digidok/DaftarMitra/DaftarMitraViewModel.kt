@@ -28,6 +28,7 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
 
     val isPaginating = MutableLiveData(true)
     val isLastPage = MutableLiveData<Boolean>()
+    val setDatapagination = MutableLiveData<Boolean>()
 
     val mData: MutableList<DaftarMitraModel> = mutableListOf()
 
@@ -65,7 +66,9 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
 
     fun getDaftarMitra(status: Int, isClear: Boolean) {
         if(isClear){
+            mData.clear()
             isLoading.value = true
+            start.value = "0"
         }
         mRepository.getDaftarMitra(
             token = token.value.safe(),
@@ -76,12 +79,9 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
             statusFilter = status,
             object : DataSource.daftarMitraCallback {
                 override fun onSuccess(data: BaseApiModel<daftarMitraModel?>) {
-                    responseSucces.value = data.isSuccess
+//                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
-                        if(isClear){
-                            mData.clear()
-                        }
                         data.data?.dataMitra?.forEach {
                             mData?.add(
                                 DaftarMitraModel(
@@ -97,6 +97,9 @@ class DaftarMitraViewModel (context: Application) : AndroidViewModel(context) {
                                 )
                             )
                         }
+
+                        if(!isClear) setDatapagination.value = true
+
                     }
 
                     isLastPage.value = data.data?.dataMitra?.size != 10
