@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.*
 import com.example.digidok.CekDokumen.CekDokumenActivity
 import com.example.digidok.DaftarKJPP.DaftarKjppViewModel
+import com.example.digidok.DaftarMitra.DaftarMitraAdapter
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Dashboard.DashboardViewModel
 import com.example.digidok.Notification.NotificationActivity
@@ -148,6 +149,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             }
         }
 
+        setList()
         setSpinnerStatus()
         setSpinnerTahun()
         setSpinnerWilayah()
@@ -186,6 +188,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         }
 
 //        setList()
+        observeViewModel()
         mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
 
         mRepositoriDokumenViewModel.isLoading.observe(this){
@@ -214,6 +217,12 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             setSpinnerKelurahan()
         }
 
+    }
+
+    private fun observeViewModel() {
+    mRepositoriDokumenViewModel.setDatapagination.observe(this) {
+            (recyclerview?.adapter as RepositoriDokumemAdapter).notifyDataSetChanged()
+        }
     }
 
     fun setSpinnerTahun() {
@@ -358,9 +367,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             }
 
         }
-        ){
-
-        }
+        )
 
         recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

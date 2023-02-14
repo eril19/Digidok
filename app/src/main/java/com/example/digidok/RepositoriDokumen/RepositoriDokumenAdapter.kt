@@ -11,11 +11,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.R
 
-class RepositoriDokumemAdapter(private val context: Context, val repositoriDokumenViewModel: RepositoriDokumenViewModel, private var mListener: onItemClickListener
-                               , val listener: (RepositoriDokumenModel) -> Unit)
+class RepositoriDokumemAdapter(private val context: Context, val repositoriDokumenViewModel: RepositoriDokumenViewModel, private var mListener: onItemClickListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    private var RepositoriDokumen : List<RepositoriDokumenModel> = repositoriDokumenViewModel.mData
+    private var RepositoriDokumen : MutableList<RepositoriDokumenModel> = repositoriDokumenViewModel.mData
 
     interface onItemClickListener{
         fun onItemClick(position: Int,                nama: String,
@@ -37,7 +36,7 @@ class RepositoriDokumemAdapter(private val context: Context, val repositoriDokum
 
         @SuppressLint("SetTextI18n")
 
-        fun bindView(repositorDashboardModel: RepositoriDokumenModel, listener: (RepositoriDokumenModel) -> Unit){
+        fun bindView(repositorDashboardModel: RepositoriDokumenModel){
             jenis_kerjasama.text = repositorDashboardModel.jenis_kerjasama
             no_surat.text = repositorDashboardModel.no_surat
             nama_mitra.text = repositorDashboardModel.nama_mitra
@@ -98,7 +97,7 @@ class RepositoriDokumemAdapter(private val context: Context, val repositoriDokum
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is RepositoriDokumenViewHolder) {
-            holder.bindView(RepositoriDokumen[position], listener)
+            holder.bindView(RepositoriDokumen[position])
         }
     }
 

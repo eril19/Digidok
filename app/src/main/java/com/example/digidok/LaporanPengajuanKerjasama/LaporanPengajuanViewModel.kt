@@ -25,6 +25,7 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
     val responseSuccesKota = MutableLiveData<Boolean>()
     val mMessageResponse = MutableLiveData<String>()
     val mRepository: Repository = Injection.provideRepository(context)
+    val setDatapagination = MutableLiveData<Boolean>()
 
     val start = MutableLiveData<String>()
     val row = MutableLiveData<String>()
@@ -39,7 +40,9 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
 
     fun getLaporanKerjasama(statusFitler:String,tahunFilter:String,kelurahanFilter:String,isClear:Boolean) {
         if(isClear){
+            mData.clear()
             isLoading.value = true
+            start.value = "0"
         }
         mRepository.getLaporanKerjasama(
             token = token.value.safe(),
@@ -55,9 +58,6 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                 override fun onSuccess(data: BaseApiModel<laporanKerjasamaModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
-                        if(isClear){
-                            mData.clear()
-                        }
                         data.data?.dataDokumen?.forEach {
                             mData?.add(
                                 LaporanPengajuanModel(
@@ -76,7 +76,8 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                                 )
                             )
                         }
-                    responseSucces.value = data.isSuccess
+//                        responseSucces.value = data.isSuccess
+                        if(!isClear) setDatapagination.value = true
                     }
                     isLastPage.value = data.data?.dataDokumen?.size != 10
                     start.value = start.value?.toInt()?.plus(10).toString()

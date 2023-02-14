@@ -14,7 +14,7 @@ import java.text.DecimalFormat
 class LaporanPengajuanAdapter(private val context: Context, val laporanPengajuanViewModel: LaporanPengajuanViewModel)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    private var LaporanPengajuan: List<LaporanPengajuanModel> = laporanPengajuanViewModel.mData
+    private var LaporanPengajuan: MutableList<LaporanPengajuanModel> = laporanPengajuanViewModel.mData
 
     class LaporanPengajuanViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val id_mitra = view.findViewById<TextView>(R.id.id_mitra)

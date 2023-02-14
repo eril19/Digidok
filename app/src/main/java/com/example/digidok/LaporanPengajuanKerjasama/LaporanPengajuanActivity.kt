@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.DaftarKJPP.DaftarKjppViewModel
+import com.example.digidok.DaftarMitra.DaftarMitraAdapter
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
@@ -152,7 +153,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             }
         }
 
-
+        setList()
         setSpinnerStatus()
         setSpinnerTahun()
         setSpinnerWilayah()
@@ -193,6 +194,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         }
 
 //        setList()
+        observeViewModel()
         mLaporanPengajuanViewModel.getLaporanKerjasama(status, tahun, kelurahan,true)
 
         mLaporanPengajuanViewModel.isLoading.observe(this){
@@ -218,6 +220,12 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             if(it){
                 setList()
             }
+        }
+    }
+
+    private fun observeViewModel() {
+        mLaporanPengajuanViewModel.setDatapagination.observe(this) {
+            (recyclerview?.adapter as LaporanPengajuanAdapter).notifyDataSetChanged()
         }
     }
 
