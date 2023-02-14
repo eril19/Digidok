@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.DaftarMitra.DaftarMitraAdapter
 import com.example.digidok.R
 
-class DaftarKjppAdapter(private val context: Context, val daftarKjppViewModel: DaftarKjppViewModel, private var mListener: onItemClickListener, val listener: (DaftarKjppModel) -> Unit)
+class DaftarKjppAdapter(private val context: Context, val daftarKjppViewModel: DaftarKjppViewModel, private var mListener: onItemClickListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    private var DaftarKJPP: List<DaftarKjppModel> = daftarKjppViewModel.mData
+    private var DaftarKJPP: MutableList<DaftarKjppModel> = daftarKjppViewModel.mData
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
@@ -33,7 +33,7 @@ class DaftarKjppAdapter(private val context: Context, val daftarKjppViewModel: D
 
         val dropdown = view.findViewById<ImageView>(R.id.kjppDropdown)
 
-        fun bindView(daftarKjppModel: DaftarKjppModel, listener: (DaftarKjppModel) -> Unit){
+        fun bindView(daftarKjppModel: DaftarKjppModel){
             no_kjpp.text = daftarKjppModel.no_kjpp
             nama_kjpp.text = daftarKjppModel.nama_kjpp
             no_perizinan.text = daftarKjppModel.no_perizinan
@@ -83,7 +83,7 @@ class DaftarKjppAdapter(private val context: Context, val daftarKjppViewModel: D
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is DaftarKJPPViewHolder){
-            holder.bindView(DaftarKJPP[position],listener)
+            holder.bindView(DaftarKJPP[position])
         }
     }
 

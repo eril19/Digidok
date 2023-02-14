@@ -44,7 +44,7 @@ class DaftarKjppViewModel(context: Application) : AndroidViewModel(context) {
             sortColumn = sortColumn.value.safe(),
             object : DataSource.KJPPCallback {
                 override fun onSuccess(data: BaseApiModel<daftarKJPPModel?>) {
-                    responseSucces.value = data.isSuccess
+//                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         data.data?.dataKjpp?.forEach {

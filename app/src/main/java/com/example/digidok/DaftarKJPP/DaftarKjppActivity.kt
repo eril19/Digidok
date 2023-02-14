@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.*
+import com.example.digidok.DaftarMitra.DaftarMitraAdapter
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
@@ -40,6 +41,7 @@ class DaftarKjppActivity : AppCompatActivity() {
         val progress = findViewById<ProgressBar>(R.id.progressBar)
         val recyclerView = findViewById<RecyclerView>(R.id.rv_list_kjpp)
 
+        setList()
 
         val header = findViewById<TextView>(R.id.header_title)
         header.setText("Daftar Kantor Jasa Penilaian Publik")
@@ -79,7 +81,8 @@ class DaftarKjppActivity : AppCompatActivity() {
         }
 
         mDaftarKjppViewModel.getKJPP(true)
-//        setList()
+
+        observeViewModel()
 
         mDaftarKjppViewModel.isLoading.observe(this) {
             if (it) {
@@ -113,9 +116,7 @@ class DaftarKjppActivity : AppCompatActivity() {
                 startActivity(i)
             }
 
-        }) {
-
-        }
+        })
 
         recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -142,12 +143,8 @@ class DaftarKjppActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        mDaftarKjppViewModel.mMessageResponse.observe(this) {
-            Toast.makeText(this@DaftarKjppActivity, it, Toast.LENGTH_LONG).show()
-        }
-
-        mDaftarKjppViewModel.start.observe(this) {
-            setList()
+        mDaftarKjppViewModel.setDatapagination.observe(this) {
+            (recyclerview?.adapter as DaftarKjppAdapter).notifyDataSetChanged()
         }
     }
 
