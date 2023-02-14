@@ -1,5 +1,6 @@
 package com.example.digidok.RepositoriDokumen
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Typeface
 import com.example.digidok.databinding.ActivityMainBinding
@@ -246,6 +247,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun observeViewModel() {
         mRepositoriDokumenViewModel.setDatapagination.observe(this) {
             (recyclerview?.adapter as RepositoriDokumenAdapter).notifyDataSetChanged()

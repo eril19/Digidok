@@ -66,7 +66,6 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                     isLoading.value = false
                     if (data.isSuccess) {
                         data.data?.dataDokumen?.forEach {
-                            responseSucces.value = true
                             mData?.add(
                                 RepositoriDokumenModel(
                                     header_color = it?.statusLabel.safe(),
@@ -78,7 +77,7 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                                 )
                             )
                         }
-                        responseSucces.value = data.isSuccess
+                        if(isClear) responseSucces.value = data.isSuccess
                         if(!isClear) setDatapagination.value = true
                     }
                     isLastPage.value = data.data?.dataDokumen?.size != 10

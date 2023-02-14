@@ -27,10 +27,13 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
     val isPaginating = MutableLiveData(true)
     val isLastPage = MutableLiveData<Boolean>()
     val mData: MutableList<DaftarPengajuanKerjasamaModel> = mutableListOf()
+    val setDatapagination = MutableLiveData<Boolean>()
 
     fun getPengajuanKerjasama(status:String,isClear:Boolean) {
         if(isClear){
             isLoading.value = true
+            mData.clear()
+            start.value = "0"
         }
         mRepository.getDaftarPengajuanKerjasama(
             token = token.value.safe(),
@@ -42,7 +45,6 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
             statusFilter = status,
             object : DataSource.daftarPengajuanCallback {
                 override fun onSuccess(data: BaseApiModel<daftarPengajuanKerjasamaModel?>) {
-                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         if(isClear){
@@ -60,6 +62,9 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
                             )
                         }
                     }
+
+                    if(isClear) responseSucces.value = data.isSuccess
+                    if(!isClear) setDatapagination.value = true
 
                     isLastPage.value = data.data?.dataDokumen?.size != 10
                     start.value = start.value?.toInt()?.plus(10).toString()
