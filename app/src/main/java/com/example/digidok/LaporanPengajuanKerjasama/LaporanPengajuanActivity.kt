@@ -192,7 +192,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             startActivity(Intent(this@LaporanPengajuanActivity, NotificationActivity::class.java))
         }
 
-        setList()
+//        setList()
         mLaporanPengajuanViewModel.getLaporanKerjasama(status, tahun, kelurahan,true)
 
         mLaporanPengajuanViewModel.isLoading.observe(this){
@@ -215,7 +215,9 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             setSpinnerKelurahan()
         }
         mLaporanPengajuanViewModel.responseSucces.observe(this){
-            setList()
+            if(it){
+                setList()
+            }
         }
     }
 
@@ -342,8 +344,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         mLayoutManager = LinearLayoutManager(this@LaporanPengajuanActivity, LinearLayoutManager.VERTICAL, false)
         recyclerview?.layoutManager = mLayoutManager
         recyclerview?.setHasFixedSize(true)
-        recyclerview?.adapter = LaporanPengajuanAdapter(this, mLaporanPengajuanViewModel){
-        }
+        recyclerview?.adapter = LaporanPengajuanAdapter(this, mLaporanPengajuanViewModel)
 
         recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

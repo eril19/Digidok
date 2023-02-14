@@ -14,7 +14,7 @@ class DaftarMitraAdapter(private val context: Context, val daftarMitraViewModel:
                          val listener: (DaftarMitraModel) -> Unit)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    private var DaftarMitra: List<DaftarMitraModel> = daftarMitraViewModel.mData
+    private var DaftarMitra: MutableList<DaftarMitraModel> = daftarMitraViewModel.mData
 
     interface onItemClickListener{
         fun onItemClick(position: Int)

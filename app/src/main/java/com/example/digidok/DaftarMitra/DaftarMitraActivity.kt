@@ -50,7 +50,6 @@ class DaftarMitraActivity : AppCompatActivity() {
         mDaftarMitraViewModel.status.value = 2
 
         val adapter = ArrayAdapter(applicationContext, R.layout.dd_text_status, listStatus)
-
         supportActionBar?.hide()
 
         val progress = findViewById<ProgressBar>(R.id.progressBar)
@@ -76,6 +75,7 @@ class DaftarMitraActivity : AppCompatActivity() {
 
         }
 
+        setList()
         val header = findViewById<TextView>(R.id.header_title)
         header.setText("Daftar Mitra")
 
@@ -118,14 +118,9 @@ class DaftarMitraActivity : AppCompatActivity() {
             startActivity(Intent(this@DaftarMitraActivity, NotificationActivity::class.java))
         }
 
-//        setList()
         observeViewModel()
         setSpinnerKategori()
         mDaftarMitraViewModel.getDaftarMitra(mDaftarMitraViewModel.status.value ?: 0, true)
-
-
-
-
 
         mDaftarMitraViewModel.isLoading.observe(this) {
             if (it) {
@@ -148,6 +143,9 @@ class DaftarMitraActivity : AppCompatActivity() {
             Toast.makeText(this@DaftarMitraActivity, it, Toast.LENGTH_LONG).show()
         }
 
+        mDaftarMitraViewModel.setDatapagination.observe(this) {
+            (recyclerview?.adapter as DaftarMitraAdapter).notifyDataSetChanged()
+        }
     }
 
     fun setList() {
@@ -234,8 +232,6 @@ class DaftarMitraActivity : AppCompatActivity() {
                         popupPencet.show()
                     }
                 }) {
-
-
             }
 
         recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {

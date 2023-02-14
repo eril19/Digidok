@@ -8,12 +8,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.DaftarKJPP.DaftarKjppModel
-import com.example.digidok.DaftarMitra.DaftarMitraAdapter
 import com.example.digidok.R
 import java.text.DecimalFormat
 
-class LaporanPengajuanAdapter(private val context: Context, val laporanPengajuanViewModel: LaporanPengajuanViewModel,val listener: (LaporanPengajuanModel) -> Unit)
+class LaporanPengajuanAdapter(private val context: Context, val laporanPengajuanViewModel: LaporanPengajuanViewModel)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private var LaporanPengajuan: List<LaporanPengajuanModel> = laporanPengajuanViewModel.mData
@@ -34,7 +32,7 @@ class LaporanPengajuanAdapter(private val context: Context, val laporanPengajuan
         var formatter : DecimalFormat = DecimalFormat("#,###")
 
         @SuppressLint("SetTextI18n")
-        fun bindView(laporanPengajuanModel: LaporanPengajuanModel, listener: (LaporanPengajuanModel) -> Unit){
+        fun bindView(laporanPengajuanModel: LaporanPengajuanModel){
             id_mitra.text = laporanPengajuanModel.id_mitra
             nama_mitra.text = laporanPengajuanModel.nama_mitra
             no_mitra.text = laporanPengajuanModel.no_mitra
@@ -96,7 +94,7 @@ class LaporanPengajuanAdapter(private val context: Context, val laporanPengajuan
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is LaporanPengajuanViewHolder) {
-            holder.bindView(LaporanPengajuan[position], listener)
+            holder.bindView(LaporanPengajuan[position])
         }
     }
 
