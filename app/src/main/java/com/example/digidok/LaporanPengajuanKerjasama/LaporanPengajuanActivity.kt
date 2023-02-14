@@ -44,17 +44,17 @@ class LaporanPengajuanActivity : AppCompatActivity() {
     var status = ""
     var kelurahan = ""
 
-    var spinnerTahun : Spinner? = null
-    val listTahun : ArrayList<TahunModel> = ArrayList()
+    var spinnerTahun: Spinner? = null
+    val listTahun: ArrayList<TahunModel> = ArrayList()
 
-    var spinnerKota : Spinner? = null
-    val listKota : ArrayList<KotaModel> =  ArrayList()
+    var spinnerKota: Spinner? = null
+    val listKota: ArrayList<KotaModel> = ArrayList()
 
-    var spinnerKelurahan : Spinner? = null
-    val listKelurahan : ArrayList<KelurahanModel> = ArrayList()
+    var spinnerKelurahan: Spinner? = null
+    val listKelurahan: ArrayList<KelurahanModel> = ArrayList()
 
-    var spinnerStatus : Spinner? = null
-    val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT/DIKEMBALIKAN", "DISETUJUI")
+    var spinnerStatus: Spinner? = null
+    val listStatus = arrayListOf("SEMUA", "DIKIRIM", "DRAFT/DIKEMBALIKAN", "DISETUJUI")
     lateinit var mLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +66,8 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         val progress = findViewById<ProgressBar>(R.id.progressBar)
         val recyclerView = findViewById<RecyclerView>(R.id.rv_list_laporan_pengajuan)
 
-        mLaporanPengajuanViewModel = ViewModelProvider(this@LaporanPengajuanActivity).get(LaporanPengajuanViewModel::class.java)
+        mLaporanPengajuanViewModel =
+            ViewModelProvider(this@LaporanPengajuanActivity).get(LaporanPengajuanViewModel::class.java)
         mLaporanPengajuanViewModel.token.value = Preferences.isToken(this@LaporanPengajuanActivity)
         mLaporanPengajuanViewModel.row.value = "10"
         mLaporanPengajuanViewModel.order.value = "asc"
@@ -86,11 +87,16 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         spinnerKelurahan = findViewById<Spinner>(R.id.spinner_kelurahan)
         spinnerStatus = findViewById<Spinner>(R.id.spinner_status)
 
-        spinnerTahun?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(position!=0){
-                    tahun = mLaporanPengajuanViewModel.mDataTahun.get(position-1).value.safe()
-                    mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan,true)
+        spinnerTahun?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (position != 0) {
+                    tahun = mLaporanPengajuanViewModel.mDataTahun.get(position - 1).value.safe()
+                    mLaporanPengajuanViewModel.getLaporanKerjasama(status, tahun, kelurahan, true)
                 }
 
             }
@@ -100,12 +106,17 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             }
         }
 
-        spinnerKota?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(position!=0){
-                    kota = mLaporanPengajuanViewModel.mDataKota.get(position-1).value.safe()
+        spinnerKota?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (position != 0) {
+                    kota = mLaporanPengajuanViewModel.mDataKota.get(position - 1).value.safe()
                     mLaporanPengajuanViewModel.getKelurahan(kota)
-                    mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan,true)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama(status, tahun, kelurahan, true)
                 }
             }
 
@@ -114,11 +125,17 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             }
         }
 
-        spinnerKelurahan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(position!=0){
-                    kelurahan = mLaporanPengajuanViewModel.mDataKelurahan.get(position-1).value.safe()
-                    mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan,true)
+        spinnerKelurahan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (position != 0) {
+                    kelurahan =
+                        mLaporanPengajuanViewModel.mDataKelurahan.get(position - 1).value.safe()
+                    mLaporanPengajuanViewModel.getLaporanKerjasama(status, tahun, kelurahan, true)
                 }
             }
 
@@ -128,23 +145,35 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         }
 
 
-        spinnerStatus?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position-1 == 0){
+        spinnerStatus?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (position - 1 == 0) {
                     status = "SEMUA"
-                    mLaporanPengajuanViewModel.getLaporanKerjasama("SEMUA",tahun,kelurahan,true)
-                }
-                else if(position-1 == 1){
+                    mLaporanPengajuanViewModel.getLaporanKerjasama("SEMUA", tahun, kelurahan, true)
+                } else if (position - 1 == 1) {
                     status = "DIKIRIM"
-                    mLaporanPengajuanViewModel.getLaporanKerjasama("MENUNGGU VALIDASI",tahun,kelurahan,true)
-                }
-                else if(position-1 == 2){
+                    mLaporanPengajuanViewModel.getLaporanKerjasama(
+                        "MENUNGGU VALIDASI",
+                        tahun,
+                        kelurahan,
+                        true
+                    )
+                } else if (position - 1 == 2) {
                     status = "DRAFT"
-                    mLaporanPengajuanViewModel.getLaporanKerjasama("DRAFT",tahun,kelurahan,true)
-                }
-                else if(position-1 == 3){
+                    mLaporanPengajuanViewModel.getLaporanKerjasama("DRAFT", tahun, kelurahan, true)
+                } else if (position - 1 == 3) {
                     status = "DISETUJUI"
-                    mLaporanPengajuanViewModel.getLaporanKerjasama("DISETUJUI",tahun,kelurahan,true)
+                    mLaporanPengajuanViewModel.getLaporanKerjasama(
+                        "DISETUJUI",
+                        tahun,
+                        kelurahan,
+                        true
+                    )
                 }
             }
 
@@ -153,7 +182,7 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             }
         }
 
-        setList()
+//        setList()
         setSpinnerStatus()
         setSpinnerTahun()
         setSpinnerWilayah()
@@ -168,37 +197,37 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             finish()
         }
 
-        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        val homeBtn: ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
             startActivity(Intent(this@LaporanPengajuanActivity, DashboardActivity::class.java))
         }
 
-        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        val homeBtn2: ImageButton = findViewById(R.id.logo_2)
         homeBtn2.setOnClickListener {
             startActivity(Intent(this@LaporanPengajuanActivity, DashboardActivity::class.java))
         }
 
-        val homeBtn3 : ImageButton = findViewById(R.id.homeBtn)
+        val homeBtn3: ImageButton = findViewById(R.id.homeBtn)
         homeBtn3.setOnClickListener {
             startActivity(Intent(this@LaporanPengajuanActivity, DashboardActivity::class.java))
         }
 
-        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        val profileBtn: ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
             startActivity(Intent(this@LaporanPengajuanActivity, ProfileActivity::class.java))
         }
 
-        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        val notificationBtn: ImageButton = findViewById(R.id.notificationBtn)
         notificationBtn.setOnClickListener {
             startActivity(Intent(this@LaporanPengajuanActivity, NotificationActivity::class.java))
         }
 
 //        setList()
         observeViewModel()
-        mLaporanPengajuanViewModel.getLaporanKerjasama(status, tahun, kelurahan,true)
+        mLaporanPengajuanViewModel.getLaporanKerjasama(status, tahun, kelurahan, true)
 
-        mLaporanPengajuanViewModel.isLoading.observe(this){
-            if (it){
+        mLaporanPengajuanViewModel.isLoading.observe(this) {
+            if (it) {
                 progress.visibility = View.VISIBLE
                 recyclerView.visibility = View.GONE
             } else {
@@ -207,17 +236,17 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             }
         }
 
-        mLaporanPengajuanViewModel.responseSuccesTahun.observe(this){
+        mLaporanPengajuanViewModel.responseSuccesTahun.observe(this) {
             setSpinnerTahun()
         }
-        mLaporanPengajuanViewModel.responseSuccesKota.observe(this){
+        mLaporanPengajuanViewModel.responseSuccesKota.observe(this) {
             setSpinnerWilayah()
         }
-        mLaporanPengajuanViewModel.responseSuccesKelurahan.observe(this){
+        mLaporanPengajuanViewModel.responseSuccesKelurahan.observe(this) {
             setSpinnerKelurahan()
         }
-        mLaporanPengajuanViewModel.responseSucces.observe(this){
-            if(it){
+        mLaporanPengajuanViewModel.responseSucces.observe(this) {
+            if (it) {
                 setList()
             }
         }
@@ -234,16 +263,24 @@ class LaporanPengajuanActivity : AppCompatActivity() {
         arrayStringTahun.addAll(mLaporanPengajuanViewModel.mDataTahun.map {
             it.label
         })
-        spinnerTahun?.adapter = object : ArrayAdapter<String>(this,
-            R.layout.dd_text_status, arrayStringTahun) {
+        spinnerTahun?.adapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.dd_text_status, arrayStringTahun
+        ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
-                            R.color.black
-                        ))
+                        if (position == 0) convertView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
                         try {
-                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                            convertView.typeface = Typeface.createFromAsset(
+                                convertView.context.resources.assets,
+                                "fonts/cs.ttf"
+                            )
                         } catch (e: Exception) {
                             showErrorInflateFont()
                         }
@@ -264,16 +301,24 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             it.label
         })
 
-        spinnerKota?.adapter = object : ArrayAdapter<String>(this,
-            R.layout.dd_text_status, arrayStringWilayah) {
+        spinnerKota?.adapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.dd_text_status, arrayStringWilayah
+        ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
-                            R.color.black
-                        ))
+                        if (position == 0) convertView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
                         try {
-                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                            convertView.typeface = Typeface.createFromAsset(
+                                convertView.context.resources.assets,
+                                "fonts/cs.ttf"
+                            )
                         } catch (e: Exception) {
                             showErrorInflateFont()
                         }
@@ -294,16 +339,24 @@ class LaporanPengajuanActivity : AppCompatActivity() {
             it.label
         })
 
-        spinnerKelurahan?.adapter = object : ArrayAdapter<String>(this,
-            R.layout.dd_text_status, arrayStringKelurahan) {
+        spinnerKelurahan?.adapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.dd_text_status, arrayStringKelurahan
+        ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
-                            R.color.black
-                        ))
+                        if (position == 0) convertView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
                         try {
-                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                            convertView.typeface = Typeface.createFromAsset(
+                                convertView.context.resources.assets,
+                                "fonts/cs.ttf"
+                            )
                         } catch (e: Exception) {
                             showErrorInflateFont()
                         }
@@ -321,16 +374,24 @@ class LaporanPengajuanActivity : AppCompatActivity() {
     fun setSpinnerStatus() {
         val arrayStringStatus = arrayListOf("Pilih Status")
         arrayStringStatus.addAll(listStatus)
-        spinnerStatus?.adapter = object : ArrayAdapter<String>(this,
-            R.layout.dd_text_status, arrayStringStatus) {
+        spinnerStatus?.adapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.dd_text_status, arrayStringStatus
+        ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
-                            R.color.black
-                        ))
+                        if (position == 0) convertView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
                         try {
-                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                            convertView.typeface = Typeface.createFromAsset(
+                                convertView.context.resources.assets,
+                                "fonts/cs.ttf"
+                            )
                         } catch (e: Exception) {
                             showErrorInflateFont()
                         }
@@ -347,9 +408,10 @@ class LaporanPengajuanActivity : AppCompatActivity() {
 
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
-    fun setList(){
+    fun setList() {
         recyclerview = findViewById<RecyclerView>(R.id.rv_list_laporan_pengajuan)
-        mLayoutManager = LinearLayoutManager(this@LaporanPengajuanActivity, LinearLayoutManager.VERTICAL, false)
+        mLayoutManager =
+            LinearLayoutManager(this@LaporanPengajuanActivity, LinearLayoutManager.VERTICAL, false)
         recyclerview?.layoutManager = mLayoutManager
         recyclerview?.setHasFixedSize(true)
         recyclerview?.adapter = LaporanPengajuanAdapter(this, mLaporanPengajuanViewModel)
@@ -370,7 +432,12 @@ class LaporanPengajuanActivity : AppCompatActivity() {
                 ) {
                     mLaporanPengajuanViewModel.isPaginating.value = true
                     Handler().postDelayed({
-                        mLaporanPengajuanViewModel.getLaporanKerjasama(status,tahun,kelurahan, false)
+                        mLaporanPengajuanViewModel.getLaporanKerjasama(
+                            status,
+                            tahun,
+                            kelurahan,
+                            false
+                        )
                     }, 300)
                 }
             }

@@ -46,14 +46,14 @@ class RepositoriDokumenActivity : AppCompatActivity() {
     var status = ""
     var kelurahan = ""
 
-    var spinnerTahun : Spinner? = null
+    var spinnerTahun: Spinner? = null
 
-    var spinnerKota : Spinner? = null
+    var spinnerKota: Spinner? = null
 
-    var spinnerKelurahan : Spinner? = null
+    var spinnerKelurahan: Spinner? = null
 
-    var spinnerStatus : Spinner? = null
-    val listStatus = arrayListOf("SEMUA","DIKIRIM", "DRAFT/DIKEMBALIKAN","DISETUJUI")
+    var spinnerStatus: Spinner? = null
+    val listStatus = arrayListOf("SEMUA", "DIKIRIM", "DRAFT/DIKEMBALIKAN", "DISETUJUI")
     lateinit var mLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,8 +65,10 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         val progress = findViewById<ProgressBar>(R.id.progressBar)
         val recyclerView = findViewById<RecyclerView>(R.id.rv_list_repositori)
 
-        mRepositoriDokumenViewModel = ViewModelProvider(this@RepositoriDokumenActivity).get(RepositoriDokumenViewModel::class.java)
-        mRepositoriDokumenViewModel.token.value = Preferences.isToken(this@RepositoriDokumenActivity)
+        mRepositoriDokumenViewModel =
+            ViewModelProvider(this@RepositoriDokumenActivity).get(RepositoriDokumenViewModel::class.java)
+        mRepositoriDokumenViewModel.token.value =
+            Preferences.isToken(this@RepositoriDokumenActivity)
         mRepositoriDokumenViewModel.row.value = "10"
         mRepositoriDokumenViewModel.order.value = "asc"
         mRepositoriDokumenViewModel.start.value = "0"
@@ -76,6 +78,7 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         mRepositoriDokumenViewModel.getKota()
 
         supportActionBar?.hide()
+//        setList()
 
         spinnerTahun = findViewById<Spinner>(R.id.spinner_tahun)
         spinnerKota = findViewById<Spinner>(R.id.spinner_wilayah)
@@ -83,11 +86,16 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         spinnerStatus = findViewById<Spinner>(R.id.spinner_status)
         val header = findViewById<TextView>(R.id.header_title)
 
-        spinnerTahun?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(position!=0){
-                    tahun = mRepositoriDokumenViewModel.mDataTahun.get(position-1).value.safe()
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
+        spinnerTahun?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (position != 0) {
+                    tahun = mRepositoriDokumenViewModel.mDataTahun.get(position - 1).value.safe()
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status, tahun, kelurahan, true)
                 }
 
             }
@@ -97,12 +105,17 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             }
         }
 
-        spinnerKota?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(position!=0){
-                    kota = mRepositoriDokumenViewModel.mDataKota.get(position-1).value.safe()
+        spinnerKota?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (position != 0) {
+                    kota = mRepositoriDokumenViewModel.mDataKota.get(position - 1).value.safe()
                     mRepositoriDokumenViewModel.getKelurahan(kota)
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status, tahun, kelurahan, true)
                 }
             }
 
@@ -111,11 +124,22 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             }
         }
 
-        spinnerKelurahan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(position!=0){
-                    kelurahan = mRepositoriDokumenViewModel.mDataKelurahan.get(position-1).value.safe()
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,isClear = true)
+        spinnerKelurahan?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (position != 0) {
+                    kelurahan =
+                        mRepositoriDokumenViewModel.mDataKelurahan.get(position - 1).value.safe()
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(
+                        status,
+                        tahun,
+                        kelurahan,
+                        isClear = true
+                    )
                 }
             }
 
@@ -124,23 +148,25 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             }
         }
 
-        spinnerStatus?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position-1 == 0){
+        spinnerStatus?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (position - 1 == 0) {
                     status = "SEMUA"
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
-                }
-                else if(position-1 == 1){
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status, tahun, kelurahan, true)
+                } else if (position - 1 == 1) {
                     status = "MENUNGGU VALIDASI"
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
-                }
-                else if(position-1 == 2){
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status, tahun, kelurahan, true)
+                } else if (position - 1 == 2) {
                     status = "DRAFT"
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
-                }
-                else if(position-1 == 3){
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status, tahun, kelurahan, true)
+                } else if (position - 1 == 3) {
                     status = "DISETUJUI"
-                    mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
+                    mRepositoriDokumenViewModel.getRepositoriDokumen(status, tahun, kelurahan, true)
                 }
             }
 
@@ -149,7 +175,6 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             }
         }
 
-        setList()
         setSpinnerStatus()
         setSpinnerTahun()
         setSpinnerWilayah()
@@ -162,37 +187,37 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        val homeBtn : ImageButton = findViewById(R.id.logo_1)
+        val homeBtn: ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
             startActivity(Intent(this@RepositoriDokumenActivity, DashboardActivity::class.java))
         }
 
-        val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
+        val homeBtn2: ImageButton = findViewById(R.id.logo_2)
         homeBtn2.setOnClickListener {
             startActivity(Intent(this@RepositoriDokumenActivity, DashboardActivity::class.java))
         }
 
-        val homeBtn3 : ImageButton = findViewById(R.id.homeBtn)
+        val homeBtn3: ImageButton = findViewById(R.id.homeBtn)
         homeBtn3.setOnClickListener {
             startActivity(Intent(this@RepositoriDokumenActivity, DashboardActivity::class.java))
         }
 
-        val profileBtn : ImageButton = findViewById(R.id.profileBtn)
+        val profileBtn: ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
             startActivity(Intent(this@RepositoriDokumenActivity, ProfileActivity::class.java))
         }
 
-        val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
+        val notificationBtn: ImageButton = findViewById(R.id.notificationBtn)
         notificationBtn.setOnClickListener {
             startActivity(Intent(this@RepositoriDokumenActivity, NotificationActivity::class.java))
         }
 
 //        setList()
         observeViewModel()
-        mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan,true)
+        mRepositoriDokumenViewModel.getRepositoriDokumen(status, tahun, kelurahan, true)
 
-        mRepositoriDokumenViewModel.isLoading.observe(this){
-            if (it){
+        mRepositoriDokumenViewModel.isLoading.observe(this) {
+            if (it) {
                 progress.visibility = View.VISIBLE
                 recyclerView.visibility = View.GONE
             } else {
@@ -201,27 +226,29 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             }
         }
 
-        mRepositoriDokumenViewModel.responseSucces.observe(this){
-            setList()
-        }
-
-        mRepositoriDokumenViewModel.responseSuccesTahun.observe(this){
+        mRepositoriDokumenViewModel.responseSuccesTahun.observe(this) {
             setSpinnerTahun()
         }
 
-        mRepositoriDokumenViewModel.responseSuccesKota.observe(this){
+        mRepositoriDokumenViewModel.responseSuccesKota.observe(this) {
             setSpinnerWilayah()
         }
 
-        mRepositoriDokumenViewModel.responseSuccesKelurahan.observe(this){
+        mRepositoriDokumenViewModel.responseSuccesKelurahan.observe(this) {
             setSpinnerKelurahan()
+        }
+
+        mRepositoriDokumenViewModel.responseSucces.observe(this) {
+            if (it) {
+                setList()
+            }
         }
 
     }
 
     private fun observeViewModel() {
-    mRepositoriDokumenViewModel.setDatapagination.observe(this) {
-            (recyclerview?.adapter as RepositoriDokumemAdapter).notifyDataSetChanged()
+        mRepositoriDokumenViewModel.setDatapagination.observe(this) {
+            (recyclerview?.adapter as RepositoriDokumenAdapter).notifyDataSetChanged()
         }
     }
 
@@ -230,16 +257,24 @@ class RepositoriDokumenActivity : AppCompatActivity() {
         arrayStringTahun.addAll(mRepositoriDokumenViewModel.mDataTahun.map {
             it.label
         })
-        spinnerTahun?.adapter = object : ArrayAdapter<String>(this,
-            R.layout.dd_text_status, arrayStringTahun) {
+        spinnerTahun?.adapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.dd_text_status, arrayStringTahun
+        ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
-                            R.color.black
-                        ))
+                        if (position == 0) convertView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
                         try {
-                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                            convertView.typeface = Typeface.createFromAsset(
+                                convertView.context.resources.assets,
+                                "fonts/cs.ttf"
+                            )
                         } catch (e: Exception) {
                             showErrorInflateFont()
                         }
@@ -260,16 +295,24 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             it.label
         })
 
-        spinnerKota?.adapter = object : ArrayAdapter<String>(this,
-            R.layout.dd_text_status, arrayStringWilayah) {
+        spinnerKota?.adapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.dd_text_status, arrayStringWilayah
+        ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
-                            R.color.black
-                        ))
+                        if (position == 0) convertView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
                         try {
-                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                            convertView.typeface = Typeface.createFromAsset(
+                                convertView.context.resources.assets,
+                                "fonts/cs.ttf"
+                            )
                         } catch (e: Exception) {
                             showErrorInflateFont()
                         }
@@ -290,16 +333,24 @@ class RepositoriDokumenActivity : AppCompatActivity() {
             it.label
         })
 
-        spinnerKelurahan?.adapter = object : ArrayAdapter<String>(this,
-            R.layout.dd_text_status, arrayStringKelurahan) {
+        spinnerKelurahan?.adapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.dd_text_status, arrayStringKelurahan
+        ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
-                            R.color.black
-                        ))
+                        if (position == 0) convertView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
                         try {
-                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                            convertView.typeface = Typeface.createFromAsset(
+                                convertView.context.resources.assets,
+                                "fonts/cs.ttf"
+                            )
                         } catch (e: Exception) {
                             showErrorInflateFont()
                         }
@@ -317,16 +368,24 @@ class RepositoriDokumenActivity : AppCompatActivity() {
     fun setSpinnerStatus() {
         val arrayStringStatus = arrayListOf("Pilih Status")
         arrayStringStatus.addAll(listStatus)
-        spinnerStatus?.adapter = object : ArrayAdapter<String>(this,
-            R.layout.dd_text_status, arrayStringStatus) {
+        spinnerStatus?.adapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.dd_text_status, arrayStringStatus
+        ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 return if (convertView != null) {
                     if (convertView is TextView) {
-                        if (position == 0) convertView.setTextColor(ContextCompat.getColor(context,
-                            R.color.black
-                        ))
+                        if (position == 0) convertView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
                         try {
-                            convertView.typeface = Typeface.createFromAsset(convertView.context.resources.assets, "fonts/cs.ttf")
+                            convertView.typeface = Typeface.createFromAsset(
+                                convertView.context.resources.assets,
+                                "fonts/cs.ttf"
+                            )
                         } catch (e: Exception) {
                             showErrorInflateFont()
                         }
@@ -343,26 +402,29 @@ class RepositoriDokumenActivity : AppCompatActivity() {
 
     private fun showErrorInflateFont() = Log.e("FONTFACE", "error when set font face")
 
-    fun setList(){
+    fun setList() {
         recyclerview = findViewById<RecyclerView>(R.id.rv_list_repositori)
-        mLayoutManager = LinearLayoutManager(this@RepositoriDokumenActivity, LinearLayoutManager.VERTICAL, false)
+        mLayoutManager =
+            LinearLayoutManager(this@RepositoriDokumenActivity, LinearLayoutManager.VERTICAL, false)
         recyclerview?.layoutManager = mLayoutManager
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = RepositoriDokumemAdapter(this,  mRepositoriDokumenViewModel, object:
-            RepositoriDokumemAdapter.onItemClickListener {
-            override fun onItemClick(position: Int,
-                                     nama: String,
-                                     nilai: String,
-                                     jenisKerjasama: String,
-                                     pks: String) {
+        recyclerview?.adapter = RepositoriDokumenAdapter(this, mRepositoriDokumenViewModel, object :
+            RepositoriDokumenAdapter.onItemClickListener {
+            override fun onItemClick(
+                position: Int,
+                nama: String,
+                nilai: String,
+                jenisKerjasama: String,
+                pks: String
+            ) {
 
                 val i = Intent(this@RepositoriDokumenActivity, CekDokumenActivity::class.java)
-                i.putExtra("Cek Dokumen",mRepositoriDokumenViewModel.mData[position])
-                i.putExtra("nama",nama)
-                i.putExtra("nilai",nilai)
-                i.putExtra("pks",pks)
-                i.putExtra("jenisKerjasama",jenisKerjasama)
+                i.putExtra("Cek Dokumen", mRepositoriDokumenViewModel.mData[position])
+                i.putExtra("nama", nama)
+                i.putExtra("nilai", nilai)
+                i.putExtra("pks", pks)
+                i.putExtra("jenisKerjasama", jenisKerjasama)
                 startActivity(i)
             }
 
@@ -385,7 +447,12 @@ class RepositoriDokumenActivity : AppCompatActivity() {
                 ) {
                     mRepositoriDokumenViewModel.isPaginating.value = true
                     Handler().postDelayed({
-                        mRepositoriDokumenViewModel.getRepositoriDokumen(status,tahun,kelurahan, false)
+                        mRepositoriDokumenViewModel.getRepositoriDokumen(
+                            status,
+                            tahun,
+                            kelurahan,
+                            false
+                        )
                     }, 300)
                 }
             }

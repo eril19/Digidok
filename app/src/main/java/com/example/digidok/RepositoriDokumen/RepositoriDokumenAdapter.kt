@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.R
 
-class RepositoriDokumemAdapter(private val context: Context, val repositoriDokumenViewModel: RepositoriDokumenViewModel, private var mListener: onItemClickListener)
+class RepositoriDokumenAdapter(private val context: Context, val repositoriDokumenViewModel: RepositoriDokumenViewModel, private var mListener: onItemClickListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private var RepositoriDokumen : MutableList<RepositoriDokumenModel> = repositoriDokumenViewModel.mData

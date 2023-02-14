@@ -76,7 +76,7 @@ class LaporanPengajuanViewModel(context: Application) : AndroidViewModel(context
                                 )
                             )
                         }
-//                        responseSucces.value = data.isSuccess
+                        responseSucces.value = data.isSuccess
                         if(!isClear) setDatapagination.value = true
                     }
                     isLastPage.value = data.data?.dataDokumen?.size != 10

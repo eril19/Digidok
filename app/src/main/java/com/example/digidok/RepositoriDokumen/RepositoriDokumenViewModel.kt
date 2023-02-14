@@ -63,11 +63,10 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
             kelurahanFilter = kelurahanFilter,
             object : DataSource.repositoriDokumenCallback {
                 override fun onSuccess(data: BaseApiModel<repositoriDokumenModel?>) {
-//                    responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
                         data.data?.dataDokumen?.forEach {
-//                            responseSucces.value = true
+                            responseSucces.value = true
                             mData?.add(
                                 RepositoriDokumenModel(
                                     header_color = it?.statusLabel.safe(),
@@ -79,6 +78,7 @@ class RepositoriDokumenViewModel(context: Application) : AndroidViewModel(contex
                                 )
                             )
                         }
+                        responseSucces.value = data.isSuccess
                         if(!isClear) setDatapagination.value = true
                     }
                     isLastPage.value = data.data?.dataDokumen?.size != 10

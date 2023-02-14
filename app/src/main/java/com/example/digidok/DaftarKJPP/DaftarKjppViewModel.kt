@@ -30,8 +30,10 @@ class DaftarKjppViewModel(context: Application) : AndroidViewModel(context) {
 
 
     fun getKJPP(isClear: Boolean) {
-        if (isClear) {
+        if(isClear){
+            mData.clear()
             isLoading.value = true
+            start.value = "0"
         }
         mRepository.getKJPP(
             token = token.value.safe(),
@@ -44,9 +46,6 @@ class DaftarKjppViewModel(context: Application) : AndroidViewModel(context) {
                     responseSucces.value = data.isSuccess
                     isLoading.value = false
                     if (data.isSuccess) {
-                        if (isClear) {
-                            mData.clear()
-                        }
                         data.data?.dataKjpp?.forEach {
                             mData?.add(
                                 DaftarKjppModel(
