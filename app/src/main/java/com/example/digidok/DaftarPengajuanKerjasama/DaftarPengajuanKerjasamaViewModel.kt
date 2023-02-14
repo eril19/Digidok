@@ -22,7 +22,7 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
     val row = MutableLiveData<String>()
     val sortColumn = MutableLiveData<String>()
     val order = MutableLiveData<String>()
-    val setDatapagination = MutableLiveData<Boolean>()
+//    val setDatapagination = MutableLiveData<Boolean>()
 
     val status = MutableLiveData<String>()
     val isPaginating = MutableLiveData(true)

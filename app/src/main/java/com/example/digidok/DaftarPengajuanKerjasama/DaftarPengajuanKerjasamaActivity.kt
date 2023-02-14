@@ -68,15 +68,15 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
                         mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(status,true)
                     }
                     else if(position-1 == 1){
-                        mDaftarPengajuanKerjasamaViewModel.status.value = "DRAFT"
+                        status = "DRAFT"
                         mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(status,true)
                     }
                     else if(position-1 == 2){
-                        mDaftarPengajuanKerjasamaViewModel.status.value = "MENUNGGU VALIDASI"
+                        status = "MENUNGGU VALIDASI"
                         mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(status,true)
                     }
                     else if(position-1 == 3){
-                        mDaftarPengajuanKerjasamaViewModel.status.value = "DISETUJUI"
+                        status = "DISETUJUI"
                         mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(status,true)
                     }
                 }
