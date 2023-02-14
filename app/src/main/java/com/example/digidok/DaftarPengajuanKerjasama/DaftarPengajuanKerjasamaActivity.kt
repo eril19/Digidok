@@ -155,6 +155,10 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
         mDaftarPengajuanKerjasamaViewModel.responseSucces.observe(this){
             setList(role)
         }
+
+        mDaftarPengajuanKerjasamaViewModel.setDatapagination.observe(this) {
+            (recyclerview?.adapter as DaftarPengajuanKerjasamaAdapter).notifyDataSetChanged()
+        }
     }
 
     private fun observeViewModel() {

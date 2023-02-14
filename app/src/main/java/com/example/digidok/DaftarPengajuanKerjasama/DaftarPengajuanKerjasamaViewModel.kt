@@ -28,6 +28,7 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
     val isPaginating = MutableLiveData(true)
     val isLastPage = MutableLiveData<Boolean>()
     val mData: MutableList<DaftarPengajuanKerjasamaModel> = mutableListOf()
+    val setDatapagination = MutableLiveData<Boolean>()
 
     fun getPengajuanKerjasama(status:String,isClear:Boolean) {
         if(isClear){
@@ -61,6 +62,9 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
                         }
                         if(!isClear) setDatapagination.value = true
                     }
+
+                    if(isClear) responseSucces.value = data.isSuccess
+                    if(!isClear) setDatapagination.value = true
 
                     isLastPage.value = data.data?.dataDokumen?.size != 10
                     start.value = start.value?.toInt()?.plus(10).toString()
