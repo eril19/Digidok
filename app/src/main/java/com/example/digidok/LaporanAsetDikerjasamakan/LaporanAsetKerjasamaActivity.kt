@@ -19,6 +19,7 @@ import com.example.digidok.LaporanAsetDikerjasamakanDetail.LaporanAsetDetailActi
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.R
+import com.example.digidok.RepositoriDokumen.RepositoriDokumenAdapter
 import com.example.digidok.SpinnerModel.KelurahanModel
 import com.example.digidok.SpinnerModel.KotaModel
 import com.example.digidok.SpinnerModel.TahunModel
@@ -186,7 +187,8 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
         }
 
 
-        setList()
+//        setList()
+        observeViewModel()
         mLaporanAsetKerjasamaViewModel.getLaporanAset(status,tahun,kelurahan,true)
 
         mLaporanAsetKerjasamaViewModel.isLoading.observe(this){
@@ -199,9 +201,7 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
             }
         }
 
-        mLaporanAsetKerjasamaViewModel.responseSucces.observe(this){
-            setList()
-        }
+
         mLaporanAsetKerjasamaViewModel.responseSuccesTahun.observe(this){
             setSpinnerTahun()
         }
@@ -212,6 +212,17 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
 
         mLaporanAsetKerjasamaViewModel.responseSuccesKelurahan.observe(this){
             setSpinnerKelurahan()
+        }
+        mLaporanAsetKerjasamaViewModel.responseSucces.observe(this){
+            if (it) {
+                setList()
+            }
+        }
+    }
+
+    private fun observeViewModel() {
+        mLaporanAsetKerjasamaViewModel.setDatapagination.observe(this) {
+            (recyclerview?.adapter as LaporanAsetKerjasamaAdapter).notifyDataSetChanged()
         }
     }
 
@@ -351,10 +362,7 @@ class LaporanAsetKerjasamaActivity : AppCompatActivity() {
                 i.putExtra("laporanAset", mLaporanAsetKerjasamaViewModel.mData[position])
                 startActivity(i)
             }
-        }){
-
-
-        }
+        })
         recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

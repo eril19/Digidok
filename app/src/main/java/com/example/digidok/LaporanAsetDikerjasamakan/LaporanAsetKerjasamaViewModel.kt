@@ -30,14 +30,22 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
     val isPaginating = MutableLiveData(true)
     val isLastPage = MutableLiveData<Boolean>()
     val mData: MutableList<LaporanAsetKerjasamaModel> = mutableListOf()
-    val mDataDetail: MutableList<LaporanAsetDetailModel> = mutableListOf()
+    val setDatapagination = MutableLiveData<Boolean>()
+
     val mDataKelurahan: MutableList<KelurahanModel> = mutableListOf()
     val mDataKota: MutableList<KotaModel> = mutableListOf()
     val mDataTahun: MutableList<TahunModel> = mutableListOf()
 
-    fun getLaporanAset(statusFitler:String,tahunFilter:String,kelurahanFilter:String,isClear:Boolean) {
-        if(isClear){
+    fun getLaporanAset(
+        statusFitler: String,
+        tahunFilter: String,
+        kelurahanFilter: String,
+        isClear: Boolean
+    ) {
+        if (isClear) {
+            mData.clear()
             isLoading.value = true
+            start.value = "0"
         }
         mRepository.getLaporanAsetDikerjasamakan(
             token = token.value.safe(),
@@ -53,9 +61,6 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                 override fun onSuccess(data: BaseApiModel<laporanAsetDikerjasamakanModel?>) {
                     isLoading.value = false
                     if (data.isSuccess) {
-                        if(isClear){
-                            mData.clear()
-                        }
                         data.data?.dataDokumen?.forEach {
 //                            responseSucces.value = true
                             mData?.add(
@@ -68,7 +73,9 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                                 )
                             )
                         }
-                    responseSucces.value = data.isSuccess
+                        responseSucces.value = data.isSuccess
+                        if (!isClear) setDatapagination.value = true
+
                     }
                     isLastPage.value = data.data?.dataDokumen?.size != 10
                     start.value = start.value?.toInt()?.plus(10).toString()
@@ -100,7 +107,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                             mDataTahun?.add(
                                 TahunModel(
                                     value = it?.value.safe(),
-                                    label  =it?.label.safe()
+                                    label = it?.label.safe()
                                 )
                             )
                         }
@@ -118,7 +125,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
             })
     }
 
-    fun getKelurahan(idKota:String) {
+    fun getKelurahan(idKota: String) {
         mRepository.getKelurahan(
             token = token.value.safe(),
             idKota = idKota,
@@ -130,7 +137,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                             mDataKelurahan?.add(
                                 KelurahanModel(
                                     value = it?.value.safe(),
-                                    label  =it?.label.safe()
+                                    label = it?.label.safe()
                                 )
                             )
                         }
@@ -161,7 +168,7 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
                             mDataKota?.add(
                                 KotaModel(
                                     value = it?.value.safe(),
-                                    label  =it?.label.safe()
+                                    label = it?.label.safe()
                                 )
                             )
                         }

@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.R
 import java.text.DecimalFormat
 
-class LaporanAsetKerjasamaAdapter(private val context: Context, val laporanAsetKerjasamaViewModel: LaporanAsetKerjasamaViewModel, private var mListener: onItemClickListener,
-                                  val listener: (LaporanAsetKerjasamaModel) -> Unit)
+class LaporanAsetKerjasamaAdapter(private val context: Context, val laporanAsetKerjasamaViewModel: LaporanAsetKerjasamaViewModel, private var mListener: onItemClickListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private var LaporanAset: List<LaporanAsetKerjasamaModel> = laporanAsetKerjasamaViewModel.mData
@@ -22,11 +21,6 @@ class LaporanAsetKerjasamaAdapter(private val context: Context, val laporanAsetK
     interface onItemClickListener{
         fun onItemClick(position: Int, nama:String, nilai:String,jenisKerjasama:String,pks:String)
     }
-
-    fun setOnItemClickListener(listener: onItemClickListener){
-        mListener = listener
-    }
-
 
     class LaporanAsetViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
 
@@ -50,7 +44,7 @@ class LaporanAsetKerjasamaAdapter(private val context: Context, val laporanAsetK
         }
 
         @SuppressLint("SetTextI18n")
-        fun bindView(laporanAsetModel: LaporanAsetKerjasamaModel, listener: (LaporanAsetKerjasamaModel) -> Unit){
+        fun bindView(laporanAsetModel: LaporanAsetKerjasamaModel){
             id_pks.text = laporanAsetModel.id_pks
             pks = laporanAsetModel.id_pks
             nama_mitra.text = laporanAsetModel.nama_mitra
@@ -114,7 +108,7 @@ class LaporanAsetKerjasamaAdapter(private val context: Context, val laporanAsetK
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is LaporanAsetViewHolder) {
-            holder.bindView(LaporanAset[position], listener)
+            holder.bindView(LaporanAset[position])
         }
     }
 
