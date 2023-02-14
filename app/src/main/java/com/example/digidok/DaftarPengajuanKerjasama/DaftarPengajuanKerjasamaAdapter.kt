@@ -13,22 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.R
 import java.text.SimpleDateFormat
 
-class DaftarPengajuanKerjasamaAdapter(private val context: Context, val pengajuanKerjasamaViewModel: DaftarPengajuanKerjasamaViewModel, private var mListener: onItemClickListener,
-                                      val listener: (DaftarPengajuanKerjasamaModel) -> Unit)
+class DaftarPengajuanKerjasamaAdapter(private val context: Context, val pengajuanKerjasamaViewModel: DaftarPengajuanKerjasamaViewModel, private var mListener: onItemClickListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    private var PengajuanKerja: List<DaftarPengajuanKerjasamaModel> = pengajuanKerjasamaViewModel.mData
+    private var PengajuanKerja: MutableList<DaftarPengajuanKerjasamaModel> = pengajuanKerjasamaViewModel.mData
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
-
         fun onItemClickPopupMenu(position: Int, statusPengajuan:String, idPks:String, view : View)
     }
-
-    fun setOnItemClickListener(listener: onItemClickListener){
-        mListener = listener
-    }
-
 
     class PengajuanKerjasamaViewHolder(view: View, listener: onItemClickListener): RecyclerView.ViewHolder(view) {
         var pattern: String? = "dd/MM/yyyy"
@@ -51,7 +44,7 @@ class DaftarPengajuanKerjasamaAdapter(private val context: Context, val pengajua
         }
 
 
-        fun bindView(pengajuanKerjasamaModel: DaftarPengajuanKerjasamaModel, listener: (DaftarPengajuanKerjasamaModel) -> Unit){
+        fun bindView(pengajuanKerjasamaModel: DaftarPengajuanKerjasamaModel){
             id_pks.text = pengajuanKerjasamaModel.no_pks
             nama_mitra.text = pengajuanKerjasamaModel.nama_mitra
 //            jenis_mitra.text = pengajuanKerjasamaModel.jenis_mitra
@@ -114,7 +107,7 @@ class DaftarPengajuanKerjasamaAdapter(private val context: Context, val pengajua
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is PengajuanKerjasamaViewHolder) {
-            holder.bindView(PengajuanKerja[position], listener)
+            holder.bindView(PengajuanKerja[position])
         }
     }
 

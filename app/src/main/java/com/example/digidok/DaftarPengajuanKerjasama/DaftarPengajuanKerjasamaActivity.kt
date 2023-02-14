@@ -51,7 +51,7 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         mDaftarPengajuanKerjasamaViewModel = ViewModelProvider(this@DaftarPengajuanKerjasamaActivity).get(DaftarPengajuanKerjasamaViewModel::class.java)
-        mDaftarPengajuanKerjasamaViewModel.status.value = "SEMUA"
+        status = "SEMUA"
         mDaftarPengajuanKerjasamaViewModel.token.value = Preferences.isToken(this@DaftarPengajuanKerjasamaActivity)
         mDaftarPengajuanKerjasamaViewModel.row.value = "10"
         mDaftarPengajuanKerjasamaViewModel.order.value = "asc"
@@ -64,20 +64,20 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position != 0) {
                     if (position-1 == 0){
-                        mDaftarPengajuanKerjasamaViewModel.status.value = "SEMUA"
-                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"",true)
+                        status = "SEMUA"
+                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(status,true)
                     }
                     else if(position-1 == 1){
                         mDaftarPengajuanKerjasamaViewModel.status.value = "DRAFT"
-                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"",true)
+                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(status,true)
                     }
                     else if(position-1 == 2){
                         mDaftarPengajuanKerjasamaViewModel.status.value = "MENUNGGU VALIDASI"
-                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"",true)
+                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(status,true)
                     }
                     else if(position-1 == 3){
                         mDaftarPengajuanKerjasamaViewModel.status.value = "DISETUJUI"
-                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"",true)
+                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(status,true)
                     }
                 }
             }
@@ -89,7 +89,7 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
 
         role = intent.getStringExtra("role") ?: ""
 
-
+        setList(role)
         val header = findViewById<TextView>(R.id.header_title)
 //        header.setText(role)
         header.setText("Daftar Pengajuan Kerjasama")
@@ -139,7 +139,8 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
         }
 
         setSpinnerKategori()
-        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value?:"",true)
+        observeViewModel()
+        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(status,true)
 
         mDaftarPengajuanKerjasamaViewModel.isLoading.observe(this){
             if (it){
@@ -155,6 +156,12 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
             setList(role)
         }
 
+        mDaftarPengajuanKerjasamaViewModel.setDatapagination.observe(this) {
+            (recyclerview?.adapter as DaftarPengajuanKerjasamaAdapter).notifyDataSetChanged()
+        }
+    }
+
+    private fun observeViewModel() {
         mDaftarPengajuanKerjasamaViewModel.setDatapagination.observe(this) {
             (recyclerview?.adapter as DaftarPengajuanKerjasamaAdapter).notifyDataSetChanged()
         }
@@ -263,12 +270,6 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
                         popupPencet.menu.findItem(R.id.menu_kirim).isVisible = false
                         popupPencet.menu.findItem(R.id.menu_restore).isVisible = true
                     }
-//                    else if (!Preferences.Role(this@DaftarPengajuanKerjasamaActivity).equals("Supervisor",ignoreCase = true)){
-//                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = true
-//                    }
-//                    if (!Preferences.Role(this@DaftarPengajuanKerjasamaActivity).equals("Administrator",ignoreCase = true)){
-//                        popupPencet.menu.findItem(R.id.menu_telaah).isVisible = true
-//                    }
                     else{
                         popupPencet.menu.findItem(R.id.menu_telaah).isVisible = false
                     }
@@ -313,9 +314,7 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
                     }
                     popupPencet.show()
                 }
-            }) {
-
-        }
+            })
 
         recyclerview?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -333,7 +332,7 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
                 ) {
                     mDaftarPengajuanKerjasamaViewModel.isPaginating.value = true
                     Handler().postDelayed({
-                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(mDaftarPengajuanKerjasamaViewModel.status.value ?: "", false)
+                        mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama(status, false)
                     }, 300)
                 }
             }
@@ -341,8 +340,4 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-            mDaftarPengajuanKerjasamaViewModel.getPengajuanKerjasama("SEMUA",true)
-    }
 }
