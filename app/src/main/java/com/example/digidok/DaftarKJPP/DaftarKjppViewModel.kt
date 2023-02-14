@@ -22,6 +22,7 @@ class DaftarKjppViewModel(context: Application) : AndroidViewModel(context) {
     val row = MutableLiveData<String>()
     val sortColumn = MutableLiveData<String>()
     val order = MutableLiveData<String>()
+    val setDatapagination = MutableLiveData<Boolean>()
 
     val isPaginating = MutableLiveData(true)
     val isLastPage = MutableLiveData<Boolean>()
@@ -60,6 +61,7 @@ class DaftarKjppViewModel(context: Application) : AndroidViewModel(context) {
                                     )
                             )
                         }
+                        if(!isClear) setDatapagination.value = true
                     }
                     isLastPage.value = data.data?.dataKjpp?.size != 10
                     start.value = start.value?.toInt()?.plus(10).toString()
