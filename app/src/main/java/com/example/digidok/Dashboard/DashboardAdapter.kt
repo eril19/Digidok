@@ -24,7 +24,7 @@ class DashboardAdapter(private val context: Context, val dashboardViewModel: Das
             nama_mitra.text = dashboardModel.nama_mitra
             jenis_mitra.text = dashboardModel.jenis_mitra
             total.text = dashboardModel.jumlah_kerjasama
-            jumlahNilai.text = "Rp. " +  formatter.format(dashboardModel.total_nilai.toLong())
+            jumlahNilai.text = "Rp. " +  formatter.format(dashboardModel.total_nilai.toLong().toString())
         }
     }
 
