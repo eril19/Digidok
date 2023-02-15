@@ -12,6 +12,8 @@ import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences.safe
 import io.reactivex.internal.operators.observable.ObservableFromArray
 import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.*
 
 class DashboardViewModel(context: Application): AndroidViewModel(context) {
     var isLoading = MutableLiveData<Boolean>()
@@ -63,9 +65,10 @@ class DashboardViewModel(context: Application): AndroidViewModel(context) {
                     if (data.isSuccess) {
                         mData.clear()
                         getProfileData()
-                        var formatter : DecimalFormat = DecimalFormat("#,###")
+                        var formatter : DecimalFormat = DecimalFormat("#,###,##")
                         jmlMitra.value = data.data?.jumlahMitra.safe()
-                        jmlNilai.value = "Rp. " + formatter.format(data.data?.jumlahNilaiKerjasama)
+                        jmlNilai.value = data.data?.jumlahNilaiKerjasama.safe().toDouble()
+                            .convertToCurrency(CurrencyEnum.RUPIAH, true).safe()
                         jml.value = data.data?.jumlahKerjasama.safe()
                         data.data?.dataMitra?.forEach {
                             mData?.add(
@@ -90,6 +93,49 @@ class DashboardViewModel(context: Application): AndroidViewModel(context) {
                 }
 
             })
+    }
+
+    fun Double?.convertToCurrency(currencyType: CurrencyEnum?, showTwoNumberAfterPoint: Boolean = false): String {
+
+        return if (this != null) {
+            val kursIndonesia = DecimalFormat.getCurrencyInstance(Locale.ENGLISH) as DecimalFormat
+            val formatRp = DecimalFormatSymbols(Locale.ENGLISH)
+
+
+            val symbol = when (currencyType) {
+                null -> {
+                    ""
+                }
+                CurrencyEnum.RUPIAH -> {
+                    "Rp. "
+                }
+                CurrencyEnum.DOLLAR -> {
+                    "$ "
+                }
+            }
+
+            formatRp.currencySymbol = symbol
+            formatRp.monetaryDecimalSeparator = ','
+            formatRp.groupingSeparator = '.'
+
+            kursIndonesia.decimalFormatSymbols = formatRp
+            val result = kursIndonesia.format(this)
+
+            if (!showTwoNumberAfterPoint) {
+                result.substring(0, result.length - 3)
+            } else {
+                result
+            }
+
+        } else {
+            "Rp. 0"
+        }
+
+    }
+
+    enum class CurrencyEnum {
+        RUPIAH,
+        DOLLAR
     }
 
 }

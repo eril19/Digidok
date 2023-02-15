@@ -19,12 +19,12 @@ class DashboardAdapter(private val context: Context, val dashboardViewModel: Das
         val jenis_mitra = view.findViewById<TextView>(R.id.jenis_mitra)
         val jumlahNilai = view.findViewById<TextView>(R.id.totalNilai)
         val total = view.findViewById<TextView>(R.id.jumlahKerjasama)
-        var formatter : DecimalFormat = DecimalFormat("#,###")
+        var formatter : DecimalFormat = DecimalFormat("#,##0.00")
         fun bindView(dashboardModel: DashboardModel, listener: (DashboardModel) -> Unit){
             nama_mitra.text = dashboardModel.nama_mitra
             jenis_mitra.text = dashboardModel.jenis_mitra
             total.text = dashboardModel.jumlah_kerjasama
-            jumlahNilai.text = "Rp. " +  formatter.format(dashboardModel.total_nilai.toLong().toString())
+            jumlahNilai.text = "Rp. " +  formatter.format(dashboardModel.total_nilai.toLong())
         }
     }
 
