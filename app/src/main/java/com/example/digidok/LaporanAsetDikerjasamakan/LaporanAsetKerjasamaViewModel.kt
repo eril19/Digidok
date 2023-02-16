@@ -3,6 +3,7 @@ package com.example.digidok.LaporanAsetDikerjasamakan
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.example.digidok.Dashboard.DashboardViewModel
 import com.example.digidok.LaporanAsetDikerjasamakanDetail.LaporanAsetDetailModel
 import com.example.digidok.SpinnerModel.KelurahanModel
 import com.example.digidok.SpinnerModel.KotaModel
@@ -12,6 +13,9 @@ import com.example.digidok.data.Repository
 import com.example.digidok.data.model.*
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences.safe
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.*
 
 class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(context) {
     var isLoading = MutableLiveData<Boolean>()
@@ -186,4 +190,5 @@ class LaporanAsetKerjasamaViewModel(context: Application) : AndroidViewModel(con
 
             })
     }
+
 }

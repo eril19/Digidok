@@ -75,7 +75,8 @@ class DashboardViewModel(context: Application): AndroidViewModel(context) {
                                 DashboardModel(
                                     nama_mitra = it?.namaMitra.safe(),
                                     jumlah_kerjasama = it?.jumlahKederjasama.safe(),
-                                    total_nilai = it?.totalNilai.toString().safe(),
+                                    total_nilai = it?.totalNilai.toString().safe().toDouble()
+                                        .convertToCurrency(CurrencyEnum.RUPIAH, true).safe(),
                                     jenis_mitra = it?.idMitra.safe()
                                 )
                             )
