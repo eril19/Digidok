@@ -244,12 +244,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
-                            android:layout_marginStart="25dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="14dp"
                             android:fontFamily="@font/roboto"
-                            android:text="Rp. 0.000"
+                            android:text="Rp. 0.000.000.000.000"
                             android:textColor="@color/white"
-                            android:textSize="24sp" />
+                            android:textSize="30sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
