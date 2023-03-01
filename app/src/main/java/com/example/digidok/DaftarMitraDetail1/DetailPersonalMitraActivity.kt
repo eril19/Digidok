@@ -7,7 +7,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.digidok.DaftarMitraDetail2.DaftarMitraDetailActivity2
+import com.example.digidok.DaftarMitraDetail2.DetailKerjasamaMitraActivity
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
@@ -46,7 +46,7 @@ class MitraDetailActivity : AppCompatActivity() {
     var statusMitra = ""
     var idMitraCheck = ""
     var isTambah = ""
-    var DataMitra: DaftarMitraDetailModel? = null
+    var DataMitra: DetailPersonalMitraModel? = null
     var npwp: EditText? = null
     var namaKpp :EditText?=null
     var nama: EditText? = null
@@ -68,7 +68,7 @@ class MitraDetailActivity : AppCompatActivity() {
     var jenis_pajak: EditText? = null
     var badan_hukum: EditText? = null
 
-    lateinit var mDaftarMitraDetailViewModel: DaftarMitraDetailViewModel
+    lateinit var mDaftarMitraDetailViewModel: DetailPersonalMitraViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,7 +78,7 @@ class MitraDetailActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         mDaftarMitraDetailViewModel = ViewModelProvider(this@MitraDetailActivity).get(
-            DaftarMitraDetailViewModel::class.java)
+            DetailPersonalMitraViewModel::class.java)
         mDaftarMitraDetailViewModel.token.value = Preferences.isToken(this@MitraDetailActivity)
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
@@ -466,9 +466,9 @@ class MitraDetailActivity : AppCompatActivity() {
 
         val next_detail_btn = findViewById<Button>(R.id.next_detail_btn)
         next_detail_btn.setOnClickListener {
-            val i = Intent(this@MitraDetailActivity, DaftarMitraDetailActivity2::class.java)
+            val i = Intent(this@MitraDetailActivity, DetailKerjasamaMitraActivity::class.java)
 
-            DataMitra = DaftarMitraDetailModel(
+            DataMitra = DetailPersonalMitraModel(
                     npwp = npwp?.text.toString(),
                     nama = nama?.text.toString(),
                     alamat = alamat?.text.toString(),

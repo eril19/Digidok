@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.DaftarMitra.DaftarMitraModel
-import com.example.digidok.DaftarPengajuanKerjasamaDetail1.DaftarPengajuanKerjasamaDetailModel
+import com.example.digidok.DaftarPengajuanKerjasamaDetail1.PengajuanKerjasamaDetailModel
 import com.example.digidok.R
 
 class DataAsetdiKerjasamakanAdapter(private val context: Context, val daftarPengajuanKerjasamaDetail2ViewModel: DaftarPengajuanKerjasamaDetail2ViewModel,
-                                    private var mListener: onItemClickListener, val listener: (DaftarPengajuanKerjasamaDetailModel) -> Unit):
+                                    private var mListener: onItemClickListener, val listener: (PengajuanKerjasamaDetailModel) -> Unit):
 RecyclerView.Adapter<DataAsetdiKerjasamakanAdapter.PengajuanKerjasamaDetailViewHolder>(){
 
-    private var PengajuanKerjaDetail: List<DaftarPengajuanKerjasamaDetailModel> = daftarPengajuanKerjasamaDetail2ViewModel.mData
+    private var PengajuanKerjaDetail: List<PengajuanKerjasamaDetailModel> = daftarPengajuanKerjasamaDetail2ViewModel.mData
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
@@ -39,7 +38,7 @@ RecyclerView.Adapter<DataAsetdiKerjasamakanAdapter.PengajuanKerjasamaDetailViewH
 //            }
 //        }
 
-        fun bindView(pengajuanKerjasamaDetailModel: DaftarPengajuanKerjasamaDetailModel, listener: (DaftarPengajuanKerjasamaDetailModel) -> Unit){
+        fun bindView(pengajuanKerjasamaDetailModel: PengajuanKerjasamaDetailModel, listener: (PengajuanKerjasamaDetailModel) -> Unit){
             alamat.text  = pengajuanKerjasamaDetailModel.alamat
             luas.text = pengajuanKerjasamaDetailModel.luas + " " + pengajuanKerjasamaDetailModel.satuan
             luasManfaat.text = pengajuanKerjasamaDetailModel.luasManfaat + " " + pengajuanKerjasamaDetailModel.satuan

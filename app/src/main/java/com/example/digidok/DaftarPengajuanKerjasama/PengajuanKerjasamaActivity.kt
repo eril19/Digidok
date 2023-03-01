@@ -14,8 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.DaftarMitra.DaftarMitraAdapter
-import com.example.digidok.DaftarPengajuanKerjasamaDetail1.DaftarPengajuanKerjasamaDetailActivity
+import com.example.digidok.DaftarPengajuanKerjasamaDetail1.PengajuanKerjasamaDetailActivity
 import com.example.digidok.DaftarPengajuanKerjasamaDetail3.DaftarSuratLampiranActivity
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
@@ -24,10 +23,10 @@ import com.example.digidok.R
 import com.example.digidok.utils.Preferences
 import kotlin.collections.ArrayList
 
-class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
+class PengajuanKerjasamaActivity : AppCompatActivity() {
 
     var isLoading: Boolean = false
-    var pengajuanKerjasama: ArrayList<DaftarPengajuanKerjasamaModel> = ArrayList()
+    var pengajuanKerjasama: ArrayList<PengajuanKerjasamaModel> = ArrayList()
     private var recyclerview: RecyclerView? = null
     var start: Int = 0
     var row: Int = 0
@@ -37,7 +36,7 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
     val listStatus = arrayListOf("SEMUA", "DRAFT/DIKEMBALIKAN", "DIKIRIM", "DISETUJUI")
     var role = ""
     var status = ""
-    lateinit var mDaftarPengajuanKerjasamaViewModel: DaftarPengajuanKerjasamaViewModel
+    lateinit var mDaftarPengajuanKerjasamaViewModel: PengajuanKerjasamaViewModel
     lateinit var mLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,9 +49,9 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        mDaftarPengajuanKerjasamaViewModel = ViewModelProvider(this@DaftarPengajuanKerjasamaActivity).get(DaftarPengajuanKerjasamaViewModel::class.java)
+        mDaftarPengajuanKerjasamaViewModel = ViewModelProvider(this@PengajuanKerjasamaActivity).get(PengajuanKerjasamaViewModel::class.java)
         status = "SEMUA"
-        mDaftarPengajuanKerjasamaViewModel.token.value = Preferences.isToken(this@DaftarPengajuanKerjasamaActivity)
+        mDaftarPengajuanKerjasamaViewModel.token.value = Preferences.isToken(this@PengajuanKerjasamaActivity)
         mDaftarPengajuanKerjasamaViewModel.row.value = "10"
         mDaftarPengajuanKerjasamaViewModel.order.value = "asc"
         mDaftarPengajuanKerjasamaViewModel.start.value = "0"
@@ -96,14 +95,14 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
         val back = findViewById<ImageView>(R.id.backbtn)
 
         back.setOnClickListener {
-            val intent = Intent(this@DaftarPengajuanKerjasamaActivity, DashboardActivity::class.java)
+            val intent = Intent(this@PengajuanKerjasamaActivity, DashboardActivity::class.java)
             startActivity(intent)
             finish()
         }
 
         val tambahMitraBtn = findViewById<Button>(R.id.tambahMitraBtn)
         tambahMitraBtn.setOnClickListener {
-            val i = Intent(this@DaftarPengajuanKerjasamaActivity, DaftarPengajuanKerjasamaDetailActivity::class.java)
+            val i = Intent(this@PengajuanKerjasamaActivity, PengajuanKerjasamaDetailActivity::class.java)
             i.putExtra("status", "Tambah")
             startActivity(i)
         }
@@ -115,27 +114,27 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
 
         val homeBtn : ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
-            startActivity(Intent(this@DaftarPengajuanKerjasamaActivity, DashboardActivity::class.java))
+            startActivity(Intent(this@PengajuanKerjasamaActivity, DashboardActivity::class.java))
         }
 
         val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
         homeBtn2.setOnClickListener {
-            startActivity(Intent(this@DaftarPengajuanKerjasamaActivity, DashboardActivity::class.java))
+            startActivity(Intent(this@PengajuanKerjasamaActivity, DashboardActivity::class.java))
         }
 
         val homeBtn3 : ImageButton = findViewById(R.id.homeBtn)
         homeBtn3.setOnClickListener {
-            startActivity(Intent(this@DaftarPengajuanKerjasamaActivity, DashboardActivity::class.java))
+            startActivity(Intent(this@PengajuanKerjasamaActivity, DashboardActivity::class.java))
         }
 
         val profileBtn : ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
-            startActivity(Intent(this@DaftarPengajuanKerjasamaActivity, ProfileActivity::class.java))
+            startActivity(Intent(this@PengajuanKerjasamaActivity, ProfileActivity::class.java))
         }
 
         val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
         notificationBtn.setOnClickListener {
-            startActivity(Intent(this@DaftarPengajuanKerjasamaActivity, NotificationActivity::class.java))
+            startActivity(Intent(this@PengajuanKerjasamaActivity, NotificationActivity::class.java))
         }
 
         setSpinnerKategori()
@@ -157,13 +156,13 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
         }
 
         mDaftarPengajuanKerjasamaViewModel.setDatapagination.observe(this) {
-            (recyclerview?.adapter as DaftarPengajuanKerjasamaAdapter).notifyDataSetChanged()
+            (recyclerview?.adapter as PengajuanKerjasamaAdapter).notifyDataSetChanged()
         }
     }
 
     private fun observeViewModel() {
         mDaftarPengajuanKerjasamaViewModel.setDatapagination.observe(this) {
-            (recyclerview?.adapter as DaftarPengajuanKerjasamaAdapter).notifyDataSetChanged()
+            (recyclerview?.adapter as PengajuanKerjasamaAdapter).notifyDataSetChanged()
         }
     }
 
@@ -204,19 +203,19 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
 
     fun setList(role:String) {
         recyclerview = findViewById<RecyclerView>(R.id.rv_list_pengajuan_kerjasama)
-        mLayoutManager = LinearLayoutManager(this@DaftarPengajuanKerjasamaActivity, LinearLayoutManager.VERTICAL, false)
+        mLayoutManager = LinearLayoutManager(this@PengajuanKerjasamaActivity, LinearLayoutManager.VERTICAL, false)
         recyclerview?.layoutManager = mLayoutManager
         recyclerview?.setHasFixedSize(true)
 
-        recyclerview?.adapter = DaftarPengajuanKerjasamaAdapter(
+        recyclerview?.adapter = PengajuanKerjasamaAdapter(
             this,
             mDaftarPengajuanKerjasamaViewModel,
-            object : DaftarPengajuanKerjasamaAdapter.onItemClickListener {
+            object : PengajuanKerjasamaAdapter.onItemClickListener {
 
                 override fun onItemClick(position: Int) {
                     val i = Intent(
-                        this@DaftarPengajuanKerjasamaActivity,
-                        DaftarPengajuanKerjasamaDetailActivity::class.java
+                        this@PengajuanKerjasamaActivity,
+                        PengajuanKerjasamaDetailActivity::class.java
                     )
                     i.putExtra("PengajuanKerjasama", pengajuanKerjasama[position])
                     startActivity(i)
@@ -228,7 +227,7 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
                     idPks: String,
                     view: View
                 ) {
-                    val popupPencet = PopupMenu(this@DaftarPengajuanKerjasamaActivity, view)
+                    val popupPencet = PopupMenu(this@PengajuanKerjasamaActivity, view)
                     popupPencet.inflate(R.menu.daftar_pengajuan_menu)
 
                     if (statusPengajuan.equals("DISETUJUI",true)) {
@@ -277,21 +276,21 @@ class DaftarPengajuanKerjasamaActivity : AppCompatActivity() {
                     popupPencet.setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.menu_view -> {
-                                val intent = Intent(this@DaftarPengajuanKerjasamaActivity, DaftarPengajuanKerjasamaDetailActivity::class.java)
+                                val intent = Intent(this@PengajuanKerjasamaActivity, PengajuanKerjasamaDetailActivity::class.java)
                                 intent.putExtra("status", "View")
                                 intent.putExtra("idPks",idPks)
                                 startActivity(intent)
                                 true
                             }
                             R.id.menu_edit -> {
-                                val intent = Intent(this@DaftarPengajuanKerjasamaActivity, DaftarPengajuanKerjasamaDetailActivity::class.java)
+                                val intent = Intent(this@PengajuanKerjasamaActivity, PengajuanKerjasamaDetailActivity::class.java)
                                 intent.putExtra("idPks",idPks)
                                 intent.putExtra("status", "Edit")
                                 startActivity(intent)
                                 true
                             }
                             R.id.menu_telaah -> {
-                                val intent = Intent(this@DaftarPengajuanKerjasamaActivity, DaftarSuratLampiranActivity::class.java)
+                                val intent = Intent(this@PengajuanKerjasamaActivity, DaftarSuratLampiranActivity::class.java)
                                 intent.putExtra("idPks",idPks)
                                 intent.putExtra("status", "Telaah")
                                 startActivity(intent)

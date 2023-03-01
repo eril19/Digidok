@@ -14,7 +14,7 @@ import com.example.digidok.data.model.statusMitramodel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences.safe
 
-class DaftarMitraDetailViewModel2(context: Application) : AndroidViewModel(context)  {
+class DetailKerjasamaMitraViewModel(context: Application) : AndroidViewModel(context)  {
     var isLoading = MutableLiveData<Boolean>()
     val token = MutableLiveData<String>()
     val responseSucces = MutableLiveData<Boolean>()

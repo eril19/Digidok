@@ -1,20 +1,15 @@
 package com.example.digidok.DaftarPengajuanKerjasamaDetail3
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.digidok.DaftarPengajuanKerjasamaDetail1.DaftarPengajuanKerjasamaDetailModel
-import com.example.digidok.LaporanPengajuanKerjasama.LaporanPengajuanModel
-import com.example.digidok.SpinnerModel.JenisMitraModel
-import com.example.digidok.SpinnerModel.StatusMitraModel
+import com.example.digidok.DaftarPengajuanKerjasamaDetail1.PengajuanKerjasamaDetailModel
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
 import com.example.digidok.data.model.UserModel
 import com.example.digidok.data.model.daftarPengajuanKerjasamaDetailModel
 import com.example.digidok.utils.Injection
-import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
 class DaftarPengajuanKerjasamaDetail3ViewModel(context: Application) : AndroidViewModel(context)  {
@@ -29,7 +24,7 @@ class DaftarPengajuanKerjasamaDetail3ViewModel(context: Application) : AndroidVi
     val sortColumn = MutableLiveData<String>()
     val order = MutableLiveData<String>()
 
-    val mData: MutableList<DaftarPengajuanKerjasamaDetailModel> = mutableListOf()
+    val mData: MutableList<PengajuanKerjasamaDetailModel> = mutableListOf()
 
     fun getPengajuanKerjasamaDetail(idPks:String) {
         isLoading.value = true
@@ -46,7 +41,7 @@ class DaftarPengajuanKerjasamaDetail3ViewModel(context: Application) : AndroidVi
 //                            responseSucces.value = true
                             var url = ""
                             mData?.add(
-                                DaftarPengajuanKerjasamaDetailModel(
+                                PengajuanKerjasamaDetailModel(
                                     kodeDokumen = it?.kodeDokumen.safe(),
                                     jenisDokumen = it?.jenisDokumen.safe(),
                                     noSurat = it?.noSurat.safe(),

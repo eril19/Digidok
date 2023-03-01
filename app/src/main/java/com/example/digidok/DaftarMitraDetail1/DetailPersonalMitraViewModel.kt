@@ -11,7 +11,7 @@ import com.example.digidok.data.model.detailMitramodel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences.safe
 
-class DaftarMitraDetailViewModel(context: Application) : AndroidViewModel(context) {
+class DetailPersonalMitraViewModel(context: Application) : AndroidViewModel(context) {
     var isLoading = MutableLiveData<Boolean>()
     val token = MutableLiveData<String>()
     val responseSucces = MutableLiveData<Boolean>()
@@ -48,7 +48,7 @@ class DaftarMitraDetailViewModel(context: Application) : AndroidViewModel(contex
     var tahunGabung = MutableLiveData<String>()
     var jenisMitra = MutableLiveData<String>()
     var statusMitra = MutableLiveData<String>()
-    val mData: MutableList<DaftarMitraDetailModel> = mutableListOf()
+    val mData: MutableList<DetailPersonalMitraModel> = mutableListOf()
 
     fun getDetailMitra(id:String){
         isLoading.value = true

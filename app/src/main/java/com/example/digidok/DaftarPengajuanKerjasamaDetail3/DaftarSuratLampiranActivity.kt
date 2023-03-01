@@ -13,21 +13,13 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.DaftarMitraDetail2.DaftarMitraDetailViewModel2
-import com.example.digidok.DaftarPengajuanKerjasama.DaftarPengajuanKerjasamaActivity
-import com.example.digidok.DaftarPengajuanKerjasamaDetail1.DaftarPengajuanKerjasamaDetailModel
+import com.example.digidok.DaftarPengajuanKerjasama.PengajuanKerjasamaActivity
+import com.example.digidok.DaftarPengajuanKerjasamaDetail1.PengajuanKerjasamaDetailModel
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.R
-import com.example.digidok.data.DataSource
-import com.example.digidok.data.Repository
-import com.example.digidok.data.model.BaseApiModel
-import com.example.digidok.data.model.UserModel
-import com.example.digidok.data.model.daftarPengajuanKerjasamaDetailModel
-import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
-import com.example.digidok.utils.Preferences.safe
 
 class DaftarSuratLampiranActivity : AppCompatActivity() {
     var idPksCheck : String = ""
@@ -36,7 +28,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
     var catatan = ""
     var hasilTelaah = ""
     var catatanPenelaahan : EditText ? = null
-    var daftarSuratLampiran: ArrayList<DaftarPengajuanKerjasamaDetailModel> = ArrayList()
+    var daftarSuratLampiran: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
     var isLoading : Boolean = false
     private var recyclerview: RecyclerView? = null
     val listTelaah = arrayListOf("Disetujui", "Dikembalikan", "Ditolak")
@@ -79,7 +71,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
-            startActivity(Intent(this@DaftarSuratLampiranActivity, DaftarPengajuanKerjasamaActivity::class.java))
+            startActivity(Intent(this@DaftarSuratLampiranActivity, PengajuanKerjasamaActivity::class.java))
             finish()
         }
 
@@ -145,7 +137,7 @@ class DaftarSuratLampiranActivity : AppCompatActivity() {
         simpan.setOnClickListener {
             catatan = catatanTelaah.text.toString()
            mDaftarPengajuanKerjasamaDetail3ViewModel.Telaah(hasilTelaah, catatan,idPksCheck)
-            startActivity(Intent(this@DaftarSuratLampiranActivity, DaftarPengajuanKerjasamaActivity::class.java))
+            startActivity(Intent(this@DaftarSuratLampiranActivity, PengajuanKerjasamaActivity::class.java))
         }
 
         mDaftarPengajuanKerjasamaDetail3ViewModel.isLoading.observe(this){

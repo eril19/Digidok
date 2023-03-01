@@ -3,7 +3,7 @@ package com.example.digidok.DaftarPengajuanKerjasamaDetail2
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.digidok.DaftarPengajuanKerjasamaDetail1.DaftarPengajuanKerjasamaDetailModel
+import com.example.digidok.DaftarPengajuanKerjasamaDetail1.PengajuanKerjasamaDetailModel
 import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.BaseApiModel
@@ -33,7 +33,7 @@ class DaftarPengajuanKerjasamaDetail2ViewModel(context: Application) : AndroidVi
     var satuan = MutableLiveData<String>()
     var luasManfaat = MutableLiveData<String>()
 
-    val mData: MutableList<DaftarPengajuanKerjasamaDetailModel> = mutableListOf()
+    val mData: MutableList<PengajuanKerjasamaDetailModel> = mutableListOf()
 
     fun getPengajuanKerjasamaDetail(idPks:String) {
         isLoading.value = true
@@ -49,7 +49,7 @@ class DaftarPengajuanKerjasamaDetail2ViewModel(context: Application) : AndroidVi
                         data.data?.dataAsetDikerjasamakan?.forEach {
                             var url = ""
                             mData?.add(
-                                DaftarPengajuanKerjasamaDetailModel(
+                                PengajuanKerjasamaDetailModel(
                                     noreg = it?.noreg.safe(),
                                     namaLokasi = it?.nalok.safe(),
                                     namaBarang = it?.nabar.safe(),

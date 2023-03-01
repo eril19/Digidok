@@ -2,7 +2,6 @@ package com.example.digidok.DaftarPengajuanKerjasamaDetail1
 
 import android.content.Intent
 import android.graphics.Typeface
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,27 +10,17 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.DaftarPengajuanKerjasama.DaftarPengajuanKerjasamaActivity
-import com.example.digidok.DaftarPengajuanKerjasamaDetail2.DataAsetdiKerjasamakanAdapter
+import com.example.digidok.DaftarPengajuanKerjasama.PengajuanKerjasamaActivity
 import com.example.digidok.DaftarPengajuanKerjasamaDetail2.DataAsetdikerjasamakanActivity
-import com.example.digidok.DaftarPengajuanKerjasamaDetail3.DaftarPengajuanKerjasamaDetail3ViewModel
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.R
-import com.example.digidok.SpinnerModel.KategoriPKSModel
-import com.example.digidok.SpinnerModel.ListMitraModel
-import com.example.digidok.SpinnerModel.TujuanPKSModel
-import com.example.digidok.data.DataSource
-import com.example.digidok.data.Repository
-import com.example.digidok.data.model.*
-import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
-class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
+class PengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
     var isStatusEdit: String = ""
     var isLoading: Boolean = false
@@ -75,7 +64,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
     var pdfPic: ImageView? = null
     var tnc: TextView? = null
 
-    lateinit var mDaftarPengajuanKerjasamaDetailViewModel: DaftarPengajuanKerjasamaDetailViewModel
+    lateinit var mDaftarPengajuanKerjasamaDetailViewModel: PengajuanKerjasamaDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,11 +75,11 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         idPkscheck = intent.getStringExtra("idPks") ?: ""
 
         mDaftarPengajuanKerjasamaDetailViewModel =
-            ViewModelProvider(this@DaftarPengajuanKerjasamaDetailActivity).get(
-                DaftarPengajuanKerjasamaDetailViewModel::class.java
+            ViewModelProvider(this@PengajuanKerjasamaDetailActivity).get(
+                PengajuanKerjasamaDetailViewModel::class.java
             )
         mDaftarPengajuanKerjasamaDetailViewModel.token.value =
-            Preferences.isToken(this@DaftarPengajuanKerjasamaDetailActivity)
+            Preferences.isToken(this@PengajuanKerjasamaDetailActivity)
 
         spinnerMitra = findViewById<Spinner>(R.id.spinner_mitra)
         spinnerMitra?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -172,7 +161,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         tgl_akhir = findViewById<EditText>(R.id.tgl_akhir)
         prihal = findViewById<EditText>(R.id.perihal)
         //  skema = findViewById<EditText>(R.id.skema_pemanfaatan)
-        val buttonDokumen = findViewById<ImageButton>(R.id.buttonDokumen)
+//        val buttonDokumen = findViewById<ImageButton>(R.id.buttonDokumen)
 
         if (!idPkscheck.equals("")) {
             mDaftarPengajuanKerjasamaDetailViewModel.getPengajuanKerjasamaDetail(idPkscheck)
@@ -264,8 +253,8 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
                 back.setOnClickListener {
                     val intent = Intent(
-                        this@DaftarPengajuanKerjasamaDetailActivity,
-                        DaftarPengajuanKerjasamaActivity::class.java
+                        this@PengajuanKerjasamaDetailActivity,
+                        PengajuanKerjasamaActivity::class.java
                     )
                     startActivity(intent)
                     finish()
@@ -288,8 +277,8 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
                     )
                     startActivity(
                         Intent(
-                            this@DaftarPengajuanKerjasamaDetailActivity,
-                            DaftarPengajuanKerjasamaActivity::class.java
+                            this@PengajuanKerjasamaDetailActivity,
+                            PengajuanKerjasamaActivity::class.java
                         )
                     )
                 } else if (isStatusEdit.equals("Tambah", true)) {
@@ -308,8 +297,8 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
                     )
                     startActivity(
                         Intent(
-                            this@DaftarPengajuanKerjasamaDetailActivity,
-                            DaftarPengajuanKerjasamaActivity::class.java
+                            this@PengajuanKerjasamaDetailActivity,
+                            PengajuanKerjasamaActivity::class.java
                         )
                     )
                 }
@@ -345,8 +334,8 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         close_detail_btn.setOnClickListener {
             startActivity(
                 Intent(
-                    this@DaftarPengajuanKerjasamaDetailActivity,
-                    DaftarPengajuanKerjasamaActivity::class.java
+                    this@PengajuanKerjasamaDetailActivity,
+                    PengajuanKerjasamaActivity::class.java
                 )
             )
             finish()
@@ -355,8 +344,8 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         backArrow.setOnClickListener {
             startActivity(
                 Intent(
-                    this@DaftarPengajuanKerjasamaDetailActivity,
-                    DaftarPengajuanKerjasamaActivity::class.java
+                    this@PengajuanKerjasamaDetailActivity,
+                    PengajuanKerjasamaActivity::class.java
                 )
             )
             finish()
@@ -367,8 +356,8 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         if (isStatusEdit.equals("Tambah", true)) {
             header.setText("Tambah Pengajuan Kerjasama")
 
-            dokumenPKS = findViewById(R.id.title_Dokumen)
-            pdfPic = findViewById(R.id.buttonDokumen)
+//            dokumenPKS = findViewById(R.id.title_Dokumen)
+//            pdfPic = findViewById(R.id.buttonDokumen)
             tnc = findViewById(R.id.pdfcapt)
 
             dokumenPKS?.visibility = View.GONE
@@ -378,8 +367,8 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         } else if (isStatusEdit.equals("Edit", true)) {
             header.setText("Edit Pengajuan Kerjasama")
 
-            dokumenPKS = findViewById(R.id.title_Dokumen)
-            pdfPic = findViewById(R.id.buttonDokumen)
+//            dokumenPKS = findViewById(R.id.title_Dokumen)
+//            pdfPic = findViewById(R.id.buttonDokumen)
             tnc = findViewById(R.id.pdfcapt)
 
             dokumenPKS?.visibility = View.GONE
@@ -393,7 +382,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         homeBtn.setOnClickListener {
             startActivity(
                 Intent(
-                    this@DaftarPengajuanKerjasamaDetailActivity,
+                    this@PengajuanKerjasamaDetailActivity,
                     DashboardActivity::class.java
                 )
             )
@@ -403,7 +392,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         homeBtn2.setOnClickListener {
             startActivity(
                 Intent(
-                    this@DaftarPengajuanKerjasamaDetailActivity,
+                    this@PengajuanKerjasamaDetailActivity,
                     DashboardActivity::class.java
                 )
             )
@@ -413,7 +402,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         homeBtn3.setOnClickListener {
             startActivity(
                 Intent(
-                    this@DaftarPengajuanKerjasamaDetailActivity,
+                    this@PengajuanKerjasamaDetailActivity,
                     DashboardActivity::class.java
                 )
             )
@@ -423,7 +412,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         profileBtn.setOnClickListener {
             startActivity(
                 Intent(
-                    this@DaftarPengajuanKerjasamaDetailActivity,
+                    this@PengajuanKerjasamaDetailActivity,
                     ProfileActivity::class.java
                 )
             )
@@ -433,7 +422,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
         notificationBtn.setOnClickListener {
             startActivity(
                 Intent(
-                    this@DaftarPengajuanKerjasamaDetailActivity,
+                    this@PengajuanKerjasamaDetailActivity,
                     NotificationActivity::class.java
                 )
             )
@@ -441,7 +430,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
         next_detail_btn.setOnClickListener {
             val i = Intent(
-                this@DaftarPengajuanKerjasamaDetailActivity,
+                this@PengajuanKerjasamaDetailActivity,
                 DataAsetdikerjasamakanActivity::class.java
             )
             i.putExtra("hideTelaah", true)
@@ -449,11 +438,11 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
             startActivity(i)
         }
 
-        buttonDokumen.setOnClickListener {
-            val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url)
-            startActivity(i)
-        }
+//        buttonDokumen.setOnClickListener {
+//            val i = Intent(Intent.ACTION_VIEW)
+//            i.data = Uri.parse(url)
+//            startActivity(i)
+//        }
 
         observeViewModel()
 
@@ -472,7 +461,7 @@ class DaftarPengajuanKerjasamaDetailActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         mDaftarPengajuanKerjasamaDetailViewModel.mMessageResponse.observe(this) {
-            Toast.makeText(this@DaftarPengajuanKerjasamaDetailActivity, it, Toast.LENGTH_LONG)
+            Toast.makeText(this@PengajuanKerjasamaDetailActivity, it, Toast.LENGTH_LONG)
                 .show()
         }
         mDaftarPengajuanKerjasamaDetailViewModel.mitra.observe(this) {

@@ -1,7 +1,6 @@
 package com.example.digidok.DaftarPengajuanKerjasamaDetail1
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.digidok.SpinnerModel.KategoriPKSModel
@@ -11,10 +10,9 @@ import com.example.digidok.data.DataSource
 import com.example.digidok.data.Repository
 import com.example.digidok.data.model.*
 import com.example.digidok.utils.Injection
-import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
-class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidViewModel(context)  {
+class PengajuanKerjasamaDetailViewModel(context: Application) : AndroidViewModel(context)  {
     var isLoading = MutableLiveData<Boolean>()
     val token = MutableLiveData<String>()
     val responseSucces = MutableLiveData<Boolean>()
@@ -30,7 +28,7 @@ class DaftarPengajuanKerjasamaDetailViewModel(context: Application) : AndroidVie
     val sortColumn = MutableLiveData<String>()
     val order = MutableLiveData<String>()
 
-    val mData: MutableList<DaftarPengajuanKerjasamaDetailModel> = mutableListOf()
+    val mData: MutableList<PengajuanKerjasamaDetailModel> = mutableListOf()
     val mDataMitra: MutableList<ListMitraModel> = mutableListOf()
     val mDataKategori: MutableList<KategoriPKSModel> = mutableListOf()
     val mDataTujuan: MutableList<TujuanPKSModel> = mutableListOf()

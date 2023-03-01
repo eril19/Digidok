@@ -8,25 +8,19 @@ import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digidok.DaftarPengajuanKerjasama.DaftarPengajuanKerjasamaActivity
+import com.example.digidok.DaftarPengajuanKerjasama.PengajuanKerjasamaActivity
 import com.example.digidok.DaftarPengajuanKerjasamaDetail3.DaftarSuratLampiranActivity
-import com.example.digidok.DaftarPengajuanKerjasamaDetail1.DaftarPengajuanKerjasamaDetailModel
-import com.example.digidok.DaftarPengajuanKerjasamaDetail3.DaftarPengajuanKerjasamaDetail3ViewModel
+import com.example.digidok.DaftarPengajuanKerjasamaDetail1.PengajuanKerjasamaDetailModel
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
 import com.example.digidok.R
-import com.example.digidok.data.DataSource
-import com.example.digidok.data.Repository
-import com.example.digidok.data.model.*
-import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences
-import com.example.digidok.utils.Preferences.safe
 
 class DataAsetdikerjasamakanActivity : AppCompatActivity() {
 
     var isLoading : Boolean = false
-    var dataAset: ArrayList<DaftarPengajuanKerjasamaDetailModel> = ArrayList()
+    var dataAset: ArrayList<PengajuanKerjasamaDetailModel> = ArrayList()
     var idPksCheck : String = ""
     private var recyclerview: RecyclerView? = null
     lateinit var mDaftarPengajuanKerjasamaDetail2ViewModel: DaftarPengajuanKerjasamaDetail2ViewModel
@@ -48,7 +42,7 @@ class DataAsetdikerjasamakanActivity : AppCompatActivity() {
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
-            startActivity(Intent(this@DataAsetdikerjasamakanActivity, DaftarPengajuanKerjasamaActivity::class.java))
+            startActivity(Intent(this@DataAsetdikerjasamakanActivity, PengajuanKerjasamaActivity::class.java))
             finish()
         }
 

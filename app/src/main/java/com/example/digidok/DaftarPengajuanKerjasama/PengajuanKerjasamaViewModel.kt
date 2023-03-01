@@ -11,7 +11,7 @@ import com.example.digidok.data.model.daftarPengajuanKerjasamaModel
 import com.example.digidok.utils.Injection
 import com.example.digidok.utils.Preferences.safe
 
-class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel(context)  {
+class PengajuanKerjasamaViewModel(context: Application) : AndroidViewModel(context)  {
     var isLoading = MutableLiveData<Boolean>()
     val token = MutableLiveData<String>()
     val responseSucces = MutableLiveData<Boolean>()
@@ -27,7 +27,7 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
     val status = MutableLiveData<String>()
     val isPaginating = MutableLiveData(true)
     val isLastPage = MutableLiveData<Boolean>()
-    val mData: MutableList<DaftarPengajuanKerjasamaModel> = mutableListOf()
+    val mData: MutableList<PengajuanKerjasamaModel> = mutableListOf()
     val setDatapagination = MutableLiveData<Boolean>()
 
     fun getPengajuanKerjasama(status:String,isClear:Boolean) {
@@ -51,7 +51,7 @@ class DaftarPengajuanKerjasamaViewModel(context: Application) : AndroidViewModel
                     if (data.isSuccess) {
                         data.data?.dataDokumen?.forEach {
                             mData?.add(
-                                DaftarPengajuanKerjasamaModel(
+                                PengajuanKerjasamaModel(
                                     header_color = it?.statusLabel.safe(),
                                     no_pks = it?.idPks.safe(),
                                     nama_mitra = it?.nama.safe(),

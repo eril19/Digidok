@@ -3,7 +3,7 @@ package com.example.digidok.DaftarPengajuanKerjasamaDetail1
 import android.os.Parcel
 import android.os.Parcelable
 
-data class DaftarPengajuanKerjasamaDetailModel(
+data class PengajuanKerjasamaDetailModel(
     val kodeLokasi:String = "",
     val namaLokasi:String = "",
     val kodeBarang:String = "",
@@ -94,12 +94,12 @@ data class DaftarPengajuanKerjasamaDetailModel(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<DaftarPengajuanKerjasamaDetailModel> {
-        override fun createFromParcel(parcel: Parcel): DaftarPengajuanKerjasamaDetailModel {
-            return DaftarPengajuanKerjasamaDetailModel(parcel)
+    companion object CREATOR : Parcelable.Creator<PengajuanKerjasamaDetailModel> {
+        override fun createFromParcel(parcel: Parcel): PengajuanKerjasamaDetailModel {
+            return PengajuanKerjasamaDetailModel(parcel)
         }
 
-        override fun newArray(size: Int): Array<DaftarPengajuanKerjasamaDetailModel?> {
+        override fun newArray(size: Int): Array<PengajuanKerjasamaDetailModel?> {
             return arrayOfNulls(size)
         }
     }

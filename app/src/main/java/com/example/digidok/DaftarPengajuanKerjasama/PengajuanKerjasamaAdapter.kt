@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.digidok.R
 import java.text.SimpleDateFormat
 
-class DaftarPengajuanKerjasamaAdapter(private val context: Context, val pengajuanKerjasamaViewModel: DaftarPengajuanKerjasamaViewModel, private var mListener: onItemClickListener)
+class PengajuanKerjasamaAdapter(private val context: Context, val pengajuanKerjasamaViewModel: PengajuanKerjasamaViewModel, private var mListener: onItemClickListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    private var PengajuanKerja: MutableList<DaftarPengajuanKerjasamaModel> = pengajuanKerjasamaViewModel.mData
+    private var PengajuanKerja: MutableList<PengajuanKerjasamaModel> = pengajuanKerjasamaViewModel.mData
 
     interface onItemClickListener{
         fun onItemClick(position: Int)
@@ -44,7 +44,7 @@ class DaftarPengajuanKerjasamaAdapter(private val context: Context, val pengajua
         }
 
 
-        fun bindView(pengajuanKerjasamaModel: DaftarPengajuanKerjasamaModel){
+        fun bindView(pengajuanKerjasamaModel: PengajuanKerjasamaModel){
             id_pks.text = pengajuanKerjasamaModel.no_pks
             nama_mitra.text = pengajuanKerjasamaModel.nama_mitra
 //            jenis_mitra.text = pengajuanKerjasamaModel.jenis_mitra

@@ -3,7 +3,7 @@ package com.example.digidok.DaftarMitraDetail1
 import android.os.Parcel
 import android.os.Parcelable
 
-class DaftarMitraDetailModel(
+class DetailPersonalMitraModel(
     var npwp: String = "",
     var nama: String = "",
     var alamat: String= "",
@@ -87,12 +87,12 @@ class DaftarMitraDetailModel(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<DaftarMitraDetailModel> {
-        override fun createFromParcel(parcel: Parcel): DaftarMitraDetailModel {
-            return DaftarMitraDetailModel(parcel)
+    companion object CREATOR : Parcelable.Creator<DetailPersonalMitraModel> {
+        override fun createFromParcel(parcel: Parcel): DetailPersonalMitraModel {
+            return DetailPersonalMitraModel(parcel)
         }
 
-        override fun newArray(size: Int): Array<DaftarMitraDetailModel?> {
+        override fun newArray(size: Int): Array<DetailPersonalMitraModel?> {
             return arrayOfNulls(size)
         }
     }

@@ -11,7 +11,7 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.digidok.DaftarMitra.DaftarMitraActivity
-import com.example.digidok.DaftarMitraDetail1.DaftarMitraDetailModel
+import com.example.digidok.DaftarMitraDetail1.DetailPersonalMitraModel
 import com.example.digidok.Dashboard.DashboardActivity
 import com.example.digidok.Notification.NotificationActivity
 import com.example.digidok.Profile.ProfileActivity
@@ -21,7 +21,7 @@ import com.example.digidok.SpinnerModel.StatusMitraModel
 import com.example.digidok.utils.Preferences
 import com.example.digidok.utils.Preferences.safe
 
-class DaftarMitraDetailActivity2 : AppCompatActivity() {
+class DetailKerjasamaMitraActivity : AppCompatActivity() {
 
     var npwp = "-"
     var nama = ""
@@ -56,13 +56,13 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
     var idMitraCheck : String = ""
     var spinner_status_mitra: Spinner? = null
     val listStatusMitra : ArrayList<StatusMitraModel> = ArrayList()
-    var data: DaftarMitraDetailModel? = null
+    var data: DetailPersonalMitraModel? = null
 
     var profilPT : TextView ?= null
     var pdfPic : ImageView ? = null
     var tnc : TextView?=null
 
-    lateinit var mDaftarMitraDetailViewModel2: DaftarMitraDetailViewModel2
+    lateinit var mDaftarMitraDetailViewModel2: DetailKerjasamaMitraViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,9 +73,9 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
         data = intent.getParcelableExtra("dataDetail")
         idMitraCheck = intent.getStringExtra("id") ?: ""
 
-        mDaftarMitraDetailViewModel2 = ViewModelProvider(this@DaftarMitraDetailActivity2).get(
-            DaftarMitraDetailViewModel2::class.java)
-        mDaftarMitraDetailViewModel2.token.value = Preferences.isToken(this@DaftarMitraDetailActivity2)
+        mDaftarMitraDetailViewModel2 = ViewModelProvider(this@DetailKerjasamaMitraActivity).get(
+            DetailKerjasamaMitraViewModel::class.java)
+        mDaftarMitraDetailViewModel2.token.value = Preferences.isToken(this@DetailKerjasamaMitraActivity)
 
         spinner_jenis_mitra = findViewById<Spinner>(R.id.spinner_jenis_mitra)
         spinner_jenis_mitra?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -129,7 +129,7 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
         val close_detail_btn = findViewById<Button>(R.id.close_detail_btn)
         close_detail_btn.setOnClickListener {
-            startActivity(Intent(this@DaftarMitraDetailActivity2, DaftarMitraActivity::class.java))
+            startActivity(Intent(this@DetailKerjasamaMitraActivity, DaftarMitraActivity::class.java))
             finish()
         }
 
@@ -168,27 +168,27 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
         val homeBtn : ImageButton = findViewById(R.id.logo_1)
         homeBtn.setOnClickListener {
-            startActivity(Intent(this@DaftarMitraDetailActivity2, DashboardActivity::class.java))
+            startActivity(Intent(this@DetailKerjasamaMitraActivity, DashboardActivity::class.java))
         }
 
         val homeBtn2 : ImageButton = findViewById(R.id.logo_2)
         homeBtn2.setOnClickListener {
-            startActivity(Intent(this@DaftarMitraDetailActivity2, DashboardActivity::class.java))
+            startActivity(Intent(this@DetailKerjasamaMitraActivity, DashboardActivity::class.java))
         }
 
         val homeBtn3 : ImageButton = findViewById(R.id.homeBtn)
         homeBtn3.setOnClickListener {
-            startActivity(Intent(this@DaftarMitraDetailActivity2, DashboardActivity::class.java))
+            startActivity(Intent(this@DetailKerjasamaMitraActivity, DashboardActivity::class.java))
         }
 
         val profileBtn : ImageButton = findViewById(R.id.profileBtn)
         profileBtn.setOnClickListener {
-            startActivity(Intent(this@DaftarMitraDetailActivity2, ProfileActivity::class.java))
+            startActivity(Intent(this@DetailKerjasamaMitraActivity, ProfileActivity::class.java))
         }
 
         val notificationBtn : ImageButton = findViewById(R.id.notificationBtn)
         notificationBtn.setOnClickListener {
-            startActivity(Intent(this@DaftarMitraDetailActivity2, NotificationActivity::class.java))
+            startActivity(Intent(this@DetailKerjasamaMitraActivity, NotificationActivity::class.java))
         }
 
         npwp = data?.npwp.toString()
@@ -254,7 +254,7 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
                     companyProfile,
                     idMitraCheck
                 )
-                startActivity(Intent(this@DaftarMitraDetailActivity2, DaftarMitraActivity::class.java))
+                startActivity(Intent(this@DetailKerjasamaMitraActivity, DaftarMitraActivity::class.java))
             }
 
         }
@@ -288,7 +288,7 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
                     legalWp,
                     companyProfile
                 )
-                startActivity(Intent(this@DaftarMitraDetailActivity2, DaftarMitraActivity::class.java))
+                startActivity(Intent(this@DetailKerjasamaMitraActivity, DaftarMitraActivity::class.java))
             }
         }
 
@@ -339,7 +339,7 @@ class DaftarMitraDetailActivity2 : AppCompatActivity() {
 
     private fun observeViewModel() {
         mDaftarMitraDetailViewModel2.mMessageResponse.observe(this){
-            Toast.makeText(this@DaftarMitraDetailActivity2, it, Toast.LENGTH_LONG).show()
+            Toast.makeText(this@DetailKerjasamaMitraActivity, it, Toast.LENGTH_LONG).show()
         }
 
     }
